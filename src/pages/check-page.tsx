@@ -4,14 +4,15 @@ import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
   checkPrice,
-  getCatalogLiveSource,
   type CheckResult,
   type PriceCategory,
   type PriceEntry,
 } from '../data/price-catalog'
+import { getDisplayRange } from '../data/live-price-source'
 import {
   AlertIcon,
   ArrowLeftIcon,
+  ArrowRightIcon,
   CameraIcon,
   CoinIcon,
   GlobeIcon,
@@ -196,6 +197,30 @@ export const CheckPage = () => {
             {t(questionKey)}
           </h1>
           <p className="text-[13px] leading-relaxed text-ink-2">{t('page.check.subhead')}</p>
+
+          <div className="rounded-2xl border border-brand-soft bg-brand-soft/30 p-4">
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand text-white">
+                <TrainIcon size={15} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] font-semibold tracking-tight text-ink">
+                  {t('page.check.safeTransit.title')}
+                </p>
+                <p className="mt-1 text-[12px] leading-snug text-ink-2">
+                  {t('page.check.safeTransit.body')}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => onPickCategory('transit')}
+                  className="mt-2 inline-flex items-center gap-1 text-[12px] font-semibold text-brand hover:underline"
+                >
+                  {t('page.check.safeTransit.cta')}
+                  <ArrowRightIcon size={12} />
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 gap-3">
             {PRICE_CATEGORIES.map((c) => {
@@ -406,15 +431,23 @@ export const CheckPage = () => {
                 className="w-full rounded-2xl border border-line bg-white py-5 pl-11 pr-4 text-[28px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
               />
             </div>
-            {!isTaxi && (
-              <p className="mt-2 text-[11px] text-ink-3">
-                {t('page.check.fairHint')}:{' '}
-                <span className="font-semibold tabular-nums text-ink-2">
-                  {formatKrw(entry.fairMin, i18n.language)}–
-                  {formatKrw(entry.fairMax, i18n.language)}
-                </span>
-              </p>
-            )}
+            {!isTaxi &&
+              (() => {
+                const r = getDisplayRange(entry.id, entry.fairMin, entry.fairMax)
+                return (
+                  <p className="mt-2 text-[11px] text-ink-3">
+                    {t('page.check.fairHint')}:{' '}
+                    <span className="font-semibold tabular-nums text-ink-2">
+                      {formatKrw(r.min, i18n.language)}–{formatKrw(r.max, i18n.language)}
+                    </span>
+                    {r.isLive && (
+                      <span className="ml-1.5 inline-flex items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+                        LIVE
+                      </span>
+                    )}
+                  </p>
+                )
+              })()}
           </div>
 
           <button
@@ -534,7 +567,7 @@ const ItemCard = ({
   lang: string
 }) => {
   const { t } = useTranslation()
-  const live = getCatalogLiveSource(entry.id)
+  const range = getDisplayRange(entry.id, entry.fairMin, entry.fairMax)
   return (
     <button
       type="button"
@@ -545,7 +578,7 @@ const ItemCard = ({
         <p className="flex-1 text-[14px] font-semibold leading-tight tracking-tight text-ink">
           {t(`catalog.${entry.id}.name`)}
         </p>
-        {live && (
+        {range.isLive && (
           <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
             LIVE
           </span>
@@ -555,7 +588,7 @@ const ItemCard = ({
       <p className="mt-1 text-[11px] font-medium tabular-nums text-ink-3">
         {entry.inputMode === 'taxi'
           ? t('page.check.byDistance')
-          : `${formatKrw(entry.fairMin, lang)}–${formatKrw(entry.fairMax, lang)}`}
+          : `${formatKrw(range.min, lang)}–${formatKrw(range.max, lang)}`}
       </p>
     </button>
   )

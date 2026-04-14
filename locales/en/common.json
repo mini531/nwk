@@ -245,10 +245,15 @@
       "categoryHints": {
         "food": "Restaurants & street food",
         "drink": "Coffee, drinks, water",
-        "transit": "Taxis & private rides",
+        "transit": "Korea's only risky ride",
         "lodging": "Hotels, hanok, hostels",
         "tourism": "Massage, spa, experiences",
         "fee": "ATM, exchange, SIM"
+      },
+      "safeTransit": {
+        "title": "Korea's public transit is rip-off-free",
+        "body": "Subway, bus, KTX and intercity bus all charge the listed price via T-money or cash. Only taxis need checking — always confirm the meter.",
+        "cta": "Check a taxi fare"
       },
       "photo": {
         "title": "Snap a menu or receipt",
@@ -269,10 +274,10 @@
       "categories": {
         "food": "Food",
         "drink": "Drinks",
-        "transit": "Transit",
+        "transit": "Taxi",
         "lodging": "Lodging",
         "tourism": "Tourism",
-        "fee": "Fees"
+        "fee": "FX & Fees"
       },
       "verdict": {
         "fair": "Fair price",

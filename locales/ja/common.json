@@ -245,10 +245,15 @@
       "categoryHints": {
         "food": "食堂・屋台",
         "drink": "コーヒー・酒・水",
-        "transit": "タクシー・私設車",
+        "transit": "韓国で唯一注意が必要",
         "lodging": "ホテル・韓屋・ホステル",
         "tourism": "マッサージ・サウナ・体験",
         "fee": "ATM・両替・SIM"
+      },
+      "safeTransit": {
+        "title": "韓国の公共交通はぼったくりなし",
+        "body": "地下鉄・バス・KTX・都市間バスはすべて T-money または現金で表示料金そのまま。タクシーだけ例外 — メーター確認必須。",
+        "cta": "タクシー料金をチェック"
       },
       "photo": {
         "title": "写真で確認",
@@ -269,10 +274,10 @@
       "categories": {
         "food": "食事",
         "drink": "飲料・酒",
-        "transit": "交通",
+        "transit": "タクシー",
         "lodging": "宿泊",
         "tourism": "観光",
-        "fee": "手数料"
+        "fee": "両替・手数料"
       },
       "verdict": {
         "fair": "適正価格",

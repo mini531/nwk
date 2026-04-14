@@ -1,0 +1,129 @@
+{
+  "source": "강원특별자치도 물가정보 (가격비교)",
+  "sourceUrl": "https://www.data.go.kr/data/15125533/openapi.do",
+  "namespace": "3037865/v1",
+  "uddi": "uddi:1c6c7a0c-78ed-4636-adee-9a3dd57adc3e",
+  "fetchedAt": "2026-04-14T12:48:05.686Z",
+  "pointCount": 12,
+  "latest": {
+    "month": "2025-04-01",
+    "national": 116.38,
+    "personalService": 121.8,
+    "publicService": 107.04,
+    "agri": 125.61,
+    "industrial": 116.55,
+    "total": 117.96
+  },
+  "momPct": 0.69,
+  "yoyPct": null,
+  "series": [
+    {
+      "month": "2024-05-01",
+      "national": 114.09,
+      "personalService": 118.04,
+      "publicService": 104.89,
+      "agri": 124.19,
+      "industrial": 115.15,
+      "total": 115.65
+    },
+    {
+      "month": "2024-06-01",
+      "national": 113.84,
+      "personalService": 118.01,
+      "publicService": 104.97,
+      "agri": 120,
+      "industrial": 114.71,
+      "total": 115.19
+    },
+    {
+      "month": "2024-07-01",
+      "national": 114.13,
+      "personalService": 118.78,
+      "publicService": 104.98,
+      "agri": 122.01,
+      "industrial": 115.32,
+      "total": 115.48
+    },
+    {
+      "month": "2024-08-01",
+      "national": 114.54,
+      "personalService": 119.25,
+      "publicService": 105.43,
+      "agri": 125.37,
+      "industrial": 115.24,
+      "total": 116.02
+    },
+    {
+      "month": "2024-09-01",
+      "national": 114.65,
+      "personalService": 118.72,
+      "publicService": 105.38,
+      "agri": 128.63,
+      "industrial": 114.57,
+      "total": 116.19
+    },
+    {
+      "month": "2024-10-01",
+      "national": 114.69,
+      "personalService": 119.17,
+      "publicService": 105.37,
+      "agri": 127.17,
+      "industrial": 114.38,
+      "total": 116.14
+    },
+    {
+      "month": "2024-11-01",
+      "national": 114.4,
+      "personalService": 118.95,
+      "publicService": 105.35,
+      "agri": 120.19,
+      "industrial": 114.97,
+      "total": 115.75
+    },
+    {
+      "month": "2024-12-01",
+      "national": 114.91,
+      "personalService": 119.31,
+      "publicService": 105.47,
+      "agri": 123.55,
+      "industrial": 115.48,
+      "total": 116.36
+    },
+    {
+      "month": "2025-01-01",
+      "national": 115.71,
+      "personalService": 120,
+      "publicService": 106.66,
+      "agri": 127.86,
+      "industrial": 116.11,
+      "total": 117.31
+    },
+    {
+      "month": "2025-02-01",
+      "national": 116.08,
+      "personalService": 120.22,
+      "publicService": 106.65,
+      "agri": 129.66,
+      "industrial": 116.67,
+      "total": 117.74
+    },
+    {
+      "month": "2025-03-01",
+      "national": 116.29,
+      "personalService": 120.97,
+      "publicService": 107.05,
+      "agri": 129.49,
+      "industrial": 116.63,
+      "total": 118.02
+    },
+    {
+      "month": "2025-04-01",
+      "national": 116.38,
+      "personalService": 121.8,
+      "publicService": 107.04,
+      "agri": 125.61,
+      "industrial": 116.55,
+      "total": 117.96
+    }
+  ]
+}

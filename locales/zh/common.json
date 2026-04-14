@@ -245,10 +245,15 @@
       "categoryHints": {
         "food": "餐厅与街头小吃",
         "drink": "咖啡·酒·水",
-        "transit": "出租车与私营",
+        "transit": "韩国唯一需警惕",
         "lodging": "酒店·韩屋·青旅",
         "tourism": "按摩·汗蒸·体验",
         "fee": "ATM·换汇·SIM"
+      },
+      "safeTransit": {
+        "title": "韩国公共交通不会宰客",
+        "body": "地铁、公交、KTX 与城际巴士均按牌价收取 (T-money 或现金)。仅出租车例外 — 务必核对计价器。",
+        "cta": "核查出租车费用"
       },
       "photo": {
         "title": "拍照核查",
@@ -269,10 +274,10 @@
       "categories": {
         "food": "餐食",
         "drink": "饮品",
-        "transit": "交通",
+        "transit": "出租车",
         "lodging": "住宿",
         "tourism": "观光",
-        "fee": "手续费"
+        "fee": "换汇·手续费"
       },
       "verdict": {
         "fair": "价格合理",

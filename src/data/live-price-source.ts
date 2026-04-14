@@ -91,3 +91,13 @@ export const getLiveOverride = (entryId: string): LiveOverride | null => {
     },
   }
 }
+
+export const getDisplayRange = (
+  entryId: string,
+  fallbackMin: number,
+  fallbackMax: number,
+): { min: number; max: number; isLive: boolean } => {
+  const live = getLiveOverride(entryId)
+  if (live) return { min: live.min, max: live.max, isLive: true }
+  return { min: fallbackMin, max: fallbackMax, isLive: false }
+}
