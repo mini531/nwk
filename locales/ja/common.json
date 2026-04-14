@@ -211,7 +211,15 @@
       "liveResults": "{{lang}} · TourAPIライブ {{count}}件",
       "visibleCount": "表示中の観光地 {{count}}件",
       "emptyViewport": "ズームアウトすると観光地が増えます",
-      "backToList": "一覧に戻る"
+      "backToList": "一覧に戻る",
+      "nearbyCta": "現在地周辺",
+      "nearbyClear": "クリア",
+      "nearbyResultCount": "半径3kmに{{count}}件",
+      "geoLoading": "位置情報を取得中...",
+      "geoDenied": "位置情報の利用が拒否されました",
+      "geoFailed": "周辺情報を取得できませんでした",
+      "geoEmpty": "半径3km以内に観光地がありません。別の場所に移動してお試しください",
+      "geoUnsupported": "このブラウザは位置情報をサポートしていません"
     },
     "map": {
       "title": "地図",

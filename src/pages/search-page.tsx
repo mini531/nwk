@@ -5,7 +5,7 @@ import { TourMap, type PoiProperties } from '../components/tour-map'
 import tourPois from '../data/live-tour-pois.json'
 import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
-import { tourSearch, type TourSearchItem } from '../utils/api'
+import { tourNearby, tourSearch, type TourSearchItem } from '../utils/api'
 
 type GeoJsonCollection = GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>
 
@@ -42,8 +42,7 @@ const poiToItem = (p: PoiProperties, feature: GeoJSON.Feature<GeoJSON.Point>): T
 })
 
 export const SearchPage = () => {
-  const { t } = useTranslation()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [q, setQ] = useState('')
   const [filter, setFilter] = useState<'all' | 'attraction' | 'culture'>('all')
   const [focusId, setFocusId] = useState<string | null>(null)
@@ -51,7 +50,45 @@ export const SearchPage = () => {
   const [liveLoading, setLiveLoading] = useState(false)
   const [liveSource, setLiveSource] = useState<'live' | 'mock' | null>(null)
   const [bounds, setBounds] = useState<[number, number, number, number] | null>(null)
+  const [nearbyItems, setNearbyItems] = useState<TourSearchItem[]>([])
+  const [nearbyLoading, setNearbyLoading] = useState(false)
+  const [nearbyError, setNearbyError] = useState<string | null>(null)
   const asideRef = useRef<HTMLElement>(null)
+
+  const requestNearby = () => {
+    if (!('geolocation' in navigator)) {
+      setNearbyError(t('page.search.geoUnsupported'))
+      return
+    }
+    setNearbyLoading(true)
+    setNearbyError(null)
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const res = await tourNearby({
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude,
+            radius: 3000,
+            lang: i18n.language,
+          })
+          const items = res.data.items
+          setNearbyItems(items)
+          if (items.length === 0) setNearbyError(t('page.search.geoEmpty'))
+          setQ('')
+          setFocusId(null)
+        } catch {
+          setNearbyError(t('page.search.geoFailed'))
+        } finally {
+          setNearbyLoading(false)
+        }
+      },
+      () => {
+        setNearbyError(t('page.search.geoDenied'))
+        setNearbyLoading(false)
+      },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 120000 },
+    )
+  }
 
   const handlePoiClick = (p: PoiProperties) => {
     setFocusId(p.id)
@@ -110,13 +147,10 @@ export const SearchPage = () => {
     return features
   }, [filter, keyword])
 
-  // When live TourAPI search returns items, project them into GeoJSON
-  // features so the map can render and fit to them. Items without lat/lng
-  // are kept in the sidebar list only.
-  const liveFeatures = useMemo<GeoJSON.Feature<GeoJSON.Point, PoiProperties>[]>(() => {
-    return liveItems
+  const itemsToFeatures = (items: TourSearchItem[]) =>
+    items
       .filter((it) => Number.isFinite(it.lat) && Number.isFinite(it.lng) && it.lat && it.lng)
-      .map((it) => ({
+      .map<GeoJSON.Feature<GeoJSON.Point, PoiProperties>>((it) => ({
         type: 'Feature',
         geometry: { type: 'Point', coordinates: [it.lng, it.lat] },
         properties: {
@@ -130,18 +164,22 @@ export const SearchPage = () => {
           region: 'live',
         },
       }))
-  }, [liveItems])
+
+  const liveFeatures = useMemo(() => itemsToFeatures(liveItems), [liveItems])
+  const nearbyFeatures = useMemo(() => itemsToFeatures(nearbyItems), [nearbyItems])
 
   const geoCollection: GeoJsonCollection = useMemo(() => {
-    // When a keyword is active and we have live remote results with coords,
-    // the map shows the live results instead of the static 600 POIs.
+    if (nearbyFeatures.length > 0) {
+      return { type: 'FeatureCollection', features: nearbyFeatures }
+    }
     if (keyword && liveFeatures.length > 0) {
       return { type: 'FeatureCollection', features: liveFeatures }
     }
     return { type: 'FeatureCollection', features: filteredFeatures }
-  }, [keyword, liveFeatures, filteredFeatures])
+  }, [nearbyFeatures, keyword, liveFeatures, filteredFeatures])
 
-  const mapFeatureSource = keyword && liveFeatures.length > 0 ? 'live' : 'static'
+  const mapFeatureSource =
+    nearbyFeatures.length > 0 ? 'nearby' : keyword && liveFeatures.length > 0 ? 'live' : 'static'
 
   // Sidebar list: viewport-synced when no keyword, live results when typing.
   const visibleFeatures = useMemo(() => {
@@ -209,7 +247,25 @@ export const SearchPage = () => {
         />
       </form>
 
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={requestNearby}
+          disabled={nearbyLoading}
+          className="flex items-center gap-1.5 rounded-full border border-brand bg-brand px-4 py-1.5 text-[13px] font-semibold text-white transition hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60"
+        >
+          {nearbyLoading ? (
+            <>
+              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+              {t('page.search.geoLoading')}
+            </>
+          ) : (
+            <>
+              <PinIcon size={14} aria-hidden="true" />
+              {t('page.search.nearbyCta')}
+            </>
+          )}
+        </button>
         {CATEGORY_FILTERS.map((f) => (
           <button
             key={f.id}
@@ -224,10 +280,32 @@ export const SearchPage = () => {
             {t(`page.search.poiFilters.${f.id}`)}
           </button>
         ))}
+        {nearbyItems.length > 0 && (
+          <button
+            type="button"
+            onClick={() => {
+              setNearbyItems([])
+              setNearbyError(null)
+            }}
+            className="rounded-full border border-line bg-surface px-3 py-1.5 text-[11px] font-medium text-ink-3 hover:text-ink-2"
+          >
+            {t('page.search.nearbyClear')}
+          </button>
+        )}
         <p className="ml-auto self-center text-[11px] text-ink-3">
           {filteredFeatures.length} / {POIS.featureCount} {t('page.search.poisLabel')}
         </p>
       </div>
+      {nearbyError && (
+        <p className="mb-3 rounded-lg border border-warn-soft bg-warn-soft/50 px-3 py-2 text-[11px] text-warn">
+          {nearbyError}
+        </p>
+      )}
+      {nearbyItems.length > 0 && !nearbyError && (
+        <p className="mb-3 rounded-lg border border-brand-soft bg-brand-soft/40 px-3 py-2 text-[11px] font-medium text-brand">
+          {t('page.search.nearbyResultCount', { count: nearbyItems.length })}
+        </p>
+      )}
 
       <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr] lg:gap-6">
         <div className="relative -mx-5 sm:mx-0">
@@ -236,7 +314,7 @@ export const SearchPage = () => {
             className="h-[360px] w-full overflow-hidden border-y border-line sm:h-[480px] sm:rounded-3xl sm:border lg:h-[620px]"
             onPoiClick={handlePoiClick}
             onBoundsChange={setBounds}
-            fitToFeatures={mapFeatureSource === 'live'}
+            fitToFeatures={mapFeatureSource !== 'static'}
           />
           <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />

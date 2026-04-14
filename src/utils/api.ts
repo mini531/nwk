@@ -19,3 +19,19 @@ export const tourSearch = httpsCallable<{ keyword: string; lang?: string }, Tour
   functions,
   'tourSearch',
 )
+
+export interface TourNearbyItem extends TourSearchItem {
+  contentTypeId?: string
+  dist?: number | null
+}
+
+export interface TourNearbyResponse {
+  source: 'live' | 'mock' | 'error'
+  items: TourNearbyItem[]
+  radius?: number
+}
+
+export const tourNearby = httpsCallable<
+  { lat: number; lng: number; radius?: number; lang?: string },
+  TourNearbyResponse
+>(functions, 'tourNearby')

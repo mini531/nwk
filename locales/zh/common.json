@@ -211,7 +211,15 @@
       "liveResults": "{{lang}} · TourAPI 实时 {{count}} 处",
       "visibleCount": "当前视野内景点 {{count}} 处",
       "emptyViewport": "缩小地图即可显示更多景点",
-      "backToList": "返回列表"
+      "backToList": "返回列表",
+      "nearbyCta": "我附近",
+      "nearbyClear": "清除",
+      "nearbyResultCount": "半径 3 公里内 {{count}} 处",
+      "geoLoading": "正在获取位置...",
+      "geoDenied": "位置权限被拒绝",
+      "geoFailed": "无法获取附近信息",
+      "geoEmpty": "3 公里内没有景点. 请移动到其他区域后再试",
+      "geoUnsupported": "此浏览器不支持定位"
     },
     "map": {
       "title": "地图",

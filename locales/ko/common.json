@@ -211,7 +211,15 @@
       "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건",
       "visibleCount": "현재 화면의 관광지 {{count}}개",
       "emptyViewport": "화면을 축소하면 더 많은 관광지가 나타납니다",
-      "backToList": "목록으로 돌아가기"
+      "backToList": "목록으로 돌아가기",
+      "nearbyCta": "내 주변",
+      "nearbyClear": "초기화",
+      "nearbyResultCount": "내 주변 반경 3km 내 {{count}}곳",
+      "geoLoading": "위치 확인 중...",
+      "geoDenied": "위치 권한이 거부되어 내 주변을 불러올 수 없어요",
+      "geoFailed": "내 주변 정보를 불러오지 못했어요",
+      "geoEmpty": "반경 3km 내 관광지가 없어요. 다른 지역으로 이동한 뒤 다시 시도해 보세요",
+      "geoUnsupported": "이 브라우저는 위치 기능을 지원하지 않아요"
     },
     "map": {
       "title": "지도",

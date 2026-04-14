@@ -211,7 +211,15 @@
       "liveResults": "{{lang}} · TourAPI live {{count}} results",
       "visibleCount": "{{count}} spots in view",
       "emptyViewport": "Zoom out to see more spots",
-      "backToList": "Back to list"
+      "backToList": "Back to list",
+      "nearbyCta": "Near me",
+      "nearbyClear": "Clear",
+      "nearbyResultCount": "{{count}} places within 3 km of you",
+      "geoLoading": "Locating...",
+      "geoDenied": "Location permission denied",
+      "geoFailed": "Couldn't load nearby places",
+      "geoEmpty": "No attractions within 3 km. Move to a different area and try again.",
+      "geoUnsupported": "Your browser doesn't support geolocation"
     },
     "map": {
       "title": "Map",
