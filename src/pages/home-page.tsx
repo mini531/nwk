@@ -230,7 +230,7 @@ export const HomePage = () => {
           <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
 
           {CPI.latest && CPI.yoyPct !== null && (
-            <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-white px-4 py-2.5">
+            <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-surface px-4 py-2.5">
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
                   {t('page.home.cpiLabel')}
@@ -264,7 +264,7 @@ export const HomePage = () => {
               ).map(({ k, v }) => (
                 <div
                   key={k}
-                  className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5"
+                  className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5"
                 >
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
                     {t(`page.home.facts.${k}`)}
@@ -281,7 +281,7 @@ export const HomePage = () => {
         <section>
           <Link
             to="/kit"
-            className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="flex items-center justify-between rounded-2xl border border-line bg-surface px-4 py-3.5 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             <div className="min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
@@ -322,7 +322,7 @@ export const HomePage = () => {
                     className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight transition ${
                       isActive
                         ? 'border-ink bg-ink text-white shadow-pop'
-                        : 'border-line bg-white text-ink-2 hover:border-line-strong'
+                        : 'border-line bg-surface text-ink-2 hover:border-line-strong'
                     }`}
                   >
                     {shortName}

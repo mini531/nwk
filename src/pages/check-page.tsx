@@ -177,7 +177,7 @@ export const CheckPage = () => {
     <div className="space-y-6 pb-4">
       <header className="space-y-3">
         <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
             <ScaleIcon size={13} className="text-brand" />
             <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
               {t('page.check.eyebrow')}
@@ -271,7 +271,7 @@ export const CheckPage = () => {
             className="flex w-full items-center justify-between rounded-2xl border border-dashed border-line bg-canvas-2 px-4 py-3.5 text-left"
           >
             <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-ink-3">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-surface text-ink-3">
                 <CameraIcon size={18} />
               </span>
               <div>
@@ -326,7 +326,7 @@ export const CheckPage = () => {
                   setShowAll(true)
                 }}
                 placeholder={t('page.check.searchPlaceholder')}
-                className="w-full rounded-2xl border border-line bg-white py-3 pl-11 pr-4 text-[14px] text-ink outline-none focus:border-brand"
+                className="w-full rounded-2xl border border-line bg-surface py-3 pl-11 pr-4 text-[14px] text-ink outline-none focus:border-brand"
               />
             </div>
           </div>
@@ -358,7 +358,7 @@ export const CheckPage = () => {
             <button
               type="button"
               onClick={() => setShowAll(true)}
-              className="w-full rounded-2xl border border-line bg-white py-3 text-[13px] font-medium text-ink-2 hover:border-line-strong"
+              className="w-full rounded-2xl border border-line bg-surface py-3 text-[13px] font-medium text-ink-2 hover:border-line-strong"
             >
               {t('page.check.seeAll')} ({items.length})
             </button>
@@ -393,7 +393,7 @@ export const CheckPage = () => {
                     value={km}
                     onChange={(e) => setKm(e.target.value.replace(/[^0-9.]/g, '').slice(0, 6))}
                     placeholder="0.0"
-                    className="w-full rounded-xl border border-line bg-white py-2.5 pl-3 pr-12 text-[16px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
+                    className="w-full rounded-xl border border-line bg-surface py-2.5 pl-3 pr-12 text-[16px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
                   />
                   <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[13px] font-medium text-ink-3">
                     km
@@ -418,7 +418,7 @@ export const CheckPage = () => {
                       className={`flex-1 rounded-xl border px-3 py-2 text-[13px] font-medium tracking-tight transition ${
                         night === v
                           ? 'border-ink bg-ink text-white'
-                          : 'border-line bg-white text-ink-2'
+                          : 'border-line bg-surface text-ink-2'
                       }`}
                     >
                       {t(`page.check.form.${key}`)}
@@ -443,7 +443,7 @@ export const CheckPage = () => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, '').slice(0, 8))}
                 placeholder="0"
-                className="w-full rounded-2xl border border-line bg-white py-5 pl-11 pr-4 text-[28px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
+                className="w-full rounded-2xl border border-line bg-surface py-5 pl-11 pr-4 text-[28px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
               />
             </div>
             {!isTaxi &&
@@ -493,7 +493,7 @@ export const CheckPage = () => {
             </p>
 
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-white/70 px-4 py-3">
+              <div className="rounded-xl bg-surface/70 px-4 py-3">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
                   {t('page.check.labels.paid')}
                 </p>
@@ -501,7 +501,7 @@ export const CheckPage = () => {
                   {formatKrw(result.paid, i18n.language)}
                 </p>
               </div>
-              <div className="rounded-xl bg-white/70 px-4 py-3">
+              <div className="rounded-xl bg-surface/70 px-4 py-3">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
                   {t('page.check.labels.fair')}
                 </p>
@@ -512,7 +512,7 @@ export const CheckPage = () => {
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-xl bg-white/70 px-4 py-3">
+            <div className="mt-4 flex items-center justify-between rounded-xl bg-surface/70 px-4 py-3">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-3">
                 {t('page.check.labels.delta')}
               </span>
@@ -524,7 +524,7 @@ export const CheckPage = () => {
             </div>
 
             {result.verdict !== 'fair' && (
-              <div className="mt-4 flex items-start gap-2 rounded-xl bg-white/70 px-4 py-3">
+              <div className="mt-4 flex items-start gap-2 rounded-xl bg-surface/70 px-4 py-3">
                 <AlertIcon
                   size={16}
                   className={`mt-0.5 shrink-0 ${verdictStyles[result.verdict].label}`}
@@ -540,7 +540,7 @@ export const CheckPage = () => {
                 href={result.source.url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 block rounded-xl border border-line bg-white/70 px-4 py-3"
+                className="mt-4 block rounded-xl border border-line bg-surface/70 px-4 py-3"
               >
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-brand">
                   {t('page.check.sourceBadge')}
@@ -563,7 +563,7 @@ export const CheckPage = () => {
             <button
               type="button"
               onClick={reset}
-              className="rounded-2xl border border-line bg-white py-3.5 text-[13px] font-semibold text-ink transition hover:border-line-strong"
+              className="rounded-2xl border border-line bg-surface py-3.5 text-[13px] font-semibold text-ink transition hover:border-line-strong"
             >
               {t('page.check.again')}
             </button>

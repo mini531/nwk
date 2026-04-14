@@ -180,7 +180,7 @@ export const SearchPage = () => {
   return (
     <div className="pb-4">
       <header className="mb-5 max-w-3xl space-y-2">
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
             {t('page.search.eyebrow')}
@@ -204,7 +204,7 @@ export const SearchPage = () => {
           onChange={(e) => setQ(e.target.value.slice(0, MAX_LEN))}
           placeholder={t('page.search.placeholder')}
           maxLength={MAX_LEN}
-          className="w-full rounded-2xl border border-line bg-white py-3.5 pl-11 pr-4 text-[15px] text-ink shadow-card outline-none transition placeholder:text-ink-3 focus:border-brand focus:shadow-pop"
+          className="w-full rounded-2xl border border-line bg-surface py-3.5 pl-11 pr-4 text-[15px] text-ink shadow-card outline-none transition placeholder:text-ink-3 focus:border-brand focus:shadow-pop"
           aria-label={t('page.search.title')}
         />
       </form>
@@ -218,7 +218,7 @@ export const SearchPage = () => {
             className={`rounded-full border px-4 py-1.5 text-[13px] font-medium tracking-tight transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
               filter === f.id
                 ? 'border-ink bg-ink text-white'
-                : 'border-line bg-white text-ink-2 hover:border-line-strong'
+                : 'border-line bg-surface text-ink-2 hover:border-line-strong'
             }`}
           >
             {t(`page.search.poiFilters.${f.id}`)}
@@ -238,7 +238,7 @@ export const SearchPage = () => {
             onBoundsChange={setBounds}
             fitToFeatures={mapFeatureSource === 'live'}
           />
-          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
+          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
             VWorld · TourAPI
           </div>

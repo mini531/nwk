@@ -139,41 +139,40 @@ export const ProfilePage = () => {
           <ul className="space-y-2">
             {favorites.slice(0, 6).map((f) => (
               <li key={f.id}>
-                <button
-                  type="button"
-                  onClick={() => openPlace(f)}
-                  className="nwk-card flex w-full items-center gap-3 p-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
-                >
-                  {f.thumbnail ? (
-                    <img
-                      src={f.thumbnail}
-                      alt=""
-                      loading="lazy"
-                      className="h-11 w-11 shrink-0 rounded-lg object-cover"
-                    />
-                  ) : (
-                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand">
-                      <PinIcon size={18} aria-hidden="true" />
-                    </div>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
-                      {f.title}
-                    </p>
-                    <p className="mt-0.5 truncate text-[11px] text-ink-3">{f.addr}</p>
-                  </div>
+                <div className="nwk-card flex items-center gap-3 p-3">
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      removeFavorite(f.id)
-                    }}
+                    onClick={() => openPlace(f)}
+                    className="flex min-w-0 flex-1 items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                  >
+                    {f.thumbnail ? (
+                      <img
+                        src={f.thumbnail}
+                        alt=""
+                        loading="lazy"
+                        className="h-11 w-11 shrink-0 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand">
+                        <PinIcon size={18} aria-hidden="true" />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
+                        {f.title}
+                      </p>
+                      <p className="mt-0.5 truncate text-[11px] text-ink-3">{f.addr}</p>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => removeFavorite(f.id)}
                     aria-label={t('a11y.unfavorite')}
-                    className="shrink-0 rounded-md p-1 text-accent hover:bg-accent-soft"
+                    className="shrink-0 rounded-md p-1.5 text-accent hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     <HeartIcon size={16} filled />
                   </button>
-                </button>
+                </div>
               </li>
             ))}
           </ul>
@@ -256,7 +255,7 @@ export const ProfilePage = () => {
         <button
           type="button"
           onClick={() => logout().catch((e) => console.error(e))}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-line bg-white py-3.5 text-sm font-medium tracking-tight text-ink-2 transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-line bg-surface py-3.5 text-sm font-medium tracking-tight text-ink-2 transition hover:border-line-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           <LogOutIcon size={16} aria-hidden="true" />
           {t('page.profile.signout')}

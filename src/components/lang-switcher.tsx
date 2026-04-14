@@ -16,7 +16,7 @@ export const LangSwitcher = () => {
   const setLang = useAppStore((s) => s.setLang)
 
   return (
-    <label className="relative inline-flex items-center gap-1.5 rounded-full border border-line bg-white/70 px-3 py-1.5 text-sm text-ink-2 backdrop-blur transition hover:border-line-strong hover:text-ink">
+    <label className="relative inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/70 px-3 py-1.5 text-sm text-ink-2 backdrop-blur transition hover:border-line-strong hover:text-ink">
       <span className="sr-only">{t('lang.label')}</span>
       <GlobeIcon size={16} className="text-ink-3" />
       <span className="font-medium tracking-tight">{LABELS[lang]}</span>

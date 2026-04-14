@@ -66,7 +66,7 @@ const Block = <T extends readonly { id: string; value: string }[]>({
       <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
         {section.label}
       </p>
-      <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
+      <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
         {section.items.map((item) => (
           <Row
             key={item.id}
@@ -86,7 +86,7 @@ export const KitPage = () => {
   return (
     <div className="pb-4">
       <header className="mb-8 max-w-3xl space-y-2">
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
           <KitIcon size={13} className="text-brand" aria-hidden="true" />
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
             {t('page.kit.eyebrow')}
@@ -134,7 +134,7 @@ export const KitPage = () => {
           <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
             {t('page.kit.sections.phrases')}
           </p>
-          <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
+          <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
             {PHRASES.map((p) => (
               <li key={p.id} className="flex items-start gap-4 px-4 py-3.5">
                 <p className="w-[128px] shrink-0 text-[14px] font-semibold tracking-tight text-ink">

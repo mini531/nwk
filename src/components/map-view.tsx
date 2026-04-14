@@ -101,7 +101,7 @@ export const MapView = ({ center, zoom = 12, markers = [], className, onMarkerCl
         'grid place-items-center rounded-full shadow-pop transition-transform active:scale-95',
         m.active
           ? 'h-10 w-10 bg-brand text-white'
-          : 'h-8 w-8 bg-white text-brand ring-2 ring-brand',
+          : 'h-8 w-8 bg-surface text-brand ring-2 ring-brand',
       ].join(' ')
       el.innerHTML =
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10.5A6 6 0 0 1 18 10.5C18 15.6 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.2"/></svg>'

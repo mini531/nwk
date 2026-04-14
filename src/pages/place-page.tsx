@@ -114,7 +114,7 @@ export const PlacePage = () => {
             className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
               isFavorite(place.id)
                 ? 'border-accent bg-accent-soft text-accent'
-                : 'border-line bg-white text-ink-3 hover:border-line-strong'
+                : 'border-line bg-surface text-ink-3 hover:border-line-strong'
             }`}
           >
             <HeartIcon size={18} filled={isFavorite(place.id)} />

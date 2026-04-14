@@ -44,7 +44,7 @@ export const LiveTicker = () => {
   const dot = VERDICT_DOT[c.verdict]
 
   return (
-    <div className="flex items-center gap-3 rounded-full border border-line bg-white px-4 py-2.5 shadow-card">
+    <div className="flex items-center gap-3 rounded-full border border-line bg-surface px-4 py-2.5 shadow-card">
       <span className={`relative inline-flex h-2 w-2 shrink-0 rounded-full ${dot}`}>
         <span className={`absolute inset-0 animate-ping rounded-full opacity-60 ${dot}`} />
       </span>
