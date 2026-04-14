@@ -199,7 +199,8 @@
       "noAdvisory": "この場所の厳選情報はまだありません。価格は「チェック」タブで確認できます。",
       "noResultsTitle": "一致する観光地がありません",
       "noResultsHint": "別のキーワードを試すか、フィルターを「すべて」に切替えてください",
-      "matchCount": "検索結果 {{count}}件"
+      "matchCount": "検索結果 {{count}}件",
+      "liveResults": "{{lang}} · TourAPIライブ {{count}}件"
     },
     "map": {
       "title": "地図",

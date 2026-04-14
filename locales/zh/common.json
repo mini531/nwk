@@ -199,7 +199,8 @@
       "noAdvisory": "暂无此地点的精选提示。您仍可以在核查 Tab 中查询价格。",
       "noResultsTitle": "没有匹配的景点",
       "noResultsHint": "请尝试其他关键词或切换筛选为全部",
-      "matchCount": "搜索结果 {{count}} 处"
+      "matchCount": "搜索结果 {{count}} 处",
+      "liveResults": "{{lang}} · TourAPI 实时 {{count}} 处"
     },
     "map": {
       "title": "地图",

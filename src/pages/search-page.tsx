@@ -1,11 +1,11 @@
-import { useMemo, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronRightIcon, PinIcon, SearchIcon } from '../components/icons'
 import { TourMap, type PoiProperties } from '../components/tour-map'
 import tourPois from '../data/live-tour-pois.json'
 import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
-import type { TourSearchItem } from '../utils/api'
+import { tourSearch, type TourSearchItem } from '../utils/api'
 
 type GeoJsonCollection = GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>
 
@@ -43,9 +43,13 @@ const poiToItem = (p: PoiProperties, feature: GeoJSON.Feature<GeoJSON.Point>): T
 
 export const SearchPage = () => {
   const { t } = useTranslation()
+  const { i18n } = useTranslation()
   const [q, setQ] = useState('')
   const [filter, setFilter] = useState<'all' | 'attraction' | 'culture'>('all')
   const [focusId, setFocusId] = useState<string | null>(null)
+  const [liveItems, setLiveItems] = useState<TourSearchItem[]>([])
+  const [liveLoading, setLiveLoading] = useState(false)
+  const [liveSource, setLiveSource] = useState<'live' | 'mock' | null>(null)
   const asideRef = useRef<HTMLElement>(null)
 
   const handlePoiClick = (p: PoiProperties) => {
@@ -58,6 +62,37 @@ export const SearchPage = () => {
   }
 
   const keyword = q.replace(SAFE_RE, '').trim().slice(0, MAX_LEN).toLowerCase()
+
+  // Debounced live tourSearch call in the user's current language.
+  useEffect(() => {
+    const trimmed = keyword.trim()
+    if (trimmed.length < 2) {
+      setLiveItems([])
+      setLiveSource(null)
+      return
+    }
+    let cancelled = false
+    setLiveLoading(true)
+    const timer = window.setTimeout(async () => {
+      try {
+        const res = await tourSearch({ keyword: trimmed, lang: i18n.language })
+        if (cancelled) return
+        setLiveItems(res.data.items)
+        setLiveSource(res.data.source)
+      } catch {
+        if (cancelled) return
+        setLiveItems([])
+        setLiveSource(null)
+      } finally {
+        if (!cancelled) setLiveLoading(false)
+      }
+    }, 450)
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+      setLiveLoading(false)
+    }
+  }, [keyword, i18n.language])
 
   const filteredFeatures = useMemo(() => {
     let features = POIS.features
@@ -265,22 +300,38 @@ export const SearchPage = () => {
             </div>
           )}
 
-          {keyword && filteredFeatures.length > 0 && (
+          {keyword && (
             <section>
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-                {t('page.search.matchCount', { count: filteredFeatures.length })}
+              <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+                {t('page.search.liveResults', {
+                  lang: i18n.language.toUpperCase(),
+                  count: liveItems.length,
+                })}
+                {liveLoading && (
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+                )}
               </p>
+              {liveSource === 'mock' && (
+                <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
+                  {t('page.search.mockNotice')}
+                </p>
+              )}
               <ul className="space-y-2">
-                {filteredFeatures.slice(0, 6).map((f) => (
-                  <li key={f.properties.id}>
+                {liveItems.slice(0, 8).map((item) => (
+                  <li key={item.id}>
                     <button
                       type="button"
-                      onClick={() => setFocusId(f.properties.id)}
+                      onClick={() => {
+                        const matching = POIS.features.find((f) => f.properties.id === item.id)
+                        if (matching) {
+                          setFocusId(item.id)
+                        }
+                      }}
                       className="nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                     >
-                      {f.properties.thumbnail ? (
+                      {item.thumbnail ? (
                         <img
-                          src={f.properties.thumbnail}
+                          src={item.thumbnail}
                           alt=""
                           loading="lazy"
                           className="h-11 w-11 shrink-0 rounded-lg object-cover"
@@ -292,11 +343,9 @@ export const SearchPage = () => {
                       )}
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
-                          {f.properties.title}
+                          {item.title}
                         </p>
-                        <p className="mt-0.5 truncate text-[11px] text-ink-3">
-                          {f.properties.addr}
-                        </p>
+                        <p className="mt-0.5 truncate text-[11px] text-ink-3">{item.addr}</p>
                       </div>
                       <ChevronRightIcon
                         size={16}
@@ -306,6 +355,11 @@ export const SearchPage = () => {
                     </button>
                   </li>
                 ))}
+                {!liveLoading && liveItems.length === 0 && keyword.length >= 2 && (
+                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                    {t('page.search.noResultsHint')}
+                  </li>
+                )}
               </ul>
             </section>
           )}

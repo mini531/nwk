@@ -199,7 +199,8 @@
       "noAdvisory": "이 장소에는 아직 매칭된 상세 정보가 없어요. 체크 탭에서 직접 가격 확인이 가능합니다.",
       "noResultsTitle": "일치하는 관광지가 없어요",
       "noResultsHint": "다른 키워드로 시도하거나 필터를 전체로 바꿔보세요",
-      "matchCount": "검색 결과 {{count}}개"
+      "matchCount": "검색 결과 {{count}}개",
+      "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건"
     },
     "map": {
       "title": "지도",

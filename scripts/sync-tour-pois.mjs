@@ -31,6 +31,13 @@ const CONTENT_TYPES = [
   { id: '14', tag: 'culture' },
 ]
 
+const LANG_SERVICES = {
+  ko: 'KorService2',
+  en: 'EngService2',
+  ja: 'JpnService2',
+  zh: 'ChsService2',
+}
+
 const readKey = async () => {
   if (process.env.DATA_GO_KR_KEY) return process.env.DATA_GO_KR_KEY.trim()
   try {
@@ -41,8 +48,8 @@ const readKey = async () => {
   throw new Error('DATA_GO_KR_KEY not found in env or functions/.secret.local')
 }
 
-const areaBasedList = async (key, areaCode, contentTypeId, pageNo) => {
-  const url = new URL('https://apis.data.go.kr/B551011/KorService2/areaBasedList2')
+const areaBasedList = async (key, service, areaCode, contentTypeId, pageNo) => {
+  const url = new URL(`https://apis.data.go.kr/B551011/${service}/areaBasedList2`)
   url.searchParams.set('serviceKey', key)
   url.searchParams.set('MobileOS', 'ETC')
   url.searchParams.set('MobileApp', 'NWK')
@@ -86,16 +93,22 @@ const main = async () => {
   const features = []
   const seen = new Set()
 
+  // KorService2 has the cleanest taxonomy (12=관광지, 14=문화시설). The
+  // foreign-language services (Eng/Jpn/Chs) re-bucket the same entries
+  // under different contentTypeIds that don't map cleanly to
+  // attraction/culture, so we stick to KO for the static cluster and
+  // let the top search bar hit tourSearch() live for user-language
+  // translations.
   for (const region of REGIONS) {
     for (const type of CONTENT_TYPES) {
-      const rows = await areaBasedList(key, region.areaCode, type.id, 1)
+      const rows = await areaBasedList(key, 'KorService2', region.areaCode, type.id, 1)
       process.stdout.write(`  ${region.label} ${type.tag}: ${rows.length}\n`)
       for (const row of rows) {
         const feat = toFeature(row, region.region, type.tag)
         if (!feat) continue
-        const key = feat.properties.id
-        if (seen.has(key)) continue
-        seen.add(key)
+        const fid = feat.properties.id
+        if (seen.has(fid)) continue
+        seen.add(fid)
         features.push(feat)
       }
     }
@@ -112,7 +125,7 @@ const main = async () => {
 
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(output) + '\n')
-  process.stdout.write(`Wrote ${features.length} POIs to ${OUT}\n`)
+  process.stdout.write(`\nWrote ${features.length} POIs to ${OUT}\n`)
 }
 
 main().catch((err) => {

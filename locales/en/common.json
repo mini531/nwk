@@ -199,7 +199,8 @@
       "noAdvisory": "No curated tips for this place yet. You can still check prices via the Check tab.",
       "noResultsTitle": "No matching places",
       "noResultsHint": "Try another keyword or switch the filter to All",
-      "matchCount": "{{count}} results"
+      "matchCount": "{{count}} results",
+      "liveResults": "{{lang}} · TourAPI live {{count}} results"
     },
     "map": {
       "title": "Map",
