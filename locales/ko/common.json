@@ -389,6 +389,11 @@
         "english": "Do you speak English?"
       }
     },
+    "notFound": {
+      "title": "길을 잃으셨네요",
+      "body": "찾으시려던 페이지가 이동되었거나 존재하지 않아요. 홈으로 돌아가서 다시 시작해 보세요.",
+      "cta": "홈으로 돌아가기"
+    },
     "profile": {
       "title": "내정보",
       "clear": "전체 삭제",

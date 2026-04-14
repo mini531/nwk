@@ -389,6 +389,11 @@
         "english": "Do you speak English?"
       }
     },
+    "notFound": {
+      "title": "道に迷ったようです",
+      "body": "お探しのページは移動したか存在しません。ホームに戻って再開しましょう。",
+      "cta": "ホームに戻る"
+    },
     "profile": {
       "title": "マイ",
       "clear": "すべて削除",

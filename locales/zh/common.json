@@ -389,6 +389,11 @@
         "english": "Do you speak English?"
       }
     },
+    "notFound": {
+      "title": "您迷路了",
+      "body": "您访问的页面已移动或不存在。回到首页重新开始吧。",
+      "cta": "返回首页"
+    },
     "profile": {
       "title": "我的",
       "clear": "全部清除",

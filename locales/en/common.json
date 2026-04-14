@@ -395,6 +395,11 @@
         "english": "Do you speak English?"
       }
     },
+    "notFound": {
+      "title": "You're off the map",
+      "body": "The page you were looking for has moved or doesn't exist. Head back to the home screen to get your bearings.",
+      "cta": "Back to home"
+    },
     "profile": {
       "title": "Me",
       "clear": "Clear all",
