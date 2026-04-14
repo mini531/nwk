@@ -11,11 +11,32 @@
   },
   "page": {
     "home": {
-      "eyebrow": "여행 안전망",
-      "headline": "한국 여행, 걱정 없이.",
-      "subhead": "현지 물가·교통·에티켓을 한눈에. 여행지에 맞춘 주의사항까지.",
-      "searchEyebrow": "지금 시작",
-      "searchCta": "관광지 검색하기",
+      "eyebrow": "외국인 관광객을 위한 안전망",
+      "headline": "장소 하나로, 진짜 필요한 것만.",
+      "subhead": "검색한 장소에 실제로 적용되는 물가·교통·에티켓·안전 수칙을 NWK가 자동으로 매칭해 드려요.",
+      "sample": {
+        "eyebrow": "작동 방식 미리보기",
+        "tag": "실시간 샘플",
+        "open": "전체 매칭 열기",
+        "cta": "탭하면 전체 매칭 결과 →"
+      },
+      "why": {
+        "label": "왜 NWK인가",
+        "publicData": {
+          "title": "공공데이터 기반, 광고 없음",
+          "body": "TourAPI·VWorld·기상청 공공데이터만 사용해요. 스폰서 링크도, 추측도 없어요."
+        },
+        "languages": {
+          "title": "4개 언어, 사전 번역",
+          "body": "한국어·영어·일본어·중국어. 실시간 번역 호출이 없어 결과가 일관돼요."
+        },
+        "offline": {
+          "title": "오프라인에서도 동작",
+          "body": "홈 화면에 설치하면 지하철·공항에서도 저장한 장소를 볼 수 있어요."
+        }
+      },
+      "searchEyebrow": "직접 검색",
+      "searchCta": "한국 전역 관광지 찾기",
       "essentials": "여행 필수",
       "todayLabel": "Today",
       "today": {

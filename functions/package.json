@@ -6,8 +6,8 @@
     "node": "20"
   },
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "build": "node node_modules/typescript/bin/tsc",
+    "build:watch": "node node_modules/typescript/bin/tsc --watch",
     "lint": "eslint src --ext .ts",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
@@ -18,7 +18,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "firebase-admin": "^13.0.2",
-    "firebase-functions": "^6.1.1"
+    "firebase-functions": "^6.6.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

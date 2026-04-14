@@ -11,11 +11,32 @@
   },
   "page": {
     "home": {
-      "eyebrow": "Travel safety net",
-      "headline": "Travel Korea, worry-free.",
-      "subhead": "Local prices, transit and etiquette at a glance — with tips tailored to where you go.",
-      "searchEyebrow": "Get started",
-      "searchCta": "Find a place to visit",
+      "eyebrow": "Safety net for foreign travelers",
+      "headline": "Tap a place. See what actually applies there.",
+      "subhead": "NWK matches real local prices, transit, etiquette and safety to every place you look up — in your language.",
+      "sample": {
+        "eyebrow": "See how it works",
+        "tag": "Live sample",
+        "open": "Open full match",
+        "cta": "Tap to see the full match →"
+      },
+      "why": {
+        "label": "Why NWK",
+        "publicData": {
+          "title": "Public data, zero ads",
+          "body": "Powered by TourAPI, VWorld and KMA. No sponsored listings, no guesses."
+        },
+        "languages": {
+          "title": "Four languages, pre-translated",
+          "body": "Korean · English · Japanese · Chinese. No runtime translation, no surprises."
+        },
+        "offline": {
+          "title": "Works offline",
+          "body": "Install to home screen. Saved places stay readable on the subway or at the airport."
+        }
+      },
+      "searchEyebrow": "Your own place",
+      "searchCta": "Search anywhere in Korea",
       "essentials": "Essentials",
       "todayLabel": "Today",
       "today": {

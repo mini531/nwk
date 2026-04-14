@@ -88,8 +88,7 @@ export const tourSearch = onCall(
       key = undefined
     }
 
-    if (!key) {
-      logger.info('tourSearch: no key set, returning mock', { keyword })
+    const mockResult = () => {
       const filtered = MOCK_ITEMS.filter((i) => i.title.includes(keyword))
       return {
         items: filtered.length ? filtered : MOCK_ITEMS,
@@ -97,12 +96,17 @@ export const tourSearch = onCall(
       }
     }
 
+    if (!key || key === 'placeholder') {
+      logger.info('tourSearch: no real key, returning mock', { keyword })
+      return mockResult()
+    }
+
     try {
       const items = await fetchTourApi(key, keyword)
       return { items, source: 'live' as const }
     } catch (err) {
-      logger.error('tourSearch live call failed', err)
-      throw new HttpsError('internal', 'tour-api failed')
+      logger.warn('tourSearch live call failed, falling back to mock', err)
+      return mockResult()
     }
   },
 )
