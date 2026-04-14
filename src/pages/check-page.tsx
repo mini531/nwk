@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useRecentChecks } from '../hooks/use-recent-checks'
 import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
@@ -77,6 +78,19 @@ export const CheckPage = () => {
   const [km, setKm] = useState('')
   const [night, setNight] = useState(false)
   const [result, setResult] = useState<CheckResult | null>(null)
+  const { push: pushRecent } = useRecentChecks()
+
+  useEffect(() => {
+    if (!result) return
+    pushRecent({
+      entryId: result.entry.id,
+      paid: result.paid,
+      fairMin: result.fairMin,
+      fairMax: result.fairMax,
+      deltaPct: result.deltaPct,
+      verdict: result.verdict,
+    })
+  }, [result, pushRecent])
 
   const items = useMemo(
     () => (category ? PRICE_CATALOG.filter((e) => e.category === category) : []),

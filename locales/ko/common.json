@@ -210,7 +210,8 @@
       "matchCount": "검색 결과 {{count}}개",
       "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건",
       "visibleCount": "현재 화면의 관광지 {{count}}개",
-      "emptyViewport": "화면을 축소하면 더 많은 관광지가 나타납니다"
+      "emptyViewport": "화면을 축소하면 더 많은 관광지가 나타납니다",
+      "backToList": "목록으로 돌아가기"
     },
     "map": {
       "title": "지도",
@@ -390,6 +391,15 @@
     },
     "profile": {
       "title": "내정보",
+      "clear": "전체 삭제",
+      "themeLabel": "테마",
+      "theme": {
+        "light": "라이트",
+        "dark": "다크",
+        "system": "시스템"
+      },
+      "favorites": { "label": "즐겨찾기" },
+      "recent": { "label": "최근 체크" },
       "signin": "Google로 로그인",
       "signout": "로그아웃",
       "signedInAs": "로그인됨",
@@ -406,7 +416,9 @@
   "lang": { "label": "언어" },
   "a11y": {
     "skipToContent": "본문 바로가기",
-    "primaryNav": "주 메뉴"
+    "primaryNav": "주 메뉴",
+    "favorite": "즐겨찾기 추가",
+    "unfavorite": "즐겨찾기 해제"
   },
   "advisory": {
     "price.water": { "title": "생수 한 병", "body": "편의점 500ml 기준. 수돗물도 마실 수 있지만 현지인도 대부분 생수를 선호해요." },

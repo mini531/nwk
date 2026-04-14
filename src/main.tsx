@@ -6,6 +6,9 @@ import { router } from './router'
 import { detectLang, initI18n } from './i18n'
 import { useAppStore } from './stores/app-store'
 import { ErrorBoundary } from './components/error-boundary'
+import { initTheme } from './hooks/use-theme'
+
+initTheme()
 
 const lang = detectLang()
 await initI18n(lang)

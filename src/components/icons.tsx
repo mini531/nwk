@@ -141,6 +141,36 @@ export const AlertIcon = ({ size = 22, ...p }: IconProps) => (
   </svg>
 )
 
+export const HeartIcon = ({
+  size = 22,
+  filled = false,
+  ...p
+}: IconProps & { filled?: boolean }) => (
+  <svg {...base(size)} {...p} aria-hidden="true" fill={filled ? 'currentColor' : 'none'}>
+    <path d="M12 20s-6.5-3.9-8.5-8.2c-1.3-2.8.3-6 3.3-6.3 2-.2 3.6 1 4.2 2 0 .1.1.1.1.1.6-1 2.2-2.3 4.2-2 3 .3 4.6 3.5 3.3 6.3C18.5 16.1 12 20 12 20Z" />
+  </svg>
+)
+
+export const ClockIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+)
+
+export const MoonIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
+  </svg>
+)
+
+export const SunIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 3v2M12 19v2M5 12H3M21 12h-2M6.3 6.3 4.9 4.9M19.1 19.1l-1.4-1.4M6.3 17.7 4.9 19.1M19.1 4.9l-1.4 1.4" />
+  </svg>
+)
+
 export const LogOutIcon = ({ size = 18, ...p }: IconProps) => (
   <svg {...base(size)} {...p} aria-hidden="true">
     <path d="M14 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4" />

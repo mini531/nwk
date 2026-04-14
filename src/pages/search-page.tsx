@@ -251,6 +251,13 @@ export const SearchPage = () => {
         >
           {focusFeature ? (
             <>
+              <button
+                type="button"
+                onClick={() => setFocusId(null)}
+                className="inline-flex items-center gap-1 text-[12px] font-medium text-ink-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              >
+                ← {t('page.search.backToList')}
+              </button>
               <section className="nwk-card overflow-hidden p-0">
                 {focusFeature.properties.thumbnail && (
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2">
@@ -324,106 +331,88 @@ export const SearchPage = () => {
                 </p>
               )}
             </>
-          ) : keyword && filteredFeatures.length === 0 ? (
-            <div className="nwk-card p-5 text-center">
-              <SearchIcon size={24} className="mx-auto text-ink-3" aria-hidden="true" />
-              <p className="mt-2 text-[13px] font-semibold tracking-tight text-ink">
-                {t('page.search.noResultsTitle')}
-              </p>
-              <p className="mt-1 text-[11px] leading-snug text-ink-3">
-                {t('page.search.noResultsHint')}
-              </p>
-            </div>
           ) : (
-            <div className="nwk-card p-5 text-center">
-              <SearchIcon size={24} className="mx-auto text-ink-3" aria-hidden="true" />
-              <p className="mt-2 text-[13px] font-semibold tracking-tight text-ink">
-                {t('page.search.tapPrompt')}
+            <section>
+              <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+                {keyword
+                  ? t('page.search.liveResults', {
+                      lang: i18n.language.toUpperCase(),
+                      count: liveItems.length,
+                    })
+                  : t('page.search.visibleCount', { count: visibleFeatures.length })}
+                {liveLoading && (
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+                )}
               </p>
-              <p className="mt-1 text-[11px] leading-snug text-ink-3">{t('page.search.tapHint')}</p>
-            </div>
-          )}
-
-          <section>
-            <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-              {keyword
-                ? t('page.search.liveResults', {
-                    lang: i18n.language.toUpperCase(),
-                    count: liveItems.length,
-                  })
-                : t('page.search.visibleCount', { count: visibleFeatures.length })}
-              {liveLoading && (
-                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+              {keyword && liveSource === 'mock' && (
+                <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
+                  {t('page.search.mockNotice')}
+                </p>
               )}
-            </p>
-            {keyword && liveSource === 'mock' && (
-              <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
-                {t('page.search.mockNotice')}
-              </p>
-            )}
-            <ul className="space-y-2">
-              {(keyword
-                ? liveItems.slice(0, 12).map((it) => ({
-                    id: it.id,
-                    title: it.title,
-                    addr: it.addr,
-                    thumb: it.thumbnail ?? null,
-                  }))
-                : visibleFeatures.slice(0, 20).map((f) => ({
-                    id: f.properties.id,
-                    title: f.properties.title,
-                    addr: f.properties.addr,
-                    thumb: f.properties.thumbnail,
-                  }))
-              ).map(({ id, title, addr, thumb }) => {
-                return (
-                  <li key={id}>
-                    <button
-                      type="button"
-                      onClick={() => setFocusId(id)}
-                      className={`nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
-                        focusId === id ? 'ring-2 ring-brand' : ''
-                      }`}
-                    >
-                      {thumb ? (
-                        <img
-                          src={thumb}
-                          alt=""
-                          loading="lazy"
-                          className="h-11 w-11 shrink-0 rounded-lg object-cover"
-                        />
-                      ) : (
-                        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand">
-                          <PinIcon size={18} aria-hidden="true" />
+              <ul className="space-y-2">
+                {(keyword
+                  ? liveItems.slice(0, 12).map((it) => ({
+                      id: it.id,
+                      title: it.title,
+                      addr: it.addr,
+                      thumb: it.thumbnail ?? null,
+                    }))
+                  : visibleFeatures.slice(0, 20).map((f) => ({
+                      id: f.properties.id,
+                      title: f.properties.title,
+                      addr: f.properties.addr,
+                      thumb: f.properties.thumbnail,
+                    }))
+                ).map(({ id, title, addr, thumb }) => {
+                  return (
+                    <li key={id}>
+                      <button
+                        type="button"
+                        onClick={() => setFocusId(id)}
+                        className={`nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+                          focusId === id ? 'ring-2 ring-brand' : ''
+                        }`}
+                      >
+                        {thumb ? (
+                          <img
+                            src={thumb}
+                            alt=""
+                            loading="lazy"
+                            className="h-11 w-11 shrink-0 rounded-lg object-cover"
+                          />
+                        ) : (
+                          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand-soft text-brand">
+                            <PinIcon size={18} aria-hidden="true" />
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
+                            {title}
+                          </p>
+                          <p className="mt-0.5 truncate text-[11px] text-ink-3">{addr}</p>
                         </div>
-                      )}
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
-                          {title}
-                        </p>
-                        <p className="mt-0.5 truncate text-[11px] text-ink-3">{addr}</p>
-                      </div>
-                      <ChevronRightIcon
-                        size={16}
-                        className="shrink-0 text-ink-3"
-                        aria-hidden="true"
-                      />
-                    </button>
+                        <ChevronRightIcon
+                          size={16}
+                          className="shrink-0 text-ink-3"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </li>
+                  )
+                })}
+                {!liveLoading && keyword && liveItems.length === 0 && keyword.length >= 2 && (
+                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                    {t('page.search.noResultsHint')}
                   </li>
-                )
-              })}
-              {!liveLoading && keyword && liveItems.length === 0 && keyword.length >= 2 && (
-                <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
-                  {t('page.search.noResultsHint')}
-                </li>
-              )}
-              {!keyword && visibleFeatures.length === 0 && (
-                <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
-                  {t('page.search.emptyViewport')}
-                </li>
-              )}
-            </ul>
-          </section>
+                )}
+                {!keyword && visibleFeatures.length === 0 && (
+                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                    {t('page.search.emptyViewport')}
+                  </li>
+                )}
+              </ul>
+            </section>
+          )}
         </aside>
       </div>
     </div>

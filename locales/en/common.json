@@ -210,7 +210,8 @@
       "matchCount": "{{count}} results",
       "liveResults": "{{lang}} · TourAPI live {{count}} results",
       "visibleCount": "{{count}} spots in view",
-      "emptyViewport": "Zoom out to see more spots"
+      "emptyViewport": "Zoom out to see more spots",
+      "backToList": "Back to list"
     },
     "map": {
       "title": "Map",
@@ -396,6 +397,15 @@
     },
     "profile": {
       "title": "Me",
+      "clear": "Clear all",
+      "themeLabel": "Theme",
+      "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      },
+      "favorites": { "label": "Favorites" },
+      "recent": { "label": "Recent checks" },
       "signin": "Continue with Google",
       "signout": "Sign out",
       "signedInAs": "Signed in",
@@ -412,7 +422,9 @@
   "lang": { "label": "Language" },
   "a11y": {
     "skipToContent": "Skip to content",
-    "primaryNav": "Primary"
+    "primaryNav": "Primary",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites"
   },
   "advisory": {
     "price.water": { "title": "Bottled water", "body": "500ml at a convenience store. Tap water is drinkable but many locals still prefer bottled." },

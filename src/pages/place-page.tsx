@@ -8,10 +8,12 @@ import {
   ArrowLeftIcon,
   CoinIcon,
   GlobeIcon,
+  HeartIcon,
   PinIcon,
   ShieldIcon,
   TrainIcon,
 } from '../components/icons'
+import { useFavorites } from '../hooks/use-favorites'
 import type { ComponentType, SVGProps } from 'react'
 
 type CategoryMeta = {
@@ -49,6 +51,7 @@ export const PlacePage = () => {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const place = useAppStore((s) => s.selectedPlace)
+  const { isFavorite, toggle } = useFavorites()
 
   useEffect(() => {
     if (!place) navigate('/search', { replace: true })
@@ -94,6 +97,28 @@ export const PlacePage = () => {
               <span className="truncate">{place.addr}</span>
             </p>
           </div>
+          <button
+            type="button"
+            onClick={() =>
+              toggle({
+                id: place.id,
+                title: place.title,
+                addr: place.addr,
+                thumbnail: place.thumbnail ?? null,
+                lat: place.lat,
+                lng: place.lng,
+              })
+            }
+            aria-label={t(isFavorite(place.id) ? 'a11y.unfavorite' : 'a11y.favorite')}
+            aria-pressed={isFavorite(place.id)}
+            className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+              isFavorite(place.id)
+                ? 'border-accent bg-accent-soft text-accent'
+                : 'border-line bg-white text-ink-3 hover:border-line-strong'
+            }`}
+          >
+            <HeartIcon size={18} filled={isFavorite(place.id)} />
+          </button>
         </div>
       </header>
 

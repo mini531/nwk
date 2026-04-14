@@ -37,6 +37,34 @@
 }
 
 @layer base {
+  :root.dark {
+    --color-canvas: #0f0e0c;
+    --color-canvas-2: #17151f;
+    --color-canvas-3: #1f1d18;
+    --color-surface: #1a1815;
+    --color-line: #2a2822;
+    --color-line-strong: #3a3830;
+
+    --color-ink: #f4f2ec;
+    --color-ink-2: #b3ada0;
+    --color-ink-3: #807a70;
+
+    --color-brand: #8fd2cb;
+    --color-brand-soft: #1f3a38;
+    --color-brand-ink: #c6ebe6;
+
+    --color-accent: #ff9973;
+    --color-accent-soft: #3a1f13;
+
+    --color-warn: #e8a94f;
+    --color-warn-soft: #3a2d12;
+    --color-danger: #ff7a5c;
+
+    --shadow-card: 0 1px 0 rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.35);
+    --shadow-pop: 0 2px 0 rgb(0 0 0 / 0.3), 0 6px 24px -8px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+
   html,
   body,
   #root {

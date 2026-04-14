@@ -210,7 +210,8 @@
       "matchCount": "搜索结果 {{count}} 处",
       "liveResults": "{{lang}} · TourAPI 实时 {{count}} 处",
       "visibleCount": "当前视野内景点 {{count}} 处",
-      "emptyViewport": "缩小地图即可显示更多景点"
+      "emptyViewport": "缩小地图即可显示更多景点",
+      "backToList": "返回列表"
     },
     "map": {
       "title": "地图",
@@ -390,6 +391,15 @@
     },
     "profile": {
       "title": "我的",
+      "clear": "全部清除",
+      "themeLabel": "主题",
+      "theme": {
+        "light": "浅色",
+        "dark": "深色",
+        "system": "系统"
+      },
+      "favorites": { "label": "收藏" },
+      "recent": { "label": "最近核查" },
       "signin": "使用 Google 登录",
       "signout": "退出登录",
       "signedInAs": "已登录",
@@ -406,7 +416,9 @@
   "lang": { "label": "语言" },
   "a11y": {
     "skipToContent": "跳至正文",
-    "primaryNav": "主菜单"
+    "primaryNav": "主菜单",
+    "favorite": "加入收藏",
+    "unfavorite": "取消收藏"
   },
   "advisory": {
     "price.water": { "title": "瓶装水", "body": "便利店 500ml 参考价. 自来水可饮用, 但本地人多数仍偏好瓶装水." },

@@ -210,7 +210,8 @@
       "matchCount": "検索結果 {{count}}件",
       "liveResults": "{{lang}} · TourAPIライブ {{count}}件",
       "visibleCount": "表示中の観光地 {{count}}件",
-      "emptyViewport": "ズームアウトすると観光地が増えます"
+      "emptyViewport": "ズームアウトすると観光地が増えます",
+      "backToList": "一覧に戻る"
     },
     "map": {
       "title": "地図",
@@ -390,6 +391,15 @@
     },
     "profile": {
       "title": "マイ",
+      "clear": "すべて削除",
+      "themeLabel": "テーマ",
+      "theme": {
+        "light": "ライト",
+        "dark": "ダーク",
+        "system": "システム"
+      },
+      "favorites": { "label": "お気に入り" },
+      "recent": { "label": "最近のチェック" },
       "signin": "Googleでログイン",
       "signout": "ログアウト",
       "signedInAs": "ログイン中",
@@ -406,7 +416,9 @@
   "lang": { "label": "言語" },
   "a11y": {
     "skipToContent": "本文へスキップ",
-    "primaryNav": "メインナビ"
+    "primaryNav": "メインナビ",
+    "favorite": "お気に入りに追加",
+    "unfavorite": "お気に入りから削除"
   },
   "advisory": {
     "price.water": { "title": "ミネラルウォーター", "body": "コンビニの500ml基準。水道水も飲めますが地元の人もボトルを好みます。" },
