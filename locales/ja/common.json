@@ -84,11 +84,14 @@
       "rightNowLabel": "ソウルのいま",
       "prices": {
         "americano": "カフェのアメリカーノ",
+        "bibimbap": "ビビンバ 1人前",
+        "samgyeopsal": "サムギョプサル 200g",
+        "chicken": "チキン 1羽",
         "subway": "地下鉄1回",
         "taxi": "タクシー初乗り",
         "meal": "1人分の食事"
       },
-      "pricesFootnote": "2025年ソウル平均 · 為替 1,330ウォン/USD",
+      "pricesFootnote": "京畿道富川市の公共データ平均 · 37行政洞 · 為替 1,330ウォン/USD",
       "facts": {
         "fx": "為替",
         "emergency": "緊急",

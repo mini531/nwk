@@ -84,11 +84,14 @@
       "rightNowLabel": "서울 지금",
       "prices": {
         "americano": "카페 아메리카노",
+        "bibimbap": "비빔밥 1인",
+        "samgyeopsal": "삼겹살 200g",
+        "chicken": "튀김닭 1마리",
         "subway": "지하철 1회",
         "taxi": "택시 기본요금",
         "meal": "1인 식사"
       },
-      "pricesFootnote": "2025년 서울 평균가 · 환율 1,330원/USD 기준",
+      "pricesFootnote": "경기도 부천시 공공데이터 평균 · 37개 행정동 · 환율 1,330원/USD",
       "facts": {
         "fx": "환율",
         "emergency": "긴급",

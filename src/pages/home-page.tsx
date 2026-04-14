@@ -17,20 +17,57 @@ import {
 } from '../components/icons'
 import type { ComponentType, SVGProps } from 'react'
 
+import bucheonLive from '../data/live-prices-bucheon.json'
+
 const KRW_PER_USD = 1330
 const ADVISORY_BY_ID = new Map(ADVISORIES.map((a) => [a.id, a]))
 
 interface PriceCard {
   id: string
-  krw: number
   labelKey: string
+  krw: number
+  live: boolean
+}
+
+interface BucheonItem {
+  min: number
+  max: number
+  avg: number
+  samples: number
+}
+
+const BUCHEON_ITEMS = (bucheonLive as { items: Record<string, BucheonItem> }).items
+
+const livePrice = (key: string, fallback: number): PriceCard['krw'] & number => {
+  const row = BUCHEON_ITEMS[key]
+  return row ? row.avg : fallback
 }
 
 const PRICE_CARDS: PriceCard[] = [
-  { id: 'americano', krw: 4500, labelKey: 'page.home.prices.americano' },
-  { id: 'subway', krw: 1400, labelKey: 'page.home.prices.subway' },
-  { id: 'taxi', krw: 4800, labelKey: 'page.home.prices.taxi' },
-  { id: 'meal', krw: 10000, labelKey: 'page.home.prices.meal' },
+  {
+    id: 'americano',
+    labelKey: 'page.home.prices.americano',
+    krw: livePrice('커피(외식)', 4500),
+    live: Boolean(BUCHEON_ITEMS['커피(외식)']),
+  },
+  {
+    id: 'bibimbap',
+    labelKey: 'page.home.prices.bibimbap',
+    krw: livePrice('비빔밥', 9000),
+    live: Boolean(BUCHEON_ITEMS['비빔밥']),
+  },
+  {
+    id: 'samgyeopsal',
+    labelKey: 'page.home.prices.samgyeopsal',
+    krw: livePrice('삼겹살(외식)', 18000),
+    live: Boolean(BUCHEON_ITEMS['삼겹살(외식)']),
+  },
+  {
+    id: 'chicken',
+    labelKey: 'page.home.prices.chicken',
+    krw: livePrice('튀김닭', 20000),
+    live: Boolean(BUCHEON_ITEMS['튀김닭']),
+  },
 ]
 
 const CATEGORY_META: Record<
@@ -126,9 +163,16 @@ export const HomePage = () => {
         <div className="mt-3 grid grid-cols-2 gap-2">
           {PRICE_CARDS.map((p) => (
             <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
-              <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
-                {formatKrw(p.krw, i18n.language)}
-              </p>
+              <div className="flex items-start justify-between gap-1">
+                <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
+                  {formatKrw(p.krw, i18n.language)}
+                </p>
+                {p.live && (
+                  <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+                    LIVE
+                  </span>
+                )}
+              </div>
               <p className="text-[11px] font-medium tabular-nums text-ink-3">
                 ≈ {formatUsd(p.krw)}
               </p>

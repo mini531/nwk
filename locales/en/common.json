@@ -84,11 +84,14 @@
       "rightNowLabel": "Seoul right now",
       "prices": {
         "americano": "Cafe americano",
+        "bibimbap": "Bibimbap",
+        "samgyeopsal": "Samgyeopsal 200g",
+        "chicken": "Fried chicken (whole)",
         "subway": "Subway ride",
         "taxi": "Taxi base fare",
         "meal": "Meal for one"
       },
-      "pricesFootnote": "2025 Seoul averages · FX at ₩1,330/USD",
+      "pricesFootnote": "Bucheon-si public data · 37 administrative dong avg · FX ₩1,330/USD",
       "facts": {
         "fx": "FX",
         "emergency": "SOS",

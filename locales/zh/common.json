@@ -84,11 +84,14 @@
       "rightNowLabel": "首尔此刻",
       "prices": {
         "americano": "咖啡馆美式",
+        "bibimbap": "拌饭 1 人",
+        "samgyeopsal": "烤五花肉 200g",
+        "chicken": "炸鸡一只",
         "subway": "地铁单程",
         "taxi": "出租车起步价",
         "meal": "一人一餐"
       },
-      "pricesFootnote": "2025 年首尔均价 · 汇率按 1,330韩元/美元",
+      "pricesFootnote": "京畿道富川市公共数据均价 · 37 个行政洞 · 汇率 1,330韩元/美元",
       "facts": {
         "fx": "汇率",
         "emergency": "急救",
