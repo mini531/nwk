@@ -1,0 +1,441 @@
+{
+  "source": "경기도 부천시 개인서비스요금 현황 (2025-05)",
+  "sourceUrl": "https://www.data.go.kr/data/3079356/openapi.do",
+  "namespace": "3079356/v1",
+  "uddi": "uddi:59f52e8f-2d39-4c45-909e-97d413996b66",
+  "fetchedAt": "2026-04-14T12:27:43.376Z",
+  "itemCount": 43,
+  "totalRows": 43,
+  "items": {
+    "설렁탕": {
+      "min": 8000,
+      "max": 12000,
+      "avg": 10336,
+      "absoluteMin": 7000,
+      "absoluteMax": 13000,
+      "samples": 28,
+      "spec": "1인분(보통)",
+      "originalName": "설렁탕"
+    },
+    "냉면": {
+      "min": 7000,
+      "max": 10000,
+      "avg": 8208,
+      "absoluteMin": 6000,
+      "absoluteMax": 10000,
+      "samples": 36,
+      "spec": "물냉면, 1인분(보통)",
+      "originalName": "냉 면"
+    },
+    "비빔밥": {
+      "min": 6500,
+      "max": 9000,
+      "avg": 7824,
+      "absoluteMin": 6000,
+      "absoluteMax": 11000,
+      "samples": 34,
+      "spec": "1인분(보통)",
+      "originalName": "비빔밥"
+    },
+    "갈비탕": {
+      "min": 10000,
+      "max": 15000,
+      "avg": 13157,
+      "absoluteMin": 9000,
+      "absoluteMax": 20000,
+      "samples": 35,
+      "spec": "1인분(보통)",
+      "originalName": "갈비탕"
+    },
+    "삼계탕": {
+      "min": 14000,
+      "max": 17000,
+      "avg": 15529,
+      "absoluteMin": 11000,
+      "absoluteMax": 21000,
+      "samples": 34,
+      "spec": "닭1마리, 1인분(보통)",
+      "originalName": "삼계탕"
+    },
+    "김치찌개": {
+      "min": 7000,
+      "max": 9000,
+      "avg": 8083,
+      "absoluteMin": 7000,
+      "absoluteMax": 10000,
+      "samples": 36,
+      "spec": "1인분(보통)",
+      "originalName": "김치찌개"
+    },
+    "된장찌개": {
+      "min": 6000,
+      "max": 9000,
+      "avg": 7639,
+      "absoluteMin": 5000,
+      "absoluteMax": 10000,
+      "samples": 36,
+      "spec": "1인분(보통)",
+      "originalName": "된장찌개"
+    },
+    "불고기": {
+      "min": 10000,
+      "max": 20000,
+      "avg": 15879,
+      "absoluteMin": 8000,
+      "absoluteMax": 22000,
+      "samples": 28,
+      "spec": "쇠고기200g,1인분",
+      "originalName": "불고기"
+    },
+    "돼지갈비(외식)": {
+      "min": 11000,
+      "max": 17000,
+      "avg": 13847,
+      "absoluteMin": 6000,
+      "absoluteMax": 19900,
+      "samples": 35,
+      "spec": "대중식당, 200g 외식1인분",
+      "originalName": "돼지갈비(외식)"
+    },
+    "삼겹살(외식)": {
+      "min": 11000,
+      "max": 18800,
+      "avg": 14942,
+      "absoluteMin": 7000,
+      "absoluteMax": 22222,
+      "samples": 36,
+      "spec": "돼지고기200g,1인분",
+      "originalName": "삼겹살(외식)"
+    },
+    "쇠고기": {
+      "min": 15800,
+      "max": 27800,
+      "avg": 22436,
+      "absoluteMin": 14000,
+      "absoluteMax": 52500,
+      "samples": 24,
+      "spec": "200g(등심) 외식1인분(수입산)",
+      "originalName": "쇠고기"
+    },
+    "짜장면": {
+      "min": 5000,
+      "max": 7000,
+      "avg": 6386,
+      "absoluteMin": 3900,
+      "absoluteMax": 9000,
+      "samples": 36,
+      "spec": "중화요리점 1그릇",
+      "originalName": "짜장면"
+    },
+    "짬뽕": {
+      "min": 7000,
+      "max": 9000,
+      "avg": 8019,
+      "absoluteMin": 5500,
+      "absoluteMax": 11000,
+      "samples": 36,
+      "spec": "중화요리점 1그릇",
+      "originalName": "짬 뽕"
+    },
+    "탕수육": {
+      "min": 18000,
+      "max": 27000,
+      "avg": 22936,
+      "absoluteMin": 15000,
+      "absoluteMax": 30000,
+      "samples": 36,
+      "spec": "중화요리점 1접시(중,보통)",
+      "originalName": "탕수육"
+    },
+    "생선초밥": {
+      "min": 12000,
+      "max": 18000,
+      "avg": 14934,
+      "absoluteMin": 9900,
+      "absoluteMax": 20000,
+      "samples": 32,
+      "spec": "일식집 1인분, 활어기준",
+      "originalName": "생선초밥"
+    },
+    "튀김닭": {
+      "min": 10000,
+      "max": 23000,
+      "avg": 17383,
+      "absoluteMin": 8000,
+      "absoluteMax": 24000,
+      "samples": 36,
+      "spec": "튀김통닭, 후라이드",
+      "originalName": "튀김닭"
+    },
+    "돈까스": {
+      "min": 7500,
+      "max": 10900,
+      "avg": 9086,
+      "absoluteMin": 6000,
+      "absoluteMax": 12500,
+      "samples": 35,
+      "spec": "돈까스 식당 1인분",
+      "originalName": "돈까스"
+    },
+    "햄버거": {
+      "min": 3900,
+      "max": 5700,
+      "avg": 4859,
+      "absoluteMin": 2900,
+      "absoluteMax": 9800,
+      "samples": 32,
+      "spec": "전문점, 불고기 버거, 1개",
+      "originalName": "햄버거"
+    },
+    "피자": {
+      "min": 11900,
+      "max": 20000,
+      "avg": 16129,
+      "absoluteMin": 9900,
+      "absoluteMax": 29500,
+      "samples": 33,
+      "spec": "전문점, 불고기피자,기본형(레귤러)",
+      "originalName": "피자"
+    },
+    "차(외식)": {
+      "min": 3000,
+      "max": 5500,
+      "avg": 4223,
+      "absoluteMin": 3000,
+      "absoluteMax": 6100,
+      "samples": 35,
+      "spec": "녹차라떼 1잔",
+      "originalName": "차(외식)"
+    },
+    "커피(외식)": {
+      "min": 1500,
+      "max": 4000,
+      "avg": 2942,
+      "absoluteMin": 1500,
+      "absoluteMax": 4700,
+      "samples": 36,
+      "spec": "커피전문점, 일반 원두커피 1잔",
+      "originalName": "커피(외식)"
+    },
+    "칼국수": {
+      "min": 6000,
+      "max": 9000,
+      "avg": 7708,
+      "absoluteMin": 1000,
+      "absoluteMax": 11000,
+      "samples": 36,
+      "spec": "칼국수 전문점 1그릇",
+      "originalName": "칼국수"
+    },
+    "조리라면(외식)": {
+      "min": 4000,
+      "max": 4500,
+      "avg": 4263,
+      "absoluteMin": 3500,
+      "absoluteMax": 5500,
+      "samples": 35,
+      "spec": "분식집 1인분",
+      "originalName": "조리라면(외식)"
+    },
+    "김밥": {
+      "min": 3000,
+      "max": 3700,
+      "avg": 3256,
+      "absoluteMin": 2500,
+      "absoluteMax": 4000,
+      "samples": 36,
+      "spec": "일반김밥 1줄",
+      "originalName": "김밥"
+    },
+    "세탁료": {
+      "min": 7000,
+      "max": 10000,
+      "avg": 8637,
+      "absoluteMin": 6400,
+      "absoluteMax": 12000,
+      "samples": 35,
+      "spec": "신사복, 상하 드라이클리닝1회",
+      "originalName": "세탁료"
+    },
+    "의복수선료": {
+      "min": 3000,
+      "max": 6000,
+      "avg": 4714,
+      "absoluteMin": 3000,
+      "absoluteMax": 8000,
+      "samples": 35,
+      "spec": "신사복 하의길의 수단(바지밑단줄임),1회",
+      "originalName": "의복수선료"
+    },
+    "숙박(호텔)": {
+      "min": 60000,
+      "max": 70000,
+      "avg": 66667,
+      "absoluteMin": 60000,
+      "absoluteMax": 70000,
+      "samples": 3,
+      "spec": "관광호텔1급기준,더블침대1일(평일)",
+      "originalName": "숙박(호텔)"
+    },
+    "숙박(여관)": {
+      "min": 30000,
+      "max": 50000,
+      "avg": 43611,
+      "absoluteMin": 30000,
+      "absoluteMax": 70000,
+      "samples": 18,
+      "spec": "갑류, 독방1박, 욕실부설, 1일(평일)",
+      "originalName": "숙박(여관)"
+    },
+    "미용료(파마)": {
+      "min": 30000,
+      "max": 80000,
+      "avg": 49472,
+      "absoluteMin": 20000,
+      "absoluteMax": 80000,
+      "samples": 36,
+      "spec": "성인여자 기본,중류급 1회",
+      "originalName": "미용료(파마)"
+    },
+    "미용료(컷트)": {
+      "min": 10000,
+      "max": 22000,
+      "avg": 15972,
+      "absoluteMin": 7000,
+      "absoluteMax": 26000,
+      "samples": 36,
+      "spec": "성인여자, 중류급 1회",
+      "originalName": "미용료(컷트)"
+    },
+    "이용료": {
+      "min": 6000,
+      "max": 15000,
+      "avg": 10629,
+      "absoluteMin": 5000,
+      "absoluteMax": 15000,
+      "samples": 35,
+      "spec": "성인조발, 중류급 1회",
+      "originalName": "이용료"
+    },
+    "목욕료": {
+      "min": 9000,
+      "max": 11000,
+      "avg": 9792,
+      "absoluteMin": 6000,
+      "absoluteMax": 11000,
+      "samples": 24,
+      "spec": "일반 대중탕, 성인1회",
+      "originalName": "목욕료"
+    },
+    "찜질방이용료": {
+      "min": 10000,
+      "max": 12000,
+      "avg": 10765,
+      "absoluteMin": 1000,
+      "absoluteMax": 13000,
+      "samples": 17,
+      "spec": "성인 1회, 찜질복 대여료 포함",
+      "originalName": "찜질방이용료"
+    },
+    "수영장이용료": {
+      "min": 3500,
+      "max": 6000,
+      "avg": 5333,
+      "absoluteMin": 3500,
+      "absoluteMax": 12000,
+      "samples": 6,
+      "spec": "성인일반 입장료,1회",
+      "originalName": "수영장 이용료"
+    },
+    "볼링장이용료": {
+      "min": 3500,
+      "max": 10000,
+      "avg": 5854,
+      "absoluteMin": 3500,
+      "absoluteMax": 13500,
+      "samples": 13,
+      "spec": "일반인, 평일 오후시간(신발제외), 1게임",
+      "originalName": "볼링장 이용료"
+    },
+    "골프장이용료": {
+      "min": 100000,
+      "max": 300000,
+      "avg": 204318,
+      "absoluteMin": 100000,
+      "absoluteMax": 350000,
+      "samples": 22,
+      "spec": "초급반(남자),회비레슨비(의복및신발제외),1개월",
+      "originalName": "골프장이용료"
+    },
+    "당구장이용료": {
+      "min": 9000,
+      "max": 12000,
+      "avg": 10224,
+      "absoluteMin": 8000,
+      "absoluteMax": 13000,
+      "samples": 33,
+      "spec": "쿠션 당구대, 일반인, 저녁시간 1시간",
+      "originalName": "당구장 이용료"
+    },
+    "노래방이용료": {
+      "min": 20000,
+      "max": 30000,
+      "avg": 27286,
+      "absoluteMin": 5000,
+      "absoluteMax": 35000,
+      "samples": 35,
+      "spec": "일반인, 저녁시간대, 일반실, 1시간",
+      "originalName": "노래방 이용료"
+    },
+    "PC방이용료": {
+      "min": 1000,
+      "max": 2000,
+      "avg": 1350,
+      "absoluteMin": 500,
+      "absoluteMax": 3000,
+      "samples": 32,
+      "spec": "기본시간 1회",
+      "originalName": "PC방 이용료"
+    },
+    "사진촬영료": {
+      "min": 15000,
+      "max": 25000,
+      "avg": 20948,
+      "absoluteMin": 12000,
+      "absoluteMax": 40000,
+      "samples": 29,
+      "spec": "반명함판 컬러 3x4cm, 6매1조",
+      "originalName": "사진촬영료"
+    },
+    "사진인화료": {
+      "min": 500,
+      "max": 2200,
+      "avg": 1317,
+      "absoluteMin": 450,
+      "absoluteMax": 5000,
+      "samples": 26,
+      "spec": "디지털 사진인화요금(현상료 포함),1매",
+      "originalName": "사진인화료"
+    },
+    "영화관람료": {
+      "min": 14000,
+      "max": 17000,
+      "avg": 15143,
+      "absoluteMin": 14000,
+      "absoluteMax": 18000,
+      "samples": 7,
+      "spec": "주중 상영시간 100분 정도, 1매",
+      "originalName": "영화관람료"
+    },
+    "스포츠센터입장료": {
+      "min": 90000,
+      "max": 250000,
+      "avg": 156633,
+      "absoluteMin": 90000,
+      "absoluteMax": 270000,
+      "samples": 30,
+      "spec": "헬스장 (3개월) 입장료",
+      "originalName": "스포츠센터입장료"
+    }
+  }
+}

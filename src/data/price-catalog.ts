@@ -140,6 +140,8 @@ export interface CheckExtras {
   night?: boolean
 }
 
+import { getLiveOverride, type LiveSource } from './live-price-source'
+
 export interface CheckResult {
   entry: PriceEntry
   paid: number
@@ -149,6 +151,7 @@ export interface CheckResult {
   deltaPct: number
   verdict: Verdict
   extras?: CheckExtras
+  source?: LiveSource | null
 }
 
 export const checkPrice = (
@@ -161,11 +164,19 @@ export const checkPrice = (
 
   let fairMin = entry.fairMin
   let fairMax = entry.fairMax
+  let source: LiveSource | null = null
 
   if (entry.inputMode === 'taxi') {
     const km = extras?.km ?? 0
     if (!Number.isFinite(km) || km <= 0) return null
     ;[fairMin, fairMax] = computeTaxiFairRange(km, extras?.night ?? false)
+  } else {
+    const live = getLiveOverride(entry.id)
+    if (live) {
+      fairMin = live.min
+      fairMax = live.max
+      source = live.source
+    }
   }
 
   const avg = (fairMin + fairMax) / 2
@@ -183,7 +194,13 @@ export const checkPrice = (
     deltaPct,
     verdict,
     extras,
+    source,
   }
+}
+
+export const getCatalogLiveSource = (entryId: string): LiveSource | null => {
+  const live = getLiveOverride(entryId)
+  return live?.source ?? null
 }
 
 export const PRICE_CATEGORIES: PriceCategory[] = [

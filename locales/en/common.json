@@ -272,7 +272,9 @@
         "fair": "Fair range",
         "delta": "vs. average"
       },
-      "sourceNote": "Based on 2025 Seoul & Busan averages · Public data from Korea Consumer Agency"
+      "sourceNote": "Based on 2025 Seoul & Busan averages · Public data from Korea Consumer Agency",
+      "sourceBadge": "Live source",
+      "sourceSamples": " administrative dong averaged"
     },
     "kit": {
       "eyebrow": "Practical info",

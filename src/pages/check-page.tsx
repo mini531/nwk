@@ -4,6 +4,7 @@ import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
   checkPrice,
+  getCatalogLiveSource,
   type CheckResult,
   type PriceCategory,
   type PriceEntry,
@@ -486,7 +487,28 @@ export const CheckPage = () => {
               </div>
             )}
 
-            <p className="mt-4 text-[10px] text-ink-3">{t('page.check.sourceNote')}</p>
+            {result.source ? (
+              <a
+                href={result.source.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 block rounded-xl border border-line bg-white/70 px-4 py-3"
+              >
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-brand">
+                  {t('page.check.sourceBadge')}
+                </p>
+                <p className="mt-0.5 text-[11px] font-medium leading-snug text-ink-2">
+                  {result.source.label}
+                </p>
+                <p className="mt-0.5 text-[10px] leading-snug text-ink-3">
+                  {result.source.samples}
+                  {t('page.check.sourceSamples')}
+                  {result.source.spec ? ` · ${result.source.spec}` : ''}
+                </p>
+              </a>
+            ) : (
+              <p className="mt-4 text-[10px] text-ink-3">{t('page.check.sourceNote')}</p>
+            )}
           </section>
 
           <button
@@ -512,15 +534,23 @@ const ItemCard = ({
   lang: string
 }) => {
   const { t } = useTranslation()
+  const live = getCatalogLiveSource(entry.id)
   return (
     <button
       type="button"
       onClick={onClick}
       className="nwk-card flex flex-col items-start gap-1 p-3.5 text-left transition-transform active:scale-[0.98]"
     >
-      <p className="text-[14px] font-semibold leading-tight tracking-tight text-ink">
-        {t(`catalog.${entry.id}.name`)}
-      </p>
+      <div className="flex w-full items-start justify-between gap-1.5">
+        <p className="flex-1 text-[14px] font-semibold leading-tight tracking-tight text-ink">
+          {t(`catalog.${entry.id}.name`)}
+        </p>
+        {live && (
+          <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+            LIVE
+          </span>
+        )}
+      </div>
       {entry.unit && <p className="text-[10px] text-ink-3">{entry.unit}</p>}
       <p className="mt-1 text-[11px] font-medium tabular-nums text-ink-3">
         {entry.inputMode === 'taxi'
