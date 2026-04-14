@@ -33,19 +33,6 @@ const PRICE_CARDS: PriceCard[] = [
   { id: 'meal', krw: 10000, labelKey: 'page.home.prices.meal' },
 ]
 
-const ARRIVAL_ITEMS = [
-  { id: 'arex', value: '₩4,450', detailKey: 'page.home.arrival.arex.detail' },
-  { id: 'limo', value: '₩17,000', detailKey: 'page.home.arrival.limo.detail' },
-  { id: 'tmoney', value: '₩2,500+', detailKey: 'page.home.arrival.tmoney.detail' },
-  { id: 'helpline', value: '1330', detailKey: 'page.home.arrival.helpline.detail' },
-] as const
-
-const PITFALL_ITEMS = [
-  { id: 'atm', tagKey: 'page.home.pitfalls.atm.tag' },
-  { id: 'taxi', tagKey: 'page.home.pitfalls.taxi.tag' },
-  { id: 'guide', tagKey: 'page.home.pitfalls.guide.tag' },
-] as const
-
 const CATEGORY_META: Record<
   AdvisoryCategory,
   {
@@ -182,53 +169,20 @@ export const HomePage = () => {
       </section>
 
       <section className="px-5">
-        <div className="flex items-baseline justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
-            {t('page.home.arrival.label')}
-          </p>
-          <p className="text-[10px] font-medium text-ink-3">{t('page.home.arrival.sub')}</p>
-        </div>
-        <ul className="mt-3 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
-          {ARRIVAL_ITEMS.map((item) => (
-            <li key={item.id} className="flex items-start gap-4 px-4 py-3.5">
-              <p className="w-[76px] shrink-0 text-[15px] font-semibold tabular-nums tracking-tight text-ink">
-                {item.value}
-              </p>
-              <div className="min-w-0 flex-1">
-                <p className="text-[13px] font-semibold tracking-tight text-ink">
-                  {t(`page.home.arrival.${item.id}.title`)}
-                </p>
-                <p className="mt-0.5 text-[12px] leading-snug text-ink-3">{t(item.detailKey)}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="px-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-warn">
-          {t('page.home.pitfalls.label')}
-        </p>
-        <ul className="mt-3 space-y-2">
-          {PITFALL_ITEMS.map((item) => (
-            <li
-              key={item.id}
-              className="flex items-start gap-3 rounded-2xl border border-warn-soft bg-warn-soft/40 px-4 py-3"
-            >
-              <span className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-md bg-warn px-1.5 text-[9px] font-bold uppercase tracking-wider text-white">
-                {t(item.tagKey)}
-              </span>
-              <div className="flex-1">
-                <p className="text-[13px] font-semibold tracking-tight text-ink">
-                  {t(`page.home.pitfalls.${item.id}.title`)}
-                </p>
-                <p className="mt-0.5 text-[12px] leading-snug text-ink-2">
-                  {t(`page.home.pitfalls.${item.id}.body`)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Link
+          to="/kit"
+          className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-ink transition hover:border-line-strong"
+        >
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              {t('page.home.kitLinkLabel')}
+            </p>
+            <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
+              {t('page.home.kitLinkTitle')}
+            </p>
+          </div>
+          <ArrowRightIcon size={16} className="shrink-0 text-ink-3" />
+        </Link>
       </section>
 
       <section className="space-y-3">
