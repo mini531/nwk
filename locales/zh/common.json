@@ -9,6 +9,7 @@
     "map": "地图",
     "check": "价格核查",
     "kit": "必备包",
+    "tour": "景点",
     "profile": "我的"
   },
   "catalog": {
@@ -168,8 +169,9 @@
       }
     },
     "search": {
-      "title": "搜索",
-      "subhead": "用关键词搜索韩国各地景点.",
+      "eyebrow": "对接韩国观光公社 TourAPI",
+      "title": "景点搜索",
+      "subhead": "通过韩国观光公社公共数据搜索全国景点。点击任意结果即可查看对应的礼仪、物价与安全信息。",
       "placeholder": "例如: 景福宫、釜山、韩屋",
       "loading": "搜索中...",
       "mockNotice": "当前为演示数据, 配置 TourAPI 密钥后将切换为实时结果.",

@@ -1,12 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
-import { HomeIcon, KitIcon, ScaleIcon, UserIcon } from './icons'
+import { CompassIcon, HomeIcon, KitIcon, ScaleIcon, UserIcon } from './icons'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
   to: string
-  key: 'home' | 'check' | 'kit' | 'profile'
+  key: 'home' | 'check' | 'kit' | 'tour' | 'profile'
   Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>
   end: boolean
 }
@@ -15,6 +15,7 @@ const tabs: Tab[] = [
   { to: '/', key: 'home', Icon: HomeIcon, end: true },
   { to: '/check', key: 'check', Icon: ScaleIcon, end: false },
   { to: '/kit', key: 'kit', Icon: KitIcon, end: false },
+  { to: '/search', key: 'tour', Icon: CompassIcon, end: false },
   { to: '/profile', key: 'profile', Icon: UserIcon, end: false },
 ]
 

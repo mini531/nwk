@@ -9,6 +9,7 @@
     "map": "Map",
     "check": "Price Check",
     "kit": "Kit",
+    "tour": "Tour",
     "profile": "Me"
   },
   "catalog": {
@@ -168,8 +169,9 @@
       }
     },
     "search": {
-      "title": "Search",
-      "subhead": "Find attractions across Korea by keyword.",
+      "eyebrow": "Powered by KTO TourAPI",
+      "title": "Find a place",
+      "subhead": "Search tourist sites across Korea via Korea Tourism Organization's public data. Tap any result for the etiquette, pricing and safety tips that apply there.",
       "placeholder": "e.g. Gyeongbokgung, Busan, hanok",
       "loading": "Searching...",
       "mockNotice": "Showing demo data. Live results will appear once a TourAPI key is configured.",

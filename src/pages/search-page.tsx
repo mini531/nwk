@@ -42,11 +42,17 @@ export const SearchPage = () => {
 
   return (
     <div className="space-y-6 pb-4">
-      <header className="space-y-1">
-        <h1 className="text-[26px] font-semibold tracking-tight text-ink">
+      <header className="space-y-2">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+            {t('page.search.eyebrow')}
+          </p>
+        </div>
+        <h1 className="text-[24px] font-semibold tracking-tight text-ink">
           {t('page.search.title')}
         </h1>
-        <p className="text-sm text-ink-2">{t('page.search.subhead')}</p>
+        <p className="text-[13px] leading-relaxed text-ink-2">{t('page.search.subhead')}</p>
       </header>
 
       <form onSubmit={onSubmit} className="relative">
