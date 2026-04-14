@@ -7,15 +7,68 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
     />
-    <meta name="theme-color" content="#0e4744" />
+    <meta name="theme-color" content="#0e4744" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0e0c" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="apple-touch-icon" href="/icon.svg" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="NWK" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="description" content="No Worries Korea - 외국인 관광객을 위한 한국 여행 안전망" />
-    <title>NWK - No Worries Korea</title>
+
+    <title>No Worries Korea — 외국인 관광객을 위한 한국 여행 안전망</title>
+    <meta
+      name="description"
+      content="NWK는 한국 여행 중 물가·교통·에티켓·안전 정보를 공공데이터로 실시간 제공하는 외국인 관광객용 PWA입니다. 한국관광공사 TourAPI, 부천시 공공데이터, 국토부 VWorld 지도 연동."
+    />
+    <meta
+      name="keywords"
+      content="Korea travel,Korea prices,bagaji,rip-off,TourAPI,visit Korea,Seoul,Busan,Jeju,public data"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="No Worries Korea" />
+    <meta property="og:title" content="No Worries Korea — 한국 여행 안전망" />
+    <meta
+      property="og:description"
+      content="외국인 관광객을 위한 한국 여행 실용 정보. 공공데이터 기반 물가 체크, TourAPI 600+ 관광지 지도, 4개 언어 지원."
+    />
+    <meta property="og:image" content="https://nwk-app-ba6f8.web.app/icon.svg" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="No Worries Korea" />
+    <meta
+      name="twitter:description"
+      content="한국 여행 실용 정보 — 물가 체크, TourAPI 관광지 지도, 4개 언어, 공공데이터 기반."
+    />
+    <meta name="twitter:image" content="https://nwk-app-ba6f8.web.app/icon.svg" />
+
+    <!-- hreflang alternates -->
+    <link rel="alternate" hreflang="ko" href="https://nwk-app-ba6f8.web.app/" />
+    <link rel="alternate" hreflang="en" href="https://nwk-app-ba6f8.web.app/" />
+    <link rel="alternate" hreflang="ja" href="https://nwk-app-ba6f8.web.app/" />
+    <link rel="alternate" hreflang="zh" href="https://nwk-app-ba6f8.web.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://nwk-app-ba6f8.web.app/" />
+
+    <!-- Early theme to avoid flash -->
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('nwk.theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
