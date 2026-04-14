@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/use-auth'
 import {
   ChevronRightIcon,
@@ -81,7 +82,7 @@ export const ProfilePage = () => {
         <Divider />
         <Row icon={<PinIcon size={18} />} label={t('page.profile.rows.saved')} />
         <Divider />
-        <Row icon={<ShieldIcon size={18} />} label={t('page.profile.rows.about')} />
+        <Row icon={<ShieldIcon size={18} />} label={t('page.profile.rows.about')} to="/about" />
       </section>
 
       {user && (
@@ -98,15 +99,29 @@ export const ProfilePage = () => {
   )
 }
 
-const Row = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
-  <button
-    type="button"
-    className="flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-canvas"
-  >
-    <span className="grid h-9 w-9 place-items-center rounded-lg bg-canvas text-ink-2">{icon}</span>
-    <span className="flex-1 text-[15px] tracking-tight text-ink">{label}</span>
-    <ChevronRightIcon size={18} className="text-ink-3" />
-  </button>
-)
+const Row = ({ icon, label, to }: { icon: React.ReactNode; label: string; to?: string }) => {
+  const inner = (
+    <>
+      <span className="grid h-9 w-9 place-items-center rounded-lg bg-canvas text-ink-2">
+        {icon}
+      </span>
+      <span className="flex-1 text-[15px] tracking-tight text-ink">{label}</span>
+      <ChevronRightIcon size={18} className="text-ink-3" />
+    </>
+  )
+  const cls = 'flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-canvas'
+  if (to) {
+    return (
+      <Link to={to} className={cls}>
+        {inner}
+      </Link>
+    )
+  }
+  return (
+    <button type="button" className={cls}>
+      {inner}
+    </button>
+  )
+}
 
 const Divider = () => <div className="mx-5 h-px bg-line" />

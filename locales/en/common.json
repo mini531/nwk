@@ -52,6 +52,22 @@
       "placeholder": "In development",
       "searchHere": "Search this area"
     },
+    "about": {
+      "title": "NWK — No Worries Korea",
+      "tagline": "A safety net for travelers in Korea.",
+      "version": "Version",
+      "install": {
+        "eyebrow": "Install",
+        "title": "Add to home screen",
+        "body": "Install NWK for instant launch and offline access to places you've recently viewed.",
+        "cta": "Install app",
+        "done": "Installed"
+      },
+      "privacy": {
+        "title": "Privacy",
+        "body": "Your location stays on your device and is never sent to our servers. Sign-in collects only your email and display name."
+      }
+    },
     "profile": {
       "title": "Me",
       "signin": "Continue with Google",

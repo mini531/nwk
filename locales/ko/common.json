@@ -52,6 +52,22 @@
       "placeholder": "준비 중인 기능",
       "searchHere": "이 지역에서 검색"
     },
+    "about": {
+      "title": "NWK - No Worries Korea",
+      "tagline": "외국인 관광객을 위한 한국 여행 안전망",
+      "version": "버전",
+      "install": {
+        "eyebrow": "앱 설치",
+        "title": "홈 화면에 추가",
+        "body": "설치하면 앱처럼 빠르게 열 수 있고, 오프라인에서도 최근 본 정보를 확인할 수 있어요.",
+        "cta": "설치하기",
+        "done": "설치 완료"
+      },
+      "privacy": {
+        "title": "개인정보",
+        "body": "위치 정보는 기기 내에서만 사용되며 서버에 저장되지 않습니다. 로그인 시에도 이메일·이름 외 민감 정보는 수집하지 않습니다."
+      }
+    },
     "profile": {
       "title": "내정보",
       "signin": "Google로 로그인",

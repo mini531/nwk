@@ -52,6 +52,22 @@
       "placeholder": "开发中",
       "searchHere": "搜索此区域"
     },
+    "about": {
+      "title": "NWK — No Worries Korea",
+      "tagline": "韩国旅行的安全网。",
+      "version": "版本",
+      "install": {
+        "eyebrow": "安装",
+        "title": "添加到主屏幕",
+        "body": "安装后可像原生应用一样快速启动, 并在离线时查看最近浏览的信息。",
+        "cta": "安装应用",
+        "done": "已安装"
+      },
+      "privacy": {
+        "title": "隐私",
+        "body": "位置信息仅在设备本地使用, 不会发送到服务器。登录时仅收集邮箱与昵称, 不涉及其他敏感信息。"
+      }
+    },
     "profile": {
       "title": "我的",
       "signin": "使用 Google 登录",
