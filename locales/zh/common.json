@@ -185,7 +185,21 @@
         "sights": "景点",
         "food": "美食",
         "transit": "交通"
-      }
+      },
+      "poiFilters": {
+        "all": "全部",
+        "attraction": "景点",
+        "culture": "文化设施"
+      },
+      "poisLabel": "景点 · TourAPI",
+      "tapPrompt": "在地图上点选一个景点",
+      "tapHint": "放大到单个图钉后点击, 匹配信息会直接在本页显示, 无需离开地图。",
+      "openMatch": "打开匹配",
+      "matchedLabel": "韩国出行基础 · 按地区筛选",
+      "noAdvisory": "暂无此地点的精选提示。您仍可以在核查 Tab 中查询价格。",
+      "noResultsTitle": "没有匹配的景点",
+      "noResultsHint": "请尝试其他关键词或切换筛选为全部",
+      "matchCount": "搜索结果 {{count}} 处"
     },
     "map": {
       "title": "地图",

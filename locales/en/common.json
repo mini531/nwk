@@ -185,7 +185,21 @@
         "sights": "Sights",
         "food": "Food",
         "transit": "Transit"
-      }
+      },
+      "poiFilters": {
+        "all": "All",
+        "attraction": "Attractions",
+        "culture": "Culture"
+      },
+      "poisLabel": "POIs · TourAPI",
+      "tapPrompt": "Tap a pin on the map",
+      "tapHint": "Zoom in until individual pins appear, then tap any of them. The matched info for that place appears right here without leaving the map.",
+      "openMatch": "Open match",
+      "matchedLabel": "Korea basics · region-filtered",
+      "noAdvisory": "No curated tips for this place yet. You can still check prices via the Check tab.",
+      "noResultsTitle": "No matching places",
+      "noResultsHint": "Try another keyword or switch the filter to All",
+      "matchCount": "{{count}} results"
     },
     "map": {
       "title": "Map",

@@ -5,3 +5,7 @@ locales
 .claude
 CLAUDE.md
 README.md
+src/data/live-prices-bucheon.json
+src/data/live-cpi-gangwon.json
+src/data/live-hotspots.json
+src/data/live-tour-pois.json

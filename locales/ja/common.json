@@ -185,7 +185,21 @@
         "sights": "観光",
         "food": "グルメ",
         "transit": "交通"
-      }
+      },
+      "poiFilters": {
+        "all": "すべて",
+        "attraction": "観光地",
+        "culture": "文化施設"
+      },
+      "poisLabel": "観光地 · TourAPI",
+      "tapPrompt": "地図のピンをタップ",
+      "tapHint": "ズームインして個別ピンが出たらタップ。地図を離れずにこの画面でマッチ情報が表示されます。",
+      "openMatch": "マッチを開く",
+      "matchedLabel": "韓国旅行の基本 · 地域フィルタ済み",
+      "noAdvisory": "この場所の厳選情報はまだありません。価格は「チェック」タブで確認できます。",
+      "noResultsTitle": "一致する観光地がありません",
+      "noResultsHint": "別のキーワードを試すか、フィルターを「すべて」に切替えてください",
+      "matchCount": "検索結果 {{count}}件"
     },
     "map": {
       "title": "地図",

@@ -185,7 +185,21 @@
         "sights": "명소",
         "food": "음식",
         "transit": "교통"
-      }
+      },
+      "poiFilters": {
+        "all": "전체",
+        "attraction": "관광지",
+        "culture": "문화시설"
+      },
+      "poisLabel": "관광지 · TourAPI",
+      "tapPrompt": "지도에서 관광지를 탭하세요",
+      "tapHint": "줌인해서 개별 핀이 뜨면 탭해보세요. 이 화면에서 바로 매칭된 정보를 확인할 수 있어요.",
+      "openMatch": "매칭 열기",
+      "matchedLabel": "한국 여행 기본 정보 · 지역 필터 반영",
+      "noAdvisory": "이 장소에는 아직 매칭된 상세 정보가 없어요. 체크 탭에서 직접 가격 확인이 가능합니다.",
+      "noResultsTitle": "일치하는 관광지가 없어요",
+      "noResultsHint": "다른 키워드로 시도하거나 필터를 전체로 바꿔보세요",
+      "matchCount": "검색 결과 {{count}}개"
     },
     "map": {
       "title": "지도",
