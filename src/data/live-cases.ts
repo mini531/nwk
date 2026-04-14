@@ -9,10 +9,11 @@ export interface LiveCase {
   fairLow: number
   fairHigh: number
   extra?: string
+  image?: string
 }
 
-// Curated, plausible scenarios drawn from real Korea Consumer Agency
-// complaint bulletins and community reports. Rotated on the home ticker.
+// Sample cases used to demonstrate the price-check verdict on the home hero.
+// Not sourced from any third-party agency — values reflect our own catalog ranges.
 export const LIVE_CASES: LiveCase[] = [
   {
     id: 'sample-1',
@@ -23,6 +24,7 @@ export const LIVE_CASES: LiveCase[] = [
     fairLow: 6700,
     fairHigh: 9000,
     extra: '5km · day',
+    image: '/hero/taxi-seoul.webp',
   },
   {
     id: 'sample-2',
@@ -32,6 +34,7 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 120000,
     fairLow: 40000,
     fairHigh: 80000,
+    image: '/hero/massage.webp',
   },
   {
     id: 'sample-3',
@@ -41,6 +44,7 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 150000,
     fairLow: 60000,
     fairHigh: 90000,
+    image: '/hero/airport-taxi.webp',
   },
   {
     id: 'sample-4',
@@ -50,6 +54,7 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 28000,
     fairLow: 12000,
     fairHigh: 20000,
+    image: '/hero/hanbok.webp',
   },
   {
     id: 'sample-5',
@@ -59,6 +64,7 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 12000,
     fairLow: 8000,
     fairHigh: 16000,
+    image: '/hero/jjimjilbang.webp',
   },
   {
     id: 'sample-6',
@@ -68,6 +74,7 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 10000,
     fairLow: 9000,
     fairHigh: 13000,
+    image: '/hero/bibimbap.webp',
   },
   {
     id: 'sample-7',
@@ -77,5 +84,6 @@ export const LIVE_CASES: LiveCase[] = [
     paid: 5000,
     fairLow: 1000,
     fairHigh: 2000,
+    image: '/hero/water.webp',
   },
 ]

@@ -7,7 +7,7 @@
     "home": "首页",
     "search": "搜索",
     "map": "地图",
-    "check": "价格核查",
+    "check": "价格判定",
     "kit": "必备包",
     "tour": "景点",
     "profile": "我的"
@@ -80,6 +80,13 @@
       "headline": "换汇之前, 先看韩国真实物价.",
       "liveLabel": "最新判定",
       "liveNote": "基于消费者院公开案例",
+      "bagaji": {
+        "eyebrow": "宰客警报",
+        "flagged": "已收录{{count}}起",
+        "headline": "游客昨天多付了多少钱，全在这里。",
+        "sub": "由本服务价格判定工具核验的案例。直接展示比正常价范围高出多少。",
+        "fair": "正常价"
+      },
       "kitLinkLabel": "入境与生活信息",
       "kitLinkTitle": "韩国必备包 — 入境 30 分钟、ATM、通信、紧急电话",
       "rightNowLabel": "韩国此刻",
@@ -204,7 +211,7 @@
       "tapHint": "放大到单个图钉后点击, 匹配信息会直接在本页显示, 无需离开地图。",
       "openMatch": "打开匹配",
       "matchedLabel": "韩国出行基础 · 按地区筛选",
-      "noAdvisory": "暂无此地点的精选提示。您仍可以在核查 Tab 中查询价格。",
+      "noAdvisory": "暂无此地点的精选提示。您仍可以在「价格判定」标签中查询价格。",
       "noResultsTitle": "没有匹配的景点",
       "noResultsHint": "请尝试其他关键词或切换筛选为全部",
       "matchCount": "搜索结果 {{count}} 处",
@@ -256,7 +263,7 @@
       }
     },
     "check": {
-      "eyebrow": "价格核查",
+      "eyebrow": "价格判定",
       "title": "先替您核一核旅费",
       "subhead": "几下点击, 就能和韩国真实均价比对, 告诉您是否合理.",
       "back": "返回",
@@ -292,10 +299,10 @@
       "safeTransit": {
         "title": "韩国公共交通不会宰客",
         "body": "地铁、公交、KTX 与城际巴士均按牌价收取 (T-money 或现金)。仅出租车例外 — 务必核对计价器。",
-        "cta": "核查出租车费用"
+        "cta": "判定出租车费用"
       },
       "photo": {
-        "title": "拍照核查",
+        "title": "拍照判定",
         "comingSoon": "拍下菜单或小票, 自动判定 — 即将推出",
         "soonBadge": "SOON"
       },
@@ -303,7 +310,7 @@
         "category": "类别",
         "item": "项目",
         "price": "被收金额 (韩元)",
-        "submit": "开始核查",
+        "submit": "开始判定",
         "taxiContext": "出租车按距离与时段计算",
         "distance": "行驶距离",
         "timeOfDay": "时段",
@@ -412,7 +419,7 @@
         "system": "系统"
       },
       "favorites": { "label": "收藏" },
-      "recent": { "label": "最近核查" },
+      "recent": { "label": "最近判定" },
       "signin": "使用 Google 登录",
       "signout": "退出登录",
       "signedInAs": "已登录",

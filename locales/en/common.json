@@ -7,7 +7,7 @@
     "home": "Home",
     "search": "Search",
     "map": "Map",
-    "check": "Price Check",
+    "check": "Price Verdict",
     "kit": "Kit",
     "tour": "Tour",
     "profile": "Me"
@@ -80,6 +80,13 @@
       "headline": "Before you exchange — real Korean prices.",
       "liveLabel": "Fresh verdicts",
       "liveNote": "Based on Consumer Agency cases",
+      "bagaji": {
+        "eyebrow": "RIP-OFF ALERT",
+        "flagged": "{{count}} sample cases",
+        "headline": "How much tourists overpaid yesterday — exposed.",
+        "sub": "Cases verified by our price-check tool. We show exactly how much was paid over the fair range.",
+        "fair": "Fair"
+      },
       "kitLinkLabel": "Arrival & life info",
       "kitLinkTitle": "Korea kit — first 30 min, ATM, connectivity, emergency",
       "rightNowLabel": "Korea right now",
@@ -204,7 +211,7 @@
       "tapHint": "Zoom in until individual pins appear, then tap any of them. The matched info for that place appears right here without leaving the map.",
       "openMatch": "Open match",
       "matchedLabel": "Korea basics · region-filtered",
-      "noAdvisory": "No curated tips for this place yet. You can still check prices via the Check tab.",
+      "noAdvisory": "No curated tips for this place yet. You can still get a verdict in the Price Verdict tab.",
       "noResultsTitle": "No matching places",
       "noResultsHint": "Try another keyword or switch the filter to All",
       "matchCount": "{{count}} results",
@@ -256,11 +263,11 @@
       }
     },
     "check": {
-      "eyebrow": "Price check",
+      "eyebrow": "Price Verdict",
       "title": "Let's check your travel bill",
       "subhead": "We'll compare it against Korea's real average prices in a few taps.",
       "back": "Back",
-      "again": "Check another",
+      "again": "Try another",
       "popular": "What travelers ask most",
       "seeAll": "See all",
       "searchPlaceholder": "Search (e.g. naengmyeon)",
@@ -292,7 +299,7 @@
       "safeTransit": {
         "title": "Korea's public transit is rip-off-free",
         "body": "Subway, bus, KTX and intercity bus all charge the listed price via T-money or cash. Only taxis need checking — always confirm the meter.",
-        "cta": "Check a taxi fare"
+        "cta": "Get a taxi verdict"
       },
       "photo": {
         "title": "Snap a menu or receipt",
@@ -303,7 +310,7 @@
         "category": "Category",
         "item": "Item",
         "price": "Amount charged (KRW)",
-        "submit": "Check it",
+        "submit": "Get verdict",
         "taxiContext": "Taxi is computed from distance and time",
         "distance": "Trip distance",
         "timeOfDay": "Time of day",
@@ -418,7 +425,7 @@
         "system": "System"
       },
       "favorites": { "label": "Favorites" },
-      "recent": { "label": "Recent checks" },
+      "recent": { "label": "Recent verdicts" },
       "signin": "Continue with Google",
       "signout": "Sign out",
       "signedInAs": "Signed in",
