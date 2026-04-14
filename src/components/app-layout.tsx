@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
-import { HomeIcon, KitIcon, NwkLogo, ScaleIcon, UserIcon } from './icons'
+import { HomeIcon, KitIcon, ScaleIcon, UserIcon } from './icons'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
@@ -25,12 +25,9 @@ export const AppLayout = () => {
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
       <header className="sticky top-0 z-20 border-b border-line/70 bg-canvas/85 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-md items-center justify-between gap-3 px-5">
-          <div className="flex min-w-0 items-center gap-2">
-            <NwkLogo size={22} className="text-ink" />
-            <span className="truncate text-[13px] font-semibold tracking-tight text-ink-2">
-              No Worries Korea
-            </span>
-          </div>
+          <span className="truncate text-[17px] font-semibold tracking-tight text-ink">
+            No Worries Korea
+          </span>
           <LangSwitcher />
         </div>
       </header>
