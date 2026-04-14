@@ -31,3 +31,5 @@ export const api = onRequest((req, res) => {
     })
   })
 })
+
+export { tourSearch } from './tour-api'

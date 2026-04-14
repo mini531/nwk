@@ -37,4 +37,5 @@ functions/lib
 # Local working docs
 *.docx
 *.xlsx
+*.pptx
 *.pdf

@@ -17,9 +17,19 @@
       "transit": "交通",
       "tips": "注意事项"
     },
-    "search": { "title": "搜索", "placeholder": "搜索景点" },
+    "search": {
+      "title": "搜索",
+      "placeholder": "搜索景点",
+      "loading": "搜索中...",
+      "mockNotice": "演示数据。未配置 TourAPI 密钥。"
+    },
     "map": { "title": "地图", "loading": "加载中..." },
-    "profile": { "title": "我的", "signin": "使用 Google 登录" }
+    "profile": {
+      "title": "我的",
+      "signin": "使用 Google 登录",
+      "signout": "退出登录",
+      "signedInAs": "已登录"
+    }
   },
   "lang": { "label": "语言" }
 }

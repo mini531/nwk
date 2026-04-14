@@ -17,9 +17,19 @@
       "transit": "교통",
       "tips": "주의사항"
     },
-    "search": { "title": "검색", "placeholder": "관광지 검색" },
+    "search": {
+      "title": "검색",
+      "placeholder": "관광지 검색",
+      "loading": "검색 중...",
+      "mockNotice": "데모 데이터입니다. TourAPI 키 미설정."
+    },
     "map": { "title": "지도", "loading": "지도 로딩 중..." },
-    "profile": { "title": "내정보", "signin": "Google로 로그인" }
+    "profile": {
+      "title": "내정보",
+      "signin": "Google로 로그인",
+      "signout": "로그아웃",
+      "signedInAs": "로그인됨"
+    }
   },
   "lang": { "label": "언어" }
 }

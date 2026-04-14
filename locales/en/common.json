@@ -17,9 +17,19 @@
       "transit": "Transit",
       "tips": "Tips"
     },
-    "search": { "title": "Search", "placeholder": "Search attractions" },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search attractions",
+      "loading": "Searching...",
+      "mockNotice": "Showing demo data. TourAPI key not configured."
+    },
     "map": { "title": "Map", "loading": "Loading map..." },
-    "profile": { "title": "Me", "signin": "Sign in with Google" }
+    "profile": {
+      "title": "Me",
+      "signin": "Sign in with Google",
+      "signout": "Sign out",
+      "signedInAs": "Signed in as"
+    }
   },
   "lang": { "label": "Language" }
 }
