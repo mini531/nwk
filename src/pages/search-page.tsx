@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useMemo, useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronRightIcon, PinIcon, SearchIcon } from '../components/icons'
 import { TourMap, type PoiProperties } from '../components/tour-map'
@@ -46,6 +46,16 @@ export const SearchPage = () => {
   const [q, setQ] = useState('')
   const [filter, setFilter] = useState<'all' | 'attraction' | 'culture'>('all')
   const [focusId, setFocusId] = useState<string | null>(null)
+  const asideRef = useRef<HTMLElement>(null)
+
+  const handlePoiClick = (p: PoiProperties) => {
+    setFocusId(p.id)
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      window.requestAnimationFrame(() => {
+        asideRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    }
+  }
 
   const keyword = q.replace(SAFE_RE, '').trim().slice(0, MAX_LEN).toLowerCase()
 
@@ -146,8 +156,8 @@ export const SearchPage = () => {
         <div className="relative -mx-5 sm:mx-0">
           <TourMap
             geojson={geoCollection}
-            className="h-[420px] w-full overflow-hidden border-y border-line sm:h-[520px] sm:rounded-3xl sm:border lg:h-[620px]"
-            onPoiClick={(p) => setFocusId(p.id)}
+            className="h-[360px] w-full overflow-hidden border-y border-line sm:h-[480px] sm:rounded-3xl sm:border lg:h-[620px]"
+            onPoiClick={handlePoiClick}
           />
           <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
@@ -155,7 +165,11 @@ export const SearchPage = () => {
           </div>
         </div>
 
-        <aside className="space-y-4 lg:max-h-[620px] lg:overflow-y-auto lg:pr-1">
+        <aside
+          ref={asideRef}
+          aria-live="polite"
+          className="scroll-mt-20 space-y-4 lg:max-h-[620px] lg:overflow-y-auto lg:pr-1"
+        >
           {focusFeature ? (
             <>
               <section className="nwk-card overflow-hidden p-0">
