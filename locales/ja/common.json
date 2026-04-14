@@ -379,6 +379,10 @@
     }
   },
   "lang": { "label": "言語" },
+  "a11y": {
+    "skipToContent": "本文へスキップ",
+    "primaryNav": "メインナビ"
+  },
   "advisory": {
     "price.water": { "title": "ミネラルウォーター", "body": "コンビニの500ml基準。水道水も飲めますが地元の人もボトルを好みます。" },
     "price.coffee": { "title": "カフェのコーヒー", "body": "チェーン店のアメリカーノ平均価格。スペシャルティは高めです。" },

@@ -379,6 +379,10 @@
     }
   },
   "lang": { "label": "语言" },
+  "a11y": {
+    "skipToContent": "跳至正文",
+    "primaryNav": "主菜单"
+  },
   "advisory": {
     "price.water": { "title": "瓶装水", "body": "便利店 500ml 参考价. 自来水可饮用, 但本地人多数仍偏好瓶装水." },
     "price.coffee": { "title": "咖啡馆美式", "body": "连锁咖啡馆普通美式的均价. 精品咖啡馆更贵一些." },

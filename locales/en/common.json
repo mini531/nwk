@@ -385,6 +385,10 @@
     }
   },
   "lang": { "label": "Language" },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary"
+  },
   "advisory": {
     "price.water": { "title": "Bottled water", "body": "500ml at a convenience store. Tap water is drinkable but many locals still prefer bottled." },
     "price.coffee": { "title": "Cafe coffee", "body": "A regular Americano at a chain cafe. Specialty cafes run higher." },

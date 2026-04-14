@@ -147,249 +147,253 @@ export const HomePage = () => {
   }
 
   return (
-    <div className="-mx-5 space-y-7 pb-6">
-      <section className="px-5 pt-1">
-        <div className="mb-4 flex items-baseline justify-between">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-            {t('page.home.liveLabel')}
-          </p>
-          <p className="text-[10px] text-ink-3">{t('page.home.liveNote')}</p>
-        </div>
-        <LiveTicker />
-      </section>
-
-      <section className="px-5">
-        <div className="flex items-baseline justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
-            {t('page.home.rightNowLabel')}
-          </p>
-          <p className="flex items-center gap-1.5 text-[11px] tabular-nums text-ink-3">
-            <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
-            {kst} KST
-          </p>
-        </div>
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          {PRICE_CARDS.map((p) => (
-            <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
-              <div className="flex items-start justify-between gap-1">
-                <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
-                  {formatKrw(p.krw, i18n.language)}
-                </p>
-                {p.live && (
-                  <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
-                    LIVE
-                  </span>
-                )}
-              </div>
-              <p className="text-[11px] font-medium tabular-nums text-ink-3">
-                ≈ {formatUsd(p.krw)}
-              </p>
-              <p className="mt-0.5 text-[12px] font-medium tracking-tight text-ink-2">
-                {t(p.labelKey)}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
-
-        {CPI.latest && CPI.yoyPct !== null && (
-          <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-white px-4 py-2.5">
-            <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
-                {t('page.home.cpiLabel')}
-              </p>
-              <p className="mt-0.5 text-[11px] leading-snug text-ink-2">
-                {CPI.latest.month.slice(0, 7)} · {t('page.home.cpiBody')}
-              </p>
-            </div>
-            <div
-              className={`ml-3 shrink-0 text-[15px] font-bold tabular-nums ${
-                CPI.yoyPct >= 3 ? 'text-warn' : 'text-brand'
-              }`}
-            >
-              {CPI.yoyPct >= 0 ? '+' : ''}
-              {CPI.yoyPct.toFixed(1)}%
-            </div>
+    <div className="pb-6 lg:grid lg:grid-cols-12 lg:gap-8">
+      <div className="space-y-6 lg:col-span-5 lg:space-y-6 xl:col-span-4">
+        <section className="pt-1">
+          <div className="mb-4 flex items-baseline justify-between">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              {t('page.home.liveLabel')}
+            </p>
+            <p className="text-[10px] text-ink-3">{t('page.home.liveNote')}</p>
           </div>
-        )}
+          <LiveTicker />
+        </section>
 
-        <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1">
-          <div className="flex min-w-max gap-2">
-            {(
-              [
-                { k: 'fx', v: '₩1,330 / $1' },
-                { k: 'emergency', v: '112 · 119' },
-                { k: 'plug', v: '220V · C/F' },
-                { k: 'water', v: 'OK' },
-                { k: 'tipping', v: 'NO' },
-                { k: 'tz', v: 'UTC+9' },
-              ] as const
-            ).map(({ k, v }) => (
-              <div
-                key={k}
-                className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5"
-              >
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
-                  {t(`page.home.facts.${k}`)}
-                </span>
-                <span className="text-[12px] font-semibold tabular-nums tracking-tight text-ink">
-                  {v}
-                </span>
+        <section>
+          <div className="flex items-baseline justify-between">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
+              {t('page.home.rightNowLabel')}
+            </p>
+            <p className="flex items-center gap-1.5 text-[11px] tabular-nums text-ink-3">
+              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+              {kst} KST
+            </p>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
+            {PRICE_CARDS.map((p) => (
+              <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
+                <div className="flex items-start justify-between gap-1">
+                  <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
+                    {formatKrw(p.krw, i18n.language)}
+                  </p>
+                  {p.live && (
+                    <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+                      LIVE
+                    </span>
+                  )}
+                </div>
+                <p className="text-[11px] font-medium tabular-nums text-ink-3">
+                  ≈ {formatUsd(p.krw)}
+                </p>
+                <p className="mt-0.5 text-[12px] font-medium tracking-tight text-ink-2">
+                  {t(p.labelKey)}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+          <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
 
-      <section className="px-5">
-        <Link
-          to="/kit"
-          className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-ink transition hover:border-line-strong"
-        >
-          <div className="min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-              {t('page.home.kitLinkLabel')}
-            </p>
-            <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
-              {t('page.home.kitLinkTitle')}
-            </p>
-          </div>
-          <ArrowRightIcon size={16} className="shrink-0 text-ink-3" />
-        </Link>
-      </section>
-
-      <section className="space-y-3">
-        <div className="px-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-            {t('page.home.matchedLabel')}
-          </p>
-          <h2 className="mt-1 text-[16px] font-semibold tracking-tight text-ink">
-            {t('page.home.matchedTitle')}
-          </h2>
-        </div>
-
-        <div className="relative">
-          <MapView
-            center={[active.place.lng, active.place.lat]}
-            zoom={10}
-            markers={markers}
-            className="h-[300px] w-full overflow-hidden border-y border-line"
-            onMarkerClick={(id) => setActiveId(id)}
-          />
-          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
-            {t('page.home.mapTag')}
-          </div>
-        </div>
-
-        <div className="-mx-5 overflow-x-auto px-5">
-          <div className="flex gap-2">
-            {HOTSPOTS.map((h) => {
-              const isActive = h.place.id === activeId
-              const shortName = hotspotName(h, i18n.language)
-                .split(/[[(（]/)[0]
-                .trim()
-              return (
-                <button
-                  key={h.place.id}
-                  type="button"
-                  onClick={() => setActiveId(h.place.id)}
-                  className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight transition ${
-                    isActive
-                      ? 'border-ink bg-ink text-white shadow-pop'
-                      : 'border-line bg-white text-ink-2 hover:border-line-strong'
-                  }`}
-                >
-                  {shortName}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
-        <div className="px-5">
-          <button
-            type="button"
-            onClick={openFull}
-            className="nwk-card group block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99]"
-          >
-            {active.thumbnail && (
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2">
-                <img
-                  src={active.thumbnail}
-                  alt=""
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-                <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/75 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                  <span className="h-1 w-1 rounded-full bg-brand" />
-                  TourAPI
-                </div>
-              </div>
-            )}
-            <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
+          {CPI.latest && CPI.yoyPct !== null && (
+            <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-white px-4 py-2.5">
               <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
-                  {t(active.regionKey)}
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                  {t('page.home.cpiLabel')}
                 </p>
-                <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink">
-                  {hotspotName(active, i18n.language)}
-                </p>
-                <p className="mt-0.5 truncate text-[11px] text-ink-3">
-                  {hotspotAddr(active, i18n.language)}
+                <p className="mt-0.5 text-[11px] leading-snug text-ink-2">
+                  {CPI.latest.month.slice(0, 7)} · {t('page.home.cpiBody')}
                 </p>
               </div>
-              <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-brand">
-                {t('page.home.openFull')}
-                <ArrowRightIcon size={14} />
-              </span>
+              <div
+                className={`ml-3 shrink-0 text-[15px] font-bold tabular-nums ${
+                  CPI.yoyPct >= 3 ? 'text-warn' : 'text-brand'
+                }`}
+              >
+                {CPI.yoyPct >= 0 ? '+' : ''}
+                {CPI.yoyPct.toFixed(1)}%
+              </div>
             </div>
+          )}
 
-            <ul className="divide-y divide-line border-t border-line">
-              {featured.map((a) => {
-                const meta = CATEGORY_META[a.category]
+          <div className="mt-4 -mx-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="flex min-w-max gap-2 sm:min-w-0 sm:flex-wrap">
+              {(
+                [
+                  { k: 'fx', v: '₩1,330 / $1' },
+                  { k: 'emergency', v: '112 · 119' },
+                  { k: 'plug', v: '220V · C/F' },
+                  { k: 'water', v: 'OK' },
+                  { k: 'tipping', v: 'NO' },
+                  { k: 'tz', v: 'UTC+9' },
+                ] as const
+              ).map(({ k, v }) => (
+                <div
+                  key={k}
+                  className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5"
+                >
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                    {t(`page.home.facts.${k}`)}
+                  </span>
+                  <span className="text-[12px] font-semibold tabular-nums tracking-tight text-ink">
+                    {v}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <Link
+            to="/kit"
+            className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3.5 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          >
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+                {t('page.home.kitLinkLabel')}
+              </p>
+              <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
+                {t('page.home.kitLinkTitle')}
+              </p>
+            </div>
+            <ArrowRightIcon size={16} className="shrink-0 text-ink-3" aria-hidden="true" />
+          </Link>
+        </section>
+      </div>
+
+      <div className="mt-8 space-y-4 lg:col-span-7 lg:mt-0 xl:col-span-8">
+        <section className="space-y-3">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              {t('page.home.matchedLabel')}
+            </p>
+            <h2 className="mt-1 text-[16px] font-semibold tracking-tight text-ink">
+              {t('page.home.matchedTitle')}
+            </h2>
+          </div>
+
+          <div className="relative -mx-5 sm:mx-0">
+            <MapView
+              center={[active.place.lng, active.place.lat]}
+              zoom={10}
+              markers={markers}
+              className="h-[320px] w-full overflow-hidden border-y border-line sm:h-[360px] sm:rounded-3xl sm:border lg:h-[420px]"
+              onMarkerClick={(id) => setActiveId(id)}
+            />
+            <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
+              {t('page.home.mapTag')}
+            </div>
+          </div>
+
+          <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="flex gap-2 sm:flex-wrap">
+              {HOTSPOTS.map((h) => {
+                const isActive = h.place.id === activeId
+                const shortName = hotspotName(h, i18n.language)
+                  .split(/[[(（]/)[0]
+                  .trim()
                 return (
-                  <li key={a.id} className="flex items-start gap-3 px-5 py-3">
-                    <span
-                      className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${meta.bg} ${meta.fg}`}
-                    >
-                      <meta.Icon size={14} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[13px] font-semibold tracking-tight text-ink">
-                        {t(`advisory.${a.id}.title`)}
-                      </p>
-                      <p className="mt-0.5 line-clamp-2 text-[12px] leading-snug text-ink-3">
-                        {t(`advisory.${a.id}.body`)}
-                      </p>
-                    </div>
-                  </li>
+                  <button
+                    key={h.place.id}
+                    type="button"
+                    onClick={() => setActiveId(h.place.id)}
+                    className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight transition ${
+                      isActive
+                        ? 'border-ink bg-ink text-white shadow-pop'
+                        : 'border-line bg-white text-ink-2 hover:border-line-strong'
+                    }`}
+                  >
+                    {shortName}
+                  </button>
                 )
               })}
-            </ul>
-          </button>
-        </div>
-      </section>
+            </div>
+          </div>
 
-      <section className="px-5">
-        <Link
-          to="/search"
-          className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3 text-ink transition hover:border-line-strong"
-        >
-          <span className="flex items-center gap-2.5 text-[13px] font-medium text-ink-2">
-            <SearchIcon size={16} className="text-ink-3" />
-            {t('page.home.searchCta')}
-          </span>
-          <ArrowRightIcon size={14} className="text-ink-3" />
-        </Link>
-      </section>
+          <div>
+            <button
+              type="button"
+              onClick={openFull}
+              className="nwk-card group block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            >
+              {active.thumbnail && (
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2">
+                  <img
+                    src={active.thumbnail}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/75 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                    <span className="h-1 w-1 rounded-full bg-brand" />
+                    TourAPI
+                  </div>
+                </div>
+              )}
+              <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                    {t(active.regionKey)}
+                  </p>
+                  <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink">
+                    {hotspotName(active, i18n.language)}
+                  </p>
+                  <p className="mt-0.5 truncate text-[11px] text-ink-3">
+                    {hotspotAddr(active, i18n.language)}
+                  </p>
+                </div>
+                <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-brand">
+                  {t('page.home.openFull')}
+                  <ArrowRightIcon size={14} />
+                </span>
+              </div>
 
-      <section className="mx-5 rounded-2xl border border-line bg-canvas-2 px-5 py-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-          {t('page.home.sourceLabel')}
-        </p>
-        <p className="mt-1.5 text-[12px] leading-snug text-ink-2">{t('page.home.sourceBody')}</p>
-      </section>
+              <ul className="divide-y divide-line border-t border-line">
+                {featured.map((a) => {
+                  const meta = CATEGORY_META[a.category]
+                  return (
+                    <li key={a.id} className="flex items-start gap-3 px-5 py-3">
+                      <span
+                        className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${meta.bg} ${meta.fg}`}
+                      >
+                        <meta.Icon size={14} />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[13px] font-semibold tracking-tight text-ink">
+                          {t(`advisory.${a.id}.title`)}
+                        </p>
+                        <p className="mt-0.5 line-clamp-2 text-[12px] leading-snug text-ink-3">
+                          {t(`advisory.${a.id}.body`)}
+                        </p>
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <Link
+            to="/search"
+            className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          >
+            <span className="flex items-center gap-2.5 text-[13px] font-medium text-ink-2">
+              <SearchIcon size={16} className="text-ink-3" aria-hidden="true" />
+              {t('page.home.searchCta')}
+            </span>
+            <ArrowRightIcon size={14} className="text-ink-3" aria-hidden="true" />
+          </Link>
+        </section>
+
+        <section className="rounded-2xl border border-line bg-canvas-2 px-5 py-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            {t('page.home.sourceLabel')}
+          </p>
+          <p className="mt-1.5 text-[12px] leading-snug text-ink-2">{t('page.home.sourceBody')}</p>
+        </section>
+      </div>
     </div>
   )
 }

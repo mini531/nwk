@@ -379,6 +379,10 @@
     }
   },
   "lang": { "label": "언어" },
+  "a11y": {
+    "skipToContent": "본문 바로가기",
+    "primaryNav": "주 메뉴"
+  },
   "advisory": {
     "price.water": { "title": "생수 한 병", "body": "편의점 500ml 기준. 수돗물도 마실 수 있지만 현지인도 대부분 생수를 선호해요." },
     "price.coffee": { "title": "카페 아메리카노", "body": "체인 카페의 일반 아메리카노 평균가. 스페셜티 카페는 더 비싸요." },
