@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { MapView, type MapMarker } from '../components/map-view'
 import { LiveTicker } from '../components/live-ticker'
 import { HOTSPOTS, hotspotName, hotspotAddr } from '../data/hotspots'
 import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
@@ -51,7 +50,9 @@ const livePrice = (key: string, fallback: number): number => {
   return row ? row.avg : fallback
 }
 
-const PRICE_CARDS: PriceCard[] = [
+// Rotating pool — a fresh set of 4 shows on each home render so the
+// dashboard doesn't feel static between visits.
+const PRICE_POOL: PriceCard[] = [
   {
     id: 'americano',
     labelKey: 'page.home.prices.americano',
@@ -76,7 +77,51 @@ const PRICE_CARDS: PriceCard[] = [
     krw: livePrice('튀김닭', 20000),
     live: Boolean(BUCHEON_ITEMS['튀김닭']),
   },
+  {
+    id: 'kimchi_jjigae',
+    labelKey: 'page.home.prices.kimchi_jjigae',
+    krw: livePrice('김치찌개', 8000),
+    live: Boolean(BUCHEON_ITEMS['김치찌개']),
+  },
+  {
+    id: 'naengmyeon',
+    labelKey: 'page.home.prices.naengmyeon',
+    krw: livePrice('냉면', 9500),
+    live: Boolean(BUCHEON_ITEMS['냉면']),
+  },
+  {
+    id: 'samgyetang',
+    labelKey: 'page.home.prices.samgyetang',
+    krw: livePrice('삼계탕', 16000),
+    live: Boolean(BUCHEON_ITEMS['삼계탕']),
+  },
+  {
+    id: 'tangsuyuk',
+    labelKey: 'page.home.prices.tangsuyuk',
+    krw: livePrice('탕수육', 22000),
+    live: Boolean(BUCHEON_ITEMS['탕수육']),
+  },
+  {
+    id: 'donkatsu',
+    labelKey: 'page.home.prices.donkatsu',
+    krw: livePrice('돈까스', 9000),
+    live: Boolean(BUCHEON_ITEMS['돈까스']),
+  },
+  {
+    id: 'jajangmyeon',
+    labelKey: 'page.home.prices.jajangmyeon',
+    krw: livePrice('짜장면', 7000),
+    live: Boolean(BUCHEON_ITEMS['짜장면']),
+  },
 ]
+
+const pickRotation = (pool: PriceCard[], size: number): PriceCard[] => {
+  const idxs = new Set<number>()
+  while (idxs.size < Math.min(size, pool.length)) {
+    idxs.add(Math.floor(Math.random() * pool.length))
+  }
+  return Array.from(idxs).map((i) => pool[i])
+}
 
 const CATEGORY_META: Record<
   AdvisoryCategory,
@@ -121,18 +166,6 @@ export const HomePage = () => {
     [activeId],
   )
 
-  const markers: MapMarker[] = useMemo(
-    () =>
-      HOTSPOTS.map((h) => ({
-        id: h.place.id,
-        lng: h.place.lng,
-        lat: h.place.lat,
-        title: h.place.title,
-        active: h.place.id === activeId,
-      })),
-    [activeId],
-  )
-
   const featured = useMemo(
     () =>
       active.featuredAdvisoryIds
@@ -145,6 +178,9 @@ export const HomePage = () => {
     setSelectedPlace(active.place)
     navigate('/place')
   }
+
+  // Randomized once per page mount so a revisit shows a different set.
+  const priceCards = useMemo(() => pickRotation(PRICE_POOL, 4), [])
 
   return (
     <div className="pb-6 lg:grid lg:grid-cols-12 lg:gap-8">
@@ -170,7 +206,7 @@ export const HomePage = () => {
             </p>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
-            {PRICE_CARDS.map((p) => (
+            {priceCards.map((p) => (
               <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
                 <div className="flex items-start justify-between gap-1">
                   <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
@@ -271,20 +307,6 @@ export const HomePage = () => {
             </h2>
           </div>
 
-          <div className="relative -mx-5 sm:mx-0">
-            <MapView
-              center={[active.place.lng, active.place.lat]}
-              zoom={10}
-              markers={markers}
-              className="h-[320px] w-full overflow-hidden border-y border-line sm:h-[360px] sm:rounded-3xl sm:border lg:h-[420px]"
-              onMarkerClick={(id) => setActiveId(id)}
-            />
-            <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
-              {t('page.home.mapTag')}
-            </div>
-          </div>
-
           <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0">
             <div className="flex gap-2 sm:flex-wrap">
               {HOTSPOTS.map((h) => {
@@ -377,13 +399,20 @@ export const HomePage = () => {
         <section>
           <Link
             to="/search"
-            className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="group flex items-center justify-between rounded-2xl border-2 border-brand-soft bg-brand-soft/40 px-4 py-4 text-ink transition hover:bg-brand-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
-            <span className="flex items-center gap-2.5 text-[13px] font-medium text-ink-2">
-              <SearchIcon size={16} className="text-ink-3" aria-hidden="true" />
-              {t('page.home.searchCta')}
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+                {t('page.home.exploreMapLabel')}
+              </p>
+              <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
+                {t('page.home.exploreMapTitle')}
+              </p>
+            </div>
+            <span className="ml-3 flex shrink-0 items-center gap-1.5 text-[12px] font-semibold text-brand">
+              <SearchIcon size={14} aria-hidden="true" />
+              <ArrowRightIcon size={14} aria-hidden="true" />
             </span>
-            <ArrowRightIcon size={14} className="text-ink-3" aria-hidden="true" />
           </Link>
         </section>
 

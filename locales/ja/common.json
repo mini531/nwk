@@ -82,12 +82,18 @@
       "liveNote": "消費者院の公開事例をもとに",
       "kitLinkLabel": "入国・生活情報",
       "kitLinkTitle": "韓国必需キット — 入国30分、ATM、通信、緊急連絡先",
-      "rightNowLabel": "ソウルのいま",
+      "rightNowLabel": "韓国のいま",
       "prices": {
         "americano": "カフェのアメリカーノ",
         "bibimbap": "ビビンバ 1人前",
         "samgyeopsal": "サムギョプサル 200g",
         "chicken": "チキン 1羽",
+        "kimchi_jjigae": "キムチチゲ 1人前",
+        "naengmyeon": "冷麺 1人前",
+        "samgyetang": "サムゲタン 1羽",
+        "tangsuyuk": "タンスユク 1皿",
+        "donkatsu": "トンカツ 1人前",
+        "jajangmyeon": "ジャージャー麺",
         "subway": "地下鉄1回",
         "taxi": "タクシー初乗り",
         "meal": "1人分の食事"
@@ -157,6 +163,8 @@
       "sourceBody": "韓国観光公社TourAPI · 国土交通部VWorld · 気象庁 · 韓国銀行。広告・手数料・スポンサーなし。",
       "searchEyebrow": "自分で検索",
       "searchCta": "他の場所を検索",
+      "exploreMapLabel": "観光マップを開く",
+      "exploreMapTitle": "全国600+観光地をクラスター地図で探索",
       "essentials": "旅の必需",
       "todayLabel": "Today",
       "today": {

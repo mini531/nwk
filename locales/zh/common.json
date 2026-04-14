@@ -82,12 +82,18 @@
       "liveNote": "基于消费者院公开案例",
       "kitLinkLabel": "入境与生活信息",
       "kitLinkTitle": "韩国必备包 — 入境 30 分钟、ATM、通信、紧急电话",
-      "rightNowLabel": "首尔此刻",
+      "rightNowLabel": "韩国此刻",
       "prices": {
         "americano": "咖啡馆美式",
         "bibimbap": "拌饭 1 人",
         "samgyeopsal": "烤五花肉 200g",
         "chicken": "炸鸡一只",
+        "kimchi_jjigae": "泡菜汤 1 人",
+        "naengmyeon": "冷面 1 人",
+        "samgyetang": "参鸡汤 1 只",
+        "tangsuyuk": "糖醋肉 1 盘",
+        "donkatsu": "炸猪排 1 人",
+        "jajangmyeon": "炸酱面",
         "subway": "地铁单程",
         "taxi": "出租车起步价",
         "meal": "一人一餐"
@@ -157,6 +163,8 @@
       "sourceBody": "韩国观光公社 TourAPI · 国土部 VWorld · 气象厅 · 韩国银行。无广告、无佣金、无赞助。",
       "searchEyebrow": "自行搜索",
       "searchCta": "搜索其他景点",
+      "exploreMapLabel": "打开观光地图",
+      "exploreMapTitle": "在聚类地图上探索 600+ 景点",
       "essentials": "旅行必备",
       "todayLabel": "Today",
       "today": {

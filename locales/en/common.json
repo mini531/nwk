@@ -82,12 +82,18 @@
       "liveNote": "Based on Consumer Agency cases",
       "kitLinkLabel": "Arrival & life info",
       "kitLinkTitle": "Korea kit — first 30 min, ATM, connectivity, emergency",
-      "rightNowLabel": "Seoul right now",
+      "rightNowLabel": "Korea right now",
       "prices": {
         "americano": "Cafe americano",
         "bibimbap": "Bibimbap",
         "samgyeopsal": "Samgyeopsal 200g",
         "chicken": "Fried chicken (whole)",
+        "kimchi_jjigae": "Kimchi stew",
+        "naengmyeon": "Naengmyeon",
+        "samgyetang": "Samgyetang (whole)",
+        "tangsuyuk": "Tangsuyuk plate",
+        "donkatsu": "Pork cutlet",
+        "jajangmyeon": "Jajangmyeon",
         "subway": "Subway ride",
         "taxi": "Taxi base fare",
         "meal": "Meal for one"
@@ -157,6 +163,8 @@
       "sourceBody": "KTO TourAPI · MOLIT VWorld · KMA · BOK. No ads, no commissions, no sponsors.",
       "searchEyebrow": "Search",
       "searchCta": "Search any place in Korea",
+      "exploreMapLabel": "Open the tour map",
+      "exploreMapTitle": "Explore 600+ tourist spots on a clustered map",
       "essentials": "Essentials",
       "todayLabel": "Today",
       "today": {

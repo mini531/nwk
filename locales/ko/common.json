@@ -82,12 +82,18 @@
       "liveNote": "소비자원 공개 사례 기반",
       "kitLinkLabel": "입국·생활 정보",
       "kitLinkTitle": "한국 필수키트 — 입국 30분, ATM, 통신, 긴급번호",
-      "rightNowLabel": "서울 지금",
+      "rightNowLabel": "한국은 지금",
       "prices": {
         "americano": "카페 아메리카노",
         "bibimbap": "비빔밥 1인",
         "samgyeopsal": "삼겹살 200g",
         "chicken": "튀김닭 1마리",
+        "kimchi_jjigae": "김치찌개 1인",
+        "naengmyeon": "냉면 1인",
+        "samgyetang": "삼계탕 1마리",
+        "tangsuyuk": "탕수육 1접시",
+        "donkatsu": "돈까스 1인",
+        "jajangmyeon": "짜장면 1그릇",
         "subway": "지하철 1회",
         "taxi": "택시 기본요금",
         "meal": "1인 식사"
@@ -157,6 +163,8 @@
       "sourceBody": "한국관광공사 TourAPI · 국토교통부 VWorld · 기상청 · 한국은행. 광고·수수료·스폰서 없음.",
       "searchEyebrow": "직접 검색",
       "searchCta": "다른 장소 직접 검색하기",
+      "exploreMapLabel": "관광 지도 열기",
+      "exploreMapTitle": "전국 600+ 관광지 클러스터 지도 탐색",
       "essentials": "여행 필수",
       "todayLabel": "Today",
       "today": {
