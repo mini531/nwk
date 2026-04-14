@@ -46,7 +46,7 @@ interface CpiSnapshot {
 }
 const CPI = gangwonCpi as CpiSnapshot
 
-const livePrice = (key: string, fallback: number): PriceCard['krw'] & number => {
+const livePrice = (key: string, fallback: number): number => {
   const row = BUCHEON_ITEMS[key]
   return row ? row.avg : fallback
 }
