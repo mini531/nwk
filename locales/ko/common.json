@@ -93,6 +93,8 @@
         "meal": "1인 식사"
       },
       "pricesFootnote": "경기도 부천시 공공데이터 평균 · 37개 행정동 · 환율 1,330원/USD",
+      "cpiLabel": "개인서비스 물가지수 (YoY)",
+      "cpiBody": "강원도 월별 CPI, 2020=100",
       "facts": {
         "fx": "환율",
         "emergency": "긴급",

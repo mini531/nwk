@@ -18,6 +18,7 @@ import {
 import type { ComponentType, SVGProps } from 'react'
 
 import bucheonLive from '../data/live-prices-bucheon.json'
+import gangwonCpi from '../data/live-cpi-gangwon.json'
 
 const KRW_PER_USD = 1330
 const ADVISORY_BY_ID = new Map(ADVISORIES.map((a) => [a.id, a]))
@@ -37,6 +38,13 @@ interface BucheonItem {
 }
 
 const BUCHEON_ITEMS = (bucheonLive as { items: Record<string, BucheonItem> }).items
+
+interface CpiSnapshot {
+  latest: { month: string; personalService: number } | null
+  yoyPct: number | null
+  momPct: number | null
+}
+const CPI = gangwonCpi as CpiSnapshot
 
 const livePrice = (key: string, fallback: number): PriceCard['krw'] & number => {
   const row = BUCHEON_ITEMS[key]
@@ -183,6 +191,27 @@ export const HomePage = () => {
           ))}
         </div>
         <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
+
+        {CPI.latest && CPI.yoyPct !== null && (
+          <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-white px-4 py-2.5">
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                {t('page.home.cpiLabel')}
+              </p>
+              <p className="mt-0.5 text-[11px] leading-snug text-ink-2">
+                {CPI.latest.month.slice(0, 7)} · {t('page.home.cpiBody')}
+              </p>
+            </div>
+            <div
+              className={`ml-3 shrink-0 text-[15px] font-bold tabular-nums ${
+                CPI.yoyPct >= 3 ? 'text-warn' : 'text-brand'
+              }`}
+            >
+              {CPI.yoyPct >= 0 ? '+' : ''}
+              {CPI.yoyPct.toFixed(1)}%
+            </div>
+          </div>
+        )}
 
         <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1">
           <div className="flex min-w-max gap-2">

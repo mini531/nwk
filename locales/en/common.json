@@ -93,6 +93,8 @@
         "meal": "Meal for one"
       },
       "pricesFootnote": "Bucheon-si public data · 37 administrative dong avg · FX ₩1,330/USD",
+      "cpiLabel": "Personal service CPI (YoY)",
+      "cpiBody": "Gangwon monthly index, 2020=100",
       "facts": {
         "fx": "FX",
         "emergency": "SOS",
