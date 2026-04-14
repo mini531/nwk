@@ -68,6 +68,16 @@
         "body": "位置信息仅在设备本地使用, 不会发送到服务器。登录时仅收集邮箱与昵称, 不涉及其他敏感信息。"
       }
     },
+    "place": {
+      "back": "返回搜索",
+      "matchedLabel": "为此地点匹配的信息",
+      "categories": {
+        "price": "当地物价",
+        "transit": "出行方式",
+        "etiquette": "礼仪",
+        "safety": "安全提示"
+      }
+    },
     "profile": {
       "title": "我的",
       "signin": "使用 Google 登录",
@@ -83,5 +93,24 @@
       }
     }
   },
-  "lang": { "label": "语言" }
+  "lang": { "label": "语言" },
+  "advisory": {
+    "price.water": { "title": "瓶装水", "body": "便利店 500ml 参考价. 自来水可饮用, 但本地人多数仍偏好瓶装水." },
+    "price.coffee": { "title": "咖啡馆美式", "body": "连锁咖啡馆普通美式的均价. 精品咖啡馆更贵一些." },
+    "price.meal": { "title": "一人一餐", "body": "旅游区外本地餐馆的人均餐费参考." },
+    "price.taxi_base": { "title": "出租车起步价", "body": "首尔日间起步价. 深夜约加收 20%." },
+    "price.subway_base": { "title": "地铁基础票价", "body": "使用 T-money 卡的单程价格. 现金支付约加 100 韩元." },
+    "transit.tmoney": { "title": "备一张 T-money 卡", "body": "便利店可买可充值的交通卡. 适用于全国地铁、公交与部分出租车." },
+    "transit.subway_seoul": { "title": "首尔地铁", "body": "1–9 号线及延伸线路. 多数车站有英文标识和免费 Wi-Fi." },
+    "transit.subway_busan": { "title": "釜山地铁", "body": "市中心共 4 条线路. T-money 卡同样可用." },
+    "transit.ktx": { "title": "KTX 高速列车", "body": "首尔到釜山约 2 小时 40 分钟. 可通过 Korail 应用或车站购票." },
+    "transit.taxi_app": { "title": "Kakao T 叫车", "body": "最常用的打车应用, 支持英文界面和刷卡支付." },
+    "etiquette.shoes_off": { "title": "室内请脱鞋", "body": "韩屋、寺庙与传统餐厅通常需脱鞋. 看到抬高的地板或鞋柜即是信号." },
+    "etiquette.bow": { "title": "轻微鞠躬", "body": "打招呼或致谢时轻点头更自然, 握手也可以." },
+    "etiquette.no_tipping": { "title": "无小费文化", "body": "服务费已包含. 留小费反而会让店员困惑." },
+    "etiquette.palace_respect": { "title": "宫殿参观礼仪", "body": "请沿指定路线, 禁止飞无人机, 殿内请保持安静." },
+    "safety.emergency": { "title": "紧急电话", "body": "112 报警, 119 消防与急救, 提供 24 小时英语支持." },
+    "safety.tap_water": { "title": "自来水可饮用", "body": "首尔自来水符合 WHO 标准, 但许多旅客仍偏好瓶装水." },
+    "safety.crowds": { "title": "注意人流密集", "body": "市场与商圈周末非常拥挤, 请将包包置于身前." }
+  }
 }

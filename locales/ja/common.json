@@ -68,6 +68,16 @@
         "body": "位置情報は端末内でのみ使用され, サーバーには保存されません。ログイン時もメールと表示名以外の情報は収集しません。"
       }
     },
+    "place": {
+      "back": "検索に戻る",
+      "matchedLabel": "この場所向けの情報",
+      "categories": {
+        "price": "現地の物価",
+        "transit": "行き方",
+        "etiquette": "マナー",
+        "safety": "安全のヒント"
+      }
+    },
     "profile": {
       "title": "マイ",
       "signin": "Googleでログイン",
@@ -83,5 +93,24 @@
       }
     }
   },
-  "lang": { "label": "言語" }
+  "lang": { "label": "言語" },
+  "advisory": {
+    "price.water": { "title": "ミネラルウォーター", "body": "コンビニの500ml基準。水道水も飲めますが地元の人もボトルを好みます。" },
+    "price.coffee": { "title": "カフェのコーヒー", "body": "チェーン店のアメリカーノ平均価格。スペシャルティは高めです。" },
+    "price.meal": { "title": "1人分の食事", "body": "観光地以外の地元食堂の1人平均です。" },
+    "price.taxi_base": { "title": "タクシー初乗り", "body": "ソウル昼間の初乗り料金。深夜は約20%の割増です。" },
+    "price.subway_base": { "title": "地下鉄初乗り", "body": "T-moneyカード1回の料金。現金の場合は約100ウォン追加。" },
+    "transit.tmoney": { "title": "T-moneyカードを用意", "body": "コンビニで購入・チャージ可能な交通カード。全国の地下鉄・バス・一部タクシーで使えます。" },
+    "transit.subway_seoul": { "title": "ソウルメトロ", "body": "1〜9号線と延伸路線。大半の駅に英語表示と無料Wi-Fiがあります。" },
+    "transit.subway_busan": { "title": "釜山メトロ", "body": "市内4路線。T-moneyカードもそのまま使えます。" },
+    "transit.ktx": { "title": "KTX高速鉄道", "body": "ソウル〜釜山は約2時間40分。Korailアプリか駅で予約できます。" },
+    "transit.taxi_app": { "title": "Kakao Tでタクシー", "body": "最も使われている配車アプリ。英語UIとカード決済に対応しています。" },
+    "etiquette.shoes_off": { "title": "屋内で靴を脱ぐ", "body": "韓屋・寺院・伝統飲食店では靴を脱ぎます。段差や下駄箱が目印です。" },
+    "etiquette.bow": { "title": "軽い会釈を", "body": "挨拶や感謝の際に軽く頭を下げると自然です。握手でも問題ありません。" },
+    "etiquette.no_tipping": { "title": "チップ文化なし", "body": "サービス料は含まれています。チップを置くとスタッフが戸惑うことがあります。" },
+    "etiquette.palace_respect": { "title": "宮殿での作法", "body": "指定された通路を歩き、ドローンは禁止。建物内は静かに。" },
+    "safety.emergency": { "title": "緊急連絡先", "body": "112は警察、119は消防・救急。24時間英語対応です。" },
+    "safety.tap_water": { "title": "水道水は安全", "body": "ソウルの水道水はWHO基準を満たしますが、旅行者はボトル水を選ぶことが多いです。" },
+    "safety.crowds": { "title": "混雑にご注意", "body": "市場や繁華街は週末に非常に混みます。バッグは前で持ちましょう。" }
+  }
 }

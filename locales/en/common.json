@@ -68,6 +68,16 @@
         "body": "Your location stays on your device and is never sent to our servers. Sign-in collects only your email and display name."
       }
     },
+    "place": {
+      "back": "Back to search",
+      "matchedLabel": "Matched for this place",
+      "categories": {
+        "price": "Local prices",
+        "transit": "Getting there",
+        "etiquette": "Etiquette",
+        "safety": "Safety tips"
+      }
+    },
     "profile": {
       "title": "Me",
       "signin": "Continue with Google",
@@ -83,5 +93,24 @@
       }
     }
   },
-  "lang": { "label": "Language" }
+  "lang": { "label": "Language" },
+  "advisory": {
+    "price.water": { "title": "Bottled water", "body": "500ml at a convenience store. Tap water is drinkable but many locals still prefer bottled." },
+    "price.coffee": { "title": "Cafe coffee", "body": "A regular Americano at a chain cafe. Specialty cafes run higher." },
+    "price.meal": { "title": "Casual meal", "body": "Average per-person meal at a local restaurant outside tourist zones." },
+    "price.taxi_base": { "title": "Taxi base fare", "body": "Daytime base fare in Seoul. Late-night rides add roughly 20%." },
+    "price.subway_base": { "title": "Subway base fare", "body": "One ride with a T-money card. Cash adds about 100 KRW." },
+    "transit.tmoney": { "title": "Get a T-money card", "body": "Rechargeable transit card sold at any convenience store. Works on subway, bus, and some taxis nationwide." },
+    "transit.subway_seoul": { "title": "Seoul Metro", "body": "Nine numbered lines plus extensions. Most stations have English signage and free Wi-Fi." },
+    "transit.subway_busan": { "title": "Busan Metro", "body": "Four lines covering central Busan. T-money works here too." },
+    "transit.ktx": { "title": "KTX high-speed rail", "body": "Seoul to Busan in about 2h 40m. Book via the Korail app or at the station." },
+    "transit.taxi_app": { "title": "Kakao T for taxis", "body": "The most common taxi-hailing app. English interface and card payment supported." },
+    "etiquette.shoes_off": { "title": "Remove shoes indoors", "body": "Expected in hanok stays, temples, and many traditional restaurants. Look for a raised floor or shoe rack." },
+    "etiquette.bow": { "title": "A slight bow is polite", "body": "A small nod when greeting or thanking someone is standard. Handshakes are fine too." },
+    "etiquette.no_tipping": { "title": "No tipping culture", "body": "Service charge is included. Cash tips can confuse staff." },
+    "etiquette.palace_respect": { "title": "Palace grounds", "body": "Stay on marked paths, no drones, and keep voices low inside preserved halls." },
+    "safety.emergency": { "title": "Emergency numbers", "body": "112 police, 119 fire and ambulance. English support is available 24/7." },
+    "safety.tap_water": { "title": "Tap water is safe", "body": "Seoul tap water meets WHO standards, though many travelers still prefer bottled." },
+    "safety.crowds": { "title": "Watch for crowds", "body": "Markets and shopping streets get dense on weekends. Keep bags in front of you." }
+  }
 }

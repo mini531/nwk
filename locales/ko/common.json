@@ -68,6 +68,16 @@
         "body": "위치 정보는 기기 내에서만 사용되며 서버에 저장되지 않습니다. 로그인 시에도 이메일·이름 외 민감 정보는 수집하지 않습니다."
       }
     },
+    "place": {
+      "back": "검색으로 돌아가기",
+      "matchedLabel": "이 장소에 맞춘 정보",
+      "categories": {
+        "price": "현지 물가",
+        "transit": "교통 안내",
+        "etiquette": "에티켓",
+        "safety": "안전 수칙"
+      }
+    },
     "profile": {
       "title": "내정보",
       "signin": "Google로 로그인",
@@ -83,5 +93,24 @@
       }
     }
   },
-  "lang": { "label": "언어" }
+  "lang": { "label": "언어" },
+  "advisory": {
+    "price.water": { "title": "생수 한 병", "body": "편의점 500ml 기준. 수돗물도 마실 수 있지만 현지인도 대부분 생수를 선호해요." },
+    "price.coffee": { "title": "카페 아메리카노", "body": "체인 카페의 일반 아메리카노 평균가. 스페셜티 카페는 더 비싸요." },
+    "price.meal": { "title": "1인 식사", "body": "관광지 외 지역 식당의 1인 평균 식사 가격이에요." },
+    "price.taxi_base": { "title": "택시 기본요금", "body": "서울 기준 주간 기본요금. 심야에는 약 20% 할증이 붙어요." },
+    "price.subway_base": { "title": "지하철 기본요금", "body": "티머니 카드 1회 요금. 현금 결제 시 약 100원 추가돼요." },
+    "transit.tmoney": { "title": "티머니 카드 준비", "body": "편의점에서 구매·충전 가능한 교통카드. 전국 지하철·버스·일부 택시에서 사용해요." },
+    "transit.subway_seoul": { "title": "서울 지하철", "body": "1~9호선과 연장 노선. 대부분 역에 영어 안내와 무료 와이파이가 있어요." },
+    "transit.subway_busan": { "title": "부산 지하철", "body": "시내 4개 노선. 티머니 카드도 그대로 사용할 수 있어요." },
+    "transit.ktx": { "title": "KTX 고속열차", "body": "서울-부산 약 2시간 40분. 코레일 앱이나 역에서 예매하세요." },
+    "transit.taxi_app": { "title": "카카오T 택시", "body": "가장 많이 쓰는 택시 호출 앱. 영어 지원과 카드 결제 가능해요." },
+    "etiquette.shoes_off": { "title": "실내에서 신발 벗기", "body": "한옥·사찰·전통 식당에서는 신발을 벗어요. 단차가 있거나 신발장이 있으면 신호예요." },
+    "etiquette.bow": { "title": "가벼운 목례", "body": "인사나 감사를 표할 때 살짝 고개를 숙이는 게 자연스러워요. 악수도 괜찮아요." },
+    "etiquette.no_tipping": { "title": "팁 문화 없음", "body": "봉사료가 포함돼 있어 팁을 남기면 오히려 직원이 당황할 수 있어요." },
+    "etiquette.palace_respect": { "title": "고궁 관람 매너", "body": "지정된 동선을 따르고, 드론 금지, 전각 내부에서는 조용히 해주세요." },
+    "safety.emergency": { "title": "긴급 번호", "body": "112 경찰, 119 소방·구급. 24시간 영어 지원이 돼요." },
+    "safety.tap_water": { "title": "수돗물 음용 가능", "body": "서울 수돗물은 WHO 기준을 충족해요. 여행자는 생수를 선호하는 경우가 많아요." },
+    "safety.crowds": { "title": "혼잡 구간 주의", "body": "시장과 번화가는 주말에 매우 붐벼요. 가방은 앞으로 메주세요." }
+  }
 }

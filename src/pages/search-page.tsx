@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { tourSearch, type TourSearchItem } from '../utils/api'
 import { ChevronRightIcon, PinIcon, SearchIcon } from '../components/icons'
+import { useAppStore } from '../stores/app-store'
 
 const MAX_LEN = 50
 const SAFE_RE = /[<>"'`;{}\\]/g
@@ -11,6 +13,8 @@ type Filter = (typeof filters)[number]
 
 export const SearchPage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
   const [q, setQ] = useState('')
   const [items, setItems] = useState<TourSearchItem[]>([])
   const [loading, setLoading] = useState(false)
@@ -113,6 +117,10 @@ export const SearchPage = () => {
           <li key={item.id}>
             <button
               type="button"
+              onClick={() => {
+                setSelectedPlace(item)
+                navigate('/place')
+              }}
               className="nwk-card group flex w-full items-center gap-4 p-4 text-left transition-transform active:scale-[0.99]"
             >
               <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">

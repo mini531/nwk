@@ -5,6 +5,7 @@ import { SearchPage } from './pages/search-page'
 import { MapPage } from './pages/map-page'
 import { ProfilePage } from './pages/profile-page'
 import { AboutPage } from './pages/about-page'
+import { PlacePage } from './pages/place-page'
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: 'map', Component: MapPage },
       { path: 'profile', Component: ProfilePage },
       { path: 'about', Component: AboutPage },
+      { path: 'place', Component: PlacePage },
     ],
   },
 ])

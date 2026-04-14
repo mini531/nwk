@@ -105,6 +105,12 @@ export const ArrowRightIcon = ({ size = 18, ...p }: IconProps) => (
   </svg>
 )
 
+export const ArrowLeftIcon = ({ size = 18, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <path d="M19 12H5M11 6l-6 6 6 6" />
+  </svg>
+)
+
 export const LogOutIcon = ({ size = 18, ...p }: IconProps) => (
   <svg {...base(size)} {...p} aria-hidden="true">
     <path d="M14 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4" />
