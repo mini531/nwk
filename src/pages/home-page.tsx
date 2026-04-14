@@ -183,64 +183,58 @@ export const HomePage = () => {
   const priceCards = useMemo(() => pickRotation(PRICE_POOL, 4), [])
 
   return (
-    <div className="pb-6 lg:grid lg:grid-cols-12 lg:gap-8">
-      <div className="space-y-6 lg:col-span-5 lg:space-y-6 xl:col-span-4">
+    <div className="pb-8 lg:grid lg:grid-cols-12 lg:gap-10">
+      <div className="space-y-8 lg:col-span-5 lg:space-y-10 xl:col-span-4">
         <section className="pt-1">
           <div className="mb-4 flex items-baseline justify-between">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-              {t('page.home.liveLabel')}
-            </p>
-            <p className="text-[10px] text-ink-3">{t('page.home.liveNote')}</p>
+            <p className="text-[12px] font-semibold text-ink-3">{t('page.home.liveLabel')}</p>
+            <p className="text-[12px] text-ink-3">{t('page.home.liveNote')}</p>
           </div>
           <LiveTicker />
         </section>
 
         <section>
           <div className="flex items-baseline justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
-              {t('page.home.rightNowLabel')}
-            </p>
-            <p className="flex items-center gap-1.5 text-[11px] tabular-nums text-ink-3">
+            <p className="text-[13px] font-semibold text-brand">{t('page.home.rightNowLabel')}</p>
+            <p className="flex items-center gap-1.5 text-[12px] tabular-nums text-ink-3">
               <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
               {kst} KST
             </p>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2">
             {priceCards.map((p) => (
-              <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
-                <div className="flex items-start justify-between gap-1">
-                  <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
+              <div key={p.id} className="nwk-card flex flex-col gap-1.5 px-5 py-5">
+                <div className="flex items-start justify-between gap-2">
+                  <p className="nwk-display text-[26px] tabular-nums text-ink">
                     {formatKrw(p.krw, i18n.language)}
                   </p>
                   {p.live && (
-                    <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+                    <span className="inline-flex shrink-0 items-center rounded-full bg-brand-soft px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand">
                       LIVE
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] font-medium tabular-nums text-ink-3">
+                <p className="text-[12px] font-medium tabular-nums text-ink-3">
                   ≈ {formatUsd(p.krw)}
                 </p>
-                <p className="mt-0.5 text-[12px] font-medium tracking-tight text-ink-2">
+                <p className="mt-1 text-[14px] font-medium tracking-tight text-ink-2">
                   {t(p.labelKey)}
                 </p>
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
+          <p className="mt-3 text-[12px] text-ink-3">{t('page.home.pricesFootnote')}</p>
 
           {CPI.latest && CPI.yoyPct !== null && (
-            <div className="mt-3 flex items-center justify-between rounded-xl border border-line bg-surface px-4 py-2.5">
+            <div className="mt-4 flex items-center justify-between rounded-2xl border border-line bg-surface px-5 py-4">
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
-                  {t('page.home.cpiLabel')}
-                </p>
-                <p className="mt-0.5 text-[11px] leading-snug text-ink-2">
+                <p className="text-[12px] font-semibold text-ink-3">{t('page.home.cpiLabel')}</p>
+                <p className="mt-0.5 text-[13px] leading-snug text-ink-2">
                   {CPI.latest.month.slice(0, 7)} · {t('page.home.cpiBody')}
                 </p>
               </div>
               <div
-                className={`ml-3 shrink-0 text-[15px] font-bold tabular-nums ${
+                className={`ml-3 shrink-0 text-[22px] font-bold tabular-nums ${
                   CPI.yoyPct >= 3 ? 'text-warn' : 'text-brand'
                 }`}
               >
@@ -264,12 +258,12 @@ export const HomePage = () => {
               ).map(({ k, v }) => (
                 <div
                   key={k}
-                  className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5"
+                  className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-2"
                 >
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                  <span className="text-[12px] font-semibold text-ink-3">
                     {t(`page.home.facts.${k}`)}
                   </span>
-                  <span className="text-[12px] font-semibold tabular-nums tracking-tight text-ink">
+                  <span className="text-[14px] font-semibold tabular-nums tracking-tight text-ink">
                     {v}
                   </span>
                 </div>
@@ -281,28 +275,24 @@ export const HomePage = () => {
         <section>
           <Link
             to="/kit"
-            className="flex items-center justify-between rounded-2xl border border-line bg-surface px-4 py-3.5 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="flex items-center justify-between rounded-2xl border border-line bg-surface px-5 py-4 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-                {t('page.home.kitLinkLabel')}
-              </p>
-              <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
+              <p className="text-[12px] font-semibold text-ink-3">{t('page.home.kitLinkLabel')}</p>
+              <p className="mt-0.5 truncate text-[16px] font-semibold tracking-tight text-ink">
                 {t('page.home.kitLinkTitle')}
               </p>
             </div>
-            <ArrowRightIcon size={16} className="shrink-0 text-ink-3" aria-hidden="true" />
+            <ArrowRightIcon size={18} className="shrink-0 text-ink-3" aria-hidden="true" />
           </Link>
         </section>
       </div>
 
-      <div className="mt-8 space-y-4 lg:col-span-7 lg:mt-0 xl:col-span-8">
-        <section className="space-y-3">
+      <div className="mt-10 space-y-6 lg:col-span-7 lg:mt-0 xl:col-span-8">
+        <section className="space-y-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-              {t('page.home.matchedLabel')}
-            </p>
-            <h2 className="mt-1 text-[16px] font-semibold tracking-tight text-ink">
+            <p className="text-[12px] font-semibold text-ink-3">{t('page.home.matchedLabel')}</p>
+            <h2 className="nwk-display mt-1 text-[22px] text-ink sm:text-[26px]">
               {t('page.home.matchedTitle')}
             </h2>
           </div>
@@ -319,7 +309,7 @@ export const HomePage = () => {
                     key={h.place.id}
                     type="button"
                     onClick={() => setActiveId(h.place.id)}
-                    className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight transition ${
+                    className={`shrink-0 rounded-full border px-5 py-2.5 text-[14px] font-medium tracking-tight transition ${
                       isActive
                         ? 'border-ink bg-ink text-white shadow-pop'
                         : 'border-line bg-surface text-ink-2 hover:border-line-strong'
@@ -336,35 +326,46 @@ export const HomePage = () => {
             <button
               type="button"
               onClick={openFull}
-              className="nwk-card group block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              className="nwk-card nwk-card-hover group block w-full overflow-hidden p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               {active.thumbnail && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas-2 sm:aspect-[21/10]">
                   <img
                     src={active.thumbnail}
                     alt=""
                     loading="lazy"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                  <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/75 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                    <span className="h-1 w-1 rounded-full bg-brand" />
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand" />
                     TourAPI
+                  </div>
+                  <div className="absolute inset-x-5 bottom-4 text-white">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
+                      {t(active.regionKey)}
+                    </p>
+                    <p className="nwk-display mt-0.5 text-[22px] leading-tight text-white">
+                      {hotspotName(active, i18n.language)}
+                    </p>
                   </div>
                 </div>
               )}
-              <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
+              <div className="flex items-start justify-between gap-3 px-6 pb-3 pt-5">
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
-                    {t(active.regionKey)}
-                  </p>
-                  <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink">
-                    {hotspotName(active, i18n.language)}
-                  </p>
-                  <p className="mt-0.5 truncate text-[11px] text-ink-3">
+                  {!active.thumbnail && (
+                    <>
+                      <p className="text-[12px] font-semibold text-ink-3">{t(active.regionKey)}</p>
+                      <p className="nwk-display mt-0.5 truncate text-[22px] text-ink">
+                        {hotspotName(active, i18n.language)}
+                      </p>
+                    </>
+                  )}
+                  <p className="mt-0.5 truncate text-[13px] text-ink-3">
                     {hotspotAddr(active, i18n.language)}
                   </p>
                 </div>
-                <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-brand">
+                <span className="mt-1 inline-flex items-center gap-1 text-[13px] font-semibold text-brand">
                   {t('page.home.openFull')}
                   <ArrowRightIcon size={14} />
                 </span>
@@ -374,17 +375,17 @@ export const HomePage = () => {
                 {featured.map((a) => {
                   const meta = CATEGORY_META[a.category]
                   return (
-                    <li key={a.id} className="flex items-start gap-3 px-5 py-3">
+                    <li key={a.id} className="flex items-start gap-3 px-6 py-4">
                       <span
-                        className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${meta.bg} ${meta.fg}`}
+                        className={`mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl ${meta.bg} ${meta.fg}`}
                       >
-                        <meta.Icon size={14} />
+                        <meta.Icon size={17} />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="text-[13px] font-semibold tracking-tight text-ink">
+                        <p className="text-[14px] font-semibold tracking-tight text-ink">
                           {t(`advisory.${a.id}.title`)}
                         </p>
-                        <p className="mt-0.5 line-clamp-2 text-[12px] leading-snug text-ink-3">
+                        <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-ink-3">
                           {t(`advisory.${a.id}.body`)}
                         </p>
                       </div>
@@ -399,28 +400,28 @@ export const HomePage = () => {
         <section>
           <Link
             to="/search"
-            className="group flex items-center justify-between rounded-2xl border-2 border-brand-soft bg-brand-soft/40 px-4 py-4 text-ink transition hover:bg-brand-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="group flex items-center justify-between rounded-2xl border-2 border-brand-soft bg-brand-soft/40 px-5 py-5 text-ink transition hover:bg-brand-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+              <p className="text-[12px] font-semibold text-brand">
                 {t('page.home.exploreMapLabel')}
               </p>
-              <p className="mt-0.5 truncate text-[14px] font-semibold tracking-tight text-ink">
+              <p className="mt-1 truncate text-[16px] font-semibold tracking-tight text-ink">
                 {t('page.home.exploreMapTitle')}
               </p>
             </div>
-            <span className="ml-3 flex shrink-0 items-center gap-1.5 text-[12px] font-semibold text-brand">
+            <span className="ml-3 flex shrink-0 items-center gap-2 rounded-full bg-brand px-4 py-2 text-[13px] font-semibold text-white transition group-hover:bg-brand/90">
               <SearchIcon size={14} aria-hidden="true" />
               <ArrowRightIcon size={14} aria-hidden="true" />
             </span>
           </Link>
         </section>
 
-        <section className="rounded-2xl border border-line bg-canvas-2 px-5 py-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-            {t('page.home.sourceLabel')}
+        <section className="rounded-2xl border border-line bg-canvas-2 px-5 py-5">
+          <p className="text-[12px] font-semibold text-ink-3">{t('page.home.sourceLabel')}</p>
+          <p className="mt-1.5 text-[13px] leading-relaxed text-ink-2">
+            {t('page.home.sourceBody')}
           </p>
-          <p className="mt-1.5 text-[12px] leading-snug text-ink-2">{t('page.home.sourceBody')}</p>
         </section>
       </div>
     </div>

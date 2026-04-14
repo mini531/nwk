@@ -57,14 +57,16 @@
     <link rel="alternate" hreflang="zh" href="https://nwk-app-ba6f8.web.app/" />
     <link rel="alternate" hreflang="x-default" href="https://nwk-app-ba6f8.web.app/" />
 
-    <!-- Early theme to avoid flash -->
+    <!-- Early theme to avoid flash — defaults to light. Dark only when
+         the user has explicitly chosen dark, or chose 'system' AND the OS
+         prefers dark. Anonymous visitors always start bright. -->
     <script>
       ;(function () {
         try {
           var stored = localStorage.getItem('nwk.theme')
           var dark =
             stored === 'dark' ||
-            (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
           if (dark) document.documentElement.classList.add('dark')
         } catch (e) {}
       })()

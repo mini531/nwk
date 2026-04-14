@@ -1,27 +1,30 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Surfaces */
-  --color-canvas: #faf8f3;
-  --color-canvas-2: #f3efe5;
-  --color-canvas-3: #ebe6d8;
+  /* Surfaces — brighter warm off-whites inspired by Airbnb / Lonely Planet
+     editorial palettes. The canvas is near-white so cards, thumbnails and
+     the map tiles sit cleanly on top without the 'dusty beige' feel. */
+  --color-canvas: #fbfaf7;
+  --color-canvas-2: #f1eee6;
+  --color-canvas-3: #e6e1d3;
   --color-surface: #ffffff;
   --color-line: #ece7db;
-  --color-line-strong: #d8d2c2;
+  --color-line-strong: #d0c9b7;
 
-  /* Ink */
-  --color-ink: #181715;
-  --color-ink-2: #5a564f;
-  --color-ink-3: #908a7e;
+  /* Ink — higher contrast at the top end so body text is readable
+     without squinting, plus a genuine secondary grade for captions. */
+  --color-ink: #121110;
+  --color-ink-2: #4b4740;
+  --color-ink-3: #8c867a;
 
-  /* Brand */
-  --color-brand: #0e4744;
-  --color-brand-soft: #d6e2e0;
-  --color-brand-ink: #062624;
+  /* Brand — a warmer deep teal that reads well against the warm canvas. */
+  --color-brand: #0a4a47;
+  --color-brand-soft: #d4e6e3;
+  --color-brand-ink: #04282672;
 
-  /* Accent (sparingly: CTAs, active states, alerts) */
-  --color-accent: #c4532a;
-  --color-accent-soft: #f4e2d8;
+  /* Accent — saturated burnt orange used sparingly on CTAs + favorites. */
+  --color-accent: #d35526;
+  --color-accent-soft: #f5e0d3;
 
   /* Status */
   --color-warn: #b8741b;
@@ -31,9 +34,9 @@
   --font-sans: 'Pretendard', 'Inter', system-ui, -apple-system, 'Noto Sans KR', sans-serif;
   --font-display: 'Pretendard', 'Inter', system-ui, sans-serif;
 
-  --radius-card: 1.25rem;
-  --shadow-card: 0 1px 0 rgb(24 23 21 / 0.04), 0 1px 3px rgb(24 23 21 / 0.04);
-  --shadow-pop: 0 2px 0 rgb(24 23 21 / 0.04), 0 6px 24px -8px rgb(24 23 21 / 0.18);
+  --radius-card: 1.5rem;
+  --shadow-card: 0 1px 0 rgb(18 17 16 / 0.04), 0 2px 8px -2px rgb(18 17 16 / 0.06);
+  --shadow-pop: 0 2px 0 rgb(18 17 16 / 0.04), 0 16px 40px -12px rgb(18 17 16 / 0.22);
 }
 
 @layer base {
@@ -89,9 +92,18 @@
     background-color: var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
     font-feature-settings: 'cv11', 'ss01', 'ss03';
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  h1 {
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    letter-spacing: -0.015em;
   }
 
   #root {
@@ -113,6 +125,30 @@
     border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .nwk-card-hover:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: var(--shadow-pop);
+    transform: translateY(-1px);
+  }
+
+  .nwk-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+
+  .nwk-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-3);
   }
 
   .nwk-divider {
