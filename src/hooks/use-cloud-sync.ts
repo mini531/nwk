@@ -2,7 +2,12 @@ import { useEffect, useRef } from 'react'
 import { useAuth } from './use-auth'
 import { useFavorites, type FavoritePlace } from './use-favorites'
 import { useRecentChecks, type RecentCheck } from './use-recent-checks'
-import { loadCloudProfile, saveCloudProfile, mergeById } from '../services/cloud-sync'
+import {
+  loadCloudProfile,
+  saveCloudProfile,
+  mergeById,
+  isCloudSyncDisabled,
+} from '../services/cloud-sync'
 
 // Mirrors the localStorage-backed favorites + recent checks to Firestore
 // whenever the user is signed in. On first sign-in, merges anything
@@ -89,6 +94,7 @@ export const useCloudSync = () => {
   // save after 1s of quiet.
   useEffect(() => {
     if (!uid) return
+    if (isCloudSyncDisabled()) return
     const timer = window.setTimeout(() => {
       saveCloudProfile(uid, { favorites, recent })
     }, 1000)

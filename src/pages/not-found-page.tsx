@@ -11,7 +11,7 @@ export const NotFoundPage = () => {
         <CompassIcon size={28} aria-hidden="true" />
       </div>
       <div className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-3">404</p>
+        <p className="text-[12px] font-semibold text-ink-3">404</p>
         <h1 className="text-[28px] font-semibold leading-tight tracking-tight text-ink">
           {t('page.notFound.title')}
         </h1>

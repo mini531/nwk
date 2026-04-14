@@ -220,9 +220,7 @@ export const SearchPage = () => {
       <header className="mb-5 max-w-3xl space-y-2">
         <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-            {t('page.search.eyebrow')}
-          </p>
+          <p className="text-[12px] font-semibold text-brand">{t('page.search.eyebrow')}</p>
         </div>
         <h1 className="text-[28px] font-semibold tracking-tight text-ink sm:text-[32px]">
           {t('page.search.title')}
@@ -292,7 +290,7 @@ export const SearchPage = () => {
             {t('page.search.nearbyClear')}
           </button>
         )}
-        <p className="ml-auto self-center text-[11px] text-ink-3">
+        <p className="ml-auto self-center text-[12px] text-ink-3">
           {filteredFeatures.length} / {POIS.featureCount} {t('page.search.poisLabel')}
         </p>
       </div>
@@ -316,7 +314,7 @@ export const SearchPage = () => {
             onBoundsChange={setBounds}
             fitToFeatures={mapFeatureSource !== 'static'}
           />
-          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
+          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/95 px-3 py-1 text-[12px] font-semibold text-ink-2 shadow-card backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
             VWorld · TourAPI
           </div>
@@ -348,13 +346,13 @@ export const SearchPage = () => {
                   </div>
                 )}
                 <div className="px-5 pb-4 pt-4">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+                  <p className="text-[12px] font-semibold text-brand">
                     {t(`page.search.poiFilters.${focusFeature.properties.typeTag}`)}
                   </p>
                   <p className="mt-1 text-[17px] font-semibold leading-tight tracking-tight text-ink">
                     {focusFeature.properties.title}
                   </p>
-                  <p className="mt-1 flex items-start gap-1 text-[12px] leading-snug text-ink-3">
+                  <p className="mt-1 flex items-start gap-1 text-[13px] leading-snug text-ink-3">
                     <PinIcon size={12} className="mt-[3px] shrink-0" aria-hidden="true" />
                     <span>{focusFeature.properties.addr}</span>
                   </p>
@@ -363,7 +361,7 @@ export const SearchPage = () => {
 
               {focusAdvisories.length > 0 && (
                 <section>
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+                  <p className="mb-2 text-[12px] font-semibold text-ink-3">
                     {t('page.search.matchedLabel')}
                   </p>
                   <ul className="space-y-2">
@@ -411,7 +409,7 @@ export const SearchPage = () => {
             </>
           ) : (
             <section>
-              <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              <p className="mb-2 flex items-center gap-2 text-[12px] font-semibold text-ink-3">
                 {keyword
                   ? t('page.search.liveResults', {
                       lang: i18n.language.toUpperCase(),
@@ -464,10 +462,10 @@ export const SearchPage = () => {
                           </div>
                         )}
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
+                          <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
                             {title}
                           </p>
-                          <p className="mt-0.5 truncate text-[11px] text-ink-3">{addr}</p>
+                          <p className="mt-0.5 truncate text-[12px] text-ink-3">{addr}</p>
                         </div>
                         <ChevronRightIcon
                           size={16}
@@ -479,12 +477,12 @@ export const SearchPage = () => {
                   )
                 })}
                 {!liveLoading && keyword && liveItems.length === 0 && keyword.length >= 2 && (
-                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[12px] text-ink-3">
                     {t('page.search.noResultsHint')}
                   </li>
                 )}
                 {!keyword && visibleFeatures.length === 0 && (
-                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[12px] text-ink-3">
                     {t('page.search.emptyViewport')}
                   </li>
                 )}

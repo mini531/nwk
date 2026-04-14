@@ -124,7 +124,7 @@ export const ProfilePage = () => {
       {favorites.length > 0 && (
         <section>
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            <p className="text-[12px] font-semibold text-ink-3">
               <HeartIcon size={12} className="mr-1 inline-block text-accent" />
               {t('page.profile.favorites.label')} · {favorites.length}
             </p>
@@ -158,10 +158,10 @@ export const ProfilePage = () => {
                       </div>
                     )}
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
+                      <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
                         {f.title}
                       </p>
-                      <p className="mt-0.5 truncate text-[11px] text-ink-3">{f.addr}</p>
+                      <p className="mt-0.5 truncate text-[12px] text-ink-3">{f.addr}</p>
                     </div>
                   </button>
                   <button
@@ -182,7 +182,7 @@ export const ProfilePage = () => {
       {recent.length > 0 && (
         <section>
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            <p className="text-[12px] font-semibold text-ink-3">
               <ScaleIcon size={12} className="mr-1 inline-block text-brand" />
               {t('page.profile.recent.label')} · {recent.length}
             </p>
@@ -207,10 +207,10 @@ export const ProfilePage = () => {
                   }`}
                 />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
+                  <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
                     {t(`catalog.${r.entryId}.name`)}
                   </p>
-                  <p className="mt-0.5 truncate text-[11px] text-ink-3">
+                  <p className="mt-0.5 truncate text-[12px] text-ink-3">
                     {formatKrw(r.paid, i18n.language)} · {t(`page.check.verdict.${r.verdict}`)}
                   </p>
                 </div>
@@ -225,9 +225,7 @@ export const ProfilePage = () => {
       )}
 
       <section>
-        <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-          {t('page.profile.themeLabel')}
-        </p>
+        <p className="mb-2 text-[12px] font-semibold text-ink-3">{t('page.profile.themeLabel')}</p>
         <div className="grid grid-cols-3 gap-2">
           {(['light', 'dark', 'system'] as Theme[]).map((t_) => (
             <button

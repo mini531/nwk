@@ -342,9 +342,7 @@ export const HomePage = () => {
                     TourAPI
                   </div>
                   <div className="absolute inset-x-5 bottom-4 text-white">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
-                      {t(active.regionKey)}
-                    </p>
+                    <p className="text-[12px] font-semibold text-white/80">{t(active.regionKey)}</p>
                     <p className="nwk-display mt-0.5 text-[22px] leading-tight text-white">
                       {hotspotName(active, i18n.language)}
                     </p>
@@ -419,7 +417,7 @@ export const HomePage = () => {
 
         <section className="rounded-2xl border border-line bg-canvas-2 px-5 py-5">
           <p className="text-[12px] font-semibold text-ink-3">{t('page.home.sourceLabel')}</p>
-          <p className="mt-1.5 text-[13px] leading-relaxed text-ink-2">
+          <p className="mt-1.5 text-[14px] leading-relaxed text-ink-2">
             {t('page.home.sourceBody')}
           </p>
         </section>

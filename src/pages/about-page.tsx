@@ -21,7 +21,7 @@ export const AboutPage = () => {
           <NwkLogo size={22} />
         </div>
         <h1 className="text-lg font-semibold tracking-tight text-ink">{t('page.about.title')}</h1>
-        <p className="mt-1 text-[13px] leading-relaxed text-ink-2">{t('page.about.tagline')}</p>
+        <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{t('page.about.tagline')}</p>
         <p className="mt-4 text-[11px] uppercase tracking-[0.14em] text-ink-3">
           {t('page.about.version')} 0.1.0
         </p>
@@ -59,7 +59,7 @@ export const AboutPage = () => {
             <p className="text-[15px] font-semibold tracking-tight text-ink">
               {t('page.about.privacy.title')}
             </p>
-            <p className="mt-1 text-[13px] leading-relaxed text-ink-2">
+            <p className="mt-1 text-[14px] leading-relaxed text-ink-2">
               {t('page.about.privacy.body')}
             </p>
           </div>

@@ -49,8 +49,8 @@ const Row = ({ left, title, body }: { left: string; title: string; body: string 
       {left}
     </p>
     <div className="min-w-0 flex-1">
-      <p className="text-[13px] font-semibold tracking-tight text-ink">{title}</p>
-      <p className="mt-0.5 text-[12px] leading-snug text-ink-3">{body}</p>
+      <p className="text-[15px] font-semibold tracking-tight text-ink">{title}</p>
+      <p className="mt-0.5 text-[13px] leading-snug text-ink-3">{body}</p>
     </div>
   </li>
 )
@@ -63,9 +63,7 @@ const Block = <T extends readonly { id: string; value: string }[]>({
   const { t } = useTranslation()
   return (
     <section>
-      <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
-        {section.label}
-      </p>
+      <p className="mb-2 px-1 text-[12px] font-semibold text-ink-3">{section.label}</p>
       <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
         {section.items.map((item) => (
           <Row
@@ -88,9 +86,7 @@ export const KitPage = () => {
       <header className="mb-8 max-w-3xl space-y-2">
         <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
           <KitIcon size={13} className="text-brand" aria-hidden="true" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-            {t('page.kit.eyebrow')}
-          </p>
+          <p className="text-[12px] font-semibold text-brand">{t('page.kit.eyebrow')}</p>
         </div>
         <h1 className="text-[28px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[32px]">
           {t('page.kit.title')}
@@ -131,7 +127,7 @@ export const KitPage = () => {
 
       <div className="mt-6 lg:mt-8">
         <section>
-          <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
+          <p className="mb-2 px-1 text-[12px] font-semibold text-ink-3">
             {t('page.kit.sections.phrases')}
           </p>
           <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">

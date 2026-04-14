@@ -179,9 +179,7 @@ export const CheckPage = () => {
         <div className="flex items-center justify-between">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
             <ScaleIcon size={13} className="text-brand" />
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-              {t('page.check.eyebrow')}
-            </p>
+            <p className="text-[12px] font-semibold text-brand">{t('page.check.eyebrow')}</p>
           </div>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4].map((n) => (
@@ -211,7 +209,7 @@ export const CheckPage = () => {
           <h1 className="text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
             {t(questionKey)}
           </h1>
-          <p className="text-[13px] leading-relaxed text-ink-2">{t('page.check.subhead')}</p>
+          <p className="text-[14px] leading-relaxed text-ink-2">{t('page.check.subhead')}</p>
 
           <div className="rounded-2xl border border-brand-soft bg-brand-soft/30 p-4">
             <div className="flex items-start gap-3">
@@ -219,7 +217,7 @@ export const CheckPage = () => {
                 <TrainIcon size={15} />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[13px] font-semibold tracking-tight text-ink">
+                <p className="text-[15px] font-semibold tracking-tight text-ink">
                   {t('page.check.safeTransit.title')}
                 </p>
                 <p className="mt-1 text-[12px] leading-snug text-ink-2">
@@ -256,7 +254,7 @@ export const CheckPage = () => {
                     <p className="text-[15px] font-semibold tracking-tight text-ink">
                       {t(`page.check.categories.${c}`)}
                     </p>
-                    <p className="mt-0.5 text-[11px] text-ink-3">
+                    <p className="mt-0.5 text-[12px] text-ink-3">
                       {t(`page.check.categoryHints.${c}`)}
                     </p>
                   </div>
@@ -275,13 +273,13 @@ export const CheckPage = () => {
                 <CameraIcon size={18} />
               </span>
               <div>
-                <p className="text-[13px] font-semibold tracking-tight text-ink">
+                <p className="text-[15px] font-semibold tracking-tight text-ink">
                   {t('page.check.photo.title')}
                 </p>
-                <p className="text-[11px] text-ink-3">{t('page.check.photo.comingSoon')}</p>
+                <p className="text-[12px] text-ink-3">{t('page.check.photo.comingSoon')}</p>
               </div>
             </div>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+            <span className="text-[12px] font-semibold text-ink-3">
               {t('page.check.photo.soonBadge')}
             </span>
           </button>
@@ -296,9 +294,7 @@ export const CheckPage = () => {
 
           {popularItems.length > 0 && !query && !showAll && (
             <div>
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-                {t('page.check.popular')}
-              </p>
+              <p className="mb-2 text-[12px] font-semibold text-ink-3">{t('page.check.popular')}</p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {popularItems.map((e) => (
                   <ItemCard
@@ -333,7 +329,7 @@ export const CheckPage = () => {
 
           {(query || showAll) && (
             <div>
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              <p className="mb-2 text-[12px] font-semibold text-ink-3">
                 {query ? t('page.check.searchResult') : t('page.check.allItems')}
               </p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -369,7 +365,7 @@ export const CheckPage = () => {
       {step === 3 && entry && (
         <form onSubmit={onSubmitPrice} className="mx-auto max-w-xl space-y-5">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            <p className="text-[12px] font-semibold text-ink-3">
               {t(`page.check.categories.${entry.category}`)} · {t('page.check.steps.q3')}
             </p>
             <h1 className="mt-1 text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
@@ -380,7 +376,7 @@ export const CheckPage = () => {
 
           {isTaxi && (
             <div className="space-y-3 rounded-2xl border border-line bg-canvas-2 px-4 py-3.5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              <p className="text-[12px] font-semibold text-ink-3">
                 {t('page.check.form.taxiContext')}
               </p>
               <div>
@@ -430,7 +426,7 @@ export const CheckPage = () => {
           )}
 
           <div>
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            <p className="mb-2 text-[12px] font-semibold text-ink-3">
               {t('page.check.form.price')}
             </p>
             <div className="relative">
@@ -450,7 +446,7 @@ export const CheckPage = () => {
               (() => {
                 const r = getDisplayRange(entry.id, entry.fairMin, entry.fairMax)
                 return (
-                  <p className="mt-2 text-[11px] text-ink-3">
+                  <p className="mt-2 text-[12px] text-ink-3">
                     {t('page.check.fairHint')}:{' '}
                     <span className="font-semibold tabular-nums text-ink-2">
                       {formatKrw(r.min, i18n.language)}–{formatKrw(r.max, i18n.language)}
@@ -494,7 +490,7 @@ export const CheckPage = () => {
 
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-surface/70 px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                <p className="text-[12px] font-semibold text-ink-3">
                   {t('page.check.labels.paid')}
                 </p>
                 <p className="mt-1 text-[18px] font-semibold tabular-nums text-ink">
@@ -502,7 +498,7 @@ export const CheckPage = () => {
                 </p>
               </div>
               <div className="rounded-xl bg-surface/70 px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                <p className="text-[12px] font-semibold text-ink-3">
                   {t('page.check.labels.fair')}
                 </p>
                 <p className="mt-1 text-[14px] font-semibold tabular-nums text-ink">
@@ -513,7 +509,7 @@ export const CheckPage = () => {
             </div>
 
             <div className="mt-4 flex items-center justify-between rounded-xl bg-surface/70 px-4 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-3">
+              <span className="text-[12px] font-semibold text-ink-3">
                 {t('page.check.labels.delta')}
               </span>
               <span
@@ -542,7 +538,7 @@ export const CheckPage = () => {
                 rel="noreferrer"
                 className="mt-4 block rounded-xl border border-line bg-surface/70 px-4 py-3"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-brand">
+                <p className="text-[12px] font-semibold text-brand">
                   {t('page.check.sourceBadge')}
                 </p>
                 <p className="mt-0.5 text-[11px] font-medium leading-snug text-ink-2">
@@ -582,10 +578,10 @@ export const CheckPage = () => {
               className="flex items-center justify-between rounded-2xl border border-danger/30 bg-danger/5 px-4 py-3 transition hover:bg-danger/10"
             >
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-danger">
+                <p className="text-[12px] font-semibold text-danger">
                   {t('page.check.reportLabel')}
                 </p>
-                <p className="mt-0.5 text-[13px] font-semibold tracking-tight text-ink">
+                <p className="mt-0.5 text-[15px] font-semibold tracking-tight text-ink">
                   {t('page.check.reportTitle')}
                 </p>
               </div>
