@@ -50,7 +50,8 @@
       "subhead": "在地图上发现周边与路线.",
       "loading": "地图功能即将上线",
       "placeholder": "开发中",
-      "searchHere": "搜索此区域"
+      "searchHere": "搜索此区域",
+      "clearSelection": "清除选择"
     },
     "about": {
       "title": "NWK — No Worries Korea",

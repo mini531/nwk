@@ -1,8 +1,48 @@
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PinIcon, SearchIcon } from '../components/icons'
+import { useNavigate } from 'react-router-dom'
+import { MapView, type MapMarker } from '../components/map-view'
+import { useAppStore } from '../stores/app-store'
+import { PinIcon } from '../components/icons'
+
+const SEOUL: [number, number] = [126.9779, 37.5663]
 
 export const MapPage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const selectedPlace = useAppStore((s) => s.selectedPlace)
+  const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
+  const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
+
+  useEffect(() => {
+    if (!navigator.geolocation) return
+    navigator.geolocation.getCurrentPosition(
+      (pos) => setUserLoc([pos.coords.longitude, pos.coords.latitude]),
+      () => {},
+      { enableHighAccuracy: false, timeout: 5000, maximumAge: 300000 },
+    )
+  }, [])
+
+  const center: [number, number] = useMemo(() => {
+    if (selectedPlace?.lng && selectedPlace?.lat) return [selectedPlace.lng, selectedPlace.lat]
+    if (userLoc) return userLoc
+    return SEOUL
+  }, [selectedPlace, userLoc])
+
+  const markers: MapMarker[] = useMemo(() => {
+    const list: MapMarker[] = []
+    if (selectedPlace) {
+      list.push({
+        id: selectedPlace.id,
+        lng: selectedPlace.lng,
+        lat: selectedPlace.lat,
+        title: selectedPlace.title,
+        active: true,
+      })
+    }
+    return list
+  }, [selectedPlace])
+
   return (
     <div className="space-y-5 pb-4">
       <header className="space-y-1">
@@ -10,50 +50,40 @@ export const MapPage = () => {
         <p className="text-sm text-ink-2">{t('page.map.subhead')}</p>
       </header>
 
-      <div className="relative h-[460px] overflow-hidden rounded-3xl border border-line bg-white shadow-card">
-        <div
-          className="absolute inset-0 opacity-70"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 30% 20%, var(--color-brand-soft), transparent 45%), radial-gradient(circle at 70% 70%, var(--color-accent-soft), transparent 50%), linear-gradient(180deg, var(--color-canvas-2) 0%, var(--color-canvas-3) 100%)',
-          }}
-        />
-        <svg
-          className="absolute inset-0 h-full w-full text-ink/8"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
+      <MapView
+        center={center}
+        zoom={selectedPlace ? 15 : 11}
+        markers={markers}
+        className="h-[460px] w-full overflow-hidden rounded-3xl border border-line shadow-card"
+      />
+
+      {selectedPlace && (
+        <button
+          type="button"
+          onClick={() => navigate('/place')}
+          className="nwk-card flex w-full items-center gap-4 p-4 text-left transition-transform active:scale-[0.99]"
         >
-          <defs>
-            <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-              <path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-
-        <div className="absolute inset-x-4 top-4">
-          <div className="flex items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2.5 shadow-card backdrop-blur">
-            <SearchIcon size={16} className="text-ink-3" />
-            <span className="text-sm text-ink-3">{t('page.map.searchHere')}</span>
+          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
+            <PinIcon size={20} />
           </div>
-        </div>
-
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="relative">
-            <span className="absolute -inset-6 animate-ping rounded-full bg-brand/20" />
-            <span className="relative grid h-12 w-12 place-items-center rounded-full bg-brand text-white shadow-pop">
-              <PinIcon size={20} />
-            </span>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
+              {selectedPlace.title}
+            </p>
+            <p className="mt-0.5 truncate text-[12px] text-ink-3">{selectedPlace.addr}</p>
           </div>
-        </div>
+        </button>
+      )}
 
-        <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-line bg-white/95 px-4 py-3 shadow-card backdrop-blur">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-ink-3">
-            {t('page.map.placeholder')}
-          </p>
-          <p className="mt-1 text-sm text-ink-2">{t('page.map.loading')}</p>
-        </div>
-      </div>
+      {selectedPlace && (
+        <button
+          type="button"
+          onClick={() => setSelectedPlace(null)}
+          className="text-[12px] font-medium text-ink-3 hover:text-ink-2"
+        >
+          {t('page.map.clearSelection')}
+        </button>
+      )}
     </div>
   )
 }

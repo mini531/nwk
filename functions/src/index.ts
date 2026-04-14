@@ -33,3 +33,4 @@ export const api = onRequest((req, res) => {
 })
 
 export { tourSearch } from './tour-api'
+export { mapTile } from './map-tile'

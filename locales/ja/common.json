@@ -50,7 +50,8 @@
       "subhead": "周辺のスポットとルートを地図で。",
       "loading": "地図機能は準備中",
       "placeholder": "開発中",
-      "searchHere": "このエリアで検索"
+      "searchHere": "このエリアで検索",
+      "clearSelection": "選択を解除"
     },
     "about": {
       "title": "NWK — No Worries Korea",

@@ -50,7 +50,8 @@
       "subhead": "주변 관광지와 추천 동선을 지도에서.",
       "loading": "지도 준비 중",
       "placeholder": "준비 중인 기능",
-      "searchHere": "이 지역에서 검색"
+      "searchHere": "이 지역에서 검색",
+      "clearSelection": "선택 해제"
     },
     "about": {
       "title": "NWK - No Worries Korea",
