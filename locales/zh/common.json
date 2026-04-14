@@ -1,6 +1,25 @@
 {
   "app": {
     "name": "NWK",
-    "tagline": "No Worries Korea"
-  }
+    "tagline": "韩国旅行安全网"
+  },
+  "nav": {
+    "home": "首页",
+    "search": "搜索",
+    "map": "地图",
+    "profile": "我的"
+  },
+  "page": {
+    "home": {
+      "title": "No Worries Korea",
+      "nearby": "周边",
+      "prices": "物价",
+      "transit": "交通",
+      "tips": "注意事项"
+    },
+    "search": { "title": "搜索", "placeholder": "搜索景点" },
+    "map": { "title": "地图", "loading": "加载中..." },
+    "profile": { "title": "我的", "signin": "使用 Google 登录" }
+  },
+  "lang": { "label": "语言" }
 }

@@ -1,12 +1,15 @@
 import { create } from 'zustand'
-import type { SupportedLang } from '../i18n'
+import { changeLang, type SupportedLang } from '../i18n'
 
 interface AppState {
   lang: SupportedLang
-  setLang: (lang: SupportedLang) => void
+  setLang: (lang: SupportedLang) => Promise<void>
 }
 
 export const useAppStore = create<AppState>((set) => ({
   lang: 'ko',
-  setLang: (lang) => set({ lang }),
+  setLang: async (lang) => {
+    await changeLang(lang)
+    set({ lang })
+  },
 }))

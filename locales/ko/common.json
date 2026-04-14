@@ -1,6 +1,25 @@
 {
   "app": {
     "name": "NWK",
-    "tagline": "No Worries Korea"
-  }
+    "tagline": "외국인 관광객을 위한 한국 여행 안전망"
+  },
+  "nav": {
+    "home": "홈",
+    "search": "검색",
+    "map": "지도",
+    "profile": "내정보"
+  },
+  "page": {
+    "home": {
+      "title": "No Worries Korea",
+      "nearby": "주변 탐색",
+      "prices": "물가 정보",
+      "transit": "교통",
+      "tips": "주의사항"
+    },
+    "search": { "title": "검색", "placeholder": "관광지 검색" },
+    "map": { "title": "지도", "loading": "지도 로딩 중..." },
+    "profile": { "title": "내정보", "signin": "Google로 로그인" }
+  },
+  "lang": { "label": "언어" }
 }

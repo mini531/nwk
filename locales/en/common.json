@@ -1,6 +1,25 @@
 {
   "app": {
     "name": "NWK",
-    "tagline": "No Worries Korea"
-  }
+    "tagline": "A safety net for travelers in Korea"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "map": "Map",
+    "profile": "Me"
+  },
+  "page": {
+    "home": {
+      "title": "No Worries Korea",
+      "nearby": "Nearby",
+      "prices": "Prices",
+      "transit": "Transit",
+      "tips": "Tips"
+    },
+    "search": { "title": "Search", "placeholder": "Search attractions" },
+    "map": { "title": "Map", "loading": "Loading map..." },
+    "profile": { "title": "Me", "signin": "Sign in with Google" }
+  },
+  "lang": { "label": "Language" }
 }
