@@ -1,20 +1,20 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
-import { HomeIcon, MapIcon, NwkLogo, SearchIcon, UserIcon } from './icons'
+import { HomeIcon, KitIcon, NwkLogo, ScaleIcon, UserIcon } from './icons'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
   to: string
-  key: 'home' | 'search' | 'map' | 'profile'
+  key: 'home' | 'check' | 'kit' | 'profile'
   Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>
   end: boolean
 }
 
 const tabs: Tab[] = [
   { to: '/', key: 'home', Icon: HomeIcon, end: true },
-  { to: '/search', key: 'search', Icon: SearchIcon, end: false },
-  { to: '/map', key: 'map', Icon: MapIcon, end: false },
+  { to: '/check', key: 'check', Icon: ScaleIcon, end: false },
+  { to: '/kit', key: 'kit', Icon: KitIcon, end: false },
   { to: '/profile', key: 'profile', Icon: UserIcon, end: false },
 ]
 

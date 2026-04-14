@@ -111,6 +111,36 @@ export const ArrowLeftIcon = ({ size = 18, ...p }: IconProps) => (
   </svg>
 )
 
+export const ScaleIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <path d="M12 4v16M6 20h12" />
+    <path d="M5 8h14" />
+    <path d="M5 8 3 13a3 3 0 0 0 4 0L5 8ZM19 8l-2 5a3 3 0 0 0 4 0L19 8Z" />
+  </svg>
+)
+
+export const KitIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <rect x="3.5" y="7.5" width="17" height="12" rx="2.2" />
+    <path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5v2" />
+    <path d="M12 11v5M9.5 13.5h5" />
+  </svg>
+)
+
+export const CameraIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2h5.2L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z" />
+    <circle cx="12" cy="13" r="3.5" />
+  </svg>
+)
+
+export const AlertIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <path d="M12 4 2.5 20h19L12 4Z" />
+    <path d="M12 10v5M12 17.5v.3" />
+  </svg>
+)
+
 export const LogOutIcon = ({ size = 18, ...p }: IconProps) => (
   <svg {...base(size)} {...p} aria-hidden="true">
     <path d="M14 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4" />

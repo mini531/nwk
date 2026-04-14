@@ -7,7 +7,42 @@
     "home": "首页",
     "search": "搜索",
     "map": "地图",
+    "check": "价格核查",
+    "kit": "必备包",
     "profile": "我的"
+  },
+  "catalog": {
+    "gukbap": { "name": "汤饭" },
+    "bibimbap": { "name": "拌饭" },
+    "gimbap": { "name": "紫菜包饭" },
+    "jajangmyeon": { "name": "炸酱面" },
+    "samgyeopsal_200g": { "name": "烤五花肉 200g" },
+    "fried_chicken_whole": { "name": "炸鸡一只" },
+    "tteokbokki": { "name": "辣炒年糕" },
+    "naengmyeon": { "name": "冷面" },
+    "kalguksu": { "name": "刀削面" },
+    "americano": { "name": "美式咖啡" },
+    "cafe_latte": { "name": "拿铁" },
+    "water_500ml": { "name": "瓶装水 500ml" },
+    "soju_bottle": { "name": "烧酒一瓶" },
+    "beer_500ml": { "name": "扎啤 500ml" },
+    "convenience_beer": { "name": "便利店啤酒" },
+    "subway_base": { "name": "地铁单程" },
+    "taxi_base_day": { "name": "出租车起步(白天)" },
+    "taxi_base_night": { "name": "出租车起步(深夜)" },
+    "limousine_6001": { "name": "机场大巴 6001" },
+    "arex_express": { "name": "AREX 直达" },
+    "ktx_seoul_busan": { "name": "KTX 首尔→釜山" },
+    "hostel_dorm": { "name": "青旅床位" },
+    "hotel_3star": { "name": "三星酒店" },
+    "hanok_stay": { "name": "韩屋住宿" },
+    "palace_entry": { "name": "景福宫门票" },
+    "hanbok_rental_2h": { "name": "韩服租赁" },
+    "namsan_cable": { "name": "南山缆车" },
+    "jeju_ferry": { "name": "济州客轮" },
+    "atm_global": { "name": "Global ATM" },
+    "atm_airport": { "name": "机场 ATM" },
+    "exchange_spread": { "name": "换汇点差" }
   },
   "page": {
     "home": {
@@ -143,6 +178,103 @@
         "transit": "出行方式",
         "etiquette": "礼仪",
         "safety": "安全提示"
+      }
+    },
+    "check": {
+      "eyebrow": "价格核查",
+      "title": "这是不是坑?",
+      "subhead": "立即比较所收取的金额与当地公平价格区间.",
+      "photo": {
+        "title": "拍照核查",
+        "comingSoon": "拍下菜单或小票, 自动判定 — 即将推出",
+        "soonBadge": "SOON"
+      },
+      "form": {
+        "category": "类别",
+        "item": "项目",
+        "price": "被收金额 (韩元)",
+        "submit": "开始核查"
+      },
+      "categories": {
+        "food": "餐食",
+        "drink": "饮品",
+        "transit": "交通",
+        "lodging": "住宿",
+        "tourism": "观光",
+        "fee": "手续费"
+      },
+      "verdict": {
+        "fair": "价格合理",
+        "careful": "偏高",
+        "bagaji": "疑似宰客"
+      },
+      "advice": {
+        "careful": "高出均价 15~40%, 建议再比较一家.",
+        "bagaji": "超出均价 40% 以上. 可拨 1330 (24 小时多语种) 投诉."
+      },
+      "labels": {
+        "paid": "已付",
+        "fair": "合理区间",
+        "delta": "对比均价"
+      },
+      "sourceNote": "以 2025 年首尔·釜山均价为准 · 数据来自韩国消费者院与公共数据"
+    },
+    "kit": {
+      "eyebrow": "实用信息",
+      "title": "韩国必备包",
+      "subhead": "落地之后到日常生活, 外国人真正用得上的数字与电话.",
+      "sections": {
+        "arrival": "入境 30 分钟",
+        "money": "钱与 ATM",
+        "connect": "通信上网",
+        "emergency": "紧急电话",
+        "phrases": "基本韩语"
+      },
+      "money": {
+        "atmGlobal": {
+          "title": "CU/GS25 Global ATM",
+          "body": "便利店 24 小时运营. 海外卡取现手续费最低."
+        },
+        "atmAirport": {
+          "title": "机场与酒店 ATM",
+          "body": "方便但手续费 3~5 倍. 仅急用时使用."
+        },
+        "cardFirst": {
+          "title": "优先刷卡, 现金备用",
+          "body": "几乎所有店铺都支持刷卡. 现金主要用于传统市场."
+        },
+        "exchangeMyeongdong": {
+          "title": "明洞私营换汇点",
+          "body": "比银行每美元多换 10~20 韩元. 需出示护照."
+        }
+      },
+      "connect": {
+        "esimKt": {
+          "title": "KT 漫游 eSIM",
+          "body": "15GB / 30 天. 扫码后 10 分钟内激活."
+        },
+        "sim5day": {
+          "title": "5 天无限流量卡",
+          "body": "仁川机场 1 层 SKT/KT 柜台. 需护照登记."
+        },
+        "wifiPublic": {
+          "title": "公共 Wi-Fi",
+          "body": "地铁、公交、咖啡馆免费. 连接 Public WiFi Free."
+        }
+      },
+      "emergency": {
+        "police": { "title": "警察报警", "body": "112 · 24 小时英文支持" },
+        "fire": { "title": "消防急救", "body": "119 · 火灾与紧急医疗" },
+        "medical": { "title": "医疗咨询", "body": "1339 · 夜间与节假日医院指引" },
+        "tourist": { "title": "旅游投诉与翻译", "body": "1330 · 多语种 24 小时免费" }
+      },
+      "phrases": {
+        "hello": "Hello",
+        "thanks": "Thank you",
+        "howMuch": "How much is it?",
+        "tooExpensive": "That's too expensive",
+        "help": "Please help me",
+        "english": "Do you speak English?"
       }
     },
     "profile": {

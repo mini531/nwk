@@ -6,6 +6,8 @@ import { MapPage } from './pages/map-page'
 import { ProfilePage } from './pages/profile-page'
 import { AboutPage } from './pages/about-page'
 import { PlacePage } from './pages/place-page'
+import { CheckPage } from './pages/check-page'
+import { KitPage } from './pages/kit-page'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +17,8 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: 'search', Component: SearchPage },
       { path: 'map', Component: MapPage },
+      { path: 'check', Component: CheckPage },
+      { path: 'kit', Component: KitPage },
       { path: 'profile', Component: ProfilePage },
       { path: 'about', Component: AboutPage },
       { path: 'place', Component: PlacePage },

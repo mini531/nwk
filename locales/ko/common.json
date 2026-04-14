@@ -7,7 +7,42 @@
     "home": "홈",
     "search": "검색",
     "map": "지도",
+    "check": "가격체크",
+    "kit": "필수키트",
     "profile": "내정보"
+  },
+  "catalog": {
+    "gukbap": { "name": "국밥" },
+    "bibimbap": { "name": "비빔밥" },
+    "gimbap": { "name": "김밥" },
+    "jajangmyeon": { "name": "짜장면" },
+    "samgyeopsal_200g": { "name": "삼겹살 200g" },
+    "fried_chicken_whole": { "name": "치킨 한 마리" },
+    "tteokbokki": { "name": "떡볶이" },
+    "naengmyeon": { "name": "냉면" },
+    "kalguksu": { "name": "칼국수" },
+    "americano": { "name": "아메리카노" },
+    "cafe_latte": { "name": "카페 라떼" },
+    "water_500ml": { "name": "생수 500ml" },
+    "soju_bottle": { "name": "소주 1병" },
+    "beer_500ml": { "name": "맥주 500ml" },
+    "convenience_beer": { "name": "편의점 맥주" },
+    "subway_base": { "name": "지하철 1회" },
+    "taxi_base_day": { "name": "택시 기본 (주간)" },
+    "taxi_base_night": { "name": "택시 기본 (심야)" },
+    "limousine_6001": { "name": "리무진 6001" },
+    "arex_express": { "name": "AREX 직통" },
+    "ktx_seoul_busan": { "name": "KTX 서울→부산" },
+    "hostel_dorm": { "name": "호스텔 도미토리" },
+    "hotel_3star": { "name": "3성 호텔" },
+    "hanok_stay": { "name": "한옥 스테이" },
+    "palace_entry": { "name": "경복궁 입장료" },
+    "hanbok_rental_2h": { "name": "한복 대여" },
+    "namsan_cable": { "name": "남산 케이블카" },
+    "jeju_ferry": { "name": "제주 여객선" },
+    "atm_global": { "name": "글로벌 ATM" },
+    "atm_airport": { "name": "공항 ATM" },
+    "exchange_spread": { "name": "환전 스프레드" }
   },
   "page": {
     "home": {
@@ -143,6 +178,103 @@
         "transit": "교통 안내",
         "etiquette": "에티켓",
         "safety": "안전 수칙"
+      }
+    },
+    "check": {
+      "eyebrow": "가격 체크",
+      "title": "바가지 체크",
+      "subhead": "지불 요구 금액이 현지 평균가 대비 정당한지 즉시 확인합니다.",
+      "photo": {
+        "title": "사진으로 확인",
+        "comingSoon": "메뉴판·영수증 촬영으로 자동 판정 — 곧 공개",
+        "soonBadge": "SOON"
+      },
+      "form": {
+        "category": "카테고리",
+        "item": "항목",
+        "price": "지불한 금액 (원)",
+        "submit": "판정하기"
+      },
+      "categories": {
+        "food": "음식",
+        "drink": "음료·주류",
+        "transit": "교통",
+        "lodging": "숙박",
+        "tourism": "관광",
+        "fee": "수수료"
+      },
+      "verdict": {
+        "fair": "정상 가격",
+        "careful": "주의",
+        "bagaji": "바가지 가능성"
+      },
+      "advice": {
+        "careful": "평균보다 15~40% 높아요. 다른 가게와 비교해 보세요.",
+        "bagaji": "평균 대비 40% 이상 과다 청구입니다. 1330 관광안내(24시간 다국어)로 신고할 수 있어요."
+      },
+      "labels": {
+        "paid": "지불액",
+        "fair": "적정 구간",
+        "delta": "평균 대비"
+      },
+      "sourceNote": "2025년 서울·부산 평균가 기준 · 한국소비자원·공공데이터 출처"
+    },
+    "kit": {
+      "eyebrow": "실용 정보",
+      "title": "한국 필수키트",
+      "subhead": "입국 직후부터 현지 생활까지, 외국인에게 실제로 필요한 숫자와 번호.",
+      "sections": {
+        "arrival": "입국 30분",
+        "money": "돈·ATM",
+        "connect": "통신·인터넷",
+        "emergency": "긴급 연락처",
+        "phrases": "기본 한국어"
+      },
+      "money": {
+        "atmGlobal": {
+          "title": "CU/GS25 글로벌 ATM",
+          "body": "편의점 Global ATM. 해외카드 인출 수수료 가장 저렴. 24시간"
+        },
+        "atmAirport": {
+          "title": "공항·호텔 ATM",
+          "body": "편의 좋지만 수수료 3~5배. 급할 때만"
+        },
+        "cardFirst": {
+          "title": "카드 먼저, 현금은 백업",
+          "body": "거의 모든 가게 카드 결제 가능. 전통시장·노점만 현금 필요"
+        },
+        "exchangeMyeongdong": {
+          "title": "명동 사설 환전소",
+          "body": "은행 대비 USD당 10~20원 유리. 여권 지참 필수"
+        }
+      },
+      "connect": {
+        "esimKt": {
+          "title": "KT 로밍 eSIM",
+          "body": "15GB / 30일. QR 구매 후 10분 내 활성화"
+        },
+        "sim5day": {
+          "title": "5일 무제한 유심",
+          "body": "인천공항 1층 SKT/KT 카운터. 여권 등록"
+        },
+        "wifiPublic": {
+          "title": "공공 와이파이",
+          "body": "지하철·버스·카페 무료. Public WiFi Free SSID 접속"
+        }
+      },
+      "emergency": {
+        "police": { "title": "경찰 신고", "body": "112 · 24시간 영어 지원" },
+        "fire": { "title": "소방·구급", "body": "119 · 화재·응급의료" },
+        "medical": { "title": "의료 상담", "body": "1339 · 야간·휴일 병원 안내" },
+        "tourist": { "title": "관광 민원·통역", "body": "1330 · 다국어 24시간 무료" }
+      },
+      "phrases": {
+        "hello": "Hello",
+        "thanks": "Thank you",
+        "howMuch": "How much is it?",
+        "tooExpensive": "That's too expensive",
+        "help": "Please help me",
+        "english": "Do you speak English?"
       }
     },
     "profile": {

@@ -7,7 +7,42 @@
     "home": "Home",
     "search": "Search",
     "map": "Map",
+    "check": "Price Check",
+    "kit": "Kit",
     "profile": "Me"
+  },
+  "catalog": {
+    "gukbap": { "name": "Gukbap (rice soup)" },
+    "bibimbap": { "name": "Bibimbap" },
+    "gimbap": { "name": "Gimbap roll" },
+    "jajangmyeon": { "name": "Jajangmyeon" },
+    "samgyeopsal_200g": { "name": "Samgyeopsal 200g" },
+    "fried_chicken_whole": { "name": "Fried chicken (whole)" },
+    "tteokbokki": { "name": "Tteokbokki" },
+    "naengmyeon": { "name": "Naengmyeon" },
+    "kalguksu": { "name": "Kalguksu" },
+    "americano": { "name": "Americano" },
+    "cafe_latte": { "name": "Cafe latte" },
+    "water_500ml": { "name": "Bottled water 500ml" },
+    "soju_bottle": { "name": "Soju bottle" },
+    "beer_500ml": { "name": "Draft beer 500ml" },
+    "convenience_beer": { "name": "CVS beer can" },
+    "subway_base": { "name": "Subway ride" },
+    "taxi_base_day": { "name": "Taxi base (day)" },
+    "taxi_base_night": { "name": "Taxi base (late-night)" },
+    "limousine_6001": { "name": "Airport Limo 6001" },
+    "arex_express": { "name": "AREX Express" },
+    "ktx_seoul_busan": { "name": "KTX Seoul→Busan" },
+    "hostel_dorm": { "name": "Hostel dorm" },
+    "hotel_3star": { "name": "3-star hotel" },
+    "hanok_stay": { "name": "Hanok stay" },
+    "palace_entry": { "name": "Gyeongbokgung entry" },
+    "hanbok_rental_2h": { "name": "Hanbok rental" },
+    "namsan_cable": { "name": "Namsan cable car" },
+    "jeju_ferry": { "name": "Jeju ferry" },
+    "atm_global": { "name": "Global ATM" },
+    "atm_airport": { "name": "Airport ATM" },
+    "exchange_spread": { "name": "Exchange spread" }
   },
   "page": {
     "home": {
@@ -143,6 +178,109 @@
         "transit": "Getting there",
         "etiquette": "Etiquette",
         "safety": "Safety tips"
+      }
+    },
+    "check": {
+      "eyebrow": "Price check",
+      "title": "Is this a rip-off?",
+      "subhead": "Instantly compare what you're being charged against the local fair-price range.",
+      "photo": {
+        "title": "Snap a menu or receipt",
+        "comingSoon": "Auto-detect items and prices from a photo — coming soon",
+        "soonBadge": "SOON"
+      },
+      "form": {
+        "category": "Category",
+        "item": "Item",
+        "price": "Amount charged (KRW)",
+        "submit": "Check it"
+      },
+      "categories": {
+        "food": "Food",
+        "drink": "Drinks",
+        "transit": "Transit",
+        "lodging": "Lodging",
+        "tourism": "Tourism",
+        "fee": "Fees"
+      },
+      "verdict": {
+        "fair": "Fair price",
+        "careful": "A bit high",
+        "bagaji": "Likely rip-off"
+      },
+      "advice": {
+        "careful": "15–40% above average. Worth checking a second place.",
+        "bagaji": "More than 40% over the fair range. You can report it to 1330 (24/7 multilingual)."
+      },
+      "labels": {
+        "paid": "You paid",
+        "fair": "Fair range",
+        "delta": "vs. average"
+      },
+      "sourceNote": "Based on 2025 Seoul & Busan averages · Public data from Korea Consumer Agency"
+    },
+    "kit": {
+      "eyebrow": "Practical info",
+      "title": "Korea survival kit",
+      "subhead": "The numbers, hotlines and habits foreigners actually need from landing onward.",
+      "sections": {
+        "arrival": "First 30 minutes",
+        "money": "Money & ATM",
+        "connect": "Connectivity",
+        "emergency": "Emergency",
+        "phrases": "Key phrases"
+      },
+      "money": {
+        "atmGlobal": {
+          "title": "CU/GS25 Global ATM",
+          "body": "Cheapest foreign-card withdrawals. Open 24/7 at every convenience store."
+        },
+        "atmAirport": {
+          "title": "Airport & hotel ATMs",
+          "body": "Convenient but 3–5× the fee. Use only in a pinch."
+        },
+        "cardFirst": {
+          "title": "Card first, cash as backup",
+          "body": "Almost every shop takes cards. Cash only needed in traditional markets."
+        },
+        "exchangeMyeongdong": {
+          "title": "Myeongdong private booths",
+          "body": "10–20 KRW/USD better than banks. Bring your passport."
+        }
+      },
+      "connect": {
+        "esimKt": {
+          "title": "KT roaming eSIM",
+          "body": "15 GB / 30 days. QR activation in under 10 minutes."
+        },
+        "sim5day": {
+          "title": "5-day unlimited SIM",
+          "body": "ICN arrivals floor, SKT/KT counters. Passport required."
+        },
+        "wifiPublic": {
+          "title": "Public Wi-Fi",
+          "body": "Free on subway, buses and cafes. Look for 'Public WiFi Free' SSID."
+        }
+      },
+      "emergency": {
+        "police": { "title": "Police", "body": "112 · 24/7 English support" },
+        "fire": { "title": "Fire & ambulance", "body": "119 · Fire and emergency medical" },
+        "medical": {
+          "title": "Medical helpline",
+          "body": "1339 · Night & holiday hospital info"
+        },
+        "tourist": {
+          "title": "Tourist hotline & translation",
+          "body": "1330 · Multilingual, 24/7, free"
+        }
+      },
+      "phrases": {
+        "hello": "Hello",
+        "thanks": "Thank you",
+        "howMuch": "How much is it?",
+        "tooExpensive": "That's too expensive",
+        "help": "Please help me",
+        "english": "Do you speak English?"
       }
     },
     "profile": {
