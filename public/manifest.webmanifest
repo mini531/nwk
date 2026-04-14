@@ -1,18 +1,27 @@
 {
-  "name": "NWK - No Worries Korea",
+  "name": "NWK — No Worries Korea",
   "short_name": "NWK",
-  "description": "외국인 관광객을 위한 한국 여행 안전망",
+  "description": "A safety net for travelers in Korea: prices, transit, and tips at a glance.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#0066ff",
+  "background_color": "#faf8f3",
+  "theme_color": "#0e4744",
+  "lang": "ko",
+  "categories": ["travel", "navigation", "lifestyle"],
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
