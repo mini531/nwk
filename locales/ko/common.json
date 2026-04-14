@@ -147,6 +147,7 @@
       "openFull": "전체 보기",
       "hotspots": {
         "gyeongbokgung": { "name": "경복궁", "region": "서울 · 종로" },
+        "nseoultower": { "name": "남산서울타워", "region": "서울 · 용산" },
         "myeongdong": { "name": "명동", "region": "서울 · 중구" },
         "haeundae": { "name": "해운대", "region": "부산" },
         "seongsan": { "name": "성산일출봉", "region": "제주" },

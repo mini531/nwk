@@ -147,6 +147,7 @@
       "openFull": "查看全部",
       "hotspots": {
         "gyeongbokgung": { "name": "景福宫", "region": "首尔 · 钟路" },
+        "nseoultower": { "name": "南山首尔塔", "region": "首尔 · 龙山" },
         "myeongdong": { "name": "明洞", "region": "首尔 · 中区" },
         "haeundae": { "name": "海云台", "region": "釜山" },
         "seongsan": { "name": "城山日出峰", "region": "济州" },

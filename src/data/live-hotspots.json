@@ -1,0 +1,227 @@
+{
+  "source": "한국관광공사 TourAPI (KorService2 + EngService2)",
+  "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+  "fetchedAt": "2026-04-14T13:31:11.015Z",
+  "hotspots": [
+    {
+      "id": "gyeongbokgung",
+      "region": "seoul-jongno",
+      "ko": {
+        "contentId": "126508",
+        "title": "경복궁",
+        "addr": "서울특별시 종로구 사직로 161 (세종로)",
+        "lat": 37.5760836609,
+        "lng": 126.9767375783,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/98/3487598_image3_1.jpg",
+        "contentTypeId": "12"
+      },
+      "en": {
+        "contentId": "264337",
+        "title": "Gyeongbokgung Palace (경복궁)",
+        "addr": "161 Sajik-ro, Jongno-gu, Seoul",
+        "lat": 37.576030700049394,
+        "lng": 126.97672186606306,
+        "thumbnail": "https://tong.visitkorea.or.kr/cms/resource/94/3487594_image2_1.jpg",
+        "thumbnailSmall": "https://tong.visitkorea.or.kr/cms/resource/94/3487594_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "ja": {
+        "contentId": "281736",
+        "title": "景福宮（경복궁）",
+        "addr": "ソウル特別市チョンノ区サジクロ161",
+        "lat": 37.576030700049394,
+        "lng": 126.97672186606306,
+        "thumbnail": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
+        "thumbnailSmall": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "zh": {
+        "contentId": "331238",
+        "title": "景福宫(경복궁)",
+        "addr": "首尔特别市钟路区社稷路161",
+        "lat": 37.5787676269878,
+        "lng": 126.976976800907,
+        "thumbnail": "https://tong.visitkorea.or.kr/cms/resource/33/2678633_image2_1.jpg",
+        "thumbnailSmall": "https://tong.visitkorea.or.kr/cms/resource/33/2678633_image3_1.jpg",
+        "contentTypeId": "76"
+      }
+    },
+    {
+      "id": "nseoultower",
+      "region": "seoul-jung",
+      "ko": {
+        "contentId": "126535",
+        "title": "남산서울타워",
+        "addr": "서울특별시 용산구 남산공원길 105",
+        "lat": 37.5511089858,
+        "lng": 126.9878983791,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/70/3089670_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/70/3089670_image3_1.jpg",
+        "contentTypeId": "12"
+      },
+      "en": {
+        "contentId": "264550",
+        "title": "N Seoul Tower (남산서울타워)",
+        "addr": "105 Namsangongwon-gil, Yongsan-gu, Seoul",
+        "lat": 37.5511089858,
+        "lng": 126.9878983791,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/29/3089729_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/29/3089729_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "ja": {
+        "contentId": "282140",
+        "title": "南山ソウルタワー（남산서울타워）",
+        "addr": "ソウル特別市ヨンサン区ナムサンゴンウォンギル105",
+        "lat": 37.5511089858,
+        "lng": 126.9878983791,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/84/3413084_image2_1.png",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/84/3413084_image3_1.png",
+        "contentTypeId": "76"
+      },
+      "zh": {
+        "contentId": "331503",
+        "title": "南山首尔塔(남산서울타워)",
+        "addr": "首尔特别市龙山区南山公园街105",
+        "lat": 37.5511089858,
+        "lng": 126.9878983791,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/49/3089749_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/49/3089749_image3_1.jpg",
+        "contentTypeId": "76"
+      }
+    },
+    {
+      "id": "haeundae",
+      "region": "busan",
+      "ko": {
+        "contentId": "126081",
+        "title": "해운대해수욕장",
+        "addr": "부산광역시 해운대구 해운대해변로 264",
+        "lat": 35.1591243474,
+        "lng": 129.1603078991,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/34/3090534_image2_1.JPG",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/34/3090534_image3_1.JPG",
+        "contentTypeId": "12"
+      },
+      "en": {
+        "contentId": "264155",
+        "title": "Haeundae Beach (해운대해수욕장)",
+        "addr": "264 Haeundaehaebyeon-ro, Haeundae-gu, Busan",
+        "lat": 35.1591243474,
+        "lng": 129.1603078991,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/67/2612467_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/67/2612467_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "ja": {
+        "contentId": "281824",
+        "title": "海雲台海水浴場（해운대해수욕장）",
+        "addr": "プサン広域市ヘウンデ区ヘウンデヘビョンロ264",
+        "lat": 35.1591243474,
+        "lng": 129.1603078991,
+        "thumbnail": null,
+        "thumbnailSmall": null,
+        "contentTypeId": "76"
+      },
+      "zh": {
+        "contentId": "331260",
+        "title": "海云台海水浴场(해운대해수욕장)",
+        "addr": "釜山广域市海云台区海云台海边路264",
+        "lat": 35.1591243474,
+        "lng": 129.1603078991,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/67/2612467_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/67/2612467_image3_1.jpg",
+        "contentTypeId": "76"
+      }
+    },
+    {
+      "id": "seongsan",
+      "region": "jeju",
+      "ko": {
+        "contentId": "126435",
+        "title": "성산일출봉 [유네스코 세계자연유산]",
+        "addr": "제주특별자치도 서귀포시 성산읍 일출로 284-12",
+        "lat": 33.4581111174,
+        "lng": 126.9415156012,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/82/2944282_image2_1.bmp",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/82/2944282_image3_1.bmp",
+        "contentTypeId": "12"
+      },
+      "en": {
+        "contentId": "264207",
+        "title": "Seongsan Ilchulbong Tuff Cone [UNESCO World Heritage] (성산일출봉 [유네스코 세계문화유산])",
+        "addr": "284-12 Ilchul-ro, Seogwipo-si, Jeju-do",
+        "lat": 33.4580801942424,
+        "lng": 126.941500386507,
+        "thumbnail": null,
+        "thumbnailSmall": null,
+        "contentTypeId": "76"
+      },
+      "ja": {
+        "contentId": "229847",
+        "title": "城山日出峰［ユネスコ世界遺産（自然遺産）］（성산일출봉［유네스코 세계자연유산］）",
+        "addr": "チェジュ特別自治道ソグィポ市ソンサン邑イルチュルロ284-12",
+        "lat": 33.4580801942424,
+        "lng": 126.941500386507,
+        "thumbnail": null,
+        "thumbnailSmall": null,
+        "contentTypeId": "76"
+      },
+      "zh": {
+        "contentId": "331305",
+        "title": "城山日出峰[联合国教科文组织世界自然遗产]성산일출봉 [유네스코 세계자연유산]",
+        "addr": "济州特别自治道西归浦市城山邑日出路284-12",
+        "lat": 33.4580801942424,
+        "lng": 126.941500386507,
+        "thumbnail": null,
+        "thumbnailSmall": null,
+        "contentTypeId": "76"
+      }
+    },
+    {
+      "id": "bulguksa",
+      "region": "gyeongju",
+      "ko": {
+        "contentId": "126166",
+        "title": "경주 불국사 [유네스코 세계유산]",
+        "addr": "경상북도 경주시 불국로 385 (진현동)",
+        "lat": 35.7923023161251,
+        "lng": 129.331725391321,
+        "thumbnail": "https://tong.visitkorea.or.kr/cms/resource/70/3506170_image2_1.jpg",
+        "thumbnailSmall": "https://tong.visitkorea.or.kr/cms/resource/70/3506170_image3_1.jpg",
+        "contentTypeId": "12"
+      },
+      "en": {
+        "contentId": "264261",
+        "title": "Gyeongju Bulguksa Temple [UNESCO World Heritage] (경주 불국사 [유네스코 세계유산])",
+        "addr": "385 Bulguk-ro, Gyeongju-si, Gyeongsangbuk-do",
+        "lat": 35.7892734269,
+        "lng": 129.3318475148,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/03/2678603_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/03/2678603_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "ja": {
+        "contentId": "281510",
+        "title": "慶州仏国寺[ユネスコ世界遺産]（경주 불국사 [유네스코 세계유산]）",
+        "addr": "キョンサンブク道キョンジュ市プルグクロ385",
+        "lat": 35.7892734269,
+        "lng": 129.3318475148,
+        "thumbnail": "http://tong.visitkorea.or.kr/cms/resource/03/2678603_image2_1.jpg",
+        "thumbnailSmall": "http://tong.visitkorea.or.kr/cms/resource/03/2678603_image3_1.jpg",
+        "contentTypeId": "76"
+      },
+      "zh": {
+        "contentId": "331268",
+        "title": "庆州佛国寺[联合国教科文组织世界遗产]경주 불국사 [유네스코 세계유산])",
+        "addr": "庆尚北道庆州市佛国路385号",
+        "lat": 35.7892734269,
+        "lng": 129.3318475148,
+        "thumbnail": null,
+        "thumbnailSmall": null,
+        "contentTypeId": "76"
+      }
+    }
+  ]
+}

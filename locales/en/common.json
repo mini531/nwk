@@ -147,6 +147,7 @@
       "openFull": "Open full",
       "hotspots": {
         "gyeongbokgung": { "name": "Gyeongbokgung", "region": "Seoul · Jongno" },
+        "nseoultower": { "name": "N Seoul Tower", "region": "Seoul · Yongsan" },
         "myeongdong": { "name": "Myeongdong", "region": "Seoul · Jung-gu" },
         "haeundae": { "name": "Haeundae", "region": "Busan" },
         "seongsan": { "name": "Seongsan Ilchulbong", "region": "Jeju" },

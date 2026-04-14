@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { MapView, type MapMarker } from '../components/map-view'
 import { LiveTicker } from '../components/live-ticker'
-import { HOTSPOTS } from '../data/hotspots'
+import { HOTSPOTS, hotspotName, hotspotAddr } from '../data/hotspots'
 import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
 import { useAppStore } from '../stores/app-store'
 import { useKstClock } from '../hooks/use-kst-clock'
@@ -286,6 +286,9 @@ export const HomePage = () => {
           <div className="flex gap-2">
             {HOTSPOTS.map((h) => {
               const isActive = h.place.id === activeId
+              const shortName = hotspotName(h, i18n.language)
+                .split(/[[(（]/)[0]
+                .trim()
               return (
                 <button
                   key={h.place.id}
@@ -297,7 +300,7 @@ export const HomePage = () => {
                       : 'border-line bg-white text-ink-2 hover:border-line-strong'
                   }`}
                 >
-                  {t(h.nameKey)}
+                  {shortName}
                 </button>
               )
             })}
@@ -310,13 +313,30 @@ export const HomePage = () => {
             onClick={openFull}
             className="nwk-card group block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99]"
           >
+            {active.thumbnail && (
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2">
+                <img
+                  src={active.thumbnail}
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink/75 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                  <span className="h-1 w-1 rounded-full bg-brand" />
+                  TourAPI
+                </div>
+              </div>
+            )}
             <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
               <div className="min-w-0 flex-1">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
                   {t(active.regionKey)}
                 </p>
                 <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink">
-                  {t(active.nameKey)}
+                  {hotspotName(active, i18n.language)}
+                </p>
+                <p className="mt-0.5 truncate text-[11px] text-ink-3">
+                  {hotspotAddr(active, i18n.language)}
                 </p>
               </div>
               <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-brand">

@@ -147,6 +147,7 @@
       "openFull": "全部見る",
       "hotspots": {
         "gyeongbokgung": { "name": "景福宮", "region": "ソウル · 鍾路" },
+        "nseoultower": { "name": "南山ソウルタワー", "region": "ソウル · 龍山" },
         "myeongdong": { "name": "明洞", "region": "ソウル · 中区" },
         "haeundae": { "name": "海雲台", "region": "釜山" },
         "seongsan": { "name": "城山日出峰", "region": "済州" },
