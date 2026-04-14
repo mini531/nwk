@@ -24,8 +24,13 @@ export const AppLayout = () => {
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
       <header className="sticky top-0 z-20 border-b border-line/70 bg-canvas/85 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-md items-center justify-between px-5">
-          <NwkLogo size={22} className="text-ink" />
+        <div className="mx-auto flex h-14 max-w-md items-center justify-between gap-3 px-5">
+          <div className="flex min-w-0 items-center gap-2">
+            <NwkLogo size={22} className="text-ink" />
+            <span className="truncate text-[13px] font-semibold tracking-tight text-ink-2">
+              No Worries Korea
+            </span>
+          </div>
           <LangSwitcher />
         </div>
       </header>

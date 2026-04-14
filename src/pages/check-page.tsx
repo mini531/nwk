@@ -50,15 +50,29 @@ export const CheckPage = () => {
   const [category, setCategory] = useState<PriceCategory>('food')
   const [itemId, setItemId] = useState<string>('')
   const [priceInput, setPriceInput] = useState<string>('')
+  const [kmInput, setKmInput] = useState<string>('')
+  const [night, setNight] = useState<boolean>(false)
   const [result, setResult] = useState<CheckResult | null>(null)
 
   const items = useMemo(() => PRICE_CATALOG.filter((e) => e.category === category), [category])
+
+  const selectedEntry = useMemo(() => PRICE_CATALOG.find((e) => e.id === itemId) ?? null, [itemId])
+  const isTaxi = selectedEntry?.inputMode === 'taxi'
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const paid = Number(priceInput.replace(/[^0-9]/g, ''))
     if (!itemId || !Number.isFinite(paid) || paid <= 0) {
       setResult(null)
+      return
+    }
+    if (isTaxi) {
+      const km = Number(kmInput.replace(/[^0-9.]/g, ''))
+      if (!Number.isFinite(km) || km <= 0) {
+        setResult(null)
+        return
+      }
+      setResult(checkPrice(itemId, paid, { km, night }))
       return
     }
     setResult(checkPrice(itemId, paid))
@@ -154,6 +168,57 @@ export const CheckPage = () => {
             ))}
           </div>
         </div>
+
+        {isTaxi && (
+          <div className="space-y-3 rounded-2xl border border-line bg-canvas-2 px-4 py-3.5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              {t('page.check.form.taxiContext')}
+            </p>
+            <div>
+              <p className="mb-1 text-[11px] font-medium text-ink-3">
+                {t('page.check.form.distance')}
+              </p>
+              <div className="relative">
+                <input
+                  inputMode="decimal"
+                  value={kmInput}
+                  onChange={(e) => setKmInput(e.target.value.replace(/[^0-9.]/g, '').slice(0, 6))}
+                  placeholder="0.0"
+                  className="w-full rounded-xl border border-line bg-white py-2.5 pl-3 pr-12 text-[16px] font-semibold tabular-nums text-ink outline-none focus:border-brand"
+                />
+                <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[13px] font-medium text-ink-3">
+                  km
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="mb-1 text-[11px] font-medium text-ink-3">
+                {t('page.check.form.timeOfDay')}
+              </p>
+              <div className="flex gap-2">
+                {(
+                  [
+                    { v: false, key: 'day' },
+                    { v: true, key: 'night' },
+                  ] as const
+                ).map(({ v, key }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setNight(v)}
+                    className={`flex-1 rounded-xl border px-3 py-2 text-[13px] font-medium tracking-tight transition ${
+                      night === v
+                        ? 'border-ink bg-ink text-white'
+                        : 'border-line bg-white text-ink-2'
+                    }`}
+                  >
+                    {t(`page.check.form.${key}`)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div>
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">

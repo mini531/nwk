@@ -1,11 +1,14 @@
 export type PriceCategory = 'food' | 'drink' | 'transit' | 'lodging' | 'tourism' | 'fee'
 
+export type InputMode = 'flat' | 'taxi'
+
 export interface PriceEntry {
   id: string
   category: PriceCategory
   fairMin: number
   fairMax: number
   unit?: string
+  inputMode?: InputMode
 }
 
 export const PRICE_CATALOG: PriceEntry[] = [
@@ -21,33 +24,64 @@ export const PRICE_CATALOG: PriceEntry[] = [
 
   { id: 'americano', category: 'drink', fairMin: 3500, fairMax: 5500 },
   { id: 'cafe_latte', category: 'drink', fairMin: 4500, fairMax: 6500 },
-  { id: 'water_500ml', category: 'drink', fairMin: 1000, fairMax: 2000 },
+  { id: 'water_500ml', category: 'drink', fairMin: 1000, fairMax: 2000, unit: '관광지·노점' },
   { id: 'soju_bottle', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '식당' },
-  { id: 'beer_500ml', category: 'drink', fairMin: 5000, fairMax: 7000, unit: '식당' },
-  { id: 'convenience_beer', category: 'drink', fairMin: 2500, fairMax: 3500, unit: '편의점' },
+  { id: 'beer_500ml', category: 'drink', fairMin: 5000, fairMax: 7000, unit: '식당 생맥주' },
 
-  { id: 'subway_base', category: 'transit', fairMin: 1400, fairMax: 1550 },
-  { id: 'taxi_base_day', category: 'transit', fairMin: 4800, fairMax: 4800 },
-  { id: 'taxi_base_night', category: 'transit', fairMin: 5760, fairMax: 5760 },
-  { id: 'limousine_6001', category: 'transit', fairMin: 17000, fairMax: 17000, unit: '인천→명동' },
-  { id: 'arex_express', category: 'transit', fairMin: 11000, fairMax: 11000, unit: '인천→서울역' },
-  { id: 'ktx_seoul_busan', category: 'transit', fairMin: 53800, fairMax: 59800, unit: '일반실' },
+  { id: 'taxi_seoul', category: 'transit', fairMin: 0, fairMax: 0, inputMode: 'taxi' },
+  {
+    id: 'airport_private_taxi',
+    category: 'transit',
+    fairMin: 60000,
+    fairMax: 90000,
+    unit: '인천→서울 콜',
+  },
 
   { id: 'hostel_dorm', category: 'lodging', fairMin: 18000, fairMax: 32000, unit: '1박' },
   { id: 'hotel_3star', category: 'lodging', fairMin: 80000, fairMax: 130000, unit: '1박' },
   { id: 'hanok_stay', category: 'lodging', fairMin: 90000, fairMax: 180000, unit: '1박' },
 
-  { id: 'palace_entry', category: 'tourism', fairMin: 3000, fairMax: 3000, unit: '경복궁 성인' },
   { id: 'hanbok_rental_2h', category: 'tourism', fairMin: 12000, fairMax: 20000, unit: '2시간' },
-  { id: 'namsan_cable', category: 'tourism', fairMin: 14000, fairMax: 14000, unit: '왕복' },
-  { id: 'jeju_ferry', category: 'tourism', fairMin: 20000, fairMax: 40000, unit: '여객' },
+  { id: 'jjimjilbang_entry', category: 'tourism', fairMin: 8000, fairMax: 16000, unit: '1회 입장' },
+  { id: 'tourist_massage_1h', category: 'tourism', fairMin: 40000, fairMax: 80000, unit: '60분' },
+  { id: 'tornado_potato', category: 'tourism', fairMin: 3500, fairMax: 5500, unit: '관광지 노점' },
+  { id: 'odeng_cup', category: 'tourism', fairMin: 1000, fairMax: 2500, unit: '노점 1컵' },
 
   { id: 'atm_global', category: 'fee', fairMin: 1000, fairMax: 1500, unit: '1회' },
   { id: 'atm_airport', category: 'fee', fairMin: 3500, fairMax: 5000, unit: '1회' },
   { id: 'exchange_spread', category: 'fee', fairMin: 15, fairMax: 30, unit: '원/USD' },
+  { id: 'sim_airport_5day', category: 'fee', fairMin: 25000, fairMax: 35000, unit: '5일 무제한' },
 ]
 
+// Seoul taxi 2025 meter rules
+// Day: base 4,800 for first 1.6 km, then +100 per 131 m or per 30 s (slow)
+// Late-night (00:00–04:00): +20% surcharge on both base and meter
+// City airport/intercity surcharges are not modeled here — advise the user separately.
+const TAXI_BASE_DAY = 4800
+const TAXI_BASE_KM = 1.6
+const TAXI_UNIT_M = 131
+const TAXI_UNIT_KRW = 100
+const TAXI_NIGHT_SURCHARGE = 0.2
+// Real trips accumulate idle-time charges + minor traffic delay; buffer +/- on expected.
+const TAXI_LOW_BUFFER = 0.9
+const TAXI_HIGH_BUFFER = 1.2
+
+export const computeTaxiFairRange = (km: number, night: boolean): [number, number] => {
+  if (!Number.isFinite(km) || km <= 0) return [TAXI_BASE_DAY, TAXI_BASE_DAY]
+  const baseCharge =
+    km <= TAXI_BASE_KM
+      ? TAXI_BASE_DAY
+      : TAXI_BASE_DAY + Math.ceil(((km - TAXI_BASE_KM) * 1000) / TAXI_UNIT_M) * TAXI_UNIT_KRW
+  const withNight = night ? Math.round(baseCharge * (1 + TAXI_NIGHT_SURCHARGE)) : baseCharge
+  return [Math.round(withNight * TAXI_LOW_BUFFER), Math.round(withNight * TAXI_HIGH_BUFFER)]
+}
+
 export type Verdict = 'fair' | 'careful' | 'bagaji'
+
+export interface CheckExtras {
+  km?: number
+  night?: boolean
+}
 
 export interface CheckResult {
   entry: PriceEntry
@@ -57,24 +91,41 @@ export interface CheckResult {
   avg: number
   deltaPct: number
   verdict: Verdict
+  extras?: CheckExtras
 }
 
-export const checkPrice = (entryId: string, paidKrw: number): CheckResult | null => {
+export const checkPrice = (
+  entryId: string,
+  paidKrw: number,
+  extras?: CheckExtras,
+): CheckResult | null => {
   const entry = PRICE_CATALOG.find((e) => e.id === entryId)
   if (!entry || !Number.isFinite(paidKrw) || paidKrw <= 0) return null
-  const avg = (entry.fairMin + entry.fairMax) / 2
+
+  let fairMin = entry.fairMin
+  let fairMax = entry.fairMax
+
+  if (entry.inputMode === 'taxi') {
+    const km = extras?.km ?? 0
+    if (!Number.isFinite(km) || km <= 0) return null
+    ;[fairMin, fairMax] = computeTaxiFairRange(km, extras?.night ?? false)
+  }
+
+  const avg = (fairMin + fairMax) / 2
   const deltaPct = (paidKrw - avg) / avg
   let verdict: Verdict = 'fair'
-  if (paidKrw > entry.fairMax * 1.4) verdict = 'bagaji'
-  else if (paidKrw > entry.fairMax * 1.15) verdict = 'careful'
+  if (paidKrw > fairMax * 1.4) verdict = 'bagaji'
+  else if (paidKrw > fairMax * 1.15) verdict = 'careful'
+
   return {
     entry,
     paid: paidKrw,
-    fairMin: entry.fairMin,
-    fairMax: entry.fairMax,
+    fairMin,
+    fairMax,
     avg,
     deltaPct,
     verdict,
+    extras,
   }
 }
 
