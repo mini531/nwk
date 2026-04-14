@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
 import { CompassIcon, HomeIcon, KitIcon, ScaleIcon, UserIcon } from './icons'
+import { useCloudSync } from '../hooks/use-cloud-sync'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
@@ -21,6 +22,7 @@ const tabs: Tab[] = [
 
 export const AppLayout = () => {
   const { t } = useTranslation()
+  useCloudSync()
 
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
