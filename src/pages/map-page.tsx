@@ -44,10 +44,12 @@ export const MapPage = () => {
   }, [selectedPlace])
 
   return (
-    <div className="space-y-5 pb-4">
-      <header className="space-y-1">
-        <h1 className="text-[26px] font-semibold tracking-tight text-ink">{t('page.map.title')}</h1>
-        <p className="text-sm text-ink-2">{t('page.map.subhead')}</p>
+    <div className="mx-auto max-w-5xl space-y-5 pb-4">
+      <header className="max-w-3xl space-y-1">
+        <h1 className="text-[28px] font-semibold tracking-tight text-ink sm:text-[32px]">
+          {t('page.map.title')}
+        </h1>
+        <p className="text-[14px] text-ink-2">{t('page.map.subhead')}</p>
       </header>
 
       <MapView

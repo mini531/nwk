@@ -193,7 +193,7 @@ export const CheckPage = () => {
       </header>
 
       {step === 1 && (
-        <div className="space-y-5">
+        <div className="mx-auto max-w-3xl space-y-5">
           <h1 className="text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
             {t(questionKey)}
           </h1>
@@ -223,7 +223,7 @@ export const CheckPage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
             {PRICE_CATEGORIES.map((c) => {
               const meta = CATEGORY_META[c]
               return (
@@ -231,7 +231,7 @@ export const CheckPage = () => {
                   key={c}
                   type="button"
                   onClick={() => onPickCategory(c)}
-                  className="nwk-card group flex h-28 flex-col justify-between p-4 text-left transition-transform active:scale-[0.98]"
+                  className="nwk-card group flex h-28 flex-col justify-between p-4 text-left transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 >
                   <span
                     className={`grid h-10 w-10 place-items-center rounded-xl ${meta.bg} ${meta.fg}`}
@@ -275,7 +275,7 @@ export const CheckPage = () => {
       )}
 
       {step === 2 && category && (
-        <div className="space-y-5">
+        <div className="mx-auto max-w-3xl space-y-5">
           <h1 className="text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
             {t(questionKey)}
           </h1>
@@ -285,7 +285,7 @@ export const CheckPage = () => {
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
                 {t('page.check.popular')}
               </p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {popularItems.map((e) => (
                   <ItemCard
                     key={e.id}
@@ -322,7 +322,7 @@ export const CheckPage = () => {
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
                 {query ? t('page.check.searchResult') : t('page.check.allItems')}
               </p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {filteredItems.map((e) => (
                   <ItemCard
                     key={e.id}
@@ -353,7 +353,7 @@ export const CheckPage = () => {
       )}
 
       {step === 3 && entry && (
-        <form onSubmit={onSubmitPrice} className="space-y-5">
+        <form onSubmit={onSubmitPrice} className="mx-auto max-w-xl space-y-5">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
               {t(`page.check.categories.${entry.category}`)} · {t('page.check.steps.q3')}
@@ -462,7 +462,7 @@ export const CheckPage = () => {
       )}
 
       {step === 4 && result && (
-        <div className="space-y-4">
+        <div className="mx-auto max-w-xl space-y-4">
           <section className={`rounded-3xl border-2 p-5 ${verdictStyles[result.verdict].ring}`}>
             <div className="flex items-center gap-2">
               <span

@@ -31,7 +31,7 @@ export const ProfilePage = () => {
   }
 
   return (
-    <div className="space-y-6 pb-4">
+    <div className="mx-auto max-w-2xl space-y-6 pb-4">
       <header>
         <h1 className="text-[26px] font-semibold tracking-tight text-ink">
           {t('page.profile.title')}

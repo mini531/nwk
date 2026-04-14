@@ -84,68 +84,72 @@ export const KitPage = () => {
   const { t } = useTranslation()
 
   return (
-    <div className="space-y-6 pb-4">
-      <header className="space-y-1">
+    <div className="pb-4">
+      <header className="mb-8 max-w-3xl space-y-2">
         <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1">
-          <KitIcon size={13} className="text-brand" />
+          <KitIcon size={13} className="text-brand" aria-hidden="true" />
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
             {t('page.kit.eyebrow')}
           </p>
         </div>
-        <h1 className="text-[24px] font-semibold leading-[1.15] tracking-tight text-ink">
+        <h1 className="text-[28px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[32px]">
           {t('page.kit.title')}
         </h1>
-        <p className="text-[13px] leading-relaxed text-ink-2">{t('page.kit.subhead')}</p>
+        <p className="text-[14px] leading-relaxed text-ink-2">{t('page.kit.subhead')}</p>
       </header>
 
-      <Block
-        section={{
-          label: t('page.kit.sections.arrival'),
-          items: ARRIVAL,
-          scope: 'page.home.arrival',
-        }}
-      />
-      <Block
-        section={{
-          label: t('page.kit.sections.money'),
-          items: MONEY,
-          scope: 'page.kit.money',
-        }}
-      />
-      <Block
-        section={{
-          label: t('page.kit.sections.connect'),
-          items: CONNECT,
-          scope: 'page.kit.connect',
-        }}
-      />
-      <Block
-        section={{
-          label: t('page.kit.sections.emergency'),
-          items: EMERGENCY,
-          scope: 'page.kit.emergency',
-        }}
-      />
+      <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+        <Block
+          section={{
+            label: t('page.kit.sections.arrival'),
+            items: ARRIVAL,
+            scope: 'page.home.arrival',
+          }}
+        />
+        <Block
+          section={{
+            label: t('page.kit.sections.money'),
+            items: MONEY,
+            scope: 'page.kit.money',
+          }}
+        />
+        <Block
+          section={{
+            label: t('page.kit.sections.connect'),
+            items: CONNECT,
+            scope: 'page.kit.connect',
+          }}
+        />
+        <Block
+          section={{
+            label: t('page.kit.sections.emergency'),
+            items: EMERGENCY,
+            scope: 'page.kit.emergency',
+          }}
+        />
+      </div>
 
-      <section>
-        <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
-          {t('page.kit.sections.phrases')}
-        </p>
-        <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
-          {PHRASES.map((p) => (
-            <li key={p.id} className="flex items-start gap-4 px-4 py-3.5">
-              <p className="w-[128px] shrink-0 text-[14px] font-semibold tracking-tight text-ink">
-                {p.ko}
-              </p>
-              <div className="min-w-0 flex-1">
-                <p className="text-[12px] leading-snug text-ink-2">
-                  {t(`page.kit.phrases.${p.id}`)}
+      <div className="mt-6 lg:mt-8">
+        <section>
+          <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
+            {t('page.kit.sections.phrases')}
+          </p>
+          <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
+            {PHRASES.map((p) => (
+              <li key={p.id} className="flex items-start gap-4 px-4 py-3.5">
+                <p className="w-[128px] shrink-0 text-[14px] font-semibold tracking-tight text-ink">
+                  {p.ko}
                 </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[12px] leading-snug text-ink-2">
+                    {t(`page.kit.phrases.${p.id}`)}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
   )
 }

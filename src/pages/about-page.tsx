@@ -8,7 +8,7 @@ export const AboutPage = () => {
   const { canInstall, installed, promptInstall } = useInstallPrompt()
 
   return (
-    <div className="space-y-6 pb-4">
+    <div className="mx-auto max-w-2xl space-y-6 pb-4">
       <header className="flex items-center gap-2 text-ink-3">
         <Link to="/profile" className="inline-flex items-center gap-1 text-sm hover:text-ink">
           <ChevronRightIcon size={16} className="rotate-180" />

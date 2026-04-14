@@ -59,28 +59,38 @@ export const PlacePage = () => {
   if (!place) return null
 
   return (
-    <div className="space-y-6 pb-4">
+    <div className="mx-auto max-w-4xl space-y-6 pb-4">
       <div>
         <Link
           to="/search"
-          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink-2 hover:text-ink"
+          className="inline-flex items-center gap-1.5 rounded-lg text-[13px] font-medium text-ink-2 transition hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
-          <ArrowLeftIcon size={16} />
+          <ArrowLeftIcon size={16} aria-hidden="true" />
           {t('page.place.back')}
         </Link>
       </div>
 
-      <header className="nwk-card p-5">
-        <div className="flex items-start gap-4">
+      <header className="nwk-card overflow-hidden p-0">
+        {place.thumbnail && (
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2 sm:aspect-[21/9]">
+            <img
+              src={place.thumbnail}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
+        <div className="flex items-start gap-4 p-5">
           <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
-            <PinIcon size={22} />
+            <PinIcon size={22} aria-hidden="true" />
           </div>
           <div className="min-w-0 flex-1">
-            <h1 className="truncate text-[20px] font-semibold tracking-tight text-ink">
+            <h1 className="truncate text-[22px] font-semibold tracking-tight text-ink sm:text-[26px]">
               {place.title}
             </h1>
             <p className="mt-1 flex items-start gap-1 text-[13px] leading-snug text-ink-3">
-              <PinIcon size={12} className="mt-[3px] shrink-0" />
+              <PinIcon size={12} className="mt-[3px] shrink-0" aria-hidden="true" />
               <span className="truncate">{place.addr}</span>
             </p>
           </div>
@@ -91,7 +101,7 @@ export const PlacePage = () => {
         {t('page.place.matchedLabel')}
       </p>
 
-      <div className="space-y-5">
+      <div className="grid gap-5 md:grid-cols-2">
         {groups.map(({ category, items }) => {
           const meta = CATEGORY_META[category]
           const tone = TONE[meta.tone]
