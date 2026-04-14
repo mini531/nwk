@@ -5,8 +5,8 @@ import cors from 'cors'
 setGlobalOptions({ region: 'asia-northeast3', maxInstances: 10 })
 
 const ALLOWED_ORIGINS = [
-  'https://nwk-app.web.app',
-  'https://nwk-app.firebaseapp.com',
+  'https://nwk-app-ba6f8.web.app',
+  'https://nwk-app-ba6f8.firebaseapp.com',
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:5000',
