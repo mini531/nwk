@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-nwk-primary: #0066ff;
+  --color-nwk-danger: #ff3b30;
+  --color-nwk-warn: #ff9500;
+  --color-nwk-safe: #34c759;
+  --font-sans: 'Pretendard', system-ui, -apple-system, 'Noto Sans KR', sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 antialiased touch-manipulation;
+    font-family: var(--font-sans);
+  }
+
+  /* iOS 안전 영역 대응 */
+  #root {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

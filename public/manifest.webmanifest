@@ -1,0 +1,18 @@
+{
+  "name": "NWK - No Worries Korea",
+  "short_name": "NWK",
+  "description": "외국인 관광객을 위한 한국 여행 안전망",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0066ff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

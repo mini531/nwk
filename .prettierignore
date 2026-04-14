@@ -1,0 +1,7 @@
+dist
+node_modules
+package-lock.json
+locales
+.claude
+CLAUDE.md
+README.md
