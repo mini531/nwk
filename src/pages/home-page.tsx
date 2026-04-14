@@ -1,167 +1,336 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { MapView, type MapMarker } from '../components/map-view'
+import { HOTSPOTS } from '../data/hotspots'
+import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
+import { useAppStore } from '../stores/app-store'
+import { useKstClock } from '../hooks/use-kst-clock'
 import {
   ArrowRightIcon,
   CoinIcon,
   GlobeIcon,
-  PinIcon,
+  SearchIcon,
   ShieldIcon,
-  SparkIcon,
   TrainIcon,
 } from '../components/icons'
-import { useAppStore } from '../stores/app-store'
-import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
-import type { AdvisoryCategory } from '../data/advisories'
-import type { TourSearchItem } from '../utils/api'
 import type { ComponentType, SVGProps } from 'react'
 
-const SAMPLE_PLACE: TourSearchItem = {
-  id: 'sample-gyeongbokgung',
-  title: '경복궁 Gyeongbokgung Palace',
-  addr: '서울특별시 종로구 사직로 161',
-  lat: 37.579617,
-  lng: 126.977041,
+const KRW_PER_USD = 1330
+const ADVISORY_BY_ID = new Map(ADVISORIES.map((a) => [a.id, a]))
+
+interface PriceCard {
+  id: string
+  krw: number
+  labelKey: string
 }
 
-const CATEGORY_ICON: Record<
+const PRICE_CARDS: PriceCard[] = [
+  { id: 'americano', krw: 4500, labelKey: 'page.home.prices.americano' },
+  { id: 'subway', krw: 1400, labelKey: 'page.home.prices.subway' },
+  { id: 'taxi', krw: 4800, labelKey: 'page.home.prices.taxi' },
+  { id: 'meal', krw: 10000, labelKey: 'page.home.prices.meal' },
+]
+
+const ARRIVAL_ITEMS = [
+  { id: 'arex', value: '₩4,450', detailKey: 'page.home.arrival.arex.detail' },
+  { id: 'limo', value: '₩17,000', detailKey: 'page.home.arrival.limo.detail' },
+  { id: 'tmoney', value: '₩2,500+', detailKey: 'page.home.arrival.tmoney.detail' },
+  { id: 'helpline', value: '1330', detailKey: 'page.home.arrival.helpline.detail' },
+] as const
+
+const PITFALL_ITEMS = [
+  { id: 'atm', tagKey: 'page.home.pitfalls.atm.tag' },
+  { id: 'taxi', tagKey: 'page.home.pitfalls.taxi.tag' },
+  { id: 'guide', tagKey: 'page.home.pitfalls.guide.tag' },
+] as const
+
+const CATEGORY_META: Record<
   AdvisoryCategory,
-  { Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>; tone: string }
+  {
+    Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>
+    bg: string
+    fg: string
+  }
 > = {
-  price: { Icon: CoinIcon, tone: 'text-accent bg-accent-soft' },
-  transit: { Icon: TrainIcon, tone: 'text-ink bg-line' },
-  etiquette: { Icon: GlobeIcon, tone: 'text-brand bg-brand-soft' },
-  safety: { Icon: ShieldIcon, tone: 'text-warn bg-warn-soft' },
+  price: { Icon: CoinIcon, bg: 'bg-accent-soft', fg: 'text-accent' },
+  transit: { Icon: TrainIcon, bg: 'bg-line', fg: 'text-ink' },
+  etiquette: { Icon: GlobeIcon, bg: 'bg-brand-soft', fg: 'text-brand' },
+  safety: { Icon: ShieldIcon, bg: 'bg-warn-soft', fg: 'text-warn' },
+}
+
+const formatKrw = (v: number, lang: string) => {
+  try {
+    return new Intl.NumberFormat(lang, {
+      style: 'currency',
+      currency: 'KRW',
+      maximumFractionDigits: 0,
+    }).format(v)
+  } catch {
+    return `₩${v.toLocaleString()}`
+  }
+}
+
+const formatUsd = (krw: number) => {
+  const usd = krw / KRW_PER_USD
+  return `$${usd.toFixed(usd < 10 ? 2 : 1)}`
 }
 
 export const HomePage = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const kst = useKstClock()
   const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
+  const [activeId, setActiveId] = useState<string>(HOTSPOTS[0].place.id)
 
-  const sampleGroups = useMemo(() => {
-    const all = matchAdvisories(SAMPLE_PLACE)
-    return groupByCategory(all).slice(0, 4)
-  }, [])
+  const active = useMemo(
+    () => HOTSPOTS.find((h) => h.place.id === activeId) ?? HOTSPOTS[0],
+    [activeId],
+  )
 
-  const openSample = () => {
-    setSelectedPlace(SAMPLE_PLACE)
+  const markers: MapMarker[] = useMemo(
+    () =>
+      HOTSPOTS.map((h) => ({
+        id: h.place.id,
+        lng: h.place.lng,
+        lat: h.place.lat,
+        title: h.place.title,
+        active: h.place.id === activeId,
+      })),
+    [activeId],
+  )
+
+  const featured = useMemo(
+    () =>
+      active.featuredAdvisoryIds
+        .map((id) => ADVISORY_BY_ID.get(id))
+        .filter((a): a is NonNullable<typeof a> => Boolean(a)),
+    [active],
+  )
+
+  const openFull = () => {
+    setSelectedPlace(active.place)
     navigate('/place')
   }
 
   return (
-    <div className="space-y-8 pb-4">
-      <header className="space-y-3">
-        <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
-          <SparkIcon size={12} />
-          {t('page.home.eyebrow')}
-        </p>
-        <h1 className="text-[30px] font-semibold leading-[1.1] tracking-tight text-ink">
-          {t('page.home.headline')}
-        </h1>
-        <p className="text-[15px] leading-relaxed text-ink-2">{t('page.home.subhead')}</p>
-      </header>
-
-      <section>
-        <div className="mb-2 flex items-center justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-            {t('page.home.sample.eyebrow')}
+    <div className="-mx-5 space-y-7 pb-6">
+      <section className="px-5 pt-1">
+        <div className="flex items-baseline justify-between">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
+            {t('page.home.rightNowLabel')}
           </p>
-          <button
-            type="button"
-            onClick={openSample}
-            className="inline-flex items-center gap-1 text-[12px] font-medium text-brand hover:underline"
-          >
-            {t('page.home.sample.open')}
-            <ArrowRightIcon size={14} />
-          </button>
+          <p className="flex items-center gap-1.5 text-[11px] tabular-nums text-ink-3">
+            <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
+            {kst} KST
+          </p>
         </div>
-        <button
-          type="button"
-          onClick={openSample}
-          className="nwk-card block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99]"
-        >
-          <div className="flex items-start gap-4 border-b border-line px-5 py-4">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
-              <PinIcon size={20} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
-                {t('page.home.sample.tag')}
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {PRICE_CARDS.map((p) => (
+            <div key={p.id} className="nwk-card flex flex-col gap-1 px-4 py-3.5">
+              <p className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
+                {formatKrw(p.krw, i18n.language)}
               </p>
-              <p className="mt-0.5 truncate text-[16px] font-semibold tracking-tight text-ink">
-                {SAMPLE_PLACE.title}
+              <p className="text-[11px] font-medium tabular-nums text-ink-3">
+                ≈ {formatUsd(p.krw)}
               </p>
-              <p className="mt-0.5 flex items-center gap-1 truncate text-[12px] text-ink-3">
-                <PinIcon size={12} />
-                <span className="truncate">{SAMPLE_PLACE.addr}</span>
+              <p className="mt-0.5 text-[12px] font-medium tracking-tight text-ink-2">
+                {t(p.labelKey)}
               </p>
             </div>
-          </div>
+          ))}
+        </div>
+        <p className="mt-2 text-[10px] text-ink-3">{t('page.home.pricesFootnote')}</p>
 
-          <div className="grid grid-cols-2 gap-px bg-line">
-            {sampleGroups.map(({ category, items }) => {
-              const meta = CATEGORY_ICON[category]
-              const first = items[0]
-              return (
-                <div key={category} className="bg-white px-4 py-3.5">
-                  <div className="flex items-center gap-2">
-                    <span className={`grid h-6 w-6 place-items-center rounded-md ${meta.tone}`}>
-                      <meta.Icon size={13} />
-                    </span>
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-ink-3">
-                      {t(`page.place.categories.${category}`)}
-                    </p>
-                  </div>
-                  <p className="mt-1.5 line-clamp-2 text-[13px] font-medium leading-snug text-ink">
-                    {t(`advisory.${first.id}.title`)}
-                  </p>
-                </div>
-              )
-            })}
+        <div className="-mx-5 mt-4 overflow-x-auto px-5 pb-1">
+          <div className="flex min-w-max gap-2">
+            {(
+              [
+                { k: 'fx', v: '₩1,330 / $1' },
+                { k: 'emergency', v: '112 · 119' },
+                { k: 'plug', v: '220V · C/F' },
+                { k: 'water', v: 'OK' },
+                { k: 'tipping', v: 'NO' },
+                { k: 'tz', v: 'UTC+9' },
+              ] as const
+            ).map(({ k, v }) => (
+              <div
+                key={k}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5"
+              >
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-3">
+                  {t(`page.home.facts.${k}`)}
+                </span>
+                <span className="text-[12px] font-semibold tabular-nums tracking-tight text-ink">
+                  {v}
+                </span>
+              </div>
+            ))}
           </div>
-
-          <div className="flex items-center justify-between px-5 py-3">
-            <span className="text-[12px] font-medium text-brand">{t('page.home.sample.cta')}</span>
-            <ArrowRightIcon size={16} className="text-brand" />
-          </div>
-        </button>
+        </div>
       </section>
 
-      <Link
-        to="/search"
-        className="flex items-center justify-between rounded-2xl border border-line bg-white px-5 py-4 text-ink transition-transform active:scale-[0.99] hover:border-line-strong"
-      >
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-            {t('page.home.searchEyebrow')}
+      <section className="px-5">
+        <div className="flex items-baseline justify-between">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-3">
+            {t('page.home.arrival.label')}
           </p>
-          <p className="mt-1 text-[15px] font-medium tracking-tight">{t('page.home.searchCta')}</p>
+          <p className="text-[10px] font-medium text-ink-3">{t('page.home.arrival.sub')}</p>
         </div>
-        <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-white">
-          <ArrowRightIcon size={16} />
-        </span>
-      </Link>
+        <ul className="mt-3 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
+          {ARRIVAL_ITEMS.map((item) => (
+            <li key={item.id} className="flex items-start gap-4 px-4 py-3.5">
+              <p className="w-[76px] shrink-0 text-[15px] font-semibold tabular-nums tracking-tight text-ink">
+                {item.value}
+              </p>
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] font-semibold tracking-tight text-ink">
+                  {t(`page.home.arrival.${item.id}.title`)}
+                </p>
+                <p className="mt-0.5 text-[12px] leading-snug text-ink-3">{t(item.detailKey)}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      <section>
-        <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-          {t('page.home.why.label')}
-        </h2>
-        <ul className="space-y-2">
-          {(['publicData', 'languages', 'offline'] as const).map((key) => (
-            <li key={key} className="nwk-card flex items-start gap-3 px-4 py-3.5">
-              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+      <section className="px-5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-warn">
+          {t('page.home.pitfalls.label')}
+        </p>
+        <ul className="mt-3 space-y-2">
+          {PITFALL_ITEMS.map((item) => (
+            <li
+              key={item.id}
+              className="flex items-start gap-3 rounded-2xl border border-warn-soft bg-warn-soft/40 px-4 py-3"
+            >
+              <span className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-md bg-warn px-1.5 text-[9px] font-bold uppercase tracking-wider text-white">
+                {t(item.tagKey)}
+              </span>
               <div className="flex-1">
                 <p className="text-[13px] font-semibold tracking-tight text-ink">
-                  {t(`page.home.why.${key}.title`)}
+                  {t(`page.home.pitfalls.${item.id}.title`)}
                 </p>
-                <p className="mt-0.5 text-[12px] leading-snug text-ink-3">
-                  {t(`page.home.why.${key}.body`)}
+                <p className="mt-0.5 text-[12px] leading-snug text-ink-2">
+                  {t(`page.home.pitfalls.${item.id}.body`)}
                 </p>
               </div>
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="space-y-3">
+        <div className="px-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            {t('page.home.matchedLabel')}
+          </p>
+          <h2 className="mt-1 text-[16px] font-semibold tracking-tight text-ink">
+            {t('page.home.matchedTitle')}
+          </h2>
+        </div>
+
+        <div className="relative">
+          <MapView
+            center={[active.place.lng, active.place.lat]}
+            zoom={10}
+            markers={markers}
+            className="h-[300px] w-full overflow-hidden border-y border-line"
+            onMarkerClick={(id) => setActiveId(id)}
+          />
+          <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+            {t('page.home.mapTag')}
+          </div>
+        </div>
+
+        <div className="-mx-5 overflow-x-auto px-5">
+          <div className="flex gap-2">
+            {HOTSPOTS.map((h) => {
+              const isActive = h.place.id === activeId
+              return (
+                <button
+                  key={h.place.id}
+                  type="button"
+                  onClick={() => setActiveId(h.place.id)}
+                  className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium tracking-tight transition ${
+                    isActive
+                      ? 'border-ink bg-ink text-white shadow-pop'
+                      : 'border-line bg-white text-ink-2 hover:border-line-strong'
+                  }`}
+                >
+                  {t(h.nameKey)}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="px-5">
+          <button
+            type="button"
+            onClick={openFull}
+            className="nwk-card group block w-full overflow-hidden p-0 text-left transition-transform active:scale-[0.99]"
+          >
+            <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                  {t(active.regionKey)}
+                </p>
+                <p className="mt-0.5 truncate text-[17px] font-semibold tracking-tight text-ink">
+                  {t(active.nameKey)}
+                </p>
+              </div>
+              <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-brand">
+                {t('page.home.openFull')}
+                <ArrowRightIcon size={14} />
+              </span>
+            </div>
+
+            <ul className="divide-y divide-line border-t border-line">
+              {featured.map((a) => {
+                const meta = CATEGORY_META[a.category]
+                return (
+                  <li key={a.id} className="flex items-start gap-3 px-5 py-3">
+                    <span
+                      className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${meta.bg} ${meta.fg}`}
+                    >
+                      <meta.Icon size={14} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[13px] font-semibold tracking-tight text-ink">
+                        {t(`advisory.${a.id}.title`)}
+                      </p>
+                      <p className="mt-0.5 line-clamp-2 text-[12px] leading-snug text-ink-3">
+                        {t(`advisory.${a.id}.body`)}
+                      </p>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </button>
+        </div>
+      </section>
+
+      <section className="px-5">
+        <Link
+          to="/search"
+          className="flex items-center justify-between rounded-2xl border border-line bg-white px-4 py-3 text-ink transition hover:border-line-strong"
+        >
+          <span className="flex items-center gap-2.5 text-[13px] font-medium text-ink-2">
+            <SearchIcon size={16} className="text-ink-3" />
+            {t('page.home.searchCta')}
+          </span>
+          <ArrowRightIcon size={14} className="text-ink-3" />
+        </Link>
+      </section>
+
+      <section className="mx-5 rounded-2xl border border-line bg-canvas-2 px-5 py-4">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+          {t('page.home.sourceLabel')}
+        </p>
+        <p className="mt-1.5 text-[12px] leading-snug text-ink-2">{t('page.home.sourceBody')}</p>
       </section>
     </div>
   )

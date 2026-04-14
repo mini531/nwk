@@ -11,32 +11,77 @@
   },
   "page": {
     "home": {
-      "eyebrow": "面向外国游客的安全网",
-      "headline": "点一下地点, 看见真正有用的信息.",
-      "subhead": "NWK 将物价、交通、礼仪与安全提示精准匹配到您搜索的每一个地点.",
-      "sample": {
-        "eyebrow": "预览运行方式",
-        "tag": "实时示例",
-        "open": "查看完整匹配",
-        "cta": "点击查看完整匹配 →"
+      "eyebrow": "公共数据 · 四语种",
+      "headline": "换汇之前, 先看韩国真实物价.",
+      "rightNowLabel": "首尔此刻",
+      "prices": {
+        "americano": "咖啡馆美式",
+        "subway": "地铁单程",
+        "taxi": "出租车起步价",
+        "meal": "一人一餐"
       },
-      "why": {
-        "label": "为什么选 NWK",
-        "publicData": {
-          "title": "仅用公共数据, 无广告",
-          "body": "基于 TourAPI·VWorld·气象厅公共数据. 无赞助位, 也不靠猜测."
+      "pricesFootnote": "2025 年首尔均价 · 汇率按 1,330韩元/美元",
+      "facts": {
+        "fx": "汇率",
+        "emergency": "急救",
+        "plug": "电压",
+        "water": "自来水",
+        "tipping": "小费",
+        "tz": "时区"
+      },
+      "arrival": {
+        "label": "入境 30 分钟",
+        "sub": "仁川/金浦落地后必备",
+        "arex": {
+          "title": "机场铁路 AREX 直达",
+          "detail": "仁川→首尔站 43 分钟 · 06:30–22:50 · 指定座位"
         },
-        "languages": {
-          "title": "四种语言, 预先翻译",
-          "body": "韩文·英文·日文·中文. 无需实时翻译, 结果一致可靠."
+        "limo": {
+          "title": "机场大巴 6001",
+          "detail": "仁川→明洞 70 分钟 · 04:20–23:00 · 每 15 分钟一班"
         },
-        "offline": {
-          "title": "离线也能用",
-          "body": "添加到主屏幕后, 地铁或机场也能查看您保存的地点."
+        "tmoney": {
+          "title": "T-money 交通卡",
+          "detail": "便利店购买充值 · 全国地铁、公交、部分出租车均可用"
+        },
+        "helpline": {
+          "title": "1330 旅游咨询热线",
+          "detail": "24 小时 · 中/英/日/俄/越 · 翻译、投诉、指路全部免费"
         }
       },
+      "pitfalls": {
+        "label": "请避免",
+        "atm": {
+          "tag": "手续费",
+          "title": "机场与酒店 ATM",
+          "body": "每次取现 3,500–5,000 韩元. CU/GS25 Global ATM 约 1,000 韩元起。"
+        },
+        "taxi": {
+          "tag": "拒载",
+          "title": "短途出租车拒载",
+          "body": "3 公里以内常被拒载. 用 Kakao T 叫车可锁定费用、杜绝拒载。"
+        },
+        "guide": {
+          "tag": "诈骗",
+          "title": "明洞/仁寺洞假冒导游",
+          "body": "以 \"免费导览\" 搭讪, 带去商店后索取小费. 正规导游穿橙色背心。"
+        }
+      },
+      "matchedLabel": "为您的目的地匹配",
+      "matchedTitle": "选个地点, 我们匹配物价、交通与礼仪.",
+      "mapTag": "VWorld 实时地图",
+      "openFull": "查看全部",
+      "hotspots": {
+        "gyeongbokgung": { "name": "景福宫", "region": "首尔 · 钟路" },
+        "myeongdong": { "name": "明洞", "region": "首尔 · 中区" },
+        "haeundae": { "name": "海云台", "region": "釜山" },
+        "seongsan": { "name": "城山日出峰", "region": "济州" },
+        "bulguksa": { "name": "佛国寺", "region": "庆州" }
+      },
+      "sourceLabel": "数据来源",
+      "sourceBody": "韩国观光公社 TourAPI · 国土部 VWorld · 气象厅 · 韩国银行。无广告、无佣金、无赞助。",
       "searchEyebrow": "自行搜索",
-      "searchCta": "搜索韩国全境景点",
+      "searchCta": "搜索其他景点",
       "essentials": "旅行必备",
       "todayLabel": "Today",
       "today": {

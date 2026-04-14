@@ -11,32 +11,77 @@
   },
   "page": {
     "home": {
-      "eyebrow": "外国人旅行者のためのセーフティネット",
-      "headline": "場所をタップするだけ。必要な情報が出ます。",
-      "subhead": "検索した場所に実際に当てはまる物価・交通・マナー・安全情報を、NWKが自動でマッチングします。",
-      "sample": {
-        "eyebrow": "使い方プレビュー",
-        "tag": "ライブサンプル",
-        "open": "マッチ全体を開く",
-        "cta": "タップしてマッチ全体を見る →"
+      "eyebrow": "公共データ · 4言語",
+      "headline": "両替の前に、韓国のリアル物価。",
+      "rightNowLabel": "ソウルのいま",
+      "prices": {
+        "americano": "カフェのアメリカーノ",
+        "subway": "地下鉄1回",
+        "taxi": "タクシー初乗り",
+        "meal": "1人分の食事"
       },
-      "why": {
-        "label": "NWKが選ばれる理由",
-        "publicData": {
-          "title": "公共データのみ、広告なし",
-          "body": "TourAPI・VWorld・気象庁の公共データだけを使用。スポンサー表示も推測もありません。"
+      "pricesFootnote": "2025年ソウル平均 · 為替 1,330ウォン/USD",
+      "facts": {
+        "fx": "為替",
+        "emergency": "緊急",
+        "plug": "電圧",
+        "water": "水道水",
+        "tipping": "チップ",
+        "tz": "時差"
+      },
+      "arrival": {
+        "label": "入国30分",
+        "sub": "仁川・金浦到着直後の必需",
+        "arex": {
+          "title": "空港鉄道AREX直通",
+          "detail": "仁川→ソウル駅43分 · 06:30–22:50 · 指定席"
         },
-        "languages": {
-          "title": "4言語、事前翻訳済み",
-          "body": "韓国語・英語・日本語・中国語。リアルタイム翻訳APIを使わないので結果が一貫。"
+        "limo": {
+          "title": "リムジンバス6001",
+          "detail": "仁川→明洞70分 · 04:20–23:00 · 15分間隔"
         },
-        "offline": {
-          "title": "オフラインでも動作",
-          "body": "ホーム画面に追加すれば、地下鉄や空港でも保存した場所を読めます。"
+        "tmoney": {
+          "title": "T-money交通カード",
+          "detail": "コンビニで購入・チャージ · 全国の地下鉄・バス・一部タクシーで使える"
+        },
+        "helpline": {
+          "title": "1330観光案内ホットライン",
+          "detail": "24時間 · 日/英/中/露/越 · 通訳・苦情・道案内すべて無料"
         }
       },
+      "pitfalls": {
+        "label": "避けるべきこと",
+        "atm": {
+          "tag": "手数料",
+          "title": "空港・ホテルのATM",
+          "body": "1回につき3,500–5,000ウォン。CU/GS25のグローバルATMは約1,000ウォンと安い。"
+        },
+        "taxi": {
+          "tag": "乗車拒否",
+          "title": "近距離タクシーの拒否",
+          "body": "3km以下は拒否されがち。Kakao Tアプリなら拒否不可＋料金が透明。"
+        },
+        "guide": {
+          "tag": "詐欺",
+          "title": "明洞・仁寺洞の偽ガイド",
+          "body": "「無料ツアー」で近づき、店へ誘導してチップ要求。公式ガイドはオレンジのベスト着用。"
+        }
+      },
+      "matchedLabel": "行き先に合わせて",
+      "matchedTitle": "目的地を選ぶと、物価・交通・マナーをマッチします。",
+      "mapTag": "VWorldリアルタイム地図",
+      "openFull": "全部見る",
+      "hotspots": {
+        "gyeongbokgung": { "name": "景福宮", "region": "ソウル · 鍾路" },
+        "myeongdong": { "name": "明洞", "region": "ソウル · 中区" },
+        "haeundae": { "name": "海雲台", "region": "釜山" },
+        "seongsan": { "name": "城山日出峰", "region": "済州" },
+        "bulguksa": { "name": "仏国寺", "region": "慶州" }
+      },
+      "sourceLabel": "データ出典",
+      "sourceBody": "韓国観光公社TourAPI · 国土交通部VWorld · 気象庁 · 韓国銀行。広告・手数料・スポンサーなし。",
       "searchEyebrow": "自分で検索",
-      "searchCta": "韓国全土の観光地を探す",
+      "searchCta": "他の場所を検索",
       "essentials": "旅の必需",
       "todayLabel": "Today",
       "today": {

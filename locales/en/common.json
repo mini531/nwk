@@ -11,32 +11,77 @@
   },
   "page": {
     "home": {
-      "eyebrow": "Safety net for foreign travelers",
-      "headline": "Tap a place. See what actually applies there.",
-      "subhead": "NWK matches real local prices, transit, etiquette and safety to every place you look up — in your language.",
-      "sample": {
-        "eyebrow": "See how it works",
-        "tag": "Live sample",
-        "open": "Open full match",
-        "cta": "Tap to see the full match →"
+      "eyebrow": "Public data · 4 languages",
+      "headline": "Before you exchange — real Korean prices.",
+      "rightNowLabel": "Seoul right now",
+      "prices": {
+        "americano": "Cafe americano",
+        "subway": "Subway ride",
+        "taxi": "Taxi base fare",
+        "meal": "Meal for one"
       },
-      "why": {
-        "label": "Why NWK",
-        "publicData": {
-          "title": "Public data, zero ads",
-          "body": "Powered by TourAPI, VWorld and KMA. No sponsored listings, no guesses."
+      "pricesFootnote": "2025 Seoul averages · FX at ₩1,330/USD",
+      "facts": {
+        "fx": "FX",
+        "emergency": "SOS",
+        "plug": "Plug",
+        "water": "Tap",
+        "tipping": "Tip",
+        "tz": "Zone"
+      },
+      "arrival": {
+        "label": "First 30 minutes",
+        "sub": "Right after ICN/GMP landing",
+        "arex": {
+          "title": "AREX Airport Express",
+          "detail": "ICN → Seoul Station, 43 min · 06:30–22:50 · reserved seat"
         },
-        "languages": {
-          "title": "Four languages, pre-translated",
-          "body": "Korean · English · Japanese · Chinese. No runtime translation, no surprises."
+        "limo": {
+          "title": "Airport Limousine 6001",
+          "detail": "ICN → Myeongdong, 70 min · 04:20–23:00 · every 15 min"
         },
-        "offline": {
-          "title": "Works offline",
-          "body": "Install to home screen. Saved places stay readable on the subway or at the airport."
+        "tmoney": {
+          "title": "T-money transit card",
+          "detail": "Buy & top up at any convenience store · works on subway, bus, some taxis"
+        },
+        "helpline": {
+          "title": "1330 Tourist Hotline",
+          "detail": "24/7 · EN, JA, ZH, RU, VI · free translation, directions and complaints"
         }
       },
-      "searchEyebrow": "Your own place",
-      "searchCta": "Search anywhere in Korea",
+      "pitfalls": {
+        "label": "Avoid these",
+        "atm": {
+          "tag": "Fee",
+          "title": "Airport & hotel ATMs",
+          "body": "₩3,500–5,000 per withdrawal. CU/GS25 Global ATMs are around ₩1,000."
+        },
+        "taxi": {
+          "tag": "Refusal",
+          "title": "Short-trip taxi refusals",
+          "body": "Under 3 km is often refused. Kakao T app locks the fare and prevents refusals."
+        },
+        "guide": {
+          "tag": "Scam",
+          "title": "Fake guides in Myeongdong/Insadong",
+          "body": "\"Free tour\" approach → shop steering + tip demands. Official guides wear orange vests."
+        }
+      },
+      "matchedLabel": "Matched to where you go",
+      "matchedTitle": "Pick a destination. We match its prices, transit and rules.",
+      "mapTag": "Live VWorld map",
+      "openFull": "Open full",
+      "hotspots": {
+        "gyeongbokgung": { "name": "Gyeongbokgung", "region": "Seoul · Jongno" },
+        "myeongdong": { "name": "Myeongdong", "region": "Seoul · Jung-gu" },
+        "haeundae": { "name": "Haeundae", "region": "Busan" },
+        "seongsan": { "name": "Seongsan Ilchulbong", "region": "Jeju" },
+        "bulguksa": { "name": "Bulguksa", "region": "Gyeongju" }
+      },
+      "sourceLabel": "Data sources",
+      "sourceBody": "KTO TourAPI · MOLIT VWorld · KMA · BOK. No ads, no commissions, no sponsors.",
+      "searchEyebrow": "Search",
+      "searchCta": "Search any place in Korea",
       "essentials": "Essentials",
       "todayLabel": "Today",
       "today": {

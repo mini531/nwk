@@ -11,32 +11,77 @@
   },
   "page": {
     "home": {
-      "eyebrow": "외국인 관광객을 위한 안전망",
-      "headline": "장소 하나로, 진짜 필요한 것만.",
-      "subhead": "검색한 장소에 실제로 적용되는 물가·교통·에티켓·안전 수칙을 NWK가 자동으로 매칭해 드려요.",
-      "sample": {
-        "eyebrow": "작동 방식 미리보기",
-        "tag": "실시간 샘플",
-        "open": "전체 매칭 열기",
-        "cta": "탭하면 전체 매칭 결과 →"
+      "eyebrow": "공공데이터 기반 · 4개 언어",
+      "headline": "환전 전에, 한국 진짜 물가.",
+      "rightNowLabel": "서울 지금",
+      "prices": {
+        "americano": "카페 아메리카노",
+        "subway": "지하철 1회",
+        "taxi": "택시 기본요금",
+        "meal": "1인 식사"
       },
-      "why": {
-        "label": "왜 NWK인가",
-        "publicData": {
-          "title": "공공데이터 기반, 광고 없음",
-          "body": "TourAPI·VWorld·기상청 공공데이터만 사용해요. 스폰서 링크도, 추측도 없어요."
+      "pricesFootnote": "2025년 서울 평균가 · 환율 1,330원/USD 기준",
+      "facts": {
+        "fx": "환율",
+        "emergency": "긴급",
+        "plug": "전압",
+        "water": "수돗물",
+        "tipping": "팁",
+        "tz": "시간대"
+      },
+      "arrival": {
+        "label": "입국 30분",
+        "sub": "인천/김포 도착 직후 필수",
+        "arex": {
+          "title": "공항철도 AREX 직통",
+          "detail": "인천→서울역 43분 · 06:30–22:50 · 좌석 지정"
         },
-        "languages": {
-          "title": "4개 언어, 사전 번역",
-          "body": "한국어·영어·일본어·중국어. 실시간 번역 호출이 없어 결과가 일관돼요."
+        "limo": {
+          "title": "리무진버스 6001",
+          "detail": "인천→명동 70분 · 04:20–23:00 · 15분 간격"
         },
-        "offline": {
-          "title": "오프라인에서도 동작",
-          "body": "홈 화면에 설치하면 지하철·공항에서도 저장한 장소를 볼 수 있어요."
+        "tmoney": {
+          "title": "T-money 교통카드",
+          "detail": "편의점 구매+충전 · 전국 지하철·버스·일부 택시"
+        },
+        "helpline": {
+          "title": "1330 관광안내 핫라인",
+          "detail": "24시간 · 영/일/중/러/베트남어 · 통역·민원·길안내 무료"
         }
       },
+      "pitfalls": {
+        "label": "피해야 할 것",
+        "atm": {
+          "tag": "수수료",
+          "title": "공항·호텔 ATM",
+          "body": "인출당 3,500–5,000원 수수료. CU/GS25 글로벌 ATM이 1,000원 대로 저렴."
+        },
+        "taxi": {
+          "tag": "승차거부",
+          "title": "단거리 택시 승차거부",
+          "body": "3km 이하는 거부 흔함. Kakao T 앱으로 호출하면 거부 불가능 + 요금 투명."
+        },
+        "guide": {
+          "tag": "사기",
+          "title": "명동·인사동 가짜 가이드",
+          "body": "\"무료 투어\" 접근 → 상점 안내 후 팁 요구. 공식 가이드는 주황 조끼 착용."
+        }
+      },
+      "matchedLabel": "가는 곳에 맞춘 정보",
+      "matchedTitle": "목적지를 고르면, 가격·교통·규칙을 매칭합니다",
+      "mapTag": "VWorld 실시간 지도",
+      "openFull": "전체 보기",
+      "hotspots": {
+        "gyeongbokgung": { "name": "경복궁", "region": "서울 · 종로" },
+        "myeongdong": { "name": "명동", "region": "서울 · 중구" },
+        "haeundae": { "name": "해운대", "region": "부산" },
+        "seongsan": { "name": "성산일출봉", "region": "제주" },
+        "bulguksa": { "name": "불국사", "region": "경주" }
+      },
+      "sourceLabel": "데이터 출처",
+      "sourceBody": "한국관광공사 TourAPI · 국토교통부 VWorld · 기상청 · 한국은행. 광고·수수료·스폰서 없음.",
       "searchEyebrow": "직접 검색",
-      "searchCta": "한국 전역 관광지 찾기",
+      "searchCta": "다른 장소 직접 검색하기",
       "essentials": "여행 필수",
       "todayLabel": "Today",
       "today": {
