@@ -12,7 +12,7 @@ const filters = ['all', 'sights', 'food', 'transit'] as const
 type Filter = (typeof filters)[number]
 
 export const SearchPage = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
   const [q, setQ] = useState('')
@@ -29,7 +29,7 @@ export const SearchPage = () => {
     setLoading(true)
     setError(null)
     try {
-      const res = await tourSearch({ keyword })
+      const res = await tourSearch({ keyword, lang: i18n.language })
       setItems(res.data.items)
       setSource(res.data.source)
     } catch (err) {

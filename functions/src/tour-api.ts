@@ -51,8 +51,20 @@ const sanitize = (raw: unknown): string => {
   return cleaned
 }
 
-const fetchTourApi = async (key: string, keyword: string): Promise<TourItem[]> => {
-  const url = new URL('https://apis.data.go.kr/B551011/KorService2/searchKeyword2')
+const SERVICE_BY_LANG: Record<string, string> = {
+  ko: 'KorService2',
+  en: 'EngService2',
+  ja: 'JpnService2',
+  zh: 'ChsService2',
+}
+
+const resolveService = (raw: unknown): string => {
+  const lang = typeof raw === 'string' ? raw.toLowerCase().slice(0, 2) : 'ko'
+  return SERVICE_BY_LANG[lang] ?? SERVICE_BY_LANG.ko
+}
+
+const fetchTourApi = async (key: string, keyword: string, service: string): Promise<TourItem[]> => {
+  const url = new URL(`https://apis.data.go.kr/B551011/${service}/searchKeyword2`)
   url.searchParams.set('serviceKey', key)
   url.searchParams.set('MobileOS', 'ETC')
   url.searchParams.set('MobileApp', 'NWK')
@@ -63,7 +75,12 @@ const fetchTourApi = async (key: string, keyword: string): Promise<TourItem[]> =
 
   const res = await fetch(url.toString())
   if (!res.ok) throw new HttpsError('internal', `tour-api ${res.status}`)
-  const json = (await res.json()) as {
+  const body = await res.text()
+  if (body.trim().startsWith('<')) {
+    // Portal returns XML/HTML on auth failure even with _type=json
+    throw new HttpsError('internal', `tour-api non-json: ${body.slice(0, 80)}`)
+  }
+  const json = JSON.parse(body) as {
     response?: { body?: { items?: { item?: Array<Record<string, string>> } } }
   }
   const raw = json.response?.body?.items?.item ?? []
@@ -80,7 +97,9 @@ const fetchTourApi = async (key: string, keyword: string): Promise<TourItem[]> =
 export const tourSearch = onCall(
   { secrets: [TOUR_API_KEY], region: 'asia-northeast3' },
   async (request) => {
-    const keyword = sanitize((request.data as { keyword?: unknown })?.keyword)
+    const data = (request.data ?? {}) as { keyword?: unknown; lang?: unknown }
+    const keyword = sanitize(data.keyword)
+    const service = resolveService(data.lang)
     let key: string | undefined
     try {
       key = TOUR_API_KEY.value()
@@ -97,15 +116,18 @@ export const tourSearch = onCall(
     }
 
     if (!key || key === 'placeholder') {
-      logger.info('tourSearch: no real key, returning mock', { keyword })
+      logger.info('tourSearch: no real key, returning mock', { keyword, service })
       return mockResult()
     }
 
     try {
-      const items = await fetchTourApi(key, keyword)
+      const items = await fetchTourApi(key, keyword, service)
       return { items, source: 'live' as const }
     } catch (err) {
-      logger.warn('tourSearch live call failed, falling back to mock', err)
+      logger.warn('tourSearch live call failed, falling back to mock', {
+        err: err instanceof Error ? err.message : String(err),
+        service,
+      })
       return mockResult()
     }
   },

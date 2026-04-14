@@ -15,7 +15,7 @@ export interface TourSearchResponse {
   source: 'live' | 'mock'
 }
 
-export const tourSearch = httpsCallable<{ keyword: string }, TourSearchResponse>(
+export const tourSearch = httpsCallable<{ keyword: string; lang?: string }, TourSearchResponse>(
   functions,
   'tourSearch',
 )
