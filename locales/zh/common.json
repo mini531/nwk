@@ -208,7 +208,9 @@
       "noResultsTitle": "没有匹配的景点",
       "noResultsHint": "请尝试其他关键词或切换筛选为全部",
       "matchCount": "搜索结果 {{count}} 处",
-      "liveResults": "{{lang}} · TourAPI 实时 {{count}} 处"
+      "liveResults": "{{lang}} · TourAPI 实时 {{count}} 处",
+      "visibleCount": "当前视野内景点 {{count}} 处",
+      "emptyViewport": "缩小地图即可显示更多景点"
     },
     "map": {
       "title": "地图",

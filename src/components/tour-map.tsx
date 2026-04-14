@@ -35,6 +35,8 @@ export interface TourMapProps {
   zoom?: number
   className?: string
   onPoiClick?: (props: PoiProperties) => void
+  onBoundsChange?: (bounds: [number, number, number, number]) => void
+  fitToFeatures?: boolean
 }
 
 export interface PoiProperties {
@@ -57,11 +59,15 @@ export const TourMap = ({
   zoom = DEFAULT_ZOOM,
   className,
   onPoiClick,
+  onBoundsChange,
+  fitToFeatures = false,
 }: TourMapProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MLMap | null>(null)
   const onClickRef = useRef(onPoiClick)
   onClickRef.current = onPoiClick
+  const onBoundsRef = useRef(onBoundsChange)
+  onBoundsRef.current = onBoundsChange
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -189,6 +195,16 @@ export const TourMap = ({
       map.on('mouseleave', 'poi-points', () => {
         map.getCanvas().style.cursor = ''
       })
+
+      const emitBounds = () => {
+        if (!onBoundsRef.current) return
+        const b = map.getBounds()
+        onBoundsRef.current([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()])
+      }
+      map.on('moveend', emitBounds)
+      map.on('zoomend', emitBounds)
+      // Emit once after load so the sidebar can show the initial viewport
+      emitBounds()
     })
 
     return () => {
@@ -204,8 +220,32 @@ export const TourMap = ({
     const source = map.getSource('pois') as unknown as
       | { setData: (d: GeoJSON.FeatureCollection) => void }
       | undefined
-    if (source) source.setData(geojson)
-  }, [geojson])
+    if (!source) return
+    source.setData(geojson)
+
+    if (fitToFeatures && geojson.features.length > 0) {
+      let minLng = Infinity
+      let minLat = Infinity
+      let maxLng = -Infinity
+      let maxLat = -Infinity
+      for (const f of geojson.features) {
+        const [lng, lat] = f.geometry.coordinates
+        if (lng < minLng) minLng = lng
+        if (lat < minLat) minLat = lat
+        if (lng > maxLng) maxLng = lng
+        if (lat > maxLat) maxLat = lat
+      }
+      if (Number.isFinite(minLng) && Number.isFinite(maxLng)) {
+        map.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: 60, maxZoom: 14, duration: 600 },
+        )
+      }
+    }
+  }, [geojson, fitToFeatures])
 
   return <div ref={containerRef} className={className} />
 }

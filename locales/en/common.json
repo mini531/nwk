@@ -208,7 +208,9 @@
       "noResultsTitle": "No matching places",
       "noResultsHint": "Try another keyword or switch the filter to All",
       "matchCount": "{{count}} results",
-      "liveResults": "{{lang}} · TourAPI live {{count}} results"
+      "liveResults": "{{lang}} · TourAPI live {{count}} results",
+      "visibleCount": "{{count}} spots in view",
+      "emptyViewport": "Zoom out to see more spots"
     },
     "map": {
       "title": "Map",

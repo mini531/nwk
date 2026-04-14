@@ -50,6 +50,7 @@ export const SearchPage = () => {
   const [liveItems, setLiveItems] = useState<TourSearchItem[]>([])
   const [liveLoading, setLiveLoading] = useState(false)
   const [liveSource, setLiveSource] = useState<'live' | 'mock' | null>(null)
+  const [bounds, setBounds] = useState<[number, number, number, number] | null>(null)
   const asideRef = useRef<HTMLElement>(null)
 
   const handlePoiClick = (p: PoiProperties) => {
@@ -109,10 +110,51 @@ export const SearchPage = () => {
     return features
   }, [filter, keyword])
 
-  const geoCollection: GeoJsonCollection = useMemo(
-    () => ({ type: 'FeatureCollection', features: filteredFeatures }),
-    [filteredFeatures],
-  )
+  // When live TourAPI search returns items, project them into GeoJSON
+  // features so the map can render and fit to them. Items without lat/lng
+  // are kept in the sidebar list only.
+  const liveFeatures = useMemo<GeoJSON.Feature<GeoJSON.Point, PoiProperties>[]>(() => {
+    return liveItems
+      .filter((it) => Number.isFinite(it.lat) && Number.isFinite(it.lng) && it.lat && it.lng)
+      .map((it) => ({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [it.lng, it.lat] },
+        properties: {
+          id: it.id,
+          title: it.title,
+          addr: it.addr,
+          thumbnail: it.thumbnail ?? null,
+          thumbnailSmall: null,
+          contentTypeId: '',
+          typeTag: 'attraction' as const,
+          region: 'live',
+        },
+      }))
+  }, [liveItems])
+
+  const geoCollection: GeoJsonCollection = useMemo(() => {
+    // When a keyword is active and we have live remote results with coords,
+    // the map shows the live results instead of the static 600 POIs.
+    if (keyword && liveFeatures.length > 0) {
+      return { type: 'FeatureCollection', features: liveFeatures }
+    }
+    return { type: 'FeatureCollection', features: filteredFeatures }
+  }, [keyword, liveFeatures, filteredFeatures])
+
+  const mapFeatureSource = keyword && liveFeatures.length > 0 ? 'live' : 'static'
+
+  // Sidebar list: viewport-synced when no keyword, live results when typing.
+  const visibleFeatures = useMemo(() => {
+    if (keyword) return filteredFeatures
+    if (!bounds) return filteredFeatures.slice(0, 40)
+    const [west, south, east, north] = bounds
+    return filteredFeatures
+      .filter((f) => {
+        const [lng, lat] = f.geometry.coordinates
+        return lng >= west && lng <= east && lat >= south && lat <= north
+      })
+      .slice(0, 60)
+  }, [keyword, filteredFeatures, bounds])
 
   const focusFeature = useMemo(
     () => (focusId ? POIS.features.find((f) => f.properties.id === focusId) : null),
@@ -193,6 +235,8 @@ export const SearchPage = () => {
             geojson={geoCollection}
             className="h-[360px] w-full overflow-hidden border-y border-line sm:h-[480px] sm:rounded-3xl sm:border lg:h-[620px]"
             onPoiClick={handlePoiClick}
+            onBoundsChange={setBounds}
+            fitToFeatures={mapFeatureSource === 'live'}
           />
           <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-2 shadow-card backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
@@ -300,38 +344,50 @@ export const SearchPage = () => {
             </div>
           )}
 
-          {keyword && (
-            <section>
-              <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-                {t('page.search.liveResults', {
-                  lang: i18n.language.toUpperCase(),
-                  count: liveItems.length,
-                })}
-                {liveLoading && (
-                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
-                )}
-              </p>
-              {liveSource === 'mock' && (
-                <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
-                  {t('page.search.mockNotice')}
-                </p>
+          <section>
+            <p className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+              {keyword
+                ? t('page.search.liveResults', {
+                    lang: i18n.language.toUpperCase(),
+                    count: liveItems.length,
+                  })
+                : t('page.search.visibleCount', { count: visibleFeatures.length })}
+              {liveLoading && (
+                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand" />
               )}
-              <ul className="space-y-2">
-                {liveItems.slice(0, 8).map((item) => (
-                  <li key={item.id}>
+            </p>
+            {keyword && liveSource === 'mock' && (
+              <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
+                {t('page.search.mockNotice')}
+              </p>
+            )}
+            <ul className="space-y-2">
+              {(keyword
+                ? liveItems.slice(0, 12).map((it) => ({
+                    id: it.id,
+                    title: it.title,
+                    addr: it.addr,
+                    thumb: it.thumbnail ?? null,
+                  }))
+                : visibleFeatures.slice(0, 20).map((f) => ({
+                    id: f.properties.id,
+                    title: f.properties.title,
+                    addr: f.properties.addr,
+                    thumb: f.properties.thumbnail,
+                  }))
+              ).map(({ id, title, addr, thumb }) => {
+                return (
+                  <li key={id}>
                     <button
                       type="button"
-                      onClick={() => {
-                        const matching = POIS.features.find((f) => f.properties.id === item.id)
-                        if (matching) {
-                          setFocusId(item.id)
-                        }
-                      }}
-                      className="nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                      onClick={() => setFocusId(id)}
+                      className={`nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+                        focusId === id ? 'ring-2 ring-brand' : ''
+                      }`}
                     >
-                      {item.thumbnail ? (
+                      {thumb ? (
                         <img
-                          src={item.thumbnail}
+                          src={thumb}
                           alt=""
                           loading="lazy"
                           className="h-11 w-11 shrink-0 rounded-lg object-cover"
@@ -343,9 +399,9 @@ export const SearchPage = () => {
                       )}
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-[13px] font-semibold tracking-tight text-ink">
-                          {item.title}
+                          {title}
                         </p>
-                        <p className="mt-0.5 truncate text-[11px] text-ink-3">{item.addr}</p>
+                        <p className="mt-0.5 truncate text-[11px] text-ink-3">{addr}</p>
                       </div>
                       <ChevronRightIcon
                         size={16}
@@ -354,15 +410,20 @@ export const SearchPage = () => {
                       />
                     </button>
                   </li>
-                ))}
-                {!liveLoading && liveItems.length === 0 && keyword.length >= 2 && (
-                  <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
-                    {t('page.search.noResultsHint')}
-                  </li>
-                )}
-              </ul>
-            </section>
-          )}
+                )
+              })}
+              {!liveLoading && keyword && liveItems.length === 0 && keyword.length >= 2 && (
+                <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                  {t('page.search.noResultsHint')}
+                </li>
+              )}
+              {!keyword && visibleFeatures.length === 0 && (
+                <li className="rounded-xl border border-dashed border-line bg-canvas-2 px-4 py-3 text-[11px] text-ink-3">
+                  {t('page.search.emptyViewport')}
+                </li>
+              )}
+            </ul>
+          </section>
         </aside>
       </div>
     </div>

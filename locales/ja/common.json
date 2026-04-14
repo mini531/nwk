@@ -208,7 +208,9 @@
       "noResultsTitle": "一致する観光地がありません",
       "noResultsHint": "別のキーワードを試すか、フィルターを「すべて」に切替えてください",
       "matchCount": "検索結果 {{count}}件",
-      "liveResults": "{{lang}} · TourAPIライブ {{count}}件"
+      "liveResults": "{{lang}} · TourAPIライブ {{count}}件",
+      "visibleCount": "表示中の観光地 {{count}}件",
+      "emptyViewport": "ズームアウトすると観光地が増えます"
     },
     "map": {
       "title": "地図",

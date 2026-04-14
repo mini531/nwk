@@ -164,7 +164,7 @@
       "searchEyebrow": "직접 검색",
       "searchCta": "다른 장소 직접 검색하기",
       "exploreMapLabel": "관광 지도 열기",
-      "exploreMapTitle": "전국 600+ 관광지 클러스터 지도 탐색",
+      "exploreMapTitle": "대한민국 핵심 관광지 600+ 지도로 탐색하기",
       "essentials": "여행 필수",
       "todayLabel": "Today",
       "today": {
@@ -208,7 +208,9 @@
       "noResultsTitle": "일치하는 관광지가 없어요",
       "noResultsHint": "다른 키워드로 시도하거나 필터를 전체로 바꿔보세요",
       "matchCount": "검색 결과 {{count}}개",
-      "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건"
+      "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건",
+      "visibleCount": "현재 화면의 관광지 {{count}}개",
+      "emptyViewport": "화면을 축소하면 더 많은 관광지가 나타납니다"
     },
     "map": {
       "title": "지도",
