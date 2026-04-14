@@ -3,6 +3,8 @@
 @theme {
   /* Surfaces */
   --color-canvas: #faf8f3;
+  --color-canvas-2: #f3efe5;
+  --color-canvas-3: #ebe6d8;
   --color-surface: #ffffff;
   --color-line: #ece7db;
   --color-line-strong: #d8d2c2;

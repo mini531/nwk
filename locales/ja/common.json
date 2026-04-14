@@ -18,6 +18,11 @@
       "searchCta": "観光地を探す",
       "essentials": "旅の必需",
       "todayLabel": "Today",
+      "today": {
+        "fx": "為替",
+        "weather": "ソウル",
+        "time": "KST"
+      },
       "tiles": {
         "nearby": { "title": "周辺", "desc": "現在地のおすすめ" },
         "prices": { "title": "物価", "desc": "現地の相場" },

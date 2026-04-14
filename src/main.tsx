@@ -5,6 +5,7 @@ import './index.css'
 import { router } from './router'
 import { detectLang, initI18n } from './i18n'
 import { useAppStore } from './stores/app-store'
+import { ErrorBoundary } from './components/error-boundary'
 
 const lang = detectLang()
 await initI18n(lang)
@@ -12,7 +13,9 @@ useAppStore.setState({ lang })
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
   </StrictMode>,
 )
 

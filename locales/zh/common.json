@@ -18,6 +18,11 @@
       "searchCta": "搜索景点",
       "essentials": "旅行必备",
       "todayLabel": "Today",
+      "today": {
+        "fx": "汇率",
+        "weather": "首尔",
+        "time": "KST"
+      },
       "tiles": {
         "nearby": { "title": "周边", "desc": "基于位置推荐" },
         "prices": { "title": "物价", "desc": "当地平均价" },

@@ -9,6 +9,7 @@ import {
   TrainIcon,
 } from '../components/icons'
 import type { ComponentType, SVGProps } from 'react'
+import { useKstClock } from '../hooks/use-kst-clock'
 
 interface Tile {
   key: 'nearby' | 'prices' | 'transit' | 'tips'
@@ -33,6 +34,7 @@ const toneClasses: Record<Tile['tone'], { bg: string; text: string }> = {
 
 export const HomePage = () => {
   const { t } = useTranslation()
+  const kst = useKstClock()
 
   return (
     <div className="space-y-8 pb-4">
@@ -100,19 +102,23 @@ export const HomePage = () => {
         </p>
         <div className="mt-3 grid grid-cols-3 gap-4">
           <div>
-            <p className="text-[11px] uppercase tracking-wider text-ink-3">KRW / USD</p>
-            <p className="mt-1 text-base font-semibold tabular-nums tracking-tight text-ink">
-              1,372
+            <p className="text-[11px] uppercase tracking-wider text-ink-3">
+              {t('page.home.today.fx')}
             </p>
+            <p className="mt-1 text-base font-semibold tabular-nums tracking-tight text-ink-3">—</p>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-wider text-ink-3">Seoul</p>
-            <p className="mt-1 text-base font-semibold tabular-nums tracking-tight text-ink">16°</p>
+            <p className="text-[11px] uppercase tracking-wider text-ink-3">
+              {t('page.home.today.weather')}
+            </p>
+            <p className="mt-1 text-base font-semibold tabular-nums tracking-tight text-ink-3">—</p>
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-wider text-ink-3">KST</p>
+            <p className="text-[11px] uppercase tracking-wider text-ink-3">
+              {t('page.home.today.time')}
+            </p>
             <p className="mt-1 text-base font-semibold tabular-nums tracking-tight text-ink">
-              15:42
+              {kst}
             </p>
           </div>
         </div>

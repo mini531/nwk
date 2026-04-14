@@ -18,6 +18,11 @@
       "searchCta": "Find a place to visit",
       "essentials": "Essentials",
       "todayLabel": "Today",
+      "today": {
+        "fx": "KRW / USD",
+        "weather": "Seoul",
+        "time": "KST"
+      },
       "tiles": {
         "nearby": { "title": "Nearby", "desc": "Picks around you" },
         "prices": { "title": "Local prices", "desc": "Average costs you'll see" },

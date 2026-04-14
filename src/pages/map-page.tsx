@@ -15,7 +15,7 @@ export const MapPage = () => {
           className="absolute inset-0 opacity-70"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 30% 20%, var(--color-brand-soft), transparent 45%), radial-gradient(circle at 70% 70%, var(--color-accent-soft), transparent 50%), linear-gradient(180deg, #f3efe5 0%, #ebe6d8 100%)',
+              'radial-gradient(circle at 30% 20%, var(--color-brand-soft), transparent 45%), radial-gradient(circle at 70% 70%, var(--color-accent-soft), transparent 50%), linear-gradient(180deg, var(--color-canvas-2) 0%, var(--color-canvas-3) 100%)',
           }}
         />
         <svg
