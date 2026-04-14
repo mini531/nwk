@@ -295,7 +295,10 @@
       },
       "sourceNote": "2025年ソウル・釜山平均価格 · 韓国消費者院・公共データ出典",
       "sourceBadge": "実データ出典",
-      "sourceSamples": "行政洞の平均"
+      "sourceSamples": "行政洞の平均",
+      "openKit": "必需キットを開く",
+      "reportLabel": "民願・通訳ホットライン",
+      "reportTitle": "1330 観光案内 (24時間無料)"
     },
     "kit": {
       "eyebrow": "実用情報",

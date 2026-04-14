@@ -295,7 +295,10 @@
       },
       "sourceNote": "2025년 서울·부산 평균가 기준 · 한국소비자원·공공데이터 출처",
       "sourceBadge": "실데이터 출처",
-      "sourceSamples": "개 행정동 평균"
+      "sourceSamples": "개 행정동 평균",
+      "openKit": "필수키트 보기",
+      "reportLabel": "민원·통역 핫라인",
+      "reportTitle": "1330 관광안내 (24시간 무료)"
     },
     "kit": {
       "eyebrow": "실용 정보",

@@ -295,7 +295,10 @@
       },
       "sourceNote": "Based on 2025 Seoul & Busan averages · Public data from Korea Consumer Agency",
       "sourceBadge": "Live source",
-      "sourceSamples": " administrative dong averaged"
+      "sourceSamples": " administrative dong averaged",
+      "openKit": "Open the Kit",
+      "reportLabel": "Report hotline",
+      "reportTitle": "1330 Tourist Helpline (free, 24/7)"
     },
     "kit": {
       "eyebrow": "Practical info",

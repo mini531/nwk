@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   PRICE_CATALOG,
@@ -544,13 +545,39 @@ export const CheckPage = () => {
             )}
           </section>
 
-          <button
-            type="button"
-            onClick={reset}
-            className="w-full rounded-2xl border border-line bg-white py-3.5 text-[14px] font-semibold text-ink transition hover:border-line-strong"
-          >
-            {t('page.check.again')}
-          </button>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={reset}
+              className="rounded-2xl border border-line bg-white py-3.5 text-[13px] font-semibold text-ink transition hover:border-line-strong"
+            >
+              {t('page.check.again')}
+            </button>
+            <Link
+              to="/kit"
+              className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-white transition-transform active:scale-[0.99]"
+            >
+              {t('page.check.openKit')}
+              <ArrowRightIcon size={14} />
+            </Link>
+          </div>
+
+          {result.verdict !== 'fair' && (
+            <a
+              href="tel:1330"
+              className="flex items-center justify-between rounded-2xl border border-danger/30 bg-danger/5 px-4 py-3 transition hover:bg-danger/10"
+            >
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-danger">
+                  {t('page.check.reportLabel')}
+                </p>
+                <p className="mt-0.5 text-[13px] font-semibold tracking-tight text-ink">
+                  {t('page.check.reportTitle')}
+                </p>
+              </div>
+              <span className="text-[18px] font-bold tabular-nums text-danger">1330</span>
+            </a>
+          )}
         </div>
       )}
     </div>
