@@ -11,24 +11,55 @@
   },
   "page": {
     "home": {
-      "title": "No Worries Korea",
-      "nearby": "Nearby",
-      "prices": "Prices",
-      "transit": "Transit",
-      "tips": "Tips"
+      "eyebrow": "Travel safety net",
+      "headline": "Travel Korea, worry-free.",
+      "subhead": "Local prices, transit and etiquette at a glance — with tips tailored to where you go.",
+      "searchEyebrow": "Get started",
+      "searchCta": "Find a place to visit",
+      "essentials": "Essentials",
+      "todayLabel": "Today",
+      "tiles": {
+        "nearby": { "title": "Nearby", "desc": "Picks around you" },
+        "prices": { "title": "Local prices", "desc": "Average costs you'll see" },
+        "transit": { "title": "Transit", "desc": "Subway, bus, taxi" },
+        "tips": { "title": "Travel tips", "desc": "Safety & etiquette" }
+      }
     },
     "search": {
       "title": "Search",
-      "placeholder": "Search attractions",
+      "subhead": "Find attractions across Korea by keyword.",
+      "placeholder": "e.g. Gyeongbokgung, Busan, hanok",
       "loading": "Searching...",
-      "mockNotice": "Showing demo data. TourAPI key not configured."
+      "mockNotice": "Showing demo data. Live results will appear once a TourAPI key is configured.",
+      "emptyTitle": "Where to next?",
+      "emptyHint": "Search by city, sight, or keyword",
+      "filters": {
+        "all": "All",
+        "sights": "Sights",
+        "food": "Food",
+        "transit": "Transit"
+      }
     },
-    "map": { "title": "Map", "loading": "Loading map..." },
+    "map": {
+      "title": "Map",
+      "subhead": "Discover places and routes around you.",
+      "loading": "Map view coming soon",
+      "placeholder": "In development",
+      "searchHere": "Search this area"
+    },
     "profile": {
       "title": "Me",
-      "signin": "Sign in with Google",
+      "signin": "Continue with Google",
       "signout": "Sign out",
-      "signedInAs": "Signed in as"
+      "signedInAs": "Signed in",
+      "anonymous": "Anonymous user",
+      "guest": "Browsing as guest",
+      "guestHint": "Sign in to save favorites and history",
+      "rows": {
+        "language": "Language",
+        "saved": "Saved places",
+        "about": "About NWK"
+      }
     }
   },
   "lang": { "label": "Language" }

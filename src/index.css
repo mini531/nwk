@@ -1,11 +1,37 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-nwk-primary: #0066ff;
-  --color-nwk-danger: #ff3b30;
-  --color-nwk-warn: #ff9500;
-  --color-nwk-safe: #34c759;
-  --font-sans: 'Pretendard', system-ui, -apple-system, 'Noto Sans KR', sans-serif;
+  /* Surfaces */
+  --color-canvas: #faf8f3;
+  --color-surface: #ffffff;
+  --color-line: #ece7db;
+  --color-line-strong: #d8d2c2;
+
+  /* Ink */
+  --color-ink: #181715;
+  --color-ink-2: #5a564f;
+  --color-ink-3: #908a7e;
+
+  /* Brand */
+  --color-brand: #0e4744;
+  --color-brand-soft: #d6e2e0;
+  --color-brand-ink: #062624;
+
+  /* Accent (sparingly: CTAs, active states, alerts) */
+  --color-accent: #c4532a;
+  --color-accent-soft: #f4e2d8;
+
+  /* Status */
+  --color-warn: #b8741b;
+  --color-warn-soft: #f8ecd6;
+  --color-danger: #a8331f;
+
+  --font-sans: 'Pretendard', 'Inter', system-ui, -apple-system, 'Noto Sans KR', sans-serif;
+  --font-display: 'Pretendard', 'Inter', system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 0 rgb(24 23 21 / 0.04), 0 1px 3px rgb(24 23 21 / 0.04);
+  --shadow-pop: 0 2px 0 rgb(24 23 21 / 0.04), 0 6px 24px -8px rgb(24 23 21 / 0.18);
 }
 
 @layer base {
@@ -19,15 +45,37 @@
   }
 
   body {
-    @apply bg-white text-neutral-900 antialiased touch-manipulation;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
     font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* iOS 안전 영역 대응 */
   #root {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .nwk-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .nwk-divider {
+    height: 1px;
+    background-color: var(--color-line);
   }
 }

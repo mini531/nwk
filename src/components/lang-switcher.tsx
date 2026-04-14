@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { SUPPORTED_LANGS, type SupportedLang } from '../i18n'
 import { useAppStore } from '../stores/app-store'
+import { ChevronDownIcon, GlobeIcon } from './icons'
 
 const LABELS: Record<SupportedLang, string> = {
   ko: '한국어',
@@ -15,12 +16,16 @@ export const LangSwitcher = () => {
   const setLang = useAppStore((s) => s.setLang)
 
   return (
-    <label className="flex items-center gap-2 text-sm text-neutral-600">
+    <label className="relative inline-flex items-center gap-1.5 rounded-full border border-line bg-white/70 px-3 py-1.5 text-sm text-ink-2 backdrop-blur transition hover:border-line-strong hover:text-ink">
       <span className="sr-only">{t('lang.label')}</span>
+      <GlobeIcon size={16} className="text-ink-3" />
+      <span className="font-medium tracking-tight">{LABELS[lang]}</span>
+      <ChevronDownIcon size={12} className="text-ink-3" />
       <select
         value={lang}
         onChange={(e) => setLang(e.target.value as SupportedLang)}
-        className="rounded-md border border-neutral-300 bg-white px-2 py-1 text-sm"
+        className="absolute inset-0 cursor-pointer opacity-0"
+        aria-label={t('lang.label')}
       >
         {SUPPORTED_LANGS.map((l) => (
           <option key={l} value={l}>

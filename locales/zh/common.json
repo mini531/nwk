@@ -11,24 +11,55 @@
   },
   "page": {
     "home": {
-      "title": "No Worries Korea",
-      "nearby": "周边",
-      "prices": "物价",
-      "transit": "交通",
-      "tips": "注意事项"
+      "eyebrow": "旅行安全网",
+      "headline": "畅游韩国, 无忧无虑.",
+      "subhead": "当地物价、交通与礼仪一目了然, 还有针对目的地的实用提醒.",
+      "searchEyebrow": "立即开始",
+      "searchCta": "搜索景点",
+      "essentials": "旅行必备",
+      "todayLabel": "Today",
+      "tiles": {
+        "nearby": { "title": "周边", "desc": "基于位置推荐" },
+        "prices": { "title": "物价", "desc": "当地平均价" },
+        "transit": { "title": "交通", "desc": "地铁·公交·出租" },
+        "tips": { "title": "注意事项", "desc": "安全与礼仪" }
+      }
     },
     "search": {
       "title": "搜索",
-      "placeholder": "搜索景点",
+      "subhead": "用关键词搜索韩国各地景点.",
+      "placeholder": "例如: 景福宫、釜山、韩屋",
       "loading": "搜索中...",
-      "mockNotice": "演示数据。未配置 TourAPI 密钥。"
+      "mockNotice": "当前为演示数据, 配置 TourAPI 密钥后将切换为实时结果.",
+      "emptyTitle": "想去哪里?",
+      "emptyHint": "按城市、景点或关键词搜索",
+      "filters": {
+        "all": "全部",
+        "sights": "景点",
+        "food": "美食",
+        "transit": "交通"
+      }
     },
-    "map": { "title": "地图", "loading": "加载中..." },
+    "map": {
+      "title": "地图",
+      "subhead": "在地图上发现周边与路线.",
+      "loading": "地图功能即将上线",
+      "placeholder": "开发中",
+      "searchHere": "搜索此区域"
+    },
     "profile": {
       "title": "我的",
       "signin": "使用 Google 登录",
       "signout": "退出登录",
-      "signedInAs": "已登录"
+      "signedInAs": "已登录",
+      "anonymous": "匿名用户",
+      "guest": "以访客浏览",
+      "guestHint": "登录以保存收藏与历史",
+      "rows": {
+        "language": "语言",
+        "saved": "已保存",
+        "about": "关于 NWK"
+      }
     }
   },
   "lang": { "label": "语言" }

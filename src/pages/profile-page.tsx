@@ -1,5 +1,20 @@
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/use-auth'
+import {
+  ChevronRightIcon,
+  GlobeIcon,
+  LogOutIcon,
+  PinIcon,
+  ShieldIcon,
+  UserIcon,
+} from '../components/icons'
+
+const initialsOf = (name: string | null | undefined, fallback: string) => {
+  const src = (name ?? fallback).trim()
+  if (!src) return 'NW'
+  const parts = src.split(/\s+/).slice(0, 2)
+  return parts.map((p) => p[0]?.toUpperCase() ?? '').join('') || src.slice(0, 2).toUpperCase()
+}
 
 export const ProfilePage = () => {
   const { t } = useTranslation()
@@ -7,39 +22,91 @@ export const ProfilePage = () => {
 
   if (loading) {
     return (
-      <section className="mx-auto max-w-md">
-        <div className="mt-10 text-center text-sm text-neutral-500">...</div>
-      </section>
+      <div className="space-y-5">
+        <div className="nwk-card h-32 animate-pulse" />
+        <div className="nwk-card h-44 animate-pulse" />
+      </div>
     )
   }
 
   return (
-    <section className="mx-auto max-w-md">
-      <h2 className="text-2xl font-bold text-neutral-900">{t('page.profile.title')}</h2>
+    <div className="space-y-6 pb-4">
+      <header>
+        <h1 className="text-[26px] font-semibold tracking-tight text-ink">
+          {t('page.profile.title')}
+        </h1>
+      </header>
 
       {user ? (
-        <div className="mt-6 space-y-4">
-          <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-neutral-200">
-            <p className="text-sm text-neutral-500">{t('page.profile.signedInAs')}</p>
-            <p className="mt-1 truncate text-base font-medium text-neutral-900">
-              {user.displayName ?? user.email ?? user.uid}
-            </p>
+        <section className="nwk-card p-5">
+          <div className="flex items-center gap-4">
+            <div className="grid h-14 w-14 place-items-center rounded-full bg-brand text-base font-semibold tracking-wide text-white">
+              {initialsOf(user.displayName, user.email ?? user.uid)}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-base font-semibold tracking-tight text-ink">
+                {user.displayName ?? user.email ?? t('page.profile.anonymous')}
+              </p>
+              <p className="mt-0.5 truncate text-[13px] text-ink-3">
+                {user.email ?? t('page.profile.signedInAs')}
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="nwk-card p-5">
+          <div className="flex items-center gap-4">
+            <div className="grid h-14 w-14 place-items-center rounded-full bg-line text-ink-3">
+              <UserIcon size={26} />
+            </div>
+            <div className="flex-1">
+              <p className="text-base font-semibold tracking-tight text-ink">
+                {t('page.profile.guest')}
+              </p>
+              <p className="mt-0.5 text-[13px] text-ink-3">{t('page.profile.guestHint')}</p>
+            </div>
           </div>
           <button
-            onClick={() => logout()}
-            className="w-full rounded-xl border border-neutral-300 bg-white py-3 text-base font-medium text-neutral-700 active:scale-95"
+            type="button"
+            onClick={() => signIn().catch((e) => console.error(e))}
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3.5 text-[15px] font-medium tracking-tight text-white transition-transform active:scale-[0.98]"
           >
-            {t('page.profile.signout')}
+            {t('page.profile.signin')}
           </button>
-        </div>
-      ) : (
+        </section>
+      )}
+
+      <section className="nwk-card overflow-hidden">
+        <Row icon={<GlobeIcon size={18} />} label={t('page.profile.rows.language')} />
+        <Divider />
+        <Row icon={<PinIcon size={18} />} label={t('page.profile.rows.saved')} />
+        <Divider />
+        <Row icon={<ShieldIcon size={18} />} label={t('page.profile.rows.about')} />
+      </section>
+
+      {user && (
         <button
-          onClick={() => signIn().catch((e) => console.error(e))}
-          className="mt-6 w-full rounded-xl bg-nwk-primary py-3 text-base font-medium text-white shadow-sm active:scale-95"
+          type="button"
+          onClick={() => logout().catch((e) => console.error(e))}
+          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-line bg-white py-3.5 text-sm font-medium tracking-tight text-ink-2 transition hover:border-line-strong hover:text-ink"
         >
-          {t('page.profile.signin')}
+          <LogOutIcon size={16} />
+          {t('page.profile.signout')}
         </button>
       )}
-    </section>
+    </div>
   )
 }
+
+const Row = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
+  <button
+    type="button"
+    className="flex w-full items-center gap-3 px-5 py-4 text-left transition-colors hover:bg-canvas"
+  >
+    <span className="grid h-9 w-9 place-items-center rounded-lg bg-canvas text-ink-2">{icon}</span>
+    <span className="flex-1 text-[15px] tracking-tight text-ink">{label}</span>
+    <ChevronRightIcon size={18} className="text-ink-3" />
+  </button>
+)
+
+const Divider = () => <div className="mx-5 h-px bg-line" />

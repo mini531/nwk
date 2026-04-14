@@ -11,24 +11,55 @@
   },
   "page": {
     "home": {
-      "title": "No Worries Korea",
-      "nearby": "주변 탐색",
-      "prices": "물가 정보",
-      "transit": "교통",
-      "tips": "주의사항"
+      "eyebrow": "여행 안전망",
+      "headline": "한국 여행, 걱정 없이.",
+      "subhead": "현지 물가·교통·에티켓을 한눈에. 여행지에 맞춘 주의사항까지.",
+      "searchEyebrow": "지금 시작",
+      "searchCta": "관광지 검색하기",
+      "essentials": "여행 필수",
+      "todayLabel": "Today",
+      "tiles": {
+        "nearby": { "title": "주변 탐색", "desc": "내 위치 기반 추천" },
+        "prices": { "title": "물가 정보", "desc": "현지 평균가 비교" },
+        "transit": { "title": "교통 안내", "desc": "지하철·버스·택시" },
+        "tips": { "title": "주의사항", "desc": "안전 수칙·에티켓" }
+      }
     },
     "search": {
       "title": "검색",
-      "placeholder": "관광지 검색",
+      "subhead": "한국 전역의 관광지를 키워드로 찾아보세요.",
+      "placeholder": "예: 경복궁, 부산, 한옥",
       "loading": "검색 중...",
-      "mockNotice": "데모 데이터입니다. TourAPI 키 미설정."
+      "mockNotice": "데모 데이터입니다. TourAPI 키 설정 시 실시간 결과로 전환됩니다.",
+      "emptyTitle": "어디로 떠나볼까요?",
+      "emptyHint": "도시·명소·키워드로 검색",
+      "filters": {
+        "all": "전체",
+        "sights": "명소",
+        "food": "음식",
+        "transit": "교통"
+      }
     },
-    "map": { "title": "지도", "loading": "지도 로딩 중..." },
+    "map": {
+      "title": "지도",
+      "subhead": "주변 관광지와 추천 동선을 지도에서.",
+      "loading": "지도 준비 중",
+      "placeholder": "준비 중인 기능",
+      "searchHere": "이 지역에서 검색"
+    },
     "profile": {
       "title": "내정보",
       "signin": "Google로 로그인",
       "signout": "로그아웃",
-      "signedInAs": "로그인됨"
+      "signedInAs": "로그인됨",
+      "anonymous": "익명 사용자",
+      "guest": "게스트로 둘러보는 중",
+      "guestHint": "로그인하면 즐겨찾기·이력이 저장돼요",
+      "rows": {
+        "language": "언어",
+        "saved": "저장한 장소",
+        "about": "앱 정보"
+      }
     }
   },
   "lang": { "label": "언어" }
