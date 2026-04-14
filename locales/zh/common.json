@@ -66,6 +66,8 @@
     "home": {
       "eyebrow": "公共数据 · 四语种",
       "headline": "换汇之前, 先看韩国真实物价.",
+      "liveLabel": "最新判定",
+      "liveNote": "基于消费者院公开案例",
       "rightNowLabel": "首尔此刻",
       "prices": {
         "americano": "咖啡馆美式",

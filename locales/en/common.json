@@ -66,6 +66,8 @@
     "home": {
       "eyebrow": "Public data · 4 languages",
       "headline": "Before you exchange — real Korean prices.",
+      "liveLabel": "Fresh verdicts",
+      "liveNote": "Based on Consumer Agency cases",
       "rightNowLabel": "Seoul right now",
       "prices": {
         "americano": "Cafe americano",

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { MapView, type MapMarker } from '../components/map-view'
+import { LiveTicker } from '../components/live-ticker'
 import { HOTSPOTS } from '../data/hotspots'
 import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
 import { useAppStore } from '../stores/app-store'
@@ -116,6 +117,16 @@ export const HomePage = () => {
   return (
     <div className="-mx-5 space-y-7 pb-6">
       <section className="px-5 pt-1">
+        <div className="mb-4 flex items-baseline justify-between">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3">
+            {t('page.home.liveLabel')}
+          </p>
+          <p className="text-[10px] text-ink-3">{t('page.home.liveNote')}</p>
+        </div>
+        <LiveTicker />
+      </section>
+
+      <section className="px-5">
         <div className="flex items-baseline justify-between">
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
             {t('page.home.rightNowLabel')}

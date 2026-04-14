@@ -66,6 +66,8 @@
     "home": {
       "eyebrow": "公共データ · 4言語",
       "headline": "両替の前に、韓国のリアル物価。",
+      "liveLabel": "最新の判定",
+      "liveNote": "消費者院の公開事例をもとに",
       "rightNowLabel": "ソウルのいま",
       "prices": {
         "americano": "カフェのアメリカーノ",

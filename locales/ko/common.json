@@ -66,6 +66,8 @@
     "home": {
       "eyebrow": "공공데이터 기반 · 4개 언어",
       "headline": "환전 전에, 한국 진짜 물가.",
+      "liveLabel": "방금 들어온 판정",
+      "liveNote": "소비자원 공개 사례 기반",
       "rightNowLabel": "서울 지금",
       "prices": {
         "americano": "카페 아메리카노",
