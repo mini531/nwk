@@ -50,10 +50,22 @@ const BUCHEON_MAP: Record<string, string> = {
   bulgogi_1p: '불고기',
   ramyeon_restaurant: '조리라면(외식)',
   donkatsu: '돈까스',
+  seolleongtang: '설렁탕',
+  dwaeji_galbi_200g: '돼지갈비(외식)',
+  tangsuyuk: '탕수육',
+  sushi_set: '생선초밥',
+  burger_korean: '햄버거',
+  pizza_regular: '피자',
   americano: '커피(외식)',
+  tea_latte: '차(외식)',
   hotel_3star: '숙박(호텔)',
   hostel_dorm: '숙박(여관)',
   jjimjilbang_entry: '찜질방이용료',
+  noraebang_1h: '노래방이용료',
+  public_bath: '목욕료',
+  movie_ticket: '영화관람료',
+  mens_haircut: '이용료',
+  womens_haircut: '미용료(컷트)',
 }
 
 export interface LiveOverride {

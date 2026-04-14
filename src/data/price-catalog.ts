@@ -57,12 +57,18 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'udon', category: 'food', fairMin: 7000, fairMax: 10000 },
   { id: 'sujebi', category: 'food', fairMin: 8000, fairMax: 11000 },
   { id: 'pajeon', category: 'food', fairMin: 12000, fairMax: 18000 },
+  { id: 'dwaeji_galbi_200g', category: 'food', fairMin: 13000, fairMax: 18000, unit: '200g 1인분' },
+  { id: 'tangsuyuk', category: 'food', fairMin: 18000, fairMax: 27000, unit: '중화요리 1접시' },
+  { id: 'sushi_set', category: 'food', fairMin: 15000, fairMax: 25000, unit: '일식 1인분' },
+  { id: 'burger_korean', category: 'food', fairMin: 4000, fairMax: 6000, unit: '단품' },
+  { id: 'pizza_regular', category: 'food', fairMin: 15000, fairMax: 22000, unit: '레귤러' },
 
   { id: 'americano', category: 'drink', fairMin: 3500, fairMax: 5500, popular: true },
   { id: 'cafe_latte', category: 'drink', fairMin: 4500, fairMax: 6500, popular: true },
   { id: 'water_500ml', category: 'drink', fairMin: 1000, fairMax: 2000, unit: '관광지·노점' },
   { id: 'soju_bottle', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '식당' },
   { id: 'beer_500ml', category: 'drink', fairMin: 5000, fairMax: 7000, unit: '식당 생맥주' },
+  { id: 'tea_latte', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '녹차라떼 1잔' },
 
   {
     id: 'taxi_seoul',
@@ -103,6 +109,11 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'tourist_massage_1h', category: 'tourism', fairMin: 40000, fairMax: 80000, unit: '60분' },
   { id: 'tornado_potato', category: 'tourism', fairMin: 3500, fairMax: 5500, unit: '관광지 노점' },
   { id: 'odeng_cup', category: 'tourism', fairMin: 1000, fairMax: 2500, unit: '노점 1컵' },
+  { id: 'noraebang_1h', category: 'tourism', fairMin: 20000, fairMax: 30000, unit: '저녁 1시간' },
+  { id: 'public_bath', category: 'tourism', fairMin: 9000, fairMax: 12000, unit: '대중목욕탕' },
+  { id: 'movie_ticket', category: 'tourism', fairMin: 14000, fairMax: 17000, unit: '1매' },
+  { id: 'mens_haircut', category: 'tourism', fairMin: 8000, fairMax: 15000, unit: '남자 중급' },
+  { id: 'womens_haircut', category: 'tourism', fairMin: 12000, fairMax: 22000, unit: '여자 중급' },
 
   { id: 'atm_global', category: 'fee', fairMin: 1000, fairMax: 1500, unit: '1회', popular: true },
   { id: 'atm_airport', category: 'fee', fairMin: 3500, fairMax: 5000, unit: '1회' },
