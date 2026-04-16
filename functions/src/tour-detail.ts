@@ -135,6 +135,8 @@ export const tourNearby = onCall(
       lng?: unknown
       radius?: unknown
       lang?: unknown
+      pageNo?: unknown
+      numOfRows?: unknown
     }
     const lat = Number(data.lat)
     const lng = Number(data.lng)
@@ -144,7 +146,9 @@ export const tourNearby = onCall(
     if (lat < 33 || lat > 39 || lng < 124 || lng > 132) {
       throw new HttpsError('invalid-argument', 'coordinates out of Korea bounds')
     }
-    const radius = Math.min(Math.max(Number(data.radius) || 2000, 100), 20000)
+    const radius = Math.min(Math.max(Number(data.radius) || 2000, 100), 50000)
+    const pageNo = Math.max(1, Math.min(100, Number(data.pageNo) || 1))
+    const numOfRows = Math.max(10, Math.min(100, Number(data.numOfRows) || 40))
     const service = resolveService(data.lang)
     let key: string | undefined
     try {
@@ -162,8 +166,8 @@ export const tourNearby = onCall(
       url.searchParams.set('MobileOS', 'ETC')
       url.searchParams.set('MobileApp', 'NWK')
       url.searchParams.set('_type', 'json')
-      url.searchParams.set('numOfRows', '40')
-      url.searchParams.set('pageNo', '1')
+      url.searchParams.set('numOfRows', String(numOfRows))
+      url.searchParams.set('pageNo', String(pageNo))
       url.searchParams.set('arrange', 'Q')
       url.searchParams.set('mapX', String(lng))
       url.searchParams.set('mapY', String(lat))

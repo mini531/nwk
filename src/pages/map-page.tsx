@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { TourMap, type PoiProperties } from '../components/tour-map'
 import { useAppStore } from '../stores/app-store'
 import { tourNearby, type TourSearchItem, type TourNearbyItem } from '../utils/api'
 
-const KOREA_CENTER: [number, number] = [127.0, 36.5]
+const SEOUL: [number, number] = [126.978, 37.566]
 const EMPTY_FC: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties> = {
   type: 'FeatureCollection',
   features: [],
 }
+const PAGE_SIZE = 40
 
 export const MapPage = () => {
   const { t } = useTranslation()
@@ -18,8 +19,11 @@ export const MapPage = () => {
 
   const [places, setPlaces] = useState<TourSearchItem[]>([])
   const [loading, setLoading] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
   const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
   const [panelOpen, setPanelOpen] = useState(true)
+  const pageRef = useRef(1)
+  const hasMoreRef = useRef(true)
 
   useEffect(() => {
     if (!navigator.geolocation) return
@@ -30,15 +34,35 @@ export const MapPage = () => {
     )
   }, [])
 
+  const loadPlaces = useCallback(
+    (page: number, append: boolean) => {
+      const setter = append ? setLoadingMore : setLoading
+      setter(true)
+      const lat = userLoc?.[1] ?? SEOUL[1]
+      const lng = userLoc?.[0] ?? SEOUL[0]
+      tourNearby({ lat, lng, radius: 50000, pageNo: page, numOfRows: PAGE_SIZE })
+        .then((result) => {
+          const items = result.data.items ?? []
+          setPlaces((prev) => (append ? [...prev, ...items] : items))
+          hasMoreRef.current = items.length >= PAGE_SIZE
+        })
+        .catch(() => {})
+        .finally(() => setter(false))
+    },
+    [userLoc],
+  )
+
   useEffect(() => {
-    setLoading(true)
-    const lat = userLoc?.[1] ?? 37.5663
-    const lng = userLoc?.[0] ?? 126.9779
-    tourNearby({ lat, lng, radius: 50000 })
-      .then((result) => setPlaces(result.data.items ?? []))
-      .catch(() => {})
-      .finally(() => setLoading(false))
-  }, [userLoc])
+    pageRef.current = 1
+    hasMoreRef.current = true
+    loadPlaces(1, false)
+  }, [loadPlaces])
+
+  const loadMore = useCallback(() => {
+    if (loadingMore || !hasMoreRef.current) return
+    pageRef.current += 1
+    loadPlaces(pageRef.current, true)
+  }, [loadPlaces, loadingMore])
 
   const geojson = useMemo<GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>>(() => {
     if (!places.length) return EMPTY_FC
@@ -72,16 +96,19 @@ export const MapPage = () => {
     [places, setSelectedPlace, navigate],
   )
 
+  const center = userLoc ?? SEOUL
+
   return (
     <>
-      {/* 배경 지도 — 전체 화면 (음수 마진으로 AppLayout padding 상쇄) */}
-      <div className="-mx-5 -mt-6 sm:-mx-6 lg:-mx-8">
+      {/* 전체 화면 배경 지도 — 뷰포트 전폭 (max-w 돌파) */}
+      <div className="-mt-6" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
         <TourMap
           geojson={geojson}
-          center={userLoc ?? KOREA_CENTER}
-          zoom={userLoc ? 12 : 7}
+          center={center}
+          zoom={userLoc ? 13 : 11}
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
           onPoiClick={handlePoiClick}
+          fitToFeatures={places.length > 0 && !userLoc}
         />
       </div>
 
@@ -101,29 +128,32 @@ export const MapPage = () => {
         </div>
       </div>
 
-      {/* 좌측 관광지 패널 (유리 느낌) */}
+      {/* 좌측 유리 패널 */}
       <div
         className={`pointer-events-auto fixed z-20 transition-transform duration-300 ease-out ${
-          panelOpen ? 'translate-x-0' : '-translate-x-[110%]'
+          panelOpen ? 'translate-x-0' : '-translate-x-[calc(100%+16px)]'
         }`}
         style={{ top: 124, left: 12, bottom: 76, width: 340, maxWidth: 'calc(100vw - 60px)' }}
       >
         <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/50 bg-white/85 shadow-2xl backdrop-blur-lg">
-          {/* 헤더 */}
           <div className="flex shrink-0 items-center justify-between border-b border-neutral-200/60 px-4 py-3">
             <h2 className="text-[14px] font-bold text-neutral-800">
               {loading ? '불러오는 중...' : `관광지 ${places.length}개`}
             </h2>
-            <button type="button" onClick={() => setPanelOpen(false)} className="grid h-7 w-7 place-items-center rounded-lg text-neutral-400 hover:bg-neutral-200/50">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            <button
+              type="button"
+              onClick={() => setPanelOpen(false)}
+              className="grid h-7 w-7 place-items-center rounded-lg text-neutral-400 hover:bg-neutral-200/50"
+              title="패널 접기"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
           </div>
 
-          {/* 목록 */}
           <div className="flex-1 overflow-y-auto overscroll-contain">
-            {places.slice(0, 40).map((p) => (
+            {places.map((p) => (
               <button
                 key={p.id}
                 type="button"
@@ -145,33 +175,38 @@ export const MapPage = () => {
                 </div>
               </button>
             ))}
+
+            {/* 더 보기 */}
+            {hasMoreRef.current && places.length > 0 && (
+              <button
+                type="button"
+                onClick={loadMore}
+                disabled={loadingMore}
+                className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400"
+              >
+                {loadingMore ? '불러오는 중...' : '더 보기'}
+              </button>
+            )}
+
             {!loading && places.length === 0 && (
               <p className="px-4 py-12 text-center text-[13px] text-neutral-400">
                 주변 관광지를 불러오는 중입니다...
               </p>
             )}
           </div>
-
-          {/* 풋터 */}
-          <div className="shrink-0 border-t border-neutral-200/60 px-4 py-2">
-            <button type="button" onClick={() => navigate('/search')} className="w-full rounded-xl bg-neutral-800 py-2.5 text-center text-[13px] font-bold text-white transition-colors hover:bg-neutral-700">
-              전체 검색 →
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* 패널 열기 FAB */}
+      {/* 패널 열기 탭 */}
       {!panelOpen && (
         <button
           type="button"
           onClick={() => setPanelOpen(true)}
-          className="fixed z-20 flex items-center gap-2 rounded-r-2xl border border-l-0 border-white/60 bg-white/90 px-3.5 py-2.5 shadow-lg backdrop-blur-md transition-transform active:scale-95"
+          className="fixed z-20 flex items-center gap-2 rounded-r-2xl border border-l-0 border-white/60 bg-white/90 px-3.5 py-2.5 shadow-lg backdrop-blur-md"
           style={{ top: 124, left: 0 }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-neutral-600">
-            <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
-            <circle cx="3.5" cy="6" r="1.5" fill="currentColor" /><circle cx="3.5" cy="12" r="1.5" fill="currentColor" /><circle cx="3.5" cy="18" r="1.5" fill="currentColor" />
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600">
+            <polyline points="9 18 15 12 9 6" />
           </svg>
           <span className="text-[12px] font-bold text-neutral-600">목록</span>
         </button>

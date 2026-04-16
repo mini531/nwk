@@ -32,6 +32,6 @@ export interface TourNearbyResponse {
 }
 
 export const tourNearby = httpsCallable<
-  { lat: number; lng: number; radius?: number; lang?: string },
+  { lat: number; lng: number; radius?: number; lang?: string; pageNo?: number; numOfRows?: number },
   TourNearbyResponse
 >(functions, 'tourNearby')
