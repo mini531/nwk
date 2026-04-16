@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { TourMap, type PoiProperties } from '../components/tour-map'
@@ -22,8 +22,23 @@ export const MapPage = () => {
   const [loadingMore, setLoadingMore] = useState(false)
   const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
   const [panelOpen, setPanelOpen] = useState(true)
+  const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
   const pageRef = useRef(1)
   const hasMoreRef = useRef(true)
+
+  // 지도 페이지 활성 동안 부모 main 스크롤 차단
+  useLayoutEffect(() => {
+    const main = document.getElementById('main')
+    if (!main) return
+    const prev = main.style.overflow
+    const prevPb = main.style.paddingBottom
+    main.style.overflow = 'hidden'
+    main.style.paddingBottom = '0'
+    return () => {
+      main.style.overflow = prev
+      main.style.paddingBottom = prevPb
+    }
+  }, [])
 
   useEffect(() => {
     if (!navigator.geolocation) return
@@ -88,13 +103,18 @@ export const MapPage = () => {
   const handlePoiClick = useCallback(
     (props: PoiProperties) => {
       const place = places.find((p) => p.id === props.id)
-      if (place) {
-        setSelectedPlace(place)
-        navigate('/place')
-      }
+      if (place) setDetailPlace(place)
     },
-    [places, setSelectedPlace, navigate],
+    [places],
   )
+
+  const openDetail = useCallback((p: TourSearchItem) => setDetailPlace(p), [])
+  const closeDetail = useCallback(() => setDetailPlace(null), [])
+  const goToDetail = useCallback(() => {
+    if (!detailPlace) return
+    setSelectedPlace(detailPlace)
+    navigate('/place')
+  }, [detailPlace, setSelectedPlace, navigate])
 
   const center = userLoc ?? SEOUL
 
@@ -152,12 +172,12 @@ export const MapPage = () => {
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto overscroll-contain">
+          <div className="flex-1 overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.15)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/15">
             {places.map((p) => (
               <button
                 key={p.id}
                 type="button"
-                onClick={() => { setSelectedPlace(p); navigate('/place') }}
+                onClick={() => openDetail(p)}
                 className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
               >
                 {p.thumbnail ? (
@@ -210,6 +230,51 @@ export const MapPage = () => {
           </svg>
           <span className="text-[12px] font-bold text-neutral-600">목록</span>
         </button>
+      )}
+
+      {/* 관광지 상세 모달 */}
+      {detailPlace && (
+        <div className="fixed inset-0 z-30 flex items-center justify-center p-4" onClick={closeDetail}>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div
+            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 이미지 */}
+            {detailPlace.thumbnail ? (
+              <img src={detailPlace.thumbnail} alt="" className="h-48 w-full object-cover sm:h-56" />
+            ) : (
+              <div className="grid h-48 w-full place-items-center bg-neutral-100 text-neutral-300 sm:h-56">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+            )}
+
+            {/* 내용 */}
+            <div className="p-5">
+              <h3 className="text-[18px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
+              <p className="mt-1 text-[13px] text-neutral-500">{detailPlace.addr}</p>
+
+              <div className="mt-4 flex gap-2">
+                <button
+                  type="button"
+                  onClick={goToDetail}
+                  className="flex-1 rounded-xl bg-neutral-900 py-3 text-center text-[14px] font-bold text-white transition-colors hover:bg-neutral-800"
+                >
+                  상세 정보 보기
+                </button>
+                <button
+                  type="button"
+                  onClick={closeDetail}
+                  className="rounded-xl border border-neutral-200 bg-white px-5 py-3 text-[14px] font-bold text-neutral-600 transition-colors hover:bg-neutral-50"
+                >
+                  닫기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </>
   )
