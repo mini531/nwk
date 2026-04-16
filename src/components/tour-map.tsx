@@ -91,9 +91,9 @@ export const TourMap = ({
       'bottom-right',
     )
     mapRef.current = map
-    if (onMapReadyRef.current) onMapReadyRef.current(map)
 
     map.on('load', () => {
+      if (onMapReadyRef.current) onMapReadyRef.current(map)
       map.addSource('pois', {
         type: 'geojson',
         data: geojson,
