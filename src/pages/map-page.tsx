@@ -90,7 +90,7 @@ export const MapPage = () => {
     (lat: number, lng: number, radius: number, page: number, append: boolean) => {
       const setter = append ? setLoadingMore : setLoading
       setter(true)
-      tourNearby({ lat, lng, radius: Math.min(radius, 50000), pageNo: page, numOfRows: PAGE_SIZE })
+      tourNearby({ lat, lng, radius: Math.min(radius, 200000), pageNo: page, numOfRows: PAGE_SIZE })
         .then((result) => {
           const items = result.data.items ?? []
           setPlaces((prev) => (append ? [...prev, ...items] : items))
@@ -263,13 +263,12 @@ export const MapPage = () => {
         {/* 슬라이드 메뉴 */}
         <div
           className="flex items-center overflow-hidden rounded-l-xl border border-r-0 border-white/60 bg-white/88 shadow-lg backdrop-blur-md transition-[width,opacity] duration-300 ease-out"
-          style={{ width: baseLayerOpen ? 176 : 0, opacity: baseLayerOpen ? 1 : 0 }}
+          style={{ width: baseLayerOpen ? 132 : 0, opacity: baseLayerOpen ? 1 : 0 }}
         >
           {[
             { key: 'Base', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6zM9 3v15M15 6v15"/></svg> },
             { key: 'Satellite', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M12 2v2M12 20v2M20 12h2M2 12h2"/></svg> },
             { key: 'gray', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.5"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/></svg> },
-            { key: 'midnight', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg> },
           ].map(({ key, icon }) => (
             <button
               key={key}

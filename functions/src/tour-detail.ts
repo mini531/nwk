@@ -146,7 +146,7 @@ export const tourNearby = onCall(
     if (lat < 33 || lat > 39 || lng < 124 || lng > 132) {
       throw new HttpsError('invalid-argument', 'coordinates out of Korea bounds')
     }
-    const radius = Math.min(Math.max(Number(data.radius) || 2000, 100), 50000)
+    const radius = Math.min(Math.max(Number(data.radius) || 2000, 100), 200000)
     const pageNo = Math.max(1, Math.min(100, Number(data.pageNo) || 1))
     const numOfRows = Math.max(10, Math.min(100, Number(data.numOfRows) || 40))
     const service = resolveService(data.lang)
