@@ -16,7 +16,7 @@ const tabs: Tab[] = [
   { to: '/', key: 'home', Icon: HomeIcon, end: true },
   { to: '/check', key: 'check', Icon: ScaleIcon, end: false },
   { to: '/kit', key: 'kit', Icon: KitIcon, end: false },
-  { to: '/search', key: 'tour', Icon: CompassIcon, end: false },
+  { to: '/map', key: 'tour', Icon: CompassIcon, end: false },
   { to: '/profile', key: 'profile', Icon: UserIcon, end: false },
 ]
 
