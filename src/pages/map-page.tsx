@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { TourMap, type PoiProperties } from '../components/tour-map'
+import type { Map as MLMap } from 'maplibre-gl'
 // import { useAppStore } from '../stores/app-store'
 import { tourNearby, type TourSearchItem, type TourNearbyItem } from '../utils/api'
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
@@ -26,6 +27,33 @@ export const MapPage = () => {
   const [panelOpen, setPanelOpen] = useState(true)
   const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
   const [mobileView, setMobileView] = useState<'map' | 'list'>('map')
+  const [baseLayerOpen, setBaseLayerOpen] = useState(false)
+  const [activeLayer, setActiveLayer] = useState('Base')
+  const mapInstanceRef = useRef<MLMap | null>(null)
+
+  const handleMapReady = useCallback((map: MLMap) => { mapInstanceRef.current = map }, [])
+
+  const switchLayer = useCallback((layer: string) => {
+    const map = mapInstanceRef.current
+    if (!map) return
+    setActiveLayer(layer)
+    setBaseLayerOpen(false)
+    const tileBase = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? ''
+    let url: string
+    if (tileBase && !tileBase.includes('{layer}')) {
+      url = tileBase.replace(/\/Base\/|\/Satellite\/|\/gray\/|\/midnight\//, `/${layer}/`)
+    } else {
+      url = `/tiles?layer=${layer}&z={z}&x={x}&y={y}`
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const src = map.getSource('vworld') as any
+    if (src) {
+      src.tiles = [url]
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ;(map.style as any).sourceCaches?.['vworld']?.clearTiles()
+      map.triggerRepaint()
+    }
+  }, [])
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
   const [mapRadius, setMapRadius] = useState(20000)
   const pageRef = useRef(1)
@@ -156,6 +184,7 @@ export const MapPage = () => {
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
           onPoiClick={handlePoiClick}
           onBoundsChange={handleBoundsChange}
+          onMapReady={handleMapReady}
           fitToFeatures={places.length > 0 && !userLoc}
         />
       </div>
@@ -226,19 +255,40 @@ export const MapPage = () => {
         </div>
       </div>
 
-      {/* ═══ 배경지도 선택 (우상단) ═══ */}
-      <div className="fixed z-20 hidden sm:flex" style={{ top: 68, right: 16 }}>
-        <div className="flex overflow-hidden rounded-xl border border-white/60 bg-white/88 shadow-lg backdrop-blur-md">
-          {(['Base', 'Satellite', 'gray'] as const).map((layer) => (
+      {/* ═══ 배경지도 선택 (우상단 — 남원 스타일 슬라이드) ═══ */}
+      <div className="fixed z-20 flex items-start" style={{ top: 68, right: 16 }}>
+        {/* 슬라이드 메뉴 (열렸을 때) */}
+        <div
+          className={`mr-1 flex overflow-hidden rounded-xl border border-white/60 bg-white/88 shadow-lg backdrop-blur-md transition-all duration-250 ${baseLayerOpen ? 'w-auto opacity-100' : 'w-0 opacity-0'}`}
+        >
+          {[
+            { key: 'Base', label: '일반', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/></svg> },
+            { key: 'Satellite', label: '위성', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M12 2v2M12 20v2M20 12h2M2 12h2"/></svg> },
+            { key: 'gray', label: '회색', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.6"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/></svg> },
+            { key: 'midnight', label: '야간', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg> },
+          ].map(({ key, label, icon }) => (
             <button
-              key={layer}
+              key={key}
               type="button"
-              className="px-3 py-2 text-[12px] font-bold text-neutral-600 transition-colors hover:bg-neutral-100 [&.active]:bg-neutral-800 [&.active]:text-white"
+              onClick={() => switchLayer(key)}
+              className={`flex flex-col items-center gap-1 px-3 py-2 text-[11px] font-bold whitespace-nowrap transition-colors ${activeLayer === key ? 'bg-neutral-800 text-white' : 'text-neutral-600 hover:bg-neutral-100'}`}
             >
-              {{ Base: '일반', Satellite: '위성', gray: '회색' }[layer]}
+              {icon}
+              {label}
             </button>
           ))}
         </div>
+
+        {/* 트리거 아이콘 */}
+        <button
+          type="button"
+          onClick={() => setBaseLayerOpen(!baseLayerOpen)}
+          className={`grid h-10 w-10 place-items-center rounded-xl border border-white/60 shadow-lg backdrop-blur-md transition-colors ${baseLayerOpen ? 'bg-neutral-800 text-white' : 'bg-white/88 text-neutral-600 hover:bg-white'}`}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+          </svg>
+        </button>
       </div>
 
       {/* ═══ 검색 오버레이: 데스크톱=풀바, 모바일=아이콘 버튼 ═══ */}

@@ -37,6 +37,7 @@ export interface TourMapProps {
   onPoiClick?: (props: PoiProperties) => void
   onBoundsChange?: (bounds: [number, number, number, number]) => void
   fitToFeatures?: boolean
+  onMapReady?: (map: MLMap) => void
 }
 
 export interface PoiProperties {
@@ -61,6 +62,7 @@ export const TourMap = ({
   onPoiClick,
   onBoundsChange,
   fitToFeatures = false,
+  onMapReady,
 }: TourMapProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MLMap | null>(null)
@@ -68,6 +70,8 @@ export const TourMap = ({
   onClickRef.current = onPoiClick
   const onBoundsRef = useRef(onBoundsChange)
   onBoundsRef.current = onBoundsChange
+  const onMapReadyRef = useRef(onMapReady)
+  onMapReadyRef.current = onMapReady
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -87,6 +91,7 @@ export const TourMap = ({
       'bottom-right',
     )
     mapRef.current = map
+    if (onMapReadyRef.current) onMapReadyRef.current(map)
 
     map.on('load', () => {
       map.addSource('pois', {
