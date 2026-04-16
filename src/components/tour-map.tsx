@@ -78,13 +78,13 @@ export const TourMap = ({
       zoom,
       attributionControl: { compact: true },
     })
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
     map.addControl(
       new maplibregl.GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
         trackUserLocation: true,
       }),
-      'top-right',
+      'bottom-right',
     )
     mapRef.current = map
 

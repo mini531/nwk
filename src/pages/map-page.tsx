@@ -2,8 +2,10 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { TourMap, type PoiProperties } from '../components/tour-map'
-import { useAppStore } from '../stores/app-store'
+// import { useAppStore } from '../stores/app-store'
 import { tourNearby, type TourSearchItem, type TourNearbyItem } from '../utils/api'
+import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
+import { PinIcon } from '../components/icons'
 
 const SEOUL: [number, number] = [126.978, 37.566]
 const EMPTY_FC: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties> = {
@@ -15,7 +17,6 @@ const PAGE_SIZE = 40
 export const MapPage = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
 
   const [places, setPlaces] = useState<TourSearchItem[]>([])
   const [, setTotalCount] = useState(0)
@@ -141,11 +142,6 @@ export const MapPage = () => {
 
   const openDetail = useCallback((p: TourSearchItem) => setDetailPlace(p), [])
   const closeDetail = useCallback(() => setDetailPlace(null), [])
-  const goToDetail = useCallback(() => {
-    if (!detailPlace) return
-    setSelectedPlace(detailPlace)
-    navigate('/place')
-  }, [detailPlace, setSelectedPlace, navigate])
 
   const center = userLoc ?? SEOUL
 
@@ -227,6 +223,21 @@ export const MapPage = () => {
             </svg>
             목록
           </button>
+        </div>
+      </div>
+
+      {/* ═══ 배경지도 선택 (우상단) ═══ */}
+      <div className="fixed z-20 hidden sm:flex" style={{ top: 68, right: 16 }}>
+        <div className="flex overflow-hidden rounded-xl border border-white/60 bg-white/88 shadow-lg backdrop-blur-md">
+          {(['Base', 'Satellite', 'gray'] as const).map((layer) => (
+            <button
+              key={layer}
+              type="button"
+              className="px-3 py-2 text-[12px] font-bold text-neutral-600 transition-colors hover:bg-neutral-100 [&.active]:bg-neutral-800 [&.active]:text-white"
+            >
+              {{ Base: '일반', Satellite: '위성', gray: '회색' }[layer]}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -339,50 +350,107 @@ export const MapPage = () => {
         </div>
       </div>
 
-      {/* 관광지 상세 모달 */}
-      {detailPlace && (
-        <div className="fixed inset-0 z-30 flex items-center justify-center p-4" onClick={closeDetail}>
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          <div
-            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* 이미지 */}
-            {detailPlace.thumbnail ? (
-              <img src={detailPlace.thumbnail} alt="" className="h-48 w-full object-cover sm:h-56" />
-            ) : (
-              <div className="grid h-48 w-full place-items-center bg-neutral-100 text-neutral-300 sm:h-56">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-            )}
-
-            {/* 내용 */}
-            <div className="p-5">
-              <h3 className="text-[18px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
-              <p className="mt-1 text-[13px] text-neutral-500">{detailPlace.addr}</p>
-
-              <div className="mt-4 flex gap-2">
-                <button
-                  type="button"
-                  onClick={goToDetail}
-                  className="flex-1 rounded-xl bg-neutral-900 py-3 text-center text-[14px] font-bold text-white transition-colors hover:bg-neutral-800"
-                >
-                  상세 정보 보기
-                </button>
-                <button
-                  type="button"
-                  onClick={closeDetail}
-                  className="rounded-xl border border-neutral-200 bg-white px-5 py-3 text-[14px] font-bold text-neutral-600 transition-colors hover:bg-neutral-50"
-                >
-                  닫기
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* 관광지 상세 모달 — 전체 세부 정보 */}
+      {detailPlace && <DetailModal place={detailPlace} onClose={closeDetail} />}
     </>
+  )
+}
+
+/* ── 상세 정보 모달 (place-page 동일 advisory 매칭) ── */
+const CATEGORY_LABEL: Record<string, string> = {
+  price: '물가 정보',
+  transit: '교통',
+  etiquette: '에티켓',
+  safety: '안전',
+}
+const CATEGORY_COLOR: Record<string, string> = {
+  price: 'bg-amber-100 text-amber-700',
+  transit: 'bg-neutral-200 text-neutral-700',
+  etiquette: 'bg-teal-100 text-teal-700',
+  safety: 'bg-red-100 text-red-700',
+}
+
+function DetailModal({ place, onClose }: { place: TourSearchItem; onClose: () => void }) {
+  const { t, i18n } = useTranslation()
+  const groups = useMemo(() => groupByCategory(matchAdvisories(place)), [place])
+  const fmtKrw = (v: number) => {
+    try { return new Intl.NumberFormat(i18n.language, { style: 'currency', currency: 'KRW', maximumFractionDigits: 0 }).format(v) }
+    catch { return `₩${v.toLocaleString()}` }
+  }
+
+  return (
+    <div className="fixed inset-0 z-30 flex items-end justify-center sm:items-center sm:p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <div
+        className="relative z-10 flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:max-w-lg sm:rounded-3xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 이미지 */}
+        <div className="relative shrink-0">
+          {place.thumbnail ? (
+            <img src={place.thumbnail} alt="" className="h-44 w-full object-cover sm:h-52" />
+          ) : (
+            <div className="grid h-44 w-full place-items-center bg-neutral-100 text-neutral-300 sm:h-52">
+              <PinIcon size={42} />
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        {/* 스크롤 본문 */}
+        <div className="flex-1 overflow-y-auto overscroll-contain p-5 [scrollbar-width:thin]">
+          <h3 className="text-[20px] font-bold tracking-tight text-neutral-900">{place.title}</h3>
+          <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
+            <PinIcon size={12} className="mt-[3px] shrink-0" />
+            {place.addr}
+          </p>
+
+          {groups.length > 0 ? (
+            <div className="mt-5 space-y-4">
+              {groups.map(({ category, items }) => (
+                <section key={category}>
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className={`rounded-md px-2 py-0.5 text-[11px] font-bold ${CATEGORY_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}>
+                      {CATEGORY_LABEL[category] ?? category}
+                    </span>
+                  </div>
+                  <ul className="divide-y divide-neutral-100 overflow-hidden rounded-xl border border-neutral-100">
+                    {items.map((a) => (
+                      <li key={a.id} className="px-4 py-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="flex-1 text-[13px] font-semibold text-neutral-800">
+                            {t(`advisory.${a.id}.title`)}
+                          </p>
+                          {a.amount && (
+                            <span className="shrink-0 text-[12px] font-bold tabular-nums text-amber-600">
+                              {fmtKrw(a.amount.value)}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-0.5 text-[12px] leading-relaxed text-neutral-500">
+                          {t(`advisory.${a.id}.body`)}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-6 text-center text-[13px] text-neutral-400">
+              {t('page.place.noAdvisory', '이 장소에 대한 추가 정보가 아직 없습니다.')}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }

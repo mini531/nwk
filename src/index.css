@@ -156,3 +156,33 @@
     background-color: var(--color-line);
   }
 }
+
+/* MapLibre 컨트롤 반투명 glass 스타일 */
+.maplibregl-ctrl-group {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden;
+}
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+}
+.maplibregl-ctrl-group button + button {
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+.maplibregl-ctrl-geolocate {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+.maplibregl-ctrl-bottom-right {
+  bottom: 12px !important;
+  right: 12px !important;
+}
