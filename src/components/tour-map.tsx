@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react'
 import maplibregl, { type LngLatLike, type Map as MLMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-const DEFAULT_TILE_BASE = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? '/tiles'
-
-const tileUrl = `${DEFAULT_TILE_BASE}?layer=Base&z={z}&x={x}&y={y}`
+const tileUrl =
+  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
+  '/tiles?layer=Base&z={z}&x={x}&y={y}'
 
 const BASE_STYLE = {
   version: 8 as const,

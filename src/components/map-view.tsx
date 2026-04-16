@@ -2,9 +2,10 @@ import { useEffect, useRef } from 'react'
 import maplibregl, { type LngLatLike, type Map as MLMap, type Marker } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-const DEFAULT_TILE_BASE = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? '/tiles'
-
-const tileUrl = `${DEFAULT_TILE_BASE}?layer=Base&z={z}&x={x}&y={y}`
+// VITE_MAP_TILE_URL 이 full template 이면 그대로, 없으면 proxy 경유
+const tileUrl =
+  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
+  '/tiles?layer=Base&z={z}&x={x}&y={y}'
 
 export interface MapMarker {
   id: string
