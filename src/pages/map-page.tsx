@@ -18,13 +18,17 @@ export const MapPage = () => {
   const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
 
   const [places, setPlaces] = useState<TourSearchItem[]>([])
+  const [, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
   const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
   const [panelOpen, setPanelOpen] = useState(true)
   const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
+  const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
+  const [mapRadius, setMapRadius] = useState(20000)
   const pageRef = useRef(1)
   const hasMoreRef = useRef(true)
+  const boundsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // 지도 페이지 활성 동안 부모 main 스크롤 차단
   useLayoutEffect(() => {
@@ -50,34 +54,60 @@ export const MapPage = () => {
   }, [])
 
   const loadPlaces = useCallback(
-    (page: number, append: boolean) => {
+    (lat: number, lng: number, radius: number, page: number, append: boolean) => {
       const setter = append ? setLoadingMore : setLoading
       setter(true)
-      const lat = userLoc?.[1] ?? SEOUL[1]
-      const lng = userLoc?.[0] ?? SEOUL[0]
-      tourNearby({ lat, lng, radius: 50000, pageNo: page, numOfRows: PAGE_SIZE })
+      tourNearby({ lat, lng, radius: Math.min(radius, 50000), pageNo: page, numOfRows: PAGE_SIZE })
         .then((result) => {
           const items = result.data.items ?? []
           setPlaces((prev) => (append ? [...prev, ...items] : items))
+          setTotalCount(items.length + (append ? places.length : 0))
           hasMoreRef.current = items.length >= PAGE_SIZE
         })
         .catch(() => {})
         .finally(() => setter(false))
     },
-    [userLoc],
+    [places.length],
   )
 
+  // 초기 로드 (위치 확보 후)
   useEffect(() => {
+    const lat = userLoc?.[1] ?? SEOUL[1]
+    const lng = userLoc?.[0] ?? SEOUL[0]
     pageRef.current = 1
     hasMoreRef.current = true
-    loadPlaces(1, false)
-  }, [loadPlaces])
+    setMapCenter([lng, lat])
+    loadPlaces(lat, lng, 20000, 1, false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userLoc])
+
+  // 뷰포트 변경 시 재조회 (debounce 800ms)
+  const handleBoundsChange = useCallback(
+    (bounds: [number, number, number, number]) => {
+      if (boundsTimerRef.current) clearTimeout(boundsTimerRef.current)
+      boundsTimerRef.current = setTimeout(() => {
+        const [w, s, e, n] = bounds
+        const cLat = (s + n) / 2
+        const cLng = (w + e) / 2
+        // 대략적인 반경 계산 (위도 1도 ≈ 111km)
+        const latSpan = (n - s) * 111000
+        const lngSpan = (e - w) * 111000 * Math.cos((cLat * Math.PI) / 180)
+        const radius = Math.max(latSpan, lngSpan) / 2
+        setMapCenter([cLng, cLat])
+        setMapRadius(radius)
+        pageRef.current = 1
+        hasMoreRef.current = true
+        loadPlaces(cLat, cLng, radius, 1, false)
+      }, 800)
+    },
+    [loadPlaces],
+  )
 
   const loadMore = useCallback(() => {
-    if (loadingMore || !hasMoreRef.current) return
+    if (loadingMore || !hasMoreRef.current || !mapCenter) return
     pageRef.current += 1
-    loadPlaces(pageRef.current, true)
-  }, [loadPlaces, loadingMore])
+    loadPlaces(mapCenter[1], mapCenter[0], mapRadius, pageRef.current, true)
+  }, [loadPlaces, loadingMore, mapCenter, mapRadius])
 
   const geojson = useMemo<GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>>(() => {
     if (!places.length) return EMPTY_FC
@@ -128,6 +158,7 @@ export const MapPage = () => {
           zoom={userLoc ? 13 : 11}
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
           onPoiClick={handlePoiClick}
+          onBoundsChange={handleBoundsChange}
           fitToFeatures={places.length > 0 && !userLoc}
         />
       </div>
@@ -164,7 +195,7 @@ export const MapPage = () => {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
             </svg>
             <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
-              {loading ? '불러오는 중...' : `관광지 ${places.length}개`}
+              {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
             </h2>
             <svg
               width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
