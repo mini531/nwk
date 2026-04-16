@@ -4,6 +4,13 @@ import { logger } from 'firebase-functions/v2'
 
 const VWORLD_API_KEY = defineSecret('VWORLD_API_KEY')
 
+// 1x1 투명 PNG (최소 크기) — VWorld 오류/범위 밖 타일 대체용
+const BLANK_TILE = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQAB' +
+  'Nl7BcQAAAABJRU5ErkJggg==',
+  'base64',
+)
+
 const ALLOWED_ORIGINS = new Set([
   'https://nwk-app-ba6f8.web.app',
   'https://nwk-app-ba6f8.firebaseapp.com',
@@ -71,22 +78,41 @@ export const mapTile = onRequest(
       return
     }
 
+    // VWorld Base/gray/midnight: z 6~19, Satellite/Hybrid: z 6~19
+    if (z < 6) {
+      res.setHeader('Content-Type', 'image/png')
+      res.setHeader('Cache-Control', 'public, max-age=86400')
+      res.status(200).send(BLANK_TILE)
+      return
+    }
+
     const url = `https://api.vworld.kr/req/wmts/1.0.0/${key}/${layer}/${z}/${y}/${x}.png`
 
     try {
       const upstream = await fetch(url)
-      if (!upstream.ok) {
-        logger.warn('vworld upstream', { status: upstream.status, z, x, y, layer })
-        res.status(upstream.status).send('upstream error')
+      const buf = Buffer.from(await upstream.arrayBuffer())
+
+      // VWorld 는 범위 밖 타일이나 키 오류 시 200 + XML 을 반환함
+      // PNG magic bytes (0x89 0x50 0x4E 0x47) 가 아니면 빈 타일로 대체
+      const isPng = buf.length > 4 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47
+      if (!upstream.ok || !isPng) {
+        if (!isPng && buf.length > 0) {
+          logger.warn('vworld non-png response', { z, x, y, layer, size: buf.length, head: buf.subarray(0, 40).toString('utf8') })
+        }
+        res.setHeader('Content-Type', 'image/png')
+        res.setHeader('Cache-Control', 'public, max-age=3600')
+        res.status(200).send(BLANK_TILE)
         return
       }
-      const buf = Buffer.from(await upstream.arrayBuffer())
+
       res.setHeader('Content-Type', 'image/png')
       res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=604800')
       res.status(200).send(buf)
     } catch (err) {
       logger.error('mapTile fetch failed', err)
-      res.status(502).send('bad gateway')
+      // 네트워크 오류 시에도 빈 타일 반환 (지도 깨짐 방지)
+      res.setHeader('Content-Type', 'image/png')
+      res.status(200).send(BLANK_TILE)
     }
   },
 )
