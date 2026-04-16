@@ -78,10 +78,10 @@ export const BagajiHero = () => {
             <span className="absolute inset-0 animate-ping rounded-full bg-danger opacity-75" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-danger" />
           </span>
-          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-danger">
+          <span className="text-[12px] font-bold uppercase tracking-[0.18em] text-danger">
             {t('page.home.bagaji.eyebrow')}
           </span>
-          <span className="text-[11px] font-medium text-white/50">
+          <span className="text-[12px] font-medium text-white/50">
             · {t('page.home.bagaji.flagged', { count: flagged })}
           </span>
         </div>
@@ -118,7 +118,7 @@ export const BagajiHero = () => {
                   </>
                 )}
                 <div className="flex items-start justify-between gap-2">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-danger/15 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-danger">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-danger/15 px-2 py-1 text-[12px] font-bold uppercase tracking-wider text-danger">
                     <AlertIcon size={11} />
                     {t('page.check.verdict.bagaji')}
                   </span>
@@ -137,7 +137,7 @@ export const BagajiHero = () => {
                   <p className="truncate text-[13px] font-medium tracking-tight text-white/90">
                     {t(c.itemKey)}
                   </p>
-                  <p className="mt-0.5 text-[11px] text-white/45">
+                  <p className="mt-0.5 text-[12px] text-white/45">
                     {maskName(c.name)}
                     {c.extra ? ` · ${c.extra}` : ''}
                   </p>

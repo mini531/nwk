@@ -285,7 +285,7 @@ export const SearchPage = () => {
               setNearbyItems([])
               setNearbyError(null)
             }}
-            className="rounded-full border border-line bg-surface px-3 py-1.5 text-[11px] font-medium text-ink-3 hover:text-ink-2"
+            className="rounded-full border border-line bg-surface px-3 py-1.5 text-[12px] font-medium text-ink-3 hover:text-ink-2"
           >
             {t('page.search.nearbyClear')}
           </button>
@@ -295,12 +295,12 @@ export const SearchPage = () => {
         </p>
       </div>
       {nearbyError && (
-        <p className="mb-3 rounded-lg border border-warn-soft bg-warn-soft/50 px-3 py-2 text-[11px] text-warn">
+        <p className="mb-3 rounded-lg border border-warn-soft bg-warn-soft/50 px-3 py-2 text-[12px] text-warn">
           {nearbyError}
         </p>
       )}
       {nearbyItems.length > 0 && !nearbyError && (
-        <p className="mb-3 rounded-lg border border-brand-soft bg-brand-soft/40 px-3 py-2 text-[11px] font-medium text-brand">
+        <p className="mb-3 rounded-lg border border-brand-soft bg-brand-soft/40 px-3 py-2 text-[12px] font-medium text-brand">
           {t('page.search.nearbyResultCount', { count: nearbyItems.length })}
         </p>
       )}
@@ -373,7 +373,7 @@ export const SearchPage = () => {
                           className={`rounded-2xl border border-line ${accent.bg} px-4 py-3`}
                         >
                           <p
-                            className={`text-[10px] font-bold uppercase tracking-[0.14em] ${accent.text}`}
+                            className={`text-[12px] font-bold uppercase tracking-[0.14em] ${accent.text}`}
                           >
                             {t(`page.place.categories.${category}`)}
                           </p>
@@ -387,7 +387,7 @@ export const SearchPage = () => {
                                   <p className="text-[12px] font-semibold leading-snug text-ink">
                                     {t(`advisory.${a.id}.title`)}
                                   </p>
-                                  <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-ink-3">
+                                  <p className="mt-0.5 line-clamp-2 text-[12px] leading-snug text-ink-3">
                                     {t(`advisory.${a.id}.body`)}
                                   </p>
                                 </div>
@@ -421,7 +421,7 @@ export const SearchPage = () => {
                 )}
               </p>
               {keyword && liveSource === 'mock' && (
-                <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[10px] text-warn">
+                <p className="mb-2 rounded-lg bg-warn-soft/50 px-3 py-1.5 text-[12px] text-warn">
                   {t('page.search.mockNotice')}
                 </p>
               )}

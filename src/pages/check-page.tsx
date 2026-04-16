@@ -380,7 +380,7 @@ export const CheckPage = () => {
                 {t('page.check.form.taxiContext')}
               </p>
               <div>
-                <p className="mb-1 text-[11px] font-medium text-ink-3">
+                <p className="mb-1 text-[12px] font-medium text-ink-3">
                   {t('page.check.form.distance')}
                 </p>
                 <div className="relative">
@@ -397,7 +397,7 @@ export const CheckPage = () => {
                 </div>
               </div>
               <div>
-                <p className="mb-1 text-[11px] font-medium text-ink-3">
+                <p className="mb-1 text-[12px] font-medium text-ink-3">
                   {t('page.check.form.timeOfDay')}
                 </p>
                 <div className="flex gap-2">
@@ -452,7 +452,7 @@ export const CheckPage = () => {
                       {formatKrw(r.min, i18n.language)}–{formatKrw(r.max, i18n.language)}
                     </span>
                     {r.isLive && (
-                      <span className="ml-1.5 inline-flex items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+                      <span className="ml-1.5 inline-flex items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[12px] font-bold uppercase tracking-wider text-brand">
                         LIVE
                       </span>
                     )}
@@ -479,7 +479,7 @@ export const CheckPage = () => {
                 className={`inline-block h-2 w-2 rounded-full ${verdictStyles[result.verdict].dot}`}
               />
               <p
-                className={`text-[11px] font-bold uppercase tracking-[0.18em] ${verdictStyles[result.verdict].label}`}
+                className={`text-[12px] font-bold uppercase tracking-[0.18em] ${verdictStyles[result.verdict].label}`}
               >
                 {t(`page.check.verdict.${result.verdict}`)}
               </p>
@@ -541,17 +541,17 @@ export const CheckPage = () => {
                 <p className="text-[12px] font-semibold text-brand">
                   {t('page.check.sourceBadge')}
                 </p>
-                <p className="mt-0.5 text-[11px] font-medium leading-snug text-ink-2">
+                <p className="mt-0.5 text-[12px] font-medium leading-snug text-ink-2">
                   {result.source.label}
                 </p>
-                <p className="mt-0.5 text-[10px] leading-snug text-ink-3">
+                <p className="mt-0.5 text-[12px] leading-snug text-ink-3">
                   {result.source.samples}
                   {t('page.check.sourceSamples')}
                   {result.source.spec ? ` · ${result.source.spec}` : ''}
                 </p>
               </a>
             ) : (
-              <p className="mt-4 text-[10px] text-ink-3">{t('page.check.sourceNote')}</p>
+              <p className="mt-4 text-[12px] text-ink-3">{t('page.check.sourceNote')}</p>
             )}
           </section>
 
@@ -616,13 +616,13 @@ const ItemCard = ({
           {t(`catalog.${entry.id}.name`)}
         </p>
         {range.isLive && (
-          <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand">
+          <span className="inline-flex shrink-0 items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[12px] font-bold uppercase tracking-wider text-brand">
             LIVE
           </span>
         )}
       </div>
-      {entry.unit && <p className="text-[10px] text-ink-3">{entry.unit}</p>}
-      <p className="mt-1 text-[11px] font-medium tabular-nums text-ink-3">
+      {entry.unit && <p className="text-[12px] text-ink-3">{entry.unit}</p>}
+      <p className="mt-1 text-[12px] font-medium tabular-nums text-ink-3">
         {entry.inputMode === 'taxi'
           ? t('page.check.byDistance')
           : `${formatKrw(range.min, lang)}–${formatKrw(range.max, lang)}`}

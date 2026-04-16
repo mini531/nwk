@@ -4,8 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 
 // VITE_MAP_TILE_URL 이 full template 이면 그대로, 없으면 proxy 경유
 const tileUrl =
-  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
-  '/tiles?layer=Base&z={z}&x={x}&y={y}'
+  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? '/tiles?layer=Base&z={z}&x={x}&y={y}'
 
 export interface MapMarker {
   id: string

@@ -1,6 +1,19 @@
 import { useEffect, useRef } from 'react'
-import maplibregl, { type LngLatLike, type Map as MLMap } from 'maplibre-gl'
+import maplibregl, { type LngLatLike, type Map as MLMap, Marker } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+
+const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="48" viewBox="0 0 36 48">
+  <filter id="ds" x="-20%" y="-10%" width="140%" height="130%">
+    <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25"/>
+  </filter>
+  <path filter="url(#ds)" d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z" fill="#d35526"/>
+  <g transform="translate(9,9)" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="1" y="6" width="16" height="11" rx="2"/>
+    <path d="M6 6V5a1 1 0 011-1h4a1 1 0 011 1v1"/>
+    <circle cx="9" cy="11.5" r="3"/>
+    <circle cx="9" cy="11.5" r="1" fill="#fff" stroke="none"/>
+  </g>
+</svg>`
 
 const DEFAULT_TILE_BASE =
   (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
@@ -34,6 +47,7 @@ export interface TourMapProps {
   center?: LngLatLike
   zoom?: number
   className?: string
+  selectedId?: string | null
   onPoiClick?: (props: PoiProperties) => void
   onBoundsChange?: (bounds: [number, number, number, number]) => void
   fitToFeatures?: boolean
@@ -59,6 +73,7 @@ export const TourMap = ({
   center = DEFAULT_CENTER,
   zoom = DEFAULT_ZOOM,
   className,
+  selectedId,
   onPoiClick,
   onBoundsChange,
   fitToFeatures = false,
@@ -72,6 +87,9 @@ export const TourMap = ({
   onBoundsRef.current = onBoundsChange
   const onMapReadyRef = useRef(onMapReady)
   onMapReadyRef.current = onMapReady
+  const selectedIdRef = useRef(selectedId)
+  selectedIdRef.current = selectedId
+  const selectedMarkerRef = useRef<Marker | null>(null)
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -220,6 +238,7 @@ export const TourMap = ({
     })
 
     return () => {
+      if (selectedMarkerRef.current) selectedMarkerRef.current.remove()
       map.remove()
       mapRef.current = null
     }
@@ -236,7 +255,10 @@ export const TourMap = ({
     source.setData(geojson)
 
     if (fitToFeatures && geojson.features.length > 0) {
-      let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity
+      let minLng = Infinity,
+        minLat = Infinity,
+        maxLng = -Infinity,
+        maxLat = -Infinity
       for (const f of geojson.features) {
         const [lng, lat] = f.geometry.coordinates
         if (lng < minLng) minLng = lng
@@ -245,10 +267,36 @@ export const TourMap = ({
         if (lat > maxLat) maxLat = lat
       }
       if (Number.isFinite(minLng)) {
-        map.fitBounds([[minLng, minLat], [maxLng, maxLat]], { padding: 60, maxZoom: 14, duration: 600 })
+        map.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: 60, maxZoom: 14, duration: 600 },
+        )
       }
     }
   }, [geojson, fitToFeatures])
+
+  useEffect(() => {
+    if (selectedMarkerRef.current) {
+      selectedMarkerRef.current.remove()
+      selectedMarkerRef.current = null
+    }
+    const map = mapRef.current
+    if (!map || !selectedId) return
+    const feat = geojson.features.find((f) => f.properties.id === selectedId)
+    if (!feat) return
+    const [lng, lat] = feat.geometry.coordinates
+    const el = document.createElement('div')
+    el.innerHTML = PIN_SVG
+    el.style.cursor = 'pointer'
+    el.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+    const marker = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 0] })
+      .setLngLat([lng, lat])
+      .addTo(map)
+    selectedMarkerRef.current = marker
+  }, [selectedId, geojson])
 
   return <div ref={containerRef} className={className} />
 }

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { TourMap, type PoiProperties } from '../components/tour-map'
 import type { Map as MLMap } from 'maplibre-gl'
-// import { useAppStore } from '../stores/app-store'
-import { tourNearby, type TourSearchItem, type TourNearbyItem } from '../utils/api'
+import { useAppStore } from '../stores/app-store'
+import { tourNearby, tourSearch, type TourSearchItem, type TourNearbyItem } from '../utils/api'
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
-import { PinIcon } from '../components/icons'
+import { PinIcon, HeartIcon } from '../components/icons'
+import { useFavorites } from '../hooks/use-favorites'
 
 const SEOUL: [number, number] = [126.978, 37.566]
 const EMPTY_FC: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties> = {
@@ -17,7 +17,9 @@ const PAGE_SIZE = 40
 
 export const MapPage = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { isFavorite, toggle: toggleFavorite } = useFavorites()
+  const selectedPlace = useAppStore((s) => s.selectedPlace)
+  const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
 
   const [places, setPlaces] = useState<TourSearchItem[]>([])
   const [totalCount, setTotalCount] = useState(0)
@@ -29,9 +31,44 @@ export const MapPage = () => {
   const [mobileView, setMobileView] = useState<'map' | 'list'>('map')
   const [baseLayerOpen, setBaseLayerOpen] = useState(false)
   const [activeLayer, setActiveLayer] = useState('Base')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<TourSearchItem[] | null>(null)
+  const [searching, setSearching] = useState(false)
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const mapInstanceRef = useRef<MLMap | null>(null)
+  const pendingFlyRef = useRef<TourSearchItem | null>(null)
 
-  const handleMapReady = useCallback((map: MLMap) => { mapInstanceRef.current = map }, [])
+  const handleMapReady = useCallback((map: MLMap) => {
+    mapInstanceRef.current = map
+    const p = pendingFlyRef.current
+    if (p && p.lng && p.lat) {
+      map.flyTo({ center: [p.lng, p.lat], zoom: 14, speed: 1.4, essential: true })
+      pendingFlyRef.current = null
+    }
+  }, [])
+
+  const handleSearch = useCallback((q: string) => {
+    setSearchQuery(q)
+    if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
+    if (!q.trim()) {
+      setSearchResults(null)
+      return
+    }
+    searchTimerRef.current = setTimeout(() => {
+      setSearching(true)
+      tourSearch({ keyword: q.trim() })
+        .then((res) => {
+          setSearchResults(res.data.items ?? [])
+        })
+        .catch(() => setSearchResults([]))
+        .finally(() => setSearching(false))
+    }, 500)
+  }, [])
+
+  const clearSearch = useCallback(() => {
+    setSearchQuery('')
+    setSearchResults(null)
+  }, [])
 
   const switchLayer = useCallback((layer: string) => {
     const map = mapInstanceRef.current
@@ -47,15 +84,10 @@ export const MapPage = () => {
       url = `/tiles?layer=${layer}&z={z}&x={x}&y={y}`
     }
 
-    // source + layer 를 제거하고 새 URL 로 재생성 (가장 확실한 방법)
-    try {
-      if (map.getLayer('vworld-base')) map.removeLayer('vworld-base')
-      if (map.getSource('vworld')) map.removeSource('vworld')
-      map.addSource('vworld', { type: 'raster', tiles: [url], tileSize: 256 })
-      // POI 레이어들 아래에 삽입 (클러스터 가려지지 않게)
-      const firstSymbol = map.getStyle().layers?.find(l => l.type === 'circle' || l.type === 'symbol')
-      map.addLayer({ id: 'vworld-base', type: 'raster', source: 'vworld', minzoom: 0, maxzoom: 19 }, firstSymbol?.id)
-    } catch { /* ignore */ }
+    const source = map.getSource('vworld') as unknown as { setTiles?: (t: string[]) => void }
+    if (source?.setTiles) {
+      source.setTiles([url])
+    }
   }, [])
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
   const [mapRadius, setMapRadius] = useState(20000)
@@ -85,6 +117,23 @@ export const MapPage = () => {
       { enableHighAccuracy: false, timeout: 5000, maximumAge: 300000 },
     )
   }, [])
+
+  useEffect(() => {
+    if (!selectedPlace) return
+    setDetailPlace(selectedPlace)
+    const map = mapInstanceRef.current
+    if (map && selectedPlace.lng && selectedPlace.lat) {
+      map.flyTo({
+        center: [selectedPlace.lng, selectedPlace.lat],
+        zoom: 14,
+        speed: 1.4,
+        essential: true,
+      })
+    } else {
+      pendingFlyRef.current = selectedPlace
+    }
+    setSelectedPlace(null)
+  }, [selectedPlace, setSelectedPlace])
 
   const loadPlaces = useCallback(
     (lat: number, lng: number, radius: number, page: number, append: boolean) => {
@@ -142,11 +191,14 @@ export const MapPage = () => {
     loadPlaces(mapCenter[1], mapCenter[0], mapRadius, pageRef.current, true)
   }, [loadPlaces, loadingMore, mapCenter, mapRadius])
 
+  const displayPlaces = searchResults ?? places
+  const isSearchMode = searchResults !== null
+
   const geojson = useMemo<GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>>(() => {
-    if (!places.length) return EMPTY_FC
+    if (!displayPlaces.length) return EMPTY_FC
     return {
       type: 'FeatureCollection',
-      features: places.map((p) => ({
+      features: displayPlaces.map((p) => ({
         type: 'Feature' as const,
         geometry: { type: 'Point' as const, coordinates: [p.lng, p.lat] },
         properties: {
@@ -161,17 +213,38 @@ export const MapPage = () => {
         },
       })),
     }
-  }, [places])
+  }, [displayPlaces])
 
   const handlePoiClick = useCallback(
     (props: PoiProperties) => {
-      const place = places.find((p) => p.id === props.id)
-      if (place) setDetailPlace(place)
+      const place = displayPlaces.find((p) => p.id === props.id)
+      if (!place) return
+      setDetailPlace(place)
+      const map = mapInstanceRef.current
+      if (map && place.lng && place.lat) {
+        map.flyTo({
+          center: [place.lng, place.lat],
+          zoom: Math.max(map.getZoom(), 14),
+          speed: 1.4,
+          essential: true,
+        })
+      }
     },
-    [places],
+    [displayPlaces],
   )
 
-  const openDetail = useCallback((p: TourSearchItem) => setDetailPlace(p), [])
+  const openDetail = useCallback((p: TourSearchItem) => {
+    setDetailPlace(p)
+    const map = mapInstanceRef.current
+    if (map && p.lng && p.lat) {
+      map.flyTo({
+        center: [p.lng, p.lat],
+        zoom: Math.max(map.getZoom(), 14),
+        speed: 1.4,
+        essential: true,
+      })
+    }
+  }, [])
   const closeDetail = useCallback(() => setDetailPlace(null), [])
 
   const center = userLoc ?? SEOUL
@@ -179,28 +252,81 @@ export const MapPage = () => {
   return (
     <>
       {/* ═══ 지도 (데스크톱: 항상, 모바일: mobileView=map 일 때) ═══ */}
-      <div className={`-mt-6 ${mobileView === 'list' ? 'hidden sm:block' : ''}`} style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+      <div
+        className={`-mt-6 ${mobileView === 'list' ? 'hidden sm:block' : ''}`}
+        style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+      >
         <TourMap
           geojson={geojson}
           center={center}
           zoom={userLoc ? 13 : 11}
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
+          selectedId={detailPlace?.id ?? null}
           onPoiClick={handlePoiClick}
           onBoundsChange={handleBoundsChange}
           onMapReady={handleMapReady}
-          fitToFeatures={places.length > 0 && !userLoc}
+          fitToFeatures={
+            (isSearchMode && displayPlaces.length > 0) || (places.length > 0 && !userLoc)
+          }
         />
       </div>
 
       {/* ═══ 모바일 목록 뷰 (sm 미만 + mobileView=list) ═══ */}
       <div className={`-mx-5 -mt-6 sm:hidden ${mobileView === 'list' ? '' : 'hidden'}`}>
         <div className="h-[calc(100dvh-120px)] overflow-y-auto bg-white [scrollbar-width:thin]">
-          <div className="sticky top-0 z-10 border-b border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur-sm">
-            <h2 className="text-[15px] font-bold text-neutral-800">
-              {loading ? '불러오는 중...' : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
+          <div className="sticky top-0 z-10 space-y-2 border-b border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur-sm">
+            <h2 className="text-[17px] font-bold text-neutral-800">
+              {loading || searching
+                ? '불러오는 중...'
+                : isSearchMode
+                  ? `검색결과 ${displayPlaces.length}개`
+                  : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
             </h2>
+            <div className="relative">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder={t('page.search.placeholder')}
+                className="w-full rounded-xl bg-neutral-100 py-2.5 pl-9 pr-9 text-[14px] text-neutral-800 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-brand/30"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 grid h-5 w-5 place-items-center rounded-full bg-neutral-300 text-white"
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              )}
+            </div>
           </div>
-          {places.map((p) => (
+          {displayPlaces.map((p) => (
             <button
               key={p.id}
               type="button"
@@ -208,23 +334,51 @@ export const MapPage = () => {
               className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left"
             >
               {p.thumbnail ? (
-                <img src={p.thumbnail} alt="" className="h-14 w-14 shrink-0 rounded-xl object-cover" loading="lazy" />
+                <img
+                  src={p.thumbnail}
+                  alt=""
+                  className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                  loading="lazy"
+                />
               ) : (
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-neutral-100 text-neutral-400">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
                   </svg>
                 </div>
               )}
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[14px] font-bold text-neutral-800">{p.title}</p>
-                <p className="mt-0.5 truncate text-[12px] text-neutral-500">{p.addr}</p>
+                <p className="truncate text-[16px] font-bold text-neutral-800">{p.title}</p>
+                <p className="mt-0.5 truncate text-[14px] text-neutral-500">{p.addr}</p>
               </div>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-neutral-300"><polyline points="9 18 15 12 9 6" /></svg>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="shrink-0 text-neutral-300"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
             </button>
           ))}
-          {hasMoreRef.current && places.length > 0 && (
-            <button type="button" onClick={loadMore} disabled={loadingMore} className="w-full py-4 text-center text-[14px] font-bold text-brand disabled:text-neutral-400">
+          {!isSearchMode && hasMoreRef.current && places.length > 0 && (
+            <button
+              type="button"
+              onClick={loadMore}
+              disabled={loadingMore}
+              className="w-full py-4 text-center text-[14px] font-bold text-brand disabled:text-neutral-400"
+            >
               {loadingMore ? '불러오는 중...' : '더 보기'}
             </button>
           )}
@@ -237,9 +391,18 @@ export const MapPage = () => {
           <button
             type="button"
             onClick={() => setMobileView('map')}
-            className={`flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold transition-colors ${mobileView === 'map' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
+            className={`flex items-center gap-1.5 px-5 py-2.5 text-[15px] font-bold transition-colors ${mobileView === 'map' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
             </svg>
             지도
@@ -247,11 +410,24 @@ export const MapPage = () => {
           <button
             type="button"
             onClick={() => setMobileView('list')}
-            className={`flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold transition-colors ${mobileView === 'list' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
+            className={`flex items-center gap-1.5 px-5 py-2.5 text-[15px] font-bold transition-colors ${mobileView === 'list' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
-              <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
             </svg>
             목록
           </button>
@@ -266,9 +442,53 @@ export const MapPage = () => {
           style={{ width: baseLayerOpen ? 132 : 0, opacity: baseLayerOpen ? 1 : 0 }}
         >
           {[
-            { key: 'Base', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6zM9 3v15M15 6v15"/></svg> },
-            { key: 'Satellite', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M12 2v2M12 20v2M20 12h2M2 12h2"/></svg> },
-            { key: 'gray', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.5"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/></svg> },
+            {
+              key: 'Base',
+              icon: (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6zM9 3v15M15 6v15" />
+                </svg>
+              ),
+            },
+            {
+              key: 'Satellite',
+              icon: (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <rect x="9" y="9" width="6" height="6" rx="1" />
+                  <path d="M12 2v2M12 20v2M20 12h2M2 12h2" />
+                </svg>
+              ),
+            },
+            {
+              key: 'gray',
+              icon: (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  opacity="0.5"
+                >
+                  <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z" />
+                </svg>
+              ),
+            },
           ].map(({ key, icon }) => (
             <button
               key={key}
@@ -288,41 +508,22 @@ export const MapPage = () => {
           onClick={() => setBaseLayerOpen(!baseLayerOpen)}
           className={`grid h-10 w-10 place-items-center rounded-xl border border-white/60 shadow-lg backdrop-blur-md transition-colors ${baseLayerOpen ? 'rounded-l-none bg-neutral-800 text-white' : 'bg-white/88 text-neutral-600 hover:bg-white'}`}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
-          </svg>
-        </button>
-      </div>
-
-      {/* ═══ 검색 오버레이: 데스크톱=풀바, 모바일=아이콘 버튼 ═══ */}
-      {/* 데스크톱 */}
-      <div className="pointer-events-none fixed left-0 right-0 z-20 hidden sm:block" style={{ top: 68 }}>
-        <div className="pointer-events-auto mx-auto max-w-md px-4">
-          <button
-            type="button"
-            onClick={() => navigate('/search')}
-            className="flex w-full items-center gap-3 rounded-2xl border border-white/60 bg-white/90 px-4 py-3 text-left shadow-lg backdrop-blur-md"
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-400">
-              <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <span className="text-[14px] text-neutral-400">{t('page.search.placeholder')}</span>
-          </button>
-        </div>
-      </div>
-      {/* 모바일 검색 아이콘 버튼 */}
-      {mobileView === 'map' && (
-        <button
-          type="button"
-          onClick={() => navigate('/search')}
-          className="fixed z-20 grid h-11 w-11 place-items-center rounded-full border border-white/60 bg-white/90 shadow-lg backdrop-blur-md sm:hidden"
-          style={{ top: 68, right: 16 }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600">
-            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
           </svg>
         </button>
-      )}
+      </div>
 
       {/* 좌측 유리 패널 — 데스크톱 전용: 목록 또는 상세 뷰 전환 */}
       <div
@@ -330,6 +531,54 @@ export const MapPage = () => {
         style={{ top: 80, left: 12 }}
       >
         <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg">
+          {/* ── 검색 입력 ── */}
+          {!detailPlace && (
+            <div className="border-b border-neutral-200/60 px-3 py-2.5">
+              <div className="relative">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  placeholder={t('page.search.placeholder')}
+                  className="w-full rounded-xl bg-neutral-100/80 py-2.5 pl-9 pr-9 text-[14px] text-neutral-800 outline-none placeholder:text-neutral-400 focus:bg-white focus:ring-2 focus:ring-brand/30"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={clearSearch}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 grid h-5 w-5 place-items-center rounded-full bg-neutral-300 text-white"
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* ── 상세 뷰 (detailPlace 있을 때) ── */}
           {detailPlace ? (
@@ -340,20 +589,41 @@ export const MapPage = () => {
                 onClick={closeDetail}
                 className="flex w-full items-center gap-2 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0 text-neutral-500"
+                >
                   <polyline points="15 18 9 12 15 6" />
                 </svg>
-                <span className="text-[14px] font-bold text-neutral-800">목록으로</span>
+                <span className="text-[15px] font-bold text-neutral-800">목록으로</span>
               </button>
               {/* 상세 본문 */}
               <div className="max-h-[calc(100dvh-200px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
                 {detailPlace.thumbnail && (
                   <img src={detailPlace.thumbnail} alt="" className="h-44 w-full object-cover" />
                 )}
-                <div className="p-4">
-                  <h3 className="text-[18px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
-                  <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
-                    <PinIcon size={12} className="mt-[3px] shrink-0" />
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="flex-1 text-[22px] font-bold tracking-tight text-neutral-900">
+                      {detailPlace.title}
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => toggleFavorite(detailPlace)}
+                      className={`mt-1 shrink-0 rounded-lg p-1.5 transition-colors ${isFavorite(detailPlace.id) ? 'text-accent' : 'text-neutral-300 hover:text-accent/60'}`}
+                    >
+                      <HeartIcon size={22} filled={isFavorite(detailPlace.id)} />
+                    </button>
+                  </div>
+                  <p className="mt-1.5 flex items-start gap-1.5 text-[15px] text-neutral-500">
+                    <PinIcon size={14} className="mt-[3px] shrink-0" />
                     {detailPlace.addr}
                   </p>
                   <DetailAdvisories place={detailPlace} />
@@ -368,15 +638,36 @@ export const MapPage = () => {
                 onClick={() => setPanelOpen(!panelOpen)}
                 className="flex w-full shrink-0 cursor-pointer items-center gap-3 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0 text-neutral-500"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
                 </svg>
-                <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
-                  {loading ? '불러오는 중...' : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
+                <h2 className="flex-1 text-[16px] font-bold text-neutral-800">
+                  {loading || searching
+                    ? '불러오는 중...'
+                    : isSearchMode
+                      ? `검색결과 ${displayPlaces.length}개`
+                      : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
                 </h2>
                 <svg
-                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className={`shrink-0 text-neutral-400 transition-transform duration-250 ${panelOpen ? 'rotate-180' : ''}`}
                 >
                   <path d="M6 9l6 6 6-6" />
@@ -389,8 +680,8 @@ export const MapPage = () => {
                 style={{ gridTemplateRows: panelOpen ? '1fr' : '0fr' }}
               >
                 <div className="overflow-hidden">
-                  <div className="max-h-[calc(100dvh-240px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
-                    {places.map((p) => (
+                  <div className="max-h-[calc(100dvh-290px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
+                    {displayPlaces.map((p) => (
                       <button
                         key={p.id}
                         type="button"
@@ -398,29 +689,53 @@ export const MapPage = () => {
                         className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
                       >
                         {p.thumbnail ? (
-                          <img src={p.thumbnail} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" loading="lazy" />
+                          <img
+                            src={p.thumbnail}
+                            alt=""
+                            className="h-11 w-11 shrink-0 rounded-lg object-cover"
+                            loading="lazy"
+                          />
                         ) : (
                           <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-neutral-100 text-neutral-400">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                              <circle cx="12" cy="10" r="3" />
                             </svg>
                           </div>
                         )}
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-[13px] font-bold text-neutral-800">{p.title}</p>
-                          <p className="mt-0.5 truncate text-[11px] text-neutral-500">{p.addr}</p>
+                          <p className="truncate text-[15px] font-bold text-neutral-800">
+                            {p.title}
+                          </p>
+                          <p className="mt-0.5 truncate text-[13px] text-neutral-500">{p.addr}</p>
                         </div>
                       </button>
                     ))}
 
-                    {hasMoreRef.current && places.length > 0 && (
-                      <button type="button" onClick={loadMore} disabled={loadingMore} className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400">
+                    {!isSearchMode && hasMoreRef.current && places.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={loadMore}
+                        disabled={loadingMore}
+                        className="w-full py-3 text-center text-[15px] font-bold text-brand disabled:text-neutral-400"
+                      >
                         {loadingMore ? '불러오는 중...' : '더 보기'}
                       </button>
                     )}
 
-                    {!loading && places.length === 0 && (
-                      <p className="px-4 py-10 text-center text-[13px] text-neutral-400">주변 관광지를 불러오는 중입니다...</p>
+                    {!loading && !searching && displayPlaces.length === 0 && (
+                      <p className="px-4 py-10 text-center text-[14px] text-neutral-400">
+                        {isSearchMode
+                          ? '검색 결과가 없습니다'
+                          : '주변 관광지를 불러오는 중입니다...'}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -446,14 +761,40 @@ export const MapPage = () => {
                   <PinIcon size={36} />
                 </div>
               )}
-              <button type="button" onClick={closeDetail} className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              <button
+                type="button"
+                onClick={closeDetail}
+                className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
               </button>
             </div>
             <div className="flex-1 overflow-y-auto overscroll-contain p-5 [scrollbar-width:thin]">
-              <h3 className="text-[20px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
-              <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
-                <PinIcon size={12} className="mt-[3px] shrink-0" />
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="flex-1 text-[22px] font-bold tracking-tight text-neutral-900">
+                  {detailPlace.title}
+                </h3>
+                <button
+                  type="button"
+                  onClick={() => toggleFavorite(detailPlace)}
+                  className={`shrink-0 rounded-lg p-1.5 transition-colors ${isFavorite(detailPlace.id) ? 'text-accent' : 'text-neutral-300 hover:text-accent/60'}`}
+                >
+                  <HeartIcon size={24} filled={isFavorite(detailPlace.id)} />
+                </button>
+              </div>
+              <p className="mt-1.5 flex items-start gap-1.5 text-[15px] text-neutral-500">
+                <PinIcon size={14} className="mt-[3px] shrink-0" />
                 {detailPlace.addr}
               </p>
               <DetailAdvisories place={detailPlace} />
@@ -467,23 +808,39 @@ export const MapPage = () => {
 
 /* ── advisory 렌더 (데스크톱 패널 + 모바일 시트 공용) ── */
 const CAT_LABEL: Record<string, string> = {
-  price: '물가 정보', transit: '교통', etiquette: '에티켓', safety: '안전',
+  price: '물가 정보',
+  transit: '교통',
+  etiquette: '에티켓',
+  safety: '안전',
 }
 const CAT_COLOR: Record<string, string> = {
-  price: 'bg-amber-100 text-amber-700', transit: 'bg-neutral-200 text-neutral-700',
-  etiquette: 'bg-teal-100 text-teal-700', safety: 'bg-red-100 text-red-700',
+  price: 'bg-amber-100 text-amber-700',
+  transit: 'bg-neutral-200 text-neutral-700',
+  etiquette: 'bg-teal-100 text-teal-700',
+  safety: 'bg-red-100 text-red-700',
 }
 
 function DetailAdvisories({ place }: { place: TourSearchItem }) {
   const { t, i18n } = useTranslation()
   const groups = useMemo(() => groupByCategory(matchAdvisories(place)), [place])
   const fmtKrw = (v: number) => {
-    try { return new Intl.NumberFormat(i18n.language, { style: 'currency', currency: 'KRW', maximumFractionDigits: 0 }).format(v) }
-    catch { return `₩${v.toLocaleString()}` }
+    try {
+      return new Intl.NumberFormat(i18n.language, {
+        style: 'currency',
+        currency: 'KRW',
+        maximumFractionDigits: 0,
+      }).format(v)
+    } catch {
+      return `₩${v.toLocaleString()}`
+    }
   }
 
   if (groups.length === 0) {
-    return <p className="mt-5 text-center text-[13px] text-neutral-400">{t('page.place.noAdvisory', '이 장소에 대한 추가 정보가 아직 없습니다.')}</p>
+    return (
+      <p className="mt-5 text-center text-[14px] text-neutral-400">
+        {t('page.place.noAdvisory', '이 장소에 대한 추가 정보가 아직 없습니다.')}
+      </p>
+    )
   }
 
   return (
@@ -491,7 +848,9 @@ function DetailAdvisories({ place }: { place: TourSearchItem }) {
       {groups.map(({ category, items }) => (
         <section key={category}>
           <div className="mb-1.5 flex items-center gap-2">
-            <span className={`rounded-md px-2 py-0.5 text-[11px] font-bold ${CAT_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}>
+            <span
+              className={`rounded-md px-2 py-0.5 text-[13px] font-bold ${CAT_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}
+            >
               {CAT_LABEL[category] ?? category}
             </span>
           </div>
@@ -499,10 +858,18 @@ function DetailAdvisories({ place }: { place: TourSearchItem }) {
             {items.map((a) => (
               <li key={a.id} className="px-3.5 py-2.5">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="flex-1 text-[12px] font-semibold text-neutral-800">{t(`advisory.${a.id}.title`)}</p>
-                  {a.amount && <span className="shrink-0 text-[11px] font-bold tabular-nums text-amber-600">{fmtKrw(a.amount.value)}</span>}
+                  <p className="flex-1 text-[14px] font-semibold text-neutral-800">
+                    {t(`advisory.${a.id}.title`)}
+                  </p>
+                  {a.amount && (
+                    <span className="shrink-0 text-[13px] font-bold tabular-nums text-amber-600">
+                      {fmtKrw(a.amount.value)}
+                    </span>
+                  )}
                 </div>
-                <p className="mt-0.5 text-[11px] leading-relaxed text-neutral-500">{t(`advisory.${a.id}.body`)}</p>
+                <p className="mt-0.5 text-[13px] leading-relaxed text-neutral-500">
+                  {t(`advisory.${a.id}.body`)}
+                </p>
               </li>
             ))}
           </ul>

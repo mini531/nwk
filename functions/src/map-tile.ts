@@ -7,7 +7,7 @@ const VWORLD_API_KEY = defineSecret('VWORLD_API_KEY')
 // 1x1 투명 PNG (최소 크기) — VWorld 오류/범위 밖 타일 대체용
 const BLANK_TILE = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQAB' +
-  'Nl7BcQAAAABJRU5ErkJggg==',
+    'Nl7BcQAAAABJRU5ErkJggg==',
   'base64',
 )
 
@@ -94,10 +94,18 @@ export const mapTile = onRequest(
 
       // VWorld 는 범위 밖 타일이나 키 오류 시 200 + XML 을 반환함
       // PNG magic bytes (0x89 0x50 0x4E 0x47) 가 아니면 빈 타일로 대체
-      const isPng = buf.length > 4 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47
+      const isPng =
+        buf.length > 4 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47
       if (!upstream.ok || !isPng) {
         if (!isPng && buf.length > 0) {
-          logger.warn('vworld non-png response', { z, x, y, layer, size: buf.length, head: buf.subarray(0, 40).toString('utf8') })
+          logger.warn('vworld non-png response', {
+            z,
+            x,
+            y,
+            layer,
+            size: buf.length,
+            head: buf.subarray(0, 40).toString('utf8'),
+          })
         }
         res.setHeader('Content-Type', 'image/png')
         res.setHeader('Cache-Control', 'public, max-age=3600')

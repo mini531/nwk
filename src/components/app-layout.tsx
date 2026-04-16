@@ -85,7 +85,7 @@ export const AppLayout = () => {
               to={to}
               end={end}
               className={({ isActive }) =>
-                `group relative flex flex-1 flex-col items-center justify-center gap-1 text-[11px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+                `group relative flex flex-1 flex-col items-center justify-center gap-1 text-[12px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
                   isActive ? 'text-brand' : 'text-ink-3 hover:text-ink-2'
                 }`
               }

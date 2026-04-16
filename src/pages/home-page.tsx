@@ -176,7 +176,7 @@ export const HomePage = () => {
 
   const openFull = () => {
     setSelectedPlace(active.place)
-    navigate('/place')
+    navigate('/map')
   }
 
   // Randomized once per page mount so a revisit shows a different set.
@@ -199,7 +199,7 @@ export const HomePage = () => {
               {priceCards.map((p) => (
                 <div key={p.id} className="nwk-card relative flex flex-col gap-1.5 px-5 py-5 pt-7">
                   {p.live && (
-                    <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-brand-soft px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand">
+                    <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-brand-soft px-2 py-0.5 text-[12px] font-bold uppercase tracking-wider text-brand">
                       LIVE
                     </span>
                   )}
@@ -331,7 +331,7 @@ export const HomePage = () => {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
+                    <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
                       <span className="h-1.5 w-1.5 rounded-full bg-brand" />
                       TourAPI
                     </div>

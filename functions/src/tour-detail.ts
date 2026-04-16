@@ -178,7 +178,9 @@ export const tourNearby = onCall(
       const body = await res.text()
       if (body.trim().startsWith('<')) throw new Error('non-json response')
       const json = JSON.parse(body) as {
-        response?: { body?: { totalCount?: number; items?: { item?: Array<Record<string, string>> } } }
+        response?: {
+          body?: { totalCount?: number; items?: { item?: Array<Record<string, string>> } }
+        }
       }
       const totalCount = Number(json.response?.body?.totalCount) || 0
       const raw = json.response?.body?.items?.item ?? []

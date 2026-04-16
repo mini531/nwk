@@ -22,14 +22,14 @@ export const AboutPage = () => {
         </div>
         <h1 className="text-lg font-semibold tracking-tight text-ink">{t('page.about.title')}</h1>
         <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{t('page.about.tagline')}</p>
-        <p className="mt-4 text-[11px] uppercase tracking-[0.14em] text-ink-3">
+        <p className="mt-4 text-[12px] uppercase tracking-[0.14em] text-ink-3">
           {t('page.about.version')} 0.1.0
         </p>
       </section>
 
       {(canInstall || installed) && (
         <section className="nwk-card p-5">
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-3">
+          <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-3">
             {t('page.about.install.eyebrow')}
           </p>
           <p className="mt-1 text-[15px] font-semibold tracking-tight text-ink">

@@ -62,7 +62,7 @@ export const ProfilePage = () => {
       thumbnail: fav.thumbnail ?? undefined,
     }
     setSelectedPlace(place)
-    navigate('/place')
+    navigate('/map')
   }
 
   if (loading) {
@@ -131,7 +131,7 @@ export const ProfilePage = () => {
             <button
               type="button"
               onClick={clearFavorites}
-              className="text-[10px] font-medium text-ink-3 hover:text-ink-2"
+              className="text-[12px] font-medium text-ink-3 hover:text-ink-2"
             >
               {t('page.profile.clear')}
             </button>
@@ -189,7 +189,7 @@ export const ProfilePage = () => {
             <button
               type="button"
               onClick={clearRecent}
-              className="text-[10px] font-medium text-ink-3 hover:text-ink-2"
+              className="text-[12px] font-medium text-ink-3 hover:text-ink-2"
             >
               {t('page.profile.clear')}
             </button>
