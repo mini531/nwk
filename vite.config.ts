@@ -10,5 +10,15 @@ export default defineConfig({
       usePolling: true,
       interval: 400,
     },
+    proxy: {
+      '/tiles': {
+        target: 'https://nwk-app-ba6f8.web.app',
+        changeOrigin: true,
+      },
+      '/api': {
+        target: 'https://nwk-app-ba6f8.web.app',
+        changeOrigin: true,
+      },
+    },
   },
 })
