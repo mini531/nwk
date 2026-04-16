@@ -63,7 +63,7 @@ export const mapTile = onRequest(
     try {
       key = VWORLD_API_KEY.value()
     } catch {
-      key = undefined
+      key = process.env.VWORLD_API_KEY || undefined
     }
     if (!key) {
       logger.error('mapTile: VWORLD_API_KEY not configured')

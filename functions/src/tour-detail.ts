@@ -71,12 +71,11 @@ export const tourDetail = onCall(
     const data = (request.data ?? {}) as { contentId?: unknown; lang?: unknown }
     const contentId = sanitizeContentId(data.contentId)
     const service = resolveService(data.lang)
-
     let key: string | undefined
     try {
       key = TOUR_API_KEY.value()
     } catch {
-      key = undefined
+      key = process.env.TOUR_API_KEY || undefined
     }
 
     if (!key || key === 'placeholder') {
@@ -147,12 +146,11 @@ export const tourNearby = onCall(
     }
     const radius = Math.min(Math.max(Number(data.radius) || 2000, 100), 20000)
     const service = resolveService(data.lang)
-
     let key: string | undefined
     try {
       key = TOUR_API_KEY.value()
     } catch {
-      key = undefined
+      key = process.env.TOUR_API_KEY || undefined
     }
     if (!key || key === 'placeholder') {
       return { source: 'mock' as const, items: [] }

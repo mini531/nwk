@@ -104,7 +104,7 @@ export const tourSearch = onCall(
     try {
       key = TOUR_API_KEY.value()
     } catch {
-      key = undefined
+      key = process.env.TOUR_API_KEY || undefined
     }
 
     const mockResult = () => {
