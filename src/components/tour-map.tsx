@@ -1,39 +1,32 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import maplibregl, { type LngLatLike, type Map as MLMap } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
-const tileBase =
-  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? '/tiles?layer={layer}&z={z}&x={x}&y={y}'
+const DEFAULT_TILE_BASE =
+  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
+  'https://asia-northeast3-nwk-app-ba6f8.cloudfunctions.net/mapTile'
 
-function makeTileUrl(layer: string) {
-  if (tileBase.includes('{layer}')) return tileBase.replace('{layer}', layer)
-  // direct VWorld URL: replace layer name in path
-  return tileBase.replace(/\/Base\//, `/${layer}/`).replace(/\/Satellite\//, `/${layer}/`)
-}
+const tileUrl = `${DEFAULT_TILE_BASE}?layer=Base&z={z}&x={x}&y={y}`
 
-type MapLayer = 'Base' | 'Satellite'
-
-function buildStyle(layer: MapLayer) {
-  return {
-    version: 8 as const,
-    sources: {
-      vworld: {
-        type: 'raster' as const,
-        tiles: [makeTileUrl(layer)],
-        tileSize: 256,
-        attribution: '© VWorld · 국토교통부 · TourAPI KTO',
-      },
+const BASE_STYLE = {
+  version: 8 as const,
+  sources: {
+    vworld: {
+      type: 'raster' as const,
+      tiles: [tileUrl],
+      tileSize: 256,
+      attribution: '© VWorld · 국토교통부 · TourAPI KTO',
     },
-    layers: [
-      {
-        id: 'vworld-base',
-        type: 'raster' as const,
-        source: 'vworld',
-        minzoom: 0,
-        maxzoom: 19,
-      },
-    ],
-  }
+  },
+  layers: [
+    {
+      id: 'vworld-base',
+      type: 'raster' as const,
+      source: 'vworld',
+      minzoom: 0,
+      maxzoom: 19,
+    },
+  ],
 }
 
 export interface TourMapProps {
@@ -44,7 +37,6 @@ export interface TourMapProps {
   onPoiClick?: (props: PoiProperties) => void
   onBoundsChange?: (bounds: [number, number, number, number]) => void
   fitToFeatures?: boolean
-  showLayerToggle?: boolean
 }
 
 export interface PoiProperties {
@@ -69,7 +61,6 @@ export const TourMap = ({
   onPoiClick,
   onBoundsChange,
   fitToFeatures = false,
-  showLayerToggle = false,
 }: TourMapProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MLMap | null>(null)
@@ -77,30 +68,12 @@ export const TourMap = ({
   onClickRef.current = onPoiClick
   const onBoundsRef = useRef(onBoundsChange)
   onBoundsRef.current = onBoundsChange
-  const [activeLayer, setActiveLayer] = useState<MapLayer>('Base')
-
-  const switchLayer = useCallback(
-    (layer: MapLayer) => {
-      const map = mapRef.current
-      if (!map || layer === activeLayer) return
-      setActiveLayer(layer)
-      const src = map.getSource('vworld') as unknown as { tiles?: string[]; _options?: { tiles: string[] } }
-      if (src) {
-        const newUrl = makeTileUrl(layer)
-        ;(src as unknown as { tiles: string[] }).tiles = [newUrl]
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ;(map.style as any).sourceCaches?.['vworld']?.clearTiles()
-        map.triggerRepaint()
-      }
-    },
-    [activeLayer],
-  )
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: buildStyle(activeLayer),
+      style: BASE_STYLE,
       center,
       zoom,
       attributionControl: { compact: true },
@@ -230,6 +203,7 @@ export const TourMap = ({
         map.getCanvas().style.cursor = ''
       })
 
+      // viewport bounds 변경 이벤트
       const emitBounds = () => {
         if (!onBoundsRef.current) return
         const b = map.getBounds()
@@ -237,7 +211,6 @@ export const TourMap = ({
       }
       map.on('moveend', emitBounds)
       map.on('zoomend', emitBounds)
-      // Emit once after load so the sidebar can show the initial viewport
       emitBounds()
     })
 
@@ -258,10 +231,7 @@ export const TourMap = ({
     source.setData(geojson)
 
     if (fitToFeatures && geojson.features.length > 0) {
-      let minLng = Infinity
-      let minLat = Infinity
-      let maxLng = -Infinity
-      let maxLat = -Infinity
+      let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity
       for (const f of geojson.features) {
         const [lng, lat] = f.geometry.coordinates
         if (lng < minLng) minLng = lng
@@ -269,39 +239,11 @@ export const TourMap = ({
         if (lng > maxLng) maxLng = lng
         if (lat > maxLat) maxLat = lat
       }
-      if (Number.isFinite(minLng) && Number.isFinite(maxLng)) {
-        map.fitBounds(
-          [
-            [minLng, minLat],
-            [maxLng, maxLat],
-          ],
-          { padding: 60, maxZoom: 14, duration: 600 },
-        )
+      if (Number.isFinite(minLng)) {
+        map.fitBounds([[minLng, minLat], [maxLng, maxLat]], { padding: 60, maxZoom: 14, duration: 600 })
       }
     }
   }, [geojson, fitToFeatures])
 
-  return (
-    <div className={`relative ${className ?? ''}`}>
-      <div ref={containerRef} className="absolute inset-0" />
-      {showLayerToggle && (
-        <div className="absolute bottom-4 left-4 z-10 flex overflow-hidden rounded-lg border border-white/60 bg-white/90 shadow-lg backdrop-blur-sm">
-          <button
-            type="button"
-            onClick={() => switchLayer('Base')}
-            className={`px-3 py-1.5 text-[12px] font-bold transition-colors ${activeLayer === 'Base' ? 'bg-ink text-white' : 'text-ink-2 hover:text-ink'}`}
-          >
-            일반
-          </button>
-          <button
-            type="button"
-            onClick={() => switchLayer('Satellite')}
-            className={`px-3 py-1.5 text-[12px] font-bold transition-colors ${activeLayer === 'Satellite' ? 'bg-ink text-white' : 'text-ink-2 hover:text-ink'}`}
-          >
-            위성
-          </button>
-        </div>
-      )}
-    </div>
-  )
+  return <div ref={containerRef} className={className} />
 }
