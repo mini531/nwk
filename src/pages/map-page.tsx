@@ -92,7 +92,7 @@ export const MapPage = () => {
   )
 
   return (
-    <div className="flex h-[calc(100dvh-56px)] flex-col sm:h-[calc(100dvh-64px)]">
+    <div className="-mx-5 -mt-6 flex h-[calc(100dvh-56px)] flex-col sm:-mx-6 sm:h-[calc(100dvh-64px)] lg:-mx-8">
       {/* 지도 영역 */}
       <div className="relative flex-1">
         <TourMap
