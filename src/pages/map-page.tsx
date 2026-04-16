@@ -271,106 +271,157 @@ export const MapPage = () => {
         </button>
       )}
 
-      {/* 좌측 유리 패널 — 데스크톱 전용 (모바일은 목록 뷰로 대체) */}
+      {/* 좌측 유리 패널 — 데스크톱 전용: 목록 또는 상세 뷰 전환 */}
       <div
-        className="pointer-events-auto fixed z-20 hidden w-[340px] max-w-[calc(100vw-60px)] sm:block"
+        className="pointer-events-auto fixed z-20 hidden w-[360px] max-w-[calc(100vw-60px)] sm:block"
         style={{ top: 80, left: 12 }}
       >
         <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg">
-          {/* 헤더 (클릭으로 접기/펼치기) */}
-          <button
-            type="button"
-            onClick={() => setPanelOpen(!panelOpen)}
-            className="flex w-full shrink-0 cursor-pointer items-center gap-3 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
-              {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
-            </h2>
-            <svg
-              width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
-              className={`shrink-0 text-neutral-400 transition-transform duration-250 ${panelOpen ? 'rotate-180' : ''}`}
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
 
-          {/* 본문 — grid rows transition 으로 자연스럽게 접기 */}
-          <div
-            className="grid transition-[grid-template-rows] duration-300 ease-out"
-            style={{ gridTemplateRows: panelOpen ? '1fr' : '0fr' }}
-          >
-            <div className="overflow-hidden">
-              <div className="max-h-[calc(100dvh-240px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
-              {places.map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  onClick={() => openDetail(p)}
-                  className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
-                >
-                  {p.thumbnail ? (
-                    <img src={p.thumbnail} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" loading="lazy" />
-                  ) : (
-                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-neutral-100 text-neutral-400">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                      </svg>
-                    </div>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] font-bold text-neutral-800">{p.title}</p>
-                    <p className="mt-0.5 truncate text-[11px] text-neutral-500">{p.addr}</p>
-                  </div>
-                </button>
-              ))}
-
-              {hasMoreRef.current && places.length > 0 && (
-                <button
-                  type="button"
-                  onClick={loadMore}
-                  disabled={loadingMore}
-                  className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400"
-                >
-                  {loadingMore ? '불러오는 중...' : '더 보기'}
-                </button>
-              )}
-
-              {!loading && places.length === 0 && (
-                <p className="px-4 py-10 text-center text-[13px] text-neutral-400">
-                  주변 관광지를 불러오는 중입니다...
-                </p>
-              )}
+          {/* ── 상세 뷰 (detailPlace 있을 때) ── */}
+          {detailPlace ? (
+            <>
+              {/* 상세 헤더 */}
+              <button
+                type="button"
+                onClick={closeDetail}
+                className="flex w-full items-center gap-2 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <span className="text-[14px] font-bold text-neutral-800">목록으로</span>
+              </button>
+              {/* 상세 본문 */}
+              <div className="max-h-[calc(100dvh-200px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
+                {detailPlace.thumbnail && (
+                  <img src={detailPlace.thumbnail} alt="" className="h-44 w-full object-cover" />
+                )}
+                <div className="p-4">
+                  <h3 className="text-[18px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
+                  <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
+                    <PinIcon size={12} className="mt-[3px] shrink-0" />
+                    {detailPlace.addr}
+                  </p>
+                  <DetailAdvisories place={detailPlace} />
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          ) : (
+            <>
+              {/* ── 목록 헤더 ── */}
+              <button
+                type="button"
+                onClick={() => setPanelOpen(!panelOpen)}
+                className="flex w-full shrink-0 cursor-pointer items-center gap-3 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                </svg>
+                <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
+                  {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
+                </h2>
+                <svg
+                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
+                  className={`shrink-0 text-neutral-400 transition-transform duration-250 ${panelOpen ? 'rotate-180' : ''}`}
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+
+              {/* ── 목록 본문 ── */}
+              <div
+                className="grid transition-[grid-template-rows] duration-300 ease-out"
+                style={{ gridTemplateRows: panelOpen ? '1fr' : '0fr' }}
+              >
+                <div className="overflow-hidden">
+                  <div className="max-h-[calc(100dvh-240px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
+                    {places.map((p) => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => openDetail(p)}
+                        className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
+                      >
+                        {p.thumbnail ? (
+                          <img src={p.thumbnail} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" loading="lazy" />
+                        ) : (
+                          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-neutral-100 text-neutral-400">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                            </svg>
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-[13px] font-bold text-neutral-800">{p.title}</p>
+                          <p className="mt-0.5 truncate text-[11px] text-neutral-500">{p.addr}</p>
+                        </div>
+                      </button>
+                    ))}
+
+                    {hasMoreRef.current && places.length > 0 && (
+                      <button type="button" onClick={loadMore} disabled={loadingMore} className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400">
+                        {loadingMore ? '불러오는 중...' : '더 보기'}
+                      </button>
+                    )}
+
+                    {!loading && places.length === 0 && (
+                      <p className="px-4 py-10 text-center text-[13px] text-neutral-400">주변 관광지를 불러오는 중입니다...</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* 관광지 상세 모달 — 전체 세부 정보 */}
-      {detailPlace && <DetailModal place={detailPlace} onClose={closeDetail} />}
+      {/* 모바일 전용 상세 모달 (하단 sheet) */}
+      {detailPlace && (
+        <div className="fixed inset-0 z-30 flex items-end sm:hidden" onClick={closeDetail}>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div
+            className="relative z-10 flex max-h-[85dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative shrink-0">
+              {detailPlace.thumbnail ? (
+                <img src={detailPlace.thumbnail} alt="" className="h-44 w-full object-cover" />
+              ) : (
+                <div className="grid h-36 w-full place-items-center bg-neutral-100 text-neutral-300">
+                  <PinIcon size={36} />
+                </div>
+              )}
+              <button type="button" onClick={closeDetail} className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto overscroll-contain p-5 [scrollbar-width:thin]">
+              <h3 className="text-[20px] font-bold tracking-tight text-neutral-900">{detailPlace.title}</h3>
+              <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
+                <PinIcon size={12} className="mt-[3px] shrink-0" />
+                {detailPlace.addr}
+              </p>
+              <DetailAdvisories place={detailPlace} />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
 
-/* ── 상세 정보 모달 (place-page 동일 advisory 매칭) ── */
-const CATEGORY_LABEL: Record<string, string> = {
-  price: '물가 정보',
-  transit: '교통',
-  etiquette: '에티켓',
-  safety: '안전',
+/* ── advisory 렌더 (데스크톱 패널 + 모바일 시트 공용) ── */
+const CAT_LABEL: Record<string, string> = {
+  price: '물가 정보', transit: '교통', etiquette: '에티켓', safety: '안전',
 }
-const CATEGORY_COLOR: Record<string, string> = {
-  price: 'bg-amber-100 text-amber-700',
-  transit: 'bg-neutral-200 text-neutral-700',
-  etiquette: 'bg-teal-100 text-teal-700',
-  safety: 'bg-red-100 text-red-700',
+const CAT_COLOR: Record<string, string> = {
+  price: 'bg-amber-100 text-amber-700', transit: 'bg-neutral-200 text-neutral-700',
+  etiquette: 'bg-teal-100 text-teal-700', safety: 'bg-red-100 text-red-700',
 }
 
-function DetailModal({ place, onClose }: { place: TourSearchItem; onClose: () => void }) {
+function DetailAdvisories({ place }: { place: TourSearchItem }) {
   const { t, i18n } = useTranslation()
   const groups = useMemo(() => groupByCategory(matchAdvisories(place)), [place])
   const fmtKrw = (v: number) => {
@@ -378,79 +429,32 @@ function DetailModal({ place, onClose }: { place: TourSearchItem; onClose: () =>
     catch { return `₩${v.toLocaleString()}` }
   }
 
+  if (groups.length === 0) {
+    return <p className="mt-5 text-center text-[13px] text-neutral-400">{t('page.place.noAdvisory', '이 장소에 대한 추가 정보가 아직 없습니다.')}</p>
+  }
+
   return (
-    <div className="fixed inset-0 z-30 flex items-end justify-center sm:items-center sm:p-4" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-      <div
-        className="relative z-10 flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:max-w-lg sm:rounded-3xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* 이미지 */}
-        <div className="relative shrink-0">
-          {place.thumbnail ? (
-            <img src={place.thumbnail} alt="" className="h-44 w-full object-cover sm:h-52" />
-          ) : (
-            <div className="grid h-44 w-full place-items-center bg-neutral-100 text-neutral-300 sm:h-52">
-              <PinIcon size={42} />
-            </div>
-          )}
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-
-        {/* 스크롤 본문 */}
-        <div className="flex-1 overflow-y-auto overscroll-contain p-5 [scrollbar-width:thin]">
-          <h3 className="text-[20px] font-bold tracking-tight text-neutral-900">{place.title}</h3>
-          <p className="mt-1 flex items-start gap-1 text-[13px] text-neutral-500">
-            <PinIcon size={12} className="mt-[3px] shrink-0" />
-            {place.addr}
-          </p>
-
-          {groups.length > 0 ? (
-            <div className="mt-5 space-y-4">
-              {groups.map(({ category, items }) => (
-                <section key={category}>
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className={`rounded-md px-2 py-0.5 text-[11px] font-bold ${CATEGORY_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}>
-                      {CATEGORY_LABEL[category] ?? category}
-                    </span>
-                  </div>
-                  <ul className="divide-y divide-neutral-100 overflow-hidden rounded-xl border border-neutral-100">
-                    {items.map((a) => (
-                      <li key={a.id} className="px-4 py-3">
-                        <div className="flex items-start justify-between gap-2">
-                          <p className="flex-1 text-[13px] font-semibold text-neutral-800">
-                            {t(`advisory.${a.id}.title`)}
-                          </p>
-                          {a.amount && (
-                            <span className="shrink-0 text-[12px] font-bold tabular-nums text-amber-600">
-                              {fmtKrw(a.amount.value)}
-                            </span>
-                          )}
-                        </div>
-                        <p className="mt-0.5 text-[12px] leading-relaxed text-neutral-500">
-                          {t(`advisory.${a.id}.body`)}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-6 text-center text-[13px] text-neutral-400">
-              {t('page.place.noAdvisory', '이 장소에 대한 추가 정보가 아직 없습니다.')}
-            </p>
-          )}
-        </div>
-      </div>
+    <div className="mt-4 space-y-3">
+      {groups.map(({ category, items }) => (
+        <section key={category}>
+          <div className="mb-1.5 flex items-center gap-2">
+            <span className={`rounded-md px-2 py-0.5 text-[11px] font-bold ${CAT_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}>
+              {CAT_LABEL[category] ?? category}
+            </span>
+          </div>
+          <ul className="divide-y divide-neutral-100 overflow-hidden rounded-xl border border-neutral-100">
+            {items.map((a) => (
+              <li key={a.id} className="px-3.5 py-2.5">
+                <div className="flex items-start justify-between gap-2">
+                  <p className="flex-1 text-[12px] font-semibold text-neutral-800">{t(`advisory.${a.id}.title`)}</p>
+                  {a.amount && <span className="shrink-0 text-[11px] font-bold tabular-nums text-amber-600">{fmtKrw(a.amount.value)}</span>}
+                </div>
+                <p className="mt-0.5 text-[11px] leading-relaxed text-neutral-500">{t(`advisory.${a.id}.body`)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   )
 }
