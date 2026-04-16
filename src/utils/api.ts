@@ -29,6 +29,7 @@ export interface TourNearbyResponse {
   source: 'live' | 'mock' | 'error'
   items: TourNearbyItem[]
   radius?: number
+  totalCount?: number
 }
 
 export const tourNearby = httpsCallable<

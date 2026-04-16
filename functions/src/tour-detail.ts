@@ -178,8 +178,9 @@ export const tourNearby = onCall(
       const body = await res.text()
       if (body.trim().startsWith('<')) throw new Error('non-json response')
       const json = JSON.parse(body) as {
-        response?: { body?: { items?: { item?: Array<Record<string, string>> } } }
+        response?: { body?: { totalCount?: number; items?: { item?: Array<Record<string, string>> } } }
       }
+      const totalCount = Number(json.response?.body?.totalCount) || 0
       const raw = json.response?.body?.items?.item ?? []
       const list = Array.isArray(raw) ? raw : [raw]
       const items = list
@@ -195,7 +196,7 @@ export const tourNearby = onCall(
         }))
         .filter((r) => r.id && r.lat && r.lng)
 
-      return { source: 'live' as const, items, radius }
+      return { source: 'live' as const, items, radius, totalCount }
     } catch (err) {
       logger.warn('tourNearby failed', {
         err: err instanceof Error ? err.message : String(err),

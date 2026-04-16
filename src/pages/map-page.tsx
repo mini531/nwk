@@ -20,7 +20,7 @@ export const MapPage = () => {
   const navigate = useNavigate()
 
   const [places, setPlaces] = useState<TourSearchItem[]>([])
-  const [, setTotalCount] = useState(0)
+  const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
   const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
@@ -38,21 +38,24 @@ export const MapPage = () => {
     if (!map) return
     setActiveLayer(layer)
     setBaseLayerOpen(false)
-    const tileBase = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? ''
+
+    const envUrl = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? ''
     let url: string
-    if (tileBase && !tileBase.includes('{layer}')) {
-      url = tileBase.replace(/\/Base\/|\/Satellite\/|\/gray\/|\/midnight\//, `/${layer}/`)
+    if (envUrl && !envUrl.includes('{layer}')) {
+      url = envUrl.replace(/\/Base\/|\/Satellite\/|\/gray\/|\/midnight\//, `/${layer}/`)
     } else {
       url = `/tiles?layer=${layer}&z={z}&x={x}&y={y}`
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const src = map.getSource('vworld') as any
-    if (src) {
-      src.tiles = [url]
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ;(map.style as any).sourceCaches?.['vworld']?.clearTiles()
-      map.triggerRepaint()
-    }
+
+    // source + layer 를 제거하고 새 URL 로 재생성 (가장 확실한 방법)
+    try {
+      if (map.getLayer('vworld-base')) map.removeLayer('vworld-base')
+      if (map.getSource('vworld')) map.removeSource('vworld')
+      map.addSource('vworld', { type: 'raster', tiles: [url], tileSize: 256 })
+      // POI 레이어들 아래에 삽입 (클러스터 가려지지 않게)
+      const firstSymbol = map.getStyle().layers?.find(l => l.type === 'circle' || l.type === 'symbol')
+      map.addLayer({ id: 'vworld-base', type: 'raster', source: 'vworld', minzoom: 0, maxzoom: 19 }, firstSymbol?.id)
+    } catch { /* ignore */ }
   }, [])
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
   const [mapRadius, setMapRadius] = useState(20000)
@@ -91,7 +94,7 @@ export const MapPage = () => {
         .then((result) => {
           const items = result.data.items ?? []
           setPlaces((prev) => (append ? [...prev, ...items] : items))
-          setTotalCount(items.length + (append ? places.length : 0))
+          setTotalCount(result.data.totalCount ?? items.length)
           hasMoreRef.current = items.length >= PAGE_SIZE
         })
         .catch(() => {})
@@ -194,7 +197,7 @@ export const MapPage = () => {
         <div className="h-[calc(100dvh-120px)] overflow-y-auto bg-white [scrollbar-width:thin]">
           <div className="sticky top-0 z-10 border-b border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur-sm">
             <h2 className="text-[15px] font-bold text-neutral-800">
-              {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
+              {loading ? '불러오는 중...' : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
             </h2>
           </div>
           {places.map((p) => (
@@ -370,7 +373,7 @@ export const MapPage = () => {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
                 </svg>
                 <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
-                  {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
+                  {loading ? '불러오는 중...' : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
                 </h2>
                 <svg
                   width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
