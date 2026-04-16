@@ -24,6 +24,7 @@ export const MapPage = () => {
   const [userLoc, setUserLoc] = useState<[number, number] | null>(null)
   const [panelOpen, setPanelOpen] = useState(true)
   const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
+  const [mobileView, setMobileView] = useState<'map' | 'list'>('map')
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
   const [mapRadius, setMapRadius] = useState(20000)
   const pageRef = useRef(1)
@@ -150,8 +151,8 @@ export const MapPage = () => {
 
   return (
     <>
-      {/* 전체 화면 배경 지도 — 뷰포트 전폭 (max-w 돌파) */}
-      <div className="-mt-6" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+      {/* ═══ 지도 (데스크톱: 항상, 모바일: mobileView=map 일 때) ═══ */}
+      <div className={`-mt-6 ${mobileView === 'list' ? 'hidden sm:block' : ''}`} style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
         <TourMap
           geojson={geojson}
           center={center}
@@ -163,8 +164,75 @@ export const MapPage = () => {
         />
       </div>
 
-      {/* 검색바 오버레이 */}
-      <div className="pointer-events-none fixed left-0 right-0 z-20" style={{ top: 68 }}>
+      {/* ═══ 모바일 목록 뷰 (sm 미만 + mobileView=list) ═══ */}
+      <div className={`-mx-5 -mt-6 sm:hidden ${mobileView === 'list' ? '' : 'hidden'}`}>
+        <div className="h-[calc(100dvh-120px)] overflow-y-auto bg-white [scrollbar-width:thin]">
+          <div className="sticky top-0 z-10 border-b border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur-sm">
+            <h2 className="text-[15px] font-bold text-neutral-800">
+              {loading ? '불러오는 중...' : `관광지 ${places.length}개${hasMoreRef.current ? '+' : ''}`}
+            </h2>
+          </div>
+          {places.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => openDetail(p)}
+              className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left"
+            >
+              {p.thumbnail ? (
+                <img src={p.thumbnail} alt="" className="h-14 w-14 shrink-0 rounded-xl object-cover" loading="lazy" />
+              ) : (
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-neutral-100 text-neutral-400">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[14px] font-bold text-neutral-800">{p.title}</p>
+                <p className="mt-0.5 truncate text-[12px] text-neutral-500">{p.addr}</p>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-neutral-300"><polyline points="9 18 15 12 9 6" /></svg>
+            </button>
+          ))}
+          {hasMoreRef.current && places.length > 0 && (
+            <button type="button" onClick={loadMore} disabled={loadingMore} className="w-full py-4 text-center text-[14px] font-bold text-brand disabled:text-neutral-400">
+              {loadingMore ? '불러오는 중...' : '더 보기'}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* ═══ 모바일 하단 토글 탭 (지도/목록) ═══ */}
+      <div className="fixed inset-x-0 z-20 flex justify-center sm:hidden" style={{ bottom: 72 }}>
+        <div className="flex overflow-hidden rounded-full border border-white/60 bg-white/90 shadow-lg backdrop-blur-md">
+          <button
+            type="button"
+            onClick={() => setMobileView('map')}
+            className={`flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold transition-colors ${mobileView === 'map' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+            </svg>
+            지도
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileView('list')}
+            className={`flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold transition-colors ${mobileView === 'list' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+            목록
+          </button>
+        </div>
+      </div>
+
+      {/* ═══ 검색 오버레이: 데스크톱=풀바, 모바일=아이콘 버튼 ═══ */}
+      {/* 데스크톱 */}
+      <div className="pointer-events-none fixed left-0 right-0 z-20 hidden sm:block" style={{ top: 68 }}>
         <div className="pointer-events-auto mx-auto max-w-md px-4">
           <button
             type="button"
@@ -178,10 +246,23 @@ export const MapPage = () => {
           </button>
         </div>
       </div>
+      {/* 모바일 검색 아이콘 버튼 */}
+      {mobileView === 'map' && (
+        <button
+          type="button"
+          onClick={() => navigate('/search')}
+          className="fixed z-20 grid h-11 w-11 place-items-center rounded-full border border-white/60 bg-white/90 shadow-lg backdrop-blur-md sm:hidden"
+          style={{ top: 68, right: 16 }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      )}
 
-      {/* 좌측 유리 패널 — 헤더 클릭으로 위로 접기 (남원 glass-card 스타일) */}
+      {/* 좌측 유리 패널 — 데스크톱 전용 (모바일은 목록 뷰로 대체) */}
       <div
-        className="pointer-events-auto fixed z-20 w-[340px] max-w-[calc(100vw-60px)]"
+        className="pointer-events-auto fixed z-20 hidden w-[340px] max-w-[calc(100vw-60px)] sm:block"
         style={{ top: 80, left: 12 }}
       >
         <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg">
