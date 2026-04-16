@@ -151,11 +151,9 @@ export const MapPage = () => {
       {/* 좌측 유리 패널 — 헤더 클릭으로 위로 접기 (남원 glass-card 스타일) */}
       <div
         className="pointer-events-auto fixed z-20 w-[340px] max-w-[calc(100vw-60px)]"
-        style={{ top: 80, left: 12, bottom: panelOpen ? 76 : 'auto' }}
+        style={{ top: 80, left: 12 }}
       >
-        <div className="flex flex-col overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg"
-          style={{ maxHeight: panelOpen ? 'calc(100dvh - 160px)' : 'auto' }}
-        >
+        <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg">
           {/* 헤더 (클릭으로 접기/펼치기) */}
           <button
             type="button"
@@ -177,9 +175,13 @@ export const MapPage = () => {
             </svg>
           </button>
 
-          {/* 본문 (접히면 숨김) */}
-          {panelOpen && (
-            <div className="flex-1 overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
+          {/* 본문 — grid rows transition 으로 자연스럽게 접기 */}
+          <div
+            className="grid transition-[grid-template-rows] duration-300 ease-out"
+            style={{ gridTemplateRows: panelOpen ? '1fr' : '0fr' }}
+          >
+            <div className="overflow-hidden">
+              <div className="max-h-[calc(100dvh-240px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
               {places.map((p) => (
                 <button
                   key={p.id}
@@ -219,8 +221,9 @@ export const MapPage = () => {
                   주변 관광지를 불러오는 중입니다...
                 </p>
               )}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
 
