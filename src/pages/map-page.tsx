@@ -148,88 +148,80 @@ export const MapPage = () => {
         </div>
       </div>
 
-      {/* 좌측 유리 패널 — 접기/펼치기 (남원 스타일) */}
+      {/* 좌측 유리 패널 — 헤더 클릭으로 위로 접기 (남원 glass-card 스타일) */}
       <div
-        className="pointer-events-auto fixed z-20 flex transition-all duration-300 ease-out"
-        style={{ top: 80, left: 12, bottom: 76, maxWidth: 'calc(100vw - 60px)' }}
+        className="pointer-events-auto fixed z-20 w-[340px] max-w-[calc(100vw-60px)]"
+        style={{ top: 80, left: 12, bottom: panelOpen ? 76 : 'auto' }}
       >
-        {/* 메인 패널 (접히면 width=0) */}
-        <div
-          className="flex flex-col overflow-hidden rounded-l-2xl border border-r-0 border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg transition-all duration-300"
-          style={{ width: panelOpen ? 320 : 0, minWidth: 0 }}
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-white/50 bg-white/88 shadow-2xl backdrop-blur-lg"
+          style={{ maxHeight: panelOpen ? 'calc(100dvh - 160px)' : 'auto' }}
         >
-          {/* 헤더 */}
-          <div className="flex shrink-0 items-center justify-between border-b border-neutral-200/60 px-4 py-3" style={{ minWidth: 320 }}>
-            <h2 className="text-[14px] font-bold text-neutral-800">
+          {/* 헤더 (클릭으로 접기/펼치기) */}
+          <button
+            type="button"
+            onClick={() => setPanelOpen(!panelOpen)}
+            className="flex w-full shrink-0 cursor-pointer items-center gap-3 border-b border-neutral-200/60 px-4 py-3 text-left transition-colors hover:bg-white/60"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            <h2 className="flex-1 text-[14px] font-bold text-neutral-800">
               {loading ? '불러오는 중...' : `관광지 ${places.length}개`}
             </h2>
-          </div>
+            <svg
+              width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
+              className={`shrink-0 text-neutral-400 transition-transform duration-250 ${panelOpen ? 'rotate-180' : ''}`}
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
 
-          {/* 목록 */}
-          <div className="flex-1 overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12" style={{ minWidth: 320 }}>
-            {places.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                onClick={() => openDetail(p)}
-                className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
-              >
-                {p.thumbnail ? (
-                  <img src={p.thumbnail} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" loading="lazy" />
-                ) : (
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-neutral-100 text-neutral-400">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                    </svg>
+          {/* 본문 (접히면 숨김) */}
+          {panelOpen && (
+            <div className="flex-1 overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
+              {places.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => openDetail(p)}
+                  className="flex w-full items-center gap-3 border-b border-neutral-100 px-4 py-3 text-left transition-colors hover:bg-white/80"
+                >
+                  {p.thumbnail ? (
+                    <img src={p.thumbnail} alt="" className="h-11 w-11 shrink-0 rounded-lg object-cover" loading="lazy" />
+                  ) : (
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-neutral-100 text-neutral-400">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[13px] font-bold text-neutral-800">{p.title}</p>
+                    <p className="mt-0.5 truncate text-[11px] text-neutral-500">{p.addr}</p>
                   </div>
-                )}
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] font-bold text-neutral-800">{p.title}</p>
-                  <p className="mt-0.5 truncate text-[11px] text-neutral-500">{p.addr}</p>
-                </div>
-              </button>
-            ))}
+                </button>
+              ))}
 
-            {hasMoreRef.current && places.length > 0 && (
-              <button
-                type="button"
-                onClick={loadMore}
-                disabled={loadingMore}
-                className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400"
-              >
-                {loadingMore ? '불러오는 중...' : '더 보기'}
-              </button>
-            )}
+              {hasMoreRef.current && places.length > 0 && (
+                <button
+                  type="button"
+                  onClick={loadMore}
+                  disabled={loadingMore}
+                  className="w-full py-3 text-center text-[13px] font-bold text-brand disabled:text-neutral-400"
+                >
+                  {loadingMore ? '불러오는 중...' : '더 보기'}
+                </button>
+              )}
 
-            {!loading && places.length === 0 && (
-              <p className="px-4 py-12 text-center text-[13px] text-neutral-400">
-                주변 관광지를 불러오는 중입니다...
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* 접기/펼치기 탭 (항상 보임, 패널 오른쪽에 붙음) */}
-        <button
-          type="button"
-          onClick={() => setPanelOpen(!panelOpen)}
-          className="flex h-24 w-8 shrink-0 flex-col items-center justify-center gap-1 self-start rounded-r-xl border border-l-0 border-white/50 bg-white/88 shadow-lg backdrop-blur-lg transition-colors hover:bg-white"
-          style={{ marginTop: 16 }}
-          title={panelOpen ? '패널 접기' : '패널 펼치기'}
-        >
-          <svg
-            width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
-            className={`text-neutral-500 transition-transform duration-300 ${panelOpen ? '' : 'rotate-180'}`}
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-          {!panelOpen && (
-            <span className="text-[10px] font-bold text-neutral-500" style={{ writingMode: 'vertical-rl' }}>
-              {places.length}
-            </span>
+              {!loading && places.length === 0 && (
+                <p className="px-4 py-10 text-center text-[13px] text-neutral-400">
+                  주변 관광지를 불러오는 중입니다...
+                </p>
+              )}
+            </div>
           )}
-        </button>
+        </div>
       </div>
 
       {/* 관광지 상세 모달 */}
