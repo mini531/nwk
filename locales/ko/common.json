@@ -258,7 +258,16 @@
       "clearSelection": "선택 해제",
       "attribution": "POI: 한국관광공사 TourAPI · 지도: ⓒ Kakao",
       "zoomIn": "확대",
-      "zoomOut": "축소"
+      "zoomOut": "축소",
+      "loading": "불러오는 중...",
+      "resultCount_search": "검색결과 {{count}}개",
+      "resultCount_tour": "관광지 {{count}}개",
+      "loadMore": "더 보기",
+      "noSearchResult": "검색 결과가 없습니다",
+      "loadingNearby": "주변 관광지를 불러오는 중입니다...",
+      "tabMap": "지도",
+      "tabList": "목록",
+      "backToList": "목록으로"
     },
     "about": {
       "title": "NWK - No Worries Korea",

@@ -285,10 +285,12 @@ export const MapPage = () => {
           <div className="sticky top-0 z-10 space-y-2 border-b border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur-sm">
             <h2 className="text-[17px] font-bold text-neutral-800">
               {loading || searching
-                ? '불러오는 중...'
+                ? t('page.map.loading')
                 : isSearchMode
-                  ? `검색결과 ${displayPlaces.length}개`
-                  : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
+                  ? t('page.map.resultCount_search', { count: displayPlaces.length })
+                  : t('page.map.resultCount_tour', {
+                      count: totalCount > places.length ? totalCount : places.length,
+                    })}
             </h2>
             <div className="relative">
               <svg
@@ -387,7 +389,7 @@ export const MapPage = () => {
               disabled={loadingMore}
               className="w-full py-4 text-center text-[14px] font-bold text-brand disabled:text-neutral-400"
             >
-              {loadingMore ? '불러오는 중...' : '더 보기'}
+              {loadingMore ? t('page.map.loading') : t('page.map.loadMore')}
             </button>
           )}
         </div>
@@ -413,7 +415,7 @@ export const MapPage = () => {
             >
               <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
             </svg>
-            지도
+            {t('page.map.tabMap')}
           </button>
           <button
             type="button"
@@ -437,7 +439,7 @@ export const MapPage = () => {
               <line x1="3" y1="12" x2="3.01" y2="12" />
               <line x1="3" y1="18" x2="3.01" y2="18" />
             </svg>
-            목록
+            {t('page.map.tabList')}
           </button>
         </div>
       </div>
@@ -647,7 +649,9 @@ export const MapPage = () => {
                 >
                   <polyline points="15 18 9 12 15 6" />
                 </svg>
-                <span className="text-[15px] font-bold text-neutral-800">목록으로</span>
+                <span className="text-[15px] font-bold text-neutral-800">
+                  {t('page.map.backToList')}
+                </span>
               </button>
               {/* 상세 본문 */}
               <div className="max-h-[calc(100dvh-200px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
@@ -699,10 +703,12 @@ export const MapPage = () => {
                 </svg>
                 <h2 className="flex-1 text-[16px] font-bold text-neutral-800">
                   {loading || searching
-                    ? '불러오는 중...'
+                    ? t('page.map.loading')
                     : isSearchMode
-                      ? `검색결과 ${displayPlaces.length}개`
-                      : `관광지 ${totalCount > places.length ? totalCount.toLocaleString() : places.length}개`}
+                      ? t('page.map.resultCount_search', { count: displayPlaces.length })
+                      : t('page.map.resultCount_tour', {
+                          count: totalCount > places.length ? totalCount : places.length,
+                        })}
                 </h2>
                 <svg
                   width="16"
@@ -771,15 +777,13 @@ export const MapPage = () => {
                         disabled={loadingMore}
                         className="w-full py-3 text-center text-[15px] font-bold text-brand disabled:text-neutral-400"
                       >
-                        {loadingMore ? '불러오는 중...' : '더 보기'}
+                        {loadingMore ? t('page.map.loading') : t('page.map.loadMore')}
                       </button>
                     )}
 
                     {!loading && !searching && displayPlaces.length === 0 && (
                       <p className="px-4 py-10 text-center text-[14px] text-neutral-400">
-                        {isSearchMode
-                          ? '검색 결과가 없습니다'
-                          : '주변 관광지를 불러오는 중입니다...'}
+                        {isSearchMode ? t('page.map.noSearchResult') : t('page.map.loadingNearby')}
                       </p>
                     )}
                   </div>
@@ -852,12 +856,6 @@ export const MapPage = () => {
 }
 
 /* ── advisory 렌더 (데스크톱 패널 + 모바일 시트 공용) ── */
-const CAT_LABEL: Record<string, string> = {
-  price: '물가 정보',
-  transit: '교통',
-  etiquette: '에티켓',
-  safety: '안전',
-}
 const CAT_COLOR: Record<string, string> = {
   price: 'bg-amber-100 text-amber-700',
   transit: 'bg-neutral-200 text-neutral-700',
@@ -896,7 +894,7 @@ function DetailAdvisories({ place }: { place: TourSearchItem }) {
             <span
               className={`rounded-md px-2 py-0.5 text-[13px] font-bold ${CAT_COLOR[category] ?? 'bg-neutral-100 text-neutral-600'}`}
             >
-              {CAT_LABEL[category] ?? category}
+              {t(`page.place.categories.${category}`, category)}
             </span>
           </div>
           <ul className="divide-y divide-neutral-100 overflow-hidden rounded-xl border border-neutral-100">

@@ -258,7 +258,16 @@
       "clearSelection": "清除选择",
       "attribution": "POI: 韩国观光公社 TourAPI · 地图: ⓒ Kakao",
       "zoomIn": "放大",
-      "zoomOut": "缩小"
+      "zoomOut": "缩小",
+      "loading": "加载中...",
+      "resultCount_search": "搜索结果 {{count}} 个",
+      "resultCount_tour": "景点 {{count}} 个",
+      "loadMore": "加载更多",
+      "noSearchResult": "没有搜索结果",
+      "loadingNearby": "正在加载周边景点...",
+      "tabMap": "地图",
+      "tabList": "列表",
+      "backToList": "返回列表"
     },
     "about": {
       "title": "NWK — No Worries Korea",
