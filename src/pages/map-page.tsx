@@ -262,7 +262,11 @@ export const MapPage = () => {
           center={center}
           zoom={userLoc ? 13 : 11}
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
-          selectedId={detailPlace?.id ?? null}
+          selectedMarker={
+            detailPlace && detailPlace.lat && detailPlace.lng
+              ? { id: detailPlace.id, lat: detailPlace.lat, lng: detailPlace.lng }
+              : null
+          }
           baseLayer={activeLayer}
           onPoiClick={handlePoiClick}
           onBoundsChange={handleBoundsChange}

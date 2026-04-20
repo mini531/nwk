@@ -14,12 +14,18 @@ export interface PoiProperties {
   region: string
 }
 
+export interface SelectedMarker {
+  id: string
+  lat: number
+  lng: number
+}
+
 export interface KakaoTourMapProps {
   geojson: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>
   center?: [number, number] // [lng, lat]
   zoom?: number // MapLibre-style zoom (0-20); converted to Kakao level internally
   className?: string
-  selectedId?: string | null
+  selectedMarker?: SelectedMarker | null
   baseLayer?: BaseLayer
   onPoiClick?: (props: PoiProperties) => void
   onBoundsChange?: (bounds: [number, number, number, number]) => void
@@ -61,7 +67,7 @@ export const KakaoTourMap = ({
   center = DEFAULT_CENTER,
   zoom = DEFAULT_ZOOM,
   className,
-  selectedId,
+  selectedMarker,
   baseLayer = 'normal',
   onPoiClick,
   onBoundsChange,
@@ -207,7 +213,9 @@ export const KakaoTourMap = ({
     }
   }, [geojson, fitToFeatures])
 
-  // Selected marker overlay (orange star pin)
+  // Selected marker overlay (orange star pin). Uses lat/lng from the
+  // selectedMarker prop directly — works even for places not present in
+  // the current geojson (e.g. a hotspot deep-linked from the home page).
   useEffect(() => {
     const map = mapRef.current
     if (!map || typeof window === 'undefined') return
@@ -218,12 +226,9 @@ export const KakaoTourMap = ({
       selectedMarkerRef.current.setMap(null)
       selectedMarkerRef.current = null
     }
-    if (!selectedId) return
-
-    const feat = geojson.features.find((f) => f.properties.id === selectedId)
-    if (!feat) return
-    const [lng, lat] = feat.geometry.coordinates
-    if (!Number.isFinite(lng) || !Number.isFinite(lat)) return
+    if (!selectedMarker) return
+    const { lat, lng } = selectedMarker
+    if (!Number.isFinite(lng) || !Number.isFinite(lat) || (lat === 0 && lng === 0)) return
 
     const pinImage = new kakaoNs.MarkerImage(SELECTED_IMG_SRC, new kakaoNs.Size(36, 48), {
       offset: new kakaoNs.Point(18, 48),
@@ -235,7 +240,7 @@ export const KakaoTourMap = ({
     })
     marker.setMap(map)
     selectedMarkerRef.current = marker
-  }, [selectedId, geojson])
+  }, [selectedMarker])
 
   return <div ref={containerRef} className={className} />
 }
