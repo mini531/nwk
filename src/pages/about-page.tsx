@@ -17,7 +17,7 @@ export const AboutPage = () => {
       </header>
 
       <section className="nwk-card p-6 text-center">
-        <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-2xl bg-brand text-white">
+        <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-2xl bg-brand text-on-brand">
           <NwkLogo size={22} />
         </div>
         <h1 className="text-lg font-semibold tracking-tight text-ink">{t('page.about.title')}</h1>
@@ -41,7 +41,7 @@ export const AboutPage = () => {
               <button
                 type="button"
                 onClick={() => promptInstall().catch((e) => console.error(e))}
-                className="mt-4 w-full rounded-xl bg-ink py-3 text-[15px] font-medium tracking-tight text-white active:scale-[0.98]"
+                className="mt-4 w-full rounded-xl bg-ink py-3 text-[15px] font-medium tracking-tight text-on-ink active:scale-[0.98]"
               >
                 {t('page.about.install.cta')}
               </button>

@@ -85,7 +85,7 @@ export const ProfilePage = () => {
       {user ? (
         <section className="nwk-card p-5">
           <div className="flex items-center gap-4">
-            <div className="grid h-14 w-14 place-items-center rounded-full bg-brand text-base font-semibold tracking-wide text-white">
+            <div className="grid h-14 w-14 place-items-center rounded-full bg-brand text-base font-semibold tracking-wide text-on-brand">
               {initialsOf(user.displayName, user.email ?? user.uid)}
             </div>
             <div className="min-w-0 flex-1">
@@ -114,7 +114,7 @@ export const ProfilePage = () => {
           <button
             type="button"
             onClick={() => signIn().catch((e) => console.error(e))}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3.5 text-[15px] font-medium tracking-tight text-white transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3.5 text-[15px] font-medium tracking-tight text-on-ink transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
           >
             {t('page.profile.signin')}
           </button>

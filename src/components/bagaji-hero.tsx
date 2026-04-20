@@ -58,13 +58,13 @@ export const BagajiHero = () => {
   const flagged = BAGAJI_CASES.length
 
   return (
-    <section className="relative -mx-5 -mt-6 overflow-hidden bg-ink text-white sm:-mx-6 lg:-mx-8">
+    <section className="relative -mx-5 -mt-6 overflow-hidden bg-ink text-on-ink sm:-mx-6 lg:-mx-8">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 20% 20%, white 1px, transparent 1px), radial-gradient(circle at 80% 60%, white 1px, transparent 1px)',
+            'radial-gradient(circle at 20% 20%, currentColor 1px, transparent 1px), radial-gradient(circle at 80% 60%, currentColor 1px, transparent 1px)',
           backgroundSize: '38px 38px, 52px 52px',
         }}
       />
@@ -81,15 +81,15 @@ export const BagajiHero = () => {
           <span className="text-[12px] font-bold uppercase tracking-[0.18em] text-danger">
             {t('page.home.bagaji.eyebrow')}
           </span>
-          <span className="text-[12px] font-medium text-white/50">
+          <span className="text-[12px] font-medium text-on-ink/50">
             · {t('page.home.bagaji.flagged', { count: flagged })}
           </span>
         </div>
 
-        <h1 className="nwk-display mt-3 max-w-3xl text-[30px] leading-[1.05] text-white sm:text-[40px] lg:text-[52px]">
+        <h1 className="nwk-display mt-3 max-w-3xl text-[30px] leading-[1.05] text-on-ink sm:text-[40px] lg:text-[52px]">
           {t('page.home.bagaji.headline')}
         </h1>
-        <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/70 sm:text-[15px]">
+        <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-on-ink/70 sm:text-[15px]">
           {t('page.home.bagaji.sub')}
         </p>
 
@@ -102,7 +102,7 @@ export const BagajiHero = () => {
             return (
               <article
                 key={`${c.id}-${pulse}`}
-                className="group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition hover:border-danger/40"
+                className="group relative isolate overflow-hidden rounded-2xl border border-on-ink/10 bg-on-ink/[0.04] p-5 backdrop-blur-sm transition hover:border-danger/40"
                 style={{ animation: `riseIn 520ms ${idx * 90}ms both ease-out` }}
               >
                 {c.image && (
@@ -126,18 +126,18 @@ export const BagajiHero = () => {
                     +{pct}%
                   </span>
                 </div>
-                <p className="nwk-display mt-4 text-[26px] leading-tight tabular-nums text-white">
+                <p className="nwk-display mt-4 text-[26px] leading-tight tabular-nums text-on-ink">
                   {formatKrw(c.paid, i18n.language)}
                 </p>
-                <p className="mt-1 text-[12px] tabular-nums text-white/55">
+                <p className="mt-1 text-[12px] tabular-nums text-on-ink/55">
                   {t('page.home.bagaji.fair')} {formatKrw(c.fairLow, i18n.language)}–
                   {formatKrw(c.fairHigh, i18n.language)}
                 </p>
-                <div className="mt-4 border-t border-white/10 pt-3">
-                  <p className="truncate text-[13px] font-medium tracking-tight text-white/90">
+                <div className="mt-4 border-t border-on-ink/10 pt-3">
+                  <p className="truncate text-[13px] font-medium tracking-tight text-on-ink/90">
                     {t(c.itemKey)}
                   </p>
-                  <p className="mt-0.5 text-[12px] text-white/45">
+                  <p className="mt-0.5 text-[12px] text-on-ink/45">
                     {maskName(c.name)}
                     {c.extra ? ` · ${c.extra}` : ''}
                   </p>

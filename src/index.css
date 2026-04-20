@@ -16,15 +16,20 @@
   --color-ink: #121110;
   --color-ink-2: #4b4740;
   --color-ink-3: #8c867a;
+  /* Always contrasts against bg-ink (inverts with theme). */
+  --color-on-ink: #ffffff;
 
   /* Brand — a warmer deep teal that reads well against the warm canvas. */
   --color-brand: #0a4a47;
   --color-brand-soft: #d4e6e3;
   --color-brand-ink: #04282672;
+  /* Always contrasts against bg-brand (inverts with theme). */
+  --color-on-brand: #ffffff;
 
   /* Accent — saturated burnt orange used sparingly on CTAs + favorites. */
   --color-accent: #d35526;
   --color-accent-soft: #f5e0d3;
+  --color-on-accent: #ffffff;
 
   /* Status */
   --color-warn: #b8741b;
@@ -62,13 +67,16 @@
     --color-ink: #f4f2ec;
     --color-ink-2: #b3ada0;
     --color-ink-3: #807a70;
+    --color-on-ink: #121110;
 
     --color-brand: #8fd2cb;
     --color-brand-soft: #1f3a38;
     --color-brand-ink: #c6ebe6;
+    --color-on-brand: #0a2a27;
 
     --color-accent: #ff9973;
     --color-accent-soft: #3a1f13;
+    --color-on-accent: #2a1208;
 
     --color-warn: #e8a94f;
     --color-warn-soft: #3a2d12;
@@ -115,7 +123,7 @@
 
   ::selection {
     background-color: var(--color-brand);
-    color: #ffffff;
+    color: var(--color-on-brand);
   }
 }
 

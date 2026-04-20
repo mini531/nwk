@@ -98,7 +98,7 @@ export const MapView = ({ center, zoom = 12, markers = [], className, onMarkerCl
       el.className = [
         'grid place-items-center rounded-full shadow-pop transition-transform active:scale-95',
         m.active
-          ? 'h-10 w-10 bg-brand text-white'
+          ? 'h-10 w-10 bg-brand text-on-brand'
           : 'h-8 w-8 bg-surface text-brand ring-2 ring-brand',
       ].join(' ')
       el.innerHTML =

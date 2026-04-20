@@ -250,11 +250,11 @@ export const SearchPage = () => {
           type="button"
           onClick={requestNearby}
           disabled={nearbyLoading}
-          className="flex items-center gap-1.5 rounded-full border border-brand bg-brand px-4 py-1.5 text-[13px] font-semibold text-white transition hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60"
+          className="flex items-center gap-1.5 rounded-full border border-brand bg-brand px-4 py-1.5 text-[13px] font-semibold text-on-brand transition hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60"
         >
           {nearbyLoading ? (
             <>
-              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+              <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-on-brand" />
               {t('page.search.geoLoading')}
             </>
           ) : (
@@ -271,7 +271,7 @@ export const SearchPage = () => {
             onClick={() => setFilter(f.id)}
             className={`rounded-full border px-4 py-1.5 text-[13px] font-medium tracking-tight transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
               filter === f.id
-                ? 'border-ink bg-ink text-white'
+                ? 'border-ink bg-ink text-on-ink'
                 : 'border-line bg-surface text-ink-2 hover:border-line-strong'
             }`}
           >

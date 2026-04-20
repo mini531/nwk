@@ -28,7 +28,7 @@ export const AppLayout = () => {
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink focus:px-3 focus:py-2 focus:text-[13px] focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink focus:px-3 focus:py-2 focus:text-[13px] focus:font-semibold focus:text-on-ink"
       >
         {t('a11y.skipToContent')}
       </a>
@@ -52,7 +52,7 @@ export const AppLayout = () => {
                       className={({ isActive }) =>
                         `rounded-full px-3 py-1.5 text-[13px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
                           isActive
-                            ? 'bg-ink text-white'
+                            ? 'bg-ink text-on-ink'
                             : 'text-ink-2 hover:bg-canvas-2 hover:text-ink'
                         }`
                       }

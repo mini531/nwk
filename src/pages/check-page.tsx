@@ -260,7 +260,7 @@ export const CheckPage = () => {
 
           <div className="rounded-2xl border border-brand-soft bg-brand-soft/30 p-4">
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand text-white">
+              <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand text-on-brand">
                 <TrainIcon size={15} />
               </span>
               <div className="min-w-0 flex-1">
@@ -507,7 +507,7 @@ export const CheckPage = () => {
                       onClick={() => setNight(v)}
                       className={`flex-1 rounded-xl border px-3 py-2 text-[13px] font-medium tracking-tight transition ${
                         night === v
-                          ? 'border-ink bg-ink text-white'
+                          ? 'border-ink bg-ink text-on-ink'
                           : 'border-line bg-surface text-ink-2'
                       }`}
                     >
@@ -558,7 +558,7 @@ export const CheckPage = () => {
           <button
             type="submit"
             disabled={!price || (isTaxi && !km)}
-            className="w-full rounded-2xl bg-ink py-4 text-[15px] font-semibold text-white transition-transform active:scale-[0.99] disabled:opacity-40"
+            className="w-full rounded-2xl bg-ink py-4 text-[15px] font-semibold text-on-ink transition-transform active:scale-[0.99] disabled:opacity-40"
           >
             {t('page.check.form.submit')}
           </button>
@@ -687,7 +687,7 @@ export const CheckPage = () => {
             </button>
             <Link
               to="/kit"
-              className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-white transition-transform active:scale-[0.99]"
+              className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-on-ink transition-transform active:scale-[0.99]"
             >
               {t('page.check.openKit')}
               <ArrowRightIcon size={14} />

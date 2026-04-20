@@ -305,7 +305,7 @@ export const HomePage = () => {
                       onClick={() => setActiveId(h.place.id)}
                       className={`shrink-0 rounded-full border px-5 py-2.5 text-[14px] font-medium tracking-tight transition ${
                         isActive
-                          ? 'border-ink bg-ink text-white shadow-pop'
+                          ? 'border-ink bg-ink text-on-ink shadow-pop'
                           : 'border-line bg-surface text-ink-2 hover:border-line-strong'
                       }`}
                     >
@@ -406,7 +406,7 @@ export const HomePage = () => {
                   {t('page.home.exploreMapTitle')}
                 </p>
               </div>
-              <span className="ml-3 flex shrink-0 items-center gap-2 rounded-full bg-brand px-4 py-2 text-[13px] font-semibold text-white transition group-hover:bg-brand/90">
+              <span className="ml-3 flex shrink-0 items-center gap-2 rounded-full bg-brand px-4 py-2 text-[13px] font-semibold text-on-brand transition group-hover:bg-brand/90">
                 <SearchIcon size={14} aria-hidden="true" />
                 <ArrowRightIcon size={14} aria-hidden="true" />
               </span>
