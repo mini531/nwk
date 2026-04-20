@@ -40,6 +40,15 @@ const MOCK_ITEMS: TourItem[] = [
   },
 ]
 
+// TourAPI returns image URLs with http://. Upgrade to https:// to avoid
+// mixed-content warnings on the HTTPS frontend.
+const httpsify = (url: string | null | undefined): string | undefined => {
+  if (!url) return undefined
+  const trimmed = String(url).trim()
+  if (!trimmed) return undefined
+  return trimmed.replace(/^http:\/\//i, 'https://')
+}
+
 const sanitize = (raw: unknown): string => {
   if (typeof raw !== 'string') {
     throw new HttpsError('invalid-argument', 'keyword must be a string')
@@ -90,7 +99,7 @@ const fetchTourApi = async (key: string, keyword: string, service: string): Prom
     addr: String(r.addr1 ?? ''),
     lat: Number(r.mapy) || 0,
     lng: Number(r.mapx) || 0,
-    thumbnail: r.firstimage || undefined,
+    thumbnail: httpsify(r.firstimage),
   }))
 }
 

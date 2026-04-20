@@ -16,6 +16,15 @@ const resolveService = (raw: unknown): string => {
   return SERVICE_BY_LANG[lang] ?? SERVICE_BY_LANG.ko
 }
 
+// TourAPI returns image URLs with http://. Browsers block or warn about
+// mixed content on HTTPS pages. Upgrade to https:// at the source.
+const httpsify = (url: string | null | undefined): string | undefined => {
+  if (!url) return undefined
+  const trimmed = url.trim()
+  if (!trimmed) return undefined
+  return trimmed.replace(/^http:\/\//i, 'https://')
+}
+
 const sanitizeContentId = (raw: unknown): string => {
   if (typeof raw !== 'string' && typeof raw !== 'number') {
     throw new HttpsError('invalid-argument', 'contentId required')
@@ -106,8 +115,8 @@ export const tourDetail = onCall(
         tel: String(common.tel ?? ''),
         homepage: stripHtml(common.homepage as string | undefined),
         overview: stripHtml(common.overview as string | undefined),
-        firstImage: common.firstimage ? String(common.firstimage) : null,
-        firstImageSmall: common.firstimage2 ? String(common.firstimage2) : null,
+        firstImage: httpsify(common.firstimage) ?? null,
+        firstImageSmall: httpsify(common.firstimage2) ?? null,
         mapX: Number(common.mapx) || null,
         mapY: Number(common.mapy) || null,
         useTime: intro ? stripHtml(intro.usetime as string | undefined) : '',
@@ -192,7 +201,7 @@ export const tourNearby = onCall(
           addr: String(r.addr1 ?? ''),
           lat: Number(r.mapy) || 0,
           lng: Number(r.mapx) || 0,
-          thumbnail: r.firstimage ? String(r.firstimage) : undefined,
+          thumbnail: httpsify(r.firstimage),
           contentTypeId: String(r.contenttypeid ?? ''),
           dist: Number(r.dist) || null,
         }))
