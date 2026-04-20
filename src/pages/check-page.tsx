@@ -315,7 +315,6 @@ export const CheckPage = () => {
               ref={photoInputRef}
               type="file"
               accept="image/*"
-              capture="environment"
               onChange={onPickPhoto}
               className="hidden"
             />

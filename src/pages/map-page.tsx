@@ -14,6 +14,11 @@ const EMPTY_FC: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties> = {
 }
 const PAGE_SIZE = 40
 
+// Backend (tourNearby) rejects coordinates outside Korea with 400.
+// Guard frontend calls so overseas users still see the Seoul default.
+const isInKorea = (lng: number, lat: number): boolean =>
+  lat >= 33 && lat <= 39 && lng >= 124 && lng <= 132
+
 export const MapPage = () => {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
@@ -158,10 +163,12 @@ export const MapPage = () => {
     [lang],
   )
 
-  // 초기 로드 (위치 확보 후) + 언어 변경 시 재조회
+  // 초기 로드 (위치 확보 후) + 언어 변경 시 재조회.
+  // 해외 접속자는 userLoc이 한국 밖 → 서울 기본값 사용.
   useEffect(() => {
-    const lat = userLoc?.[1] ?? SEOUL[1]
-    const lng = userLoc?.[0] ?? SEOUL[0]
+    const useUserLoc = userLoc && isInKorea(userLoc[0], userLoc[1])
+    const lat = useUserLoc ? userLoc[1] : SEOUL[1]
+    const lng = useUserLoc ? userLoc[0] : SEOUL[0]
     pageRef.current = 1
     hasMoreRef.current = true
     setMapCenter([lng, lat])
@@ -169,7 +176,7 @@ export const MapPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLoc, lang])
 
-  // 뷰포트 변경 시 재조회 (debounce 800ms)
+  // 뷰포트 변경 시 재조회 (debounce 800ms). 한국 밖이면 호출 스킵.
   const handleBoundsChange = useCallback(
     (bounds: [number, number, number, number]) => {
       if (boundsTimerRef.current) clearTimeout(boundsTimerRef.current)
@@ -177,6 +184,7 @@ export const MapPage = () => {
         const [w, s, e, n] = bounds
         const cLat = (s + n) / 2
         const cLng = (w + e) / 2
+        if (!isInKorea(cLng, cLat)) return
         // 대략적인 반경 계산 (위도 1도 ≈ 111km)
         const latSpan = (n - s) * 111000
         const lngSpan = (e - w) * 111000 * Math.cos((cLat * Math.PI) / 180)
@@ -240,7 +248,7 @@ export const MapPage = () => {
   )
   const closeDetail = useCallback(() => setDetailPlace(null), [])
 
-  const center = userLoc ?? SEOUL
+  const center: [number, number] = userLoc && isInKorea(userLoc[0], userLoc[1]) ? userLoc : SEOUL
 
   return (
     <>
