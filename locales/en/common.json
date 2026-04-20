@@ -323,6 +323,8 @@
       "searchPlaceholder": "Search (e.g. naengmyeon)",
       "searchResult": "Search results",
       "allItems": "All items",
+      "quickPick": "Popular picks",
+      "showMoreCount": "Show {{count}} more",
       "noResults": "No match",
       "fairHint": "Fair range here",
       "byDistance": "By distance",

@@ -323,6 +323,8 @@
       "searchPlaceholder": "検索 (例: 冷麺)",
       "searchResult": "検索結果",
       "allItems": "全項目",
+      "quickPick": "よく聞かれる項目",
+      "showMoreCount": "+{{count}}件 もっと見る",
       "noResults": "一致する項目がありません",
       "fairHint": "この辺の適正帯",
       "byDistance": "距離ベース",

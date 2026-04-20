@@ -323,6 +323,8 @@
       "searchPlaceholder": "직접 검색 (예: 냉면)",
       "searchResult": "검색 결과",
       "allItems": "전체 항목",
+      "quickPick": "자주 묻는 항목",
+      "showMoreCount": "+{{count}}개 더 보기",
       "noResults": "일치하는 항목이 없어요",
       "fairHint": "이 동네 적정가",
       "byDistance": "거리 기반 계산",

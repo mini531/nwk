@@ -323,6 +323,8 @@
       "searchPlaceholder": "搜索 (例如: 冷面)",
       "searchResult": "搜索结果",
       "allItems": "全部项目",
+      "quickPick": "常问项目",
+      "showMoreCount": "+{{count}} 个 查看更多",
       "noResults": "没有匹配项",
       "fairHint": "本地合理区间",
       "byDistance": "按距离计算",

@@ -151,7 +151,19 @@ export const CheckPage = () => {
     return items.filter((e) => t(`catalog.${e.id}.name`).toLowerCase().includes(q))
   }, [items, query, t])
 
-  const popularItems = useMemo(() => items.filter((e) => e.popular), [items])
+  // Sort popular items first so they stay at the top of the default view,
+  // but still show every catalog entry from the start.
+  const sortedItems = useMemo(
+    () => [...items].sort((a, b) => Number(Boolean(b.popular)) - Number(Boolean(a.popular))),
+    [items],
+  )
+  const DEFAULT_VISIBLE = 18
+  const visibleItems = useMemo(() => {
+    if (query) return filteredItems
+    if (showAll) return sortedItems
+    return sortedItems.slice(0, DEFAULT_VISIBLE)
+  }, [query, filteredItems, showAll, sortedItems])
+  const hiddenCount = sortedItems.length - DEFAULT_VISIBLE
 
   const isTaxi = entry?.inputMode === 'taxi'
 
@@ -499,76 +511,55 @@ export const CheckPage = () => {
       )}
 
       {step === 2 && category && (
-        <div className="mx-auto max-w-3xl space-y-5">
-          <h1 className="text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
+        <div className="mx-auto max-w-3xl space-y-4">
+          <h1 className="text-[22px] font-semibold leading-[1.2] tracking-tight text-ink sm:text-[24px]">
             {t(questionKey)}
           </h1>
 
-          {popularItems.length > 0 && !query && !showAll && (
-            <div>
-              <p className="mb-2 text-[12px] font-semibold text-ink-3">{t('page.check.popular')}</p>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {popularItems.map((e) => (
-                  <ItemCard
-                    key={e.id}
-                    entry={e}
-                    onClick={() => onPickItem(e)}
-                    lang={i18n.language}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="relative">
+            <SearchIcon
+              size={16}
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ink-3"
+            />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value.slice(0, 30))
+                setShowAll(false)
+              }}
+              placeholder={t('page.check.searchPlaceholder')}
+              className="w-full rounded-2xl border border-line bg-surface py-3 pl-11 pr-4 text-[14px] text-ink outline-none focus:border-brand"
+            />
+          </div>
 
           <div>
-            <div className="relative">
-              <SearchIcon
-                size={16}
-                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ink-3"
-              />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value.slice(0, 30))
-                  setShowAll(true)
-                }}
-                placeholder={t('page.check.searchPlaceholder')}
-                className="w-full rounded-2xl border border-line bg-surface py-3 pl-11 pr-4 text-[14px] text-ink outline-none focus:border-brand"
-              />
+            <p className="mb-2 text-[12px] font-semibold text-ink-3">
+              {query
+                ? t('page.check.searchResult')
+                : showAll || hiddenCount <= 0
+                  ? t('page.check.allItems')
+                  : t('page.check.quickPick')}
+            </p>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {visibleItems.map((e) => (
+                <ItemCard key={e.id} entry={e} onClick={() => onPickItem(e)} lang={i18n.language} />
+              ))}
+              {visibleItems.length === 0 && (
+                <p className="col-span-2 py-6 text-center text-[13px] text-ink-3 sm:col-span-3">
+                  {t('page.check.noResults')}
+                </p>
+              )}
             </div>
           </div>
 
-          {(query || showAll) && (
-            <div>
-              <p className="mb-2 text-[12px] font-semibold text-ink-3">
-                {query ? t('page.check.searchResult') : t('page.check.allItems')}
-              </p>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {filteredItems.map((e) => (
-                  <ItemCard
-                    key={e.id}
-                    entry={e}
-                    onClick={() => onPickItem(e)}
-                    lang={i18n.language}
-                  />
-                ))}
-                {filteredItems.length === 0 && (
-                  <p className="col-span-2 py-6 text-center text-[13px] text-ink-3">
-                    {t('page.check.noResults')}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-
-          {popularItems.length > 0 && !showAll && !query && (
+          {!query && !showAll && hiddenCount > 0 && (
             <button
               type="button"
               onClick={() => setShowAll(true)}
-              className="w-full rounded-2xl border border-line bg-surface py-3 text-[13px] font-medium text-ink-2 hover:border-line-strong"
+              className="w-full rounded-2xl border border-line bg-surface py-3 text-[13px] font-medium text-ink-2 transition hover:border-line-strong hover:text-ink"
             >
-              {t('page.check.seeAll')} ({items.length})
+              {t('page.check.showMoreCount', { count: hiddenCount })}
             </button>
           )}
         </div>
