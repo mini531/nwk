@@ -256,7 +256,9 @@
       "placeholder": "In development",
       "searchHere": "Search this area",
       "clearSelection": "Clear selection",
-      "attribution": "POI: KTO TourAPI (data.go.kr) · Map: ⓒ Kakao"
+      "attribution": "POI: KTO TourAPI (data.go.kr) · Map: ⓒ Kakao",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
     },
     "about": {
       "title": "NWK — No Worries Korea",

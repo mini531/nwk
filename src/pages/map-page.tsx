@@ -519,6 +519,57 @@ export const MapPage = () => {
         </button>
       </div>
 
+      {/* ═══ 지도 확대/축소 컨트롤 (우측 · basemap 버튼 아래) ═══ */}
+      <div
+        className="fixed z-20 flex flex-col overflow-hidden rounded-xl border border-white/60 bg-white/88 shadow-lg backdrop-blur-md"
+        style={{ top: 116, right: 16 }}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            const map = mapInstanceRef.current
+            if (!map) return
+            map.setLevel(Math.max(1, map.getLevel() - 1), { animate: true })
+          }}
+          aria-label={t('page.map.zoomIn')}
+          className="grid h-10 w-10 place-items-center border-b border-black/[0.06] text-neutral-700 transition-colors hover:bg-neutral-100"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          >
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const map = mapInstanceRef.current
+            if (!map) return
+            map.setLevel(Math.min(14, map.getLevel() + 1), { animate: true })
+          }}
+          aria-label={t('page.map.zoomOut')}
+          className="grid h-10 w-10 place-items-center text-neutral-700 transition-colors hover:bg-neutral-100"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          >
+            <path d="M5 12h14" />
+          </svg>
+        </button>
+      </div>
+
       {/* 좌측 유리 패널 — 데스크톱 전용: 목록 또는 상세 뷰 전환 */}
       <div
         className="pointer-events-auto fixed z-20 hidden w-[360px] max-w-[calc(100vw-60px)] sm:block"

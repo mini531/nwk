@@ -256,7 +256,9 @@
       "placeholder": "开发中",
       "searchHere": "搜索此区域",
       "clearSelection": "清除选择",
-      "attribution": "POI: 韩国观光公社 TourAPI · 地图: ⓒ Kakao"
+      "attribution": "POI: 韩国观光公社 TourAPI · 地图: ⓒ Kakao",
+      "zoomIn": "放大",
+      "zoomOut": "缩小"
     },
     "about": {
       "title": "NWK — No Worries Korea",
