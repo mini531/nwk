@@ -197,15 +197,24 @@ export const ProfilePage = () => {
           <ul className="nwk-card divide-y divide-line overflow-hidden">
             {recent.slice(0, 6).map((r) => (
               <li key={r.id} className="flex items-center gap-3 px-4 py-3">
-                <span
-                  className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full ${
-                    r.verdict === 'fair'
-                      ? 'bg-brand'
-                      : r.verdict === 'careful'
-                        ? 'bg-warn'
-                        : 'bg-danger'
-                  }`}
-                />
+                {r.photoUrl ? (
+                  <img
+                    src={r.photoUrl}
+                    alt=""
+                    loading="lazy"
+                    className="h-10 w-10 shrink-0 rounded-lg object-cover"
+                  />
+                ) : (
+                  <span
+                    className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full ${
+                      r.verdict === 'fair'
+                        ? 'bg-brand'
+                        : r.verdict === 'careful'
+                          ? 'bg-warn'
+                          : 'bg-danger'
+                    }`}
+                  />
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
                     {t(`catalog.${r.entryId}.name`)}

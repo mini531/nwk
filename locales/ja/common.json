@@ -72,7 +72,28 @@
     "atm_global": { "name": "グローバルATM" },
     "atm_airport": { "name": "空港・ホテルATM" },
     "exchange_spread": { "name": "両替スプレッド" },
-    "sim_airport_5day": { "name": "空港 5日無制限SIM" }
+    "sim_airport_5day": { "name": "空港 5日無制限SIM" },
+    "pho_vietnamese": { "name": "フォー (ベトナム麺)" },
+    "bingsu": { "name": "パッピンス" },
+    "bungeoppang": { "name": "プンオパン 3個" },
+    "fresh_juice": { "name": "生果物ジュース" },
+    "bubble_tea": { "name": "バブルティー" },
+    "makgeolli_bottle": { "name": "マッコリ 1本 (食堂)" },
+    "city_bus": { "name": "市内バス 1回" },
+    "subway_single": { "name": "地下鉄 1区間" },
+    "ktx_seoul_busan": { "name": "KTX ソウル〜釜山" },
+    "airport_express": { "name": "空港鉄道 直通" },
+    "rental_car_day": { "name": "レンタカー 小型 1日" },
+    "kick_scooter_30min": { "name": "電動キックボード 30分" },
+    "hotel_4star": { "name": "4つ星ホテル 1泊" },
+    "guesthouse_room": { "name": "ゲストハウス 1人部屋" },
+    "pension_weekend": { "name": "ペンション 週末 1泊" },
+    "museum_entry": { "name": "博物館入場 (大人)" },
+    "theme_park_day": { "name": "テーマパーク 1日券" },
+    "cable_car_round": { "name": "ケーブルカー 往復" },
+    "pc_cafe_1h": { "name": "PC房 1時間" },
+    "luggage_storage_day": { "name": "荷物預かり 1日" },
+    "parking_downtown_1h": { "name": "都心駐車 1時間" }
   },
   "page": {
     "home": {
@@ -302,9 +323,19 @@
         "cta": "タクシー料金を判定"
       },
       "photo": {
-        "title": "写真で確認",
-        "comingSoon": "メニュー・レシートを撮影すると自動判定 — まもなく公開",
-        "soonBadge": "SOON"
+        "title": "写真を添付",
+        "helper": "メニュー・レシートを撮影 — 判定と一緒に保存",
+        "attached": "写真を添付しました",
+        "willUpload": "判定後に Firebase にアップロード",
+        "signInHint": "ログインすればクラウド保存、未ログインならこのセッションのみ",
+        "replace": "差替え",
+        "remove": "削除",
+        "resultLabel": "添付写真",
+        "uploading": "アップロード中...",
+        "saved": "クラウドに保存済み",
+        "queued": "アップロード待機中",
+        "localOnly": "ローカルのみ (ログインでクラウド保存)",
+        "uploadError": "アップロード失敗 — 通信/権限を確認"
       },
       "form": {
         "category": "カテゴリ",
@@ -357,6 +388,15 @@
         "emergency": "緊急連絡先",
         "phrases": "基本の韓国語"
       },
+      "arrival": {
+        "arex": { "title": "AREX空港鉄道 直通", "body": "仁川→ソウル駅 43分 · 06:30–22:50 · 座席指定" },
+        "limo": { "title": "リムジンバス6001", "body": "仁川→明洞 70分 · 04:20–23:00 · 15分間隔" },
+        "tmoney": { "title": "T-money交通カード", "body": "コンビニで購入+チャージ · 全国の地下鉄・バス・一部タクシー" },
+        "helpline": { "title": "1330 観光案内ホットライン", "body": "24時間 · 英/日/中/露/ベトナム語 · 通訳・苦情・道案内 無料" },
+        "immigration": { "title": "外国人入国審査", "body": "K-ETA事前登録者は専用レーン · スマートエントリー(KISS)は9歳以上で利用可" },
+        "customs": { "title": "税関免税枠", "body": "1人あたり米ドル800まで · 酒1L、たばこ200本まで · 超過分は自主申告" },
+        "kakaoT": { "title": "カカオT タクシーアプリ", "body": "外国カード決済可 · 一般/ブラック/プレミアム選択 · ぼったくり回避" }
+      },
       "money": {
         "atmGlobal": {
           "title": "CU/GS25 グローバルATM",
@@ -373,6 +413,18 @@
         "exchangeMyeongdong": {
           "title": "明洞の私設両替所",
           "body": "銀行よりUSD当たり10〜20ウォン有利。パスポート必須。"
+        },
+        "wowpass": {
+          "title": "WOWPASS (外国人向け)",
+          "body": "両替+T-money一体 · パスポートだけで発行 · 明洞・弘大・空港"
+        },
+        "taxRefund": {
+          "title": "TAX REFUND (付加税還付)",
+          "body": "3万ウォン以上で10〜15%還付 · 空港税関で確認後カウンターで受取"
+        },
+        "tipCulture": {
+          "title": "チップ文化なし",
+          "body": "食堂・タクシー・ホテル全て不要。5つ星ホテルのコンシェルジュのみ例外"
         }
       },
       "connect": {
@@ -387,13 +439,28 @@
         "wifiPublic": {
           "title": "公共Wi-Fi",
           "body": "地下鉄・バス・カフェで無料。Public WiFi FreeのSSIDへ。"
+        },
+        "kakaoTalk": {
+          "title": "カカオトーク (必須)",
+          "body": "韓国人の99%が使用 · 予約・問合せ・ID交換に必要"
+        },
+        "naverMap": {
+          "title": "ネイバー・カカオ地図",
+          "body": "Googleマップより正確 · 交通機関・タクシー料金リアルタイム"
+        },
+        "papago": {
+          "title": "Papago 翻訳",
+          "body": "ネイバーの翻訳アプリ · カメラ・音声・会話 · 韓国語に特化"
         }
       },
       "emergency": {
         "police": { "title": "警察通報", "body": "112 · 24時間英語対応" },
         "fire": { "title": "消防・救急", "body": "119 · 火災・救急医療" },
         "medical": { "title": "医療相談", "body": "1339 · 夜間・休日の病院案内" },
-        "tourist": { "title": "観光民願・通訳", "body": "1330 · 多言語24時間無料" }
+        "tourist": { "title": "観光民願・通訳", "body": "1330 · 多言語24時間無料" },
+        "lostItem": { "title": "遺失物統合センター", "body": "182 · 地下鉄・タクシー・公共交通の遺失物照会" },
+        "sexualViolence": { "title": "性暴力被害相談", "body": "1366 · 24時間 · 多言語対応" },
+        "humanRights": { "title": "外国人総合案内センター", "body": "1345 · 法務省 · 18言語で権利・滞在相談" }
       },
       "phrases": {
         "hello": "Hello",
@@ -401,7 +468,15 @@
         "howMuch": "How much is it?",
         "tooExpensive": "That's too expensive",
         "help": "Please help me",
-        "english": "Do you speak English?"
+        "english": "Do you speak English?",
+        "restroom": "Where is the restroom?",
+        "water": "Can I have some water?",
+        "notSpicy": "Not spicy, please",
+        "check": "Check, please",
+        "takeOut": "Take out, please",
+        "receipt": "Can I get a receipt?",
+        "wifiPw": "What's the Wi-Fi password?",
+        "oneMore": "One more, please"
       }
     },
     "notFound": {

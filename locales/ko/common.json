@@ -72,7 +72,28 @@
     "atm_global": { "name": "글로벌 ATM" },
     "atm_airport": { "name": "공항·호텔 ATM" },
     "exchange_spread": { "name": "환전 스프레드" },
-    "sim_airport_5day": { "name": "공항 5일 무제한 유심" }
+    "sim_airport_5day": { "name": "공항 5일 무제한 유심" },
+    "pho_vietnamese": { "name": "쌀국수 1인" },
+    "bingsu": { "name": "팥빙수" },
+    "bungeoppang": { "name": "붕어빵 3개" },
+    "fresh_juice": { "name": "생과일주스" },
+    "bubble_tea": { "name": "버블티" },
+    "makgeolli_bottle": { "name": "막걸리 1병 (식당)" },
+    "city_bus": { "name": "시내버스" },
+    "subway_single": { "name": "지하철 1구간" },
+    "ktx_seoul_busan": { "name": "KTX 서울~부산" },
+    "airport_express": { "name": "공항철도 직통" },
+    "rental_car_day": { "name": "렌터카 소형 1일" },
+    "kick_scooter_30min": { "name": "전동킥보드 30분" },
+    "hotel_4star": { "name": "4성 호텔 1박" },
+    "guesthouse_room": { "name": "게스트하우스 1인실" },
+    "pension_weekend": { "name": "펜션 주말 1박" },
+    "museum_entry": { "name": "박물관 입장" },
+    "theme_park_day": { "name": "테마파크 1일권" },
+    "cable_car_round": { "name": "케이블카 왕복" },
+    "pc_cafe_1h": { "name": "PC방 1시간" },
+    "luggage_storage_day": { "name": "짐보관 1일" },
+    "parking_downtown_1h": { "name": "도심 주차 1시간" }
   },
   "page": {
     "home": {
@@ -302,9 +323,19 @@
         "cta": "택시 여행경비 판정하기"
       },
       "photo": {
-        "title": "사진으로 확인",
-        "comingSoon": "메뉴판·영수증 촬영으로 자동 판정 — 곧 공개",
-        "soonBadge": "SOON"
+        "title": "사진 첨부",
+        "helper": "영수증·메뉴판 촬영 — 판정과 함께 기록",
+        "attached": "사진 첨부 완료",
+        "willUpload": "판정 후 Firebase에 저장",
+        "signInHint": "로그인 시 클라우드 저장, 미로그인 시 이번 세션만 표시",
+        "replace": "교체",
+        "remove": "삭제",
+        "resultLabel": "첨부 사진",
+        "uploading": "업로드 중...",
+        "saved": "클라우드에 저장됨",
+        "queued": "업로드 대기",
+        "localOnly": "로컬 세션만 저장 (로그인 시 클라우드)",
+        "uploadError": "업로드 실패 — 네트워크/권한 확인"
       },
       "form": {
         "category": "카테고리",
@@ -357,6 +388,15 @@
         "emergency": "긴급 연락처",
         "phrases": "기본 한국어"
       },
+      "arrival": {
+        "arex": { "title": "공항철도 AREX 직통", "body": "인천→서울역 43분 · 06:30–22:50 · 좌석 지정" },
+        "limo": { "title": "리무진버스 6001", "body": "인천→명동 70분 · 04:20–23:00 · 15분 간격" },
+        "tmoney": { "title": "T-money 교통카드", "body": "편의점 구매+충전 · 전국 지하철·버스·일부 택시" },
+        "helpline": { "title": "1330 관광안내 핫라인", "body": "24시간 · 영/일/중/러/베트남어 · 통역·민원·길안내 무료" },
+        "immigration": { "title": "외국인 입국심사", "body": "K-ETA 사전 등록자는 전용 라인 · 스마트 엔트리(KISS) 9세 이상 이용 가능" },
+        "customs": { "title": "세관 면세 한도", "body": "휴대 반입 1인당 미화 800달러 · 주류 1L·담배 200개비 한도 · 초과 시 자진신고" },
+        "kakaoT": { "title": "카카오T 택시 앱", "body": "외국인 카드 결제 지원 · 일반/블랙/모범 선택 · 택시비 덤터기 방지" }
+      },
       "money": {
         "atmGlobal": {
           "title": "CU/GS25 글로벌 ATM",
@@ -373,6 +413,18 @@
         "exchangeMyeongdong": {
           "title": "명동 사설 환전소",
           "body": "은행 대비 USD당 10~20원 유리 · 여권 지참 필수"
+        },
+        "wowpass": {
+          "title": "WOWPASS 외국인 카드",
+          "body": "환전+T-money 통합 · 여권만 있으면 무기명 발급 · 명동·홍대·공항"
+        },
+        "taxRefund": {
+          "title": "TAX REFUND 세금 환급",
+          "body": "3만원 이상 결제 시 10~15% 환급 · 공항 세관 확인 후 환급 카운터"
+        },
+        "tipCulture": {
+          "title": "팁 문화 없음",
+          "body": "식당·택시·호텔 모두 팁 불필요 · 5성 호텔 컨시어지 정도만 예외"
         }
       },
       "connect": {
@@ -387,13 +439,28 @@
         "wifiPublic": {
           "title": "공공 와이파이",
           "body": "지하철·버스·카페 무료 · Public WiFi Free SSID 접속"
+        },
+        "kakaoTalk": {
+          "title": "카카오톡 (필수)",
+          "body": "한국인 99%가 쓰는 메신저 · 예약·상담·SNS · 전화번호 대신 ID 교환"
+        },
+        "naverMap": {
+          "title": "네이버·카카오지도",
+          "body": "구글맵보다 정확 · 대중교통·택시요금 실시간 안내"
+        },
+        "papago": {
+          "title": "Papago 번역",
+          "body": "네이버 번역앱 · 카메라·음성·대화 번역 · 한국어에 특화"
         }
       },
       "emergency": {
         "police": { "title": "경찰 신고", "body": "112 · 24시간 영어 지원" },
         "fire": { "title": "소방·구급", "body": "119 · 화재·응급의료" },
         "medical": { "title": "의료 상담", "body": "1339 · 야간·휴일 병원 안내" },
-        "tourist": { "title": "관광 민원·통역", "body": "1330 · 다국어 24시간 무료" }
+        "tourist": { "title": "관광 민원·통역", "body": "1330 · 다국어 24시간 무료" },
+        "lostItem": { "title": "분실물 통합센터", "body": "182 · 지하철·택시·대중교통 분실물 조회" },
+        "sexualViolence": { "title": "성폭력 피해 상담", "body": "1366 · 24시간 · 다국어 지원" },
+        "humanRights": { "title": "인권·차별 상담", "body": "1345 · 법무부 외국인종합안내센터 · 18개 언어" }
       },
       "phrases": {
         "hello": "Hello",
@@ -401,7 +468,15 @@
         "howMuch": "How much is it?",
         "tooExpensive": "That's too expensive",
         "help": "Please help me",
-        "english": "Do you speak English?"
+        "english": "Do you speak English?",
+        "restroom": "Where is the restroom?",
+        "water": "Can I have some water?",
+        "notSpicy": "Not spicy, please",
+        "check": "Check, please",
+        "takeOut": "Take out, please",
+        "receipt": "Can I get a receipt?",
+        "wifiPw": "What's the Wi-Fi password?",
+        "oneMore": "One more, please"
       }
     },
     "notFound": {

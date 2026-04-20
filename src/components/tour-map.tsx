@@ -1,34 +1,30 @@
 import { useEffect, useRef } from 'react'
 import maplibregl, { type LngLatLike, type Map as MLMap, Marker } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import { buildTileUrl, type BaseLayer } from './tour-map-tiles'
+
+export type { BaseLayer } from './tour-map-tiles'
 
 const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="48" viewBox="0 0 36 48">
   <filter id="ds" x="-20%" y="-10%" width="140%" height="130%">
     <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25"/>
   </filter>
   <path filter="url(#ds)" d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z" fill="#d35526"/>
-  <g transform="translate(9,9)" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="1" y="6" width="16" height="11" rx="2"/>
-    <path d="M6 6V5a1 1 0 011-1h4a1 1 0 011 1v1"/>
-    <circle cx="9" cy="11.5" r="3"/>
-    <circle cx="9" cy="11.5" r="1" fill="#fff" stroke="none"/>
+  <g transform="translate(7.5,8)" fill="#fff">
+    <path d="M10.5 0.5 L12.95 5.73 L18.6 6.45 L14.4 10.35 L15.47 16 L10.5 13.23 L5.53 16 L6.6 10.35 L2.4 6.45 L8.05 5.73 Z"/>
   </g>
 </svg>`
 
-const DEFAULT_TILE_BASE =
-  (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ??
-  'https://asia-northeast3-nwk-app-ba6f8.cloudfunctions.net/mapTile'
+const VWORLD_ATTRIBUTION = '© VWorld · 국토교통부 · TourAPI KTO'
 
-const tileUrl = `${DEFAULT_TILE_BASE}?layer=Base&z={z}&x={x}&y={y}`
-
-const BASE_STYLE = {
+const buildStyle = (layer: BaseLayer) => ({
   version: 8 as const,
   sources: {
     vworld: {
       type: 'raster' as const,
-      tiles: [tileUrl],
+      tiles: [buildTileUrl(layer)],
       tileSize: 256,
-      attribution: '© VWorld · 국토교통부 · TourAPI KTO',
+      attribution: VWORLD_ATTRIBUTION,
     },
   },
   layers: [
@@ -40,7 +36,7 @@ const BASE_STYLE = {
       maxzoom: 19,
     },
   ],
-}
+})
 
 export interface TourMapProps {
   geojson: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties>
@@ -48,6 +44,7 @@ export interface TourMapProps {
   zoom?: number
   className?: string
   selectedId?: string | null
+  baseLayer?: BaseLayer
   onPoiClick?: (props: PoiProperties) => void
   onBoundsChange?: (bounds: [number, number, number, number]) => void
   fitToFeatures?: boolean
@@ -74,6 +71,7 @@ export const TourMap = ({
   zoom = DEFAULT_ZOOM,
   className,
   selectedId,
+  baseLayer = 'Base',
   onPoiClick,
   onBoundsChange,
   fitToFeatures = false,
@@ -90,12 +88,13 @@ export const TourMap = ({
   const selectedIdRef = useRef(selectedId)
   selectedIdRef.current = selectedId
   const selectedMarkerRef = useRef<Marker | null>(null)
+  const appliedLayerRef = useRef<BaseLayer>(baseLayer)
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: BASE_STYLE,
+      style: buildStyle(baseLayer),
       center,
       zoom,
       attributionControl: { compact: true },
@@ -277,6 +276,39 @@ export const TourMap = ({
       }
     }
   }, [geojson, fitToFeatures])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    if (appliedLayerRef.current === baseLayer && map.getSource('vworld')) return
+    const applyLayer = () => {
+      appliedLayerRef.current = baseLayer
+      const url = buildTileUrl(baseLayer)
+      if (map.getLayer('vworld-base')) map.removeLayer('vworld-base')
+      if (map.getSource('vworld')) map.removeSource('vworld')
+      map.addSource('vworld', {
+        type: 'raster',
+        tiles: [url],
+        tileSize: 256,
+        attribution: VWORLD_ATTRIBUTION,
+      })
+      map.addLayer(
+        {
+          id: 'vworld-base',
+          type: 'raster',
+          source: 'vworld',
+          minzoom: 0,
+          maxzoom: 19,
+        },
+        map.getLayer('poi-clusters') ? 'poi-clusters' : undefined,
+      )
+    }
+    if (map.isStyleLoaded()) {
+      applyLayer()
+    } else {
+      map.once('load', applyLayer)
+    }
+  }, [baseLayer])
 
   useEffect(() => {
     if (selectedMarkerRef.current) {

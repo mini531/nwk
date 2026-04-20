@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TourMap, type PoiProperties } from '../components/tour-map'
+import { TourMap, type BaseLayer, type PoiProperties } from '../components/tour-map'
 import type { Map as MLMap } from 'maplibre-gl'
 import { useAppStore } from '../stores/app-store'
 import { tourNearby, tourSearch, type TourSearchItem, type TourNearbyItem } from '../utils/api'
@@ -30,7 +30,7 @@ export const MapPage = () => {
   const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
   const [mobileView, setMobileView] = useState<'map' | 'list'>('map')
   const [baseLayerOpen, setBaseLayerOpen] = useState(false)
-  const [activeLayer, setActiveLayer] = useState('Base')
+  const [activeLayer, setActiveLayer] = useState<BaseLayer>('Base')
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<TourSearchItem[] | null>(null)
   const [searching, setSearching] = useState(false)
@@ -70,24 +70,9 @@ export const MapPage = () => {
     setSearchResults(null)
   }, [])
 
-  const switchLayer = useCallback((layer: string) => {
-    const map = mapInstanceRef.current
-    if (!map) return
+  const switchLayer = useCallback((layer: BaseLayer) => {
     setActiveLayer(layer)
     setBaseLayerOpen(false)
-
-    const envUrl = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? ''
-    let url: string
-    if (envUrl && !envUrl.includes('{layer}')) {
-      url = envUrl.replace(/\/Base\/|\/Satellite\/|\/gray\/|\/midnight\//, `/${layer}/`)
-    } else {
-      url = `/tiles?layer=${layer}&z={z}&x={x}&y={y}`
-    }
-
-    const source = map.getSource('vworld') as unknown as { setTiles?: (t: string[]) => void }
-    if (source?.setTiles) {
-      source.setTiles([url])
-    }
   }, [])
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null)
   const [mapRadius, setMapRadius] = useState(20000)
@@ -262,6 +247,7 @@ export const MapPage = () => {
           zoom={userLoc ? 13 : 11}
           className="h-[calc(100dvh-120px)] w-full sm:h-[calc(100dvh-104px)] lg:h-[calc(100dvh-74px)]"
           selectedId={detailPlace?.id ?? null}
+          baseLayer={activeLayer}
           onPoiClick={handlePoiClick}
           onBoundsChange={handleBoundsChange}
           onMapReady={handleMapReady}
@@ -441,55 +427,57 @@ export const MapPage = () => {
           className="flex items-center overflow-hidden rounded-l-xl border border-r-0 border-white/60 bg-white/88 shadow-lg backdrop-blur-md transition-[width,opacity] duration-300 ease-out"
           style={{ width: baseLayerOpen ? 132 : 0, opacity: baseLayerOpen ? 1 : 0 }}
         >
-          {[
-            {
-              key: 'Base',
-              icon: (
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6zM9 3v15M15 6v15" />
-                </svg>
-              ),
-            },
-            {
-              key: 'Satellite',
-              icon: (
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="9" y="9" width="6" height="6" rx="1" />
-                  <path d="M12 2v2M12 20v2M20 12h2M2 12h2" />
-                </svg>
-              ),
-            },
-            {
-              key: 'gray',
-              icon: (
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  opacity="0.5"
-                >
-                  <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z" />
-                </svg>
-              ),
-            },
-          ].map(({ key, icon }) => (
+          {(
+            [
+              {
+                key: 'Base' as BaseLayer,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6zM9 3v15M15 6v15" />
+                  </svg>
+                ),
+              },
+              {
+                key: 'Satellite' as BaseLayer,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="9" y="9" width="6" height="6" rx="1" />
+                    <path d="M12 2v2M12 20v2M20 12h2M2 12h2" />
+                  </svg>
+                ),
+              },
+              {
+                key: 'gray' as BaseLayer,
+                icon: (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    opacity="0.5"
+                  >
+                    <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z" />
+                  </svg>
+                ),
+              },
+            ] as const
+          ).map(({ key, icon }) => (
             <button
               key={key}
               type="button"

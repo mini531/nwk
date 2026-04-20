@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRecentChecks } from '../hooks/use-recent-checks'
+import { useAuth } from '../hooks/use-auth'
+import { uploadReceiptPhoto } from '../services/photo-upload'
 import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
@@ -78,19 +80,51 @@ export const CheckPage = () => {
   const [km, setKm] = useState('')
   const [night, setNight] = useState(false)
   const [result, setResult] = useState<CheckResult | null>(null)
-  const { push: pushRecent } = useRecentChecks()
+  const [photoFile, setPhotoFile] = useState<File | null>(null)
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null)
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null)
+  const [photoUploading, setPhotoUploading] = useState(false)
+  const [photoError, setPhotoError] = useState<string | null>(null)
+  const photoInputRef = useRef<HTMLInputElement>(null)
+  const { push: pushRecent, attachPhoto } = useRecentChecks()
+  const { user } = useAuth()
+
+  useEffect(() => {
+    if (!photoFile) {
+      setPhotoPreview(null)
+      return
+    }
+    const url = URL.createObjectURL(photoFile)
+    setPhotoPreview(url)
+    return () => URL.revokeObjectURL(url)
+  }, [photoFile])
 
   useEffect(() => {
     if (!result) return
-    pushRecent({
+    const id = pushRecent({
       entryId: result.entry.id,
       paid: result.paid,
       fairMin: result.fairMin,
       fairMax: result.fairMax,
       deltaPct: result.deltaPct,
       verdict: result.verdict,
+      ...(photoUrl ? { photoUrl } : {}),
     })
-  }, [result, pushRecent])
+    if (!photoFile || !user || photoUrl) return
+    setPhotoUploading(true)
+    setPhotoError(null)
+    uploadReceiptPhoto(user.uid, photoFile)
+      .then((url) => {
+        setPhotoUrl(url)
+        attachPhoto(id, url)
+      })
+      .catch((err) => {
+        console.error('photo upload failed', err)
+        setPhotoError(t('page.check.photo.uploadError'))
+      })
+      .finally(() => setPhotoUploading(false))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result])
 
   const items = useMemo(
     () => (category ? PRICE_CATALOG.filter((e) => e.category === category) : []),
@@ -117,6 +151,19 @@ export const CheckPage = () => {
     setKm('')
     setNight(false)
     setResult(null)
+    setPhotoFile(null)
+    setPhotoUrl(null)
+    setPhotoError(null)
+    if (photoInputRef.current) photoInputRef.current.value = ''
+  }
+
+  const onPickPhoto = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const file = ev.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith('image/')) return
+    setPhotoFile(file)
+    setPhotoUrl(null)
+    setPhotoError(null)
   }
 
   const onBack = () => {
@@ -263,26 +310,73 @@ export const CheckPage = () => {
             })}
           </div>
 
-          <button
-            type="button"
-            disabled
-            className="flex w-full items-center justify-between rounded-2xl border border-dashed border-line bg-canvas-2 px-4 py-3.5 text-left"
-          >
-            <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-surface text-ink-3">
-                <CameraIcon size={18} />
-              </span>
-              <div>
-                <p className="text-[15px] font-semibold tracking-tight text-ink">
-                  {t('page.check.photo.title')}
-                </p>
-                <p className="text-[12px] text-ink-3">{t('page.check.photo.comingSoon')}</p>
+          <div>
+            <input
+              ref={photoInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={onPickPhoto}
+              className="hidden"
+            />
+            {photoPreview ? (
+              <div className="rounded-2xl border border-line bg-surface p-3">
+                <div className="flex items-start gap-3">
+                  <img
+                    src={photoPreview}
+                    alt=""
+                    className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold tracking-tight text-ink">
+                      {t('page.check.photo.attached')}
+                    </p>
+                    <p className="mt-0.5 text-[12px] text-ink-3">
+                      {user ? t('page.check.photo.willUpload') : t('page.check.photo.signInHint')}
+                    </p>
+                    <div className="mt-2 flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => photoInputRef.current?.click()}
+                        className="text-[12px] font-semibold text-brand hover:underline"
+                      >
+                        {t('page.check.photo.replace')}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPhotoFile(null)
+                          if (photoInputRef.current) photoInputRef.current.value = ''
+                        }}
+                        className="text-[12px] font-medium text-ink-3 hover:text-ink-2"
+                      >
+                        {t('page.check.photo.remove')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <span className="text-[12px] font-semibold text-ink-3">
-              {t('page.check.photo.soonBadge')}
-            </span>
-          </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => photoInputRef.current?.click()}
+                className="flex w-full items-center justify-between rounded-2xl border border-dashed border-line bg-canvas-2 px-4 py-3.5 text-left transition-colors hover:border-line-strong hover:bg-surface"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-soft text-brand">
+                    <CameraIcon size={18} />
+                  </span>
+                  <div>
+                    <p className="text-[15px] font-semibold tracking-tight text-ink">
+                      {t('page.check.photo.title')}
+                    </p>
+                    <p className="text-[12px] text-ink-3">{t('page.check.photo.helper')}</p>
+                  </div>
+                </div>
+                <ArrowRightIcon size={14} className="text-ink-3" />
+              </button>
+            )}
+          </div>
         </div>
       )}
 
@@ -528,6 +622,34 @@ export const CheckPage = () => {
                 <p className="text-[12px] leading-snug text-ink-2">
                   {t(`page.check.advice.${result.verdict}`)}
                 </p>
+              </div>
+            )}
+
+            {photoPreview && (
+              <div className="mt-4 rounded-xl border border-line bg-surface/70 p-3">
+                <div className="flex items-start gap-3">
+                  <img
+                    src={photoUrl ?? photoPreview}
+                    alt=""
+                    className="h-16 w-16 shrink-0 rounded-lg object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[12px] font-semibold text-ink-2">
+                      {t('page.check.photo.resultLabel')}
+                    </p>
+                    <p className="mt-0.5 text-[12px] leading-snug text-ink-3">
+                      {photoUploading
+                        ? t('page.check.photo.uploading')
+                        : photoUrl
+                          ? t('page.check.photo.saved')
+                          : photoError
+                            ? photoError
+                            : user
+                              ? t('page.check.photo.queued')
+                              : t('page.check.photo.localOnly')}
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 

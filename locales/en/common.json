@@ -72,7 +72,28 @@
     "atm_global": { "name": "Global ATM" },
     "atm_airport": { "name": "Airport/hotel ATM" },
     "exchange_spread": { "name": "Exchange spread" },
-    "sim_airport_5day": { "name": "Airport 5-day SIM" }
+    "sim_airport_5day": { "name": "Airport 5-day SIM" },
+    "pho_vietnamese": { "name": "Pho (Vietnamese noodles)" },
+    "bingsu": { "name": "Bingsu (shaved ice)" },
+    "bungeoppang": { "name": "Bungeoppang x3 (fish-shaped bun)" },
+    "fresh_juice": { "name": "Fresh fruit juice" },
+    "bubble_tea": { "name": "Bubble tea" },
+    "makgeolli_bottle": { "name": "Makgeolli bottle (restaurant)" },
+    "city_bus": { "name": "City bus (1 ride)" },
+    "subway_single": { "name": "Subway single fare" },
+    "ktx_seoul_busan": { "name": "KTX Seoul–Busan (standard)" },
+    "airport_express": { "name": "Airport Express (direct)" },
+    "rental_car_day": { "name": "Rental car compact, 1 day" },
+    "kick_scooter_30min": { "name": "E-scooter 30 min" },
+    "hotel_4star": { "name": "4-star hotel (1 night)" },
+    "guesthouse_room": { "name": "Guesthouse single room" },
+    "pension_weekend": { "name": "Pension (weekend 1 night)" },
+    "museum_entry": { "name": "Museum entry (adult)" },
+    "theme_park_day": { "name": "Theme park day pass" },
+    "cable_car_round": { "name": "Cable car round trip" },
+    "pc_cafe_1h": { "name": "PC bang 1 hour" },
+    "luggage_storage_day": { "name": "Luggage storage 1 day" },
+    "parking_downtown_1h": { "name": "Downtown parking 1 hour" }
   },
   "page": {
     "home": {
@@ -302,9 +323,19 @@
         "cta": "Get a taxi verdict"
       },
       "photo": {
-        "title": "Snap a menu or receipt",
-        "comingSoon": "Auto-detect items and prices from a photo — coming soon",
-        "soonBadge": "SOON"
+        "title": "Attach a photo",
+        "helper": "Snap a menu or receipt — kept with your verdict",
+        "attached": "Photo attached",
+        "willUpload": "Will be uploaded to Firebase after the verdict",
+        "signInHint": "Sign in to save to the cloud — otherwise, this session only",
+        "replace": "Replace",
+        "remove": "Remove",
+        "resultLabel": "Attached photo",
+        "uploading": "Uploading…",
+        "saved": "Saved to the cloud",
+        "queued": "Upload queued",
+        "localOnly": "Local session only (sign in to save)",
+        "uploadError": "Upload failed — check network or permissions"
       },
       "form": {
         "category": "Category",
@@ -357,6 +388,15 @@
         "emergency": "Emergency",
         "phrases": "Key phrases"
       },
+      "arrival": {
+        "arex": { "title": "AREX Airport Express", "body": "ICN → Seoul Station, 43 min · 06:30–22:50 · reserved seat" },
+        "limo": { "title": "Limousine Bus 6001", "body": "ICN → Myeongdong, 70 min · 04:20–23:00 · every 15 min" },
+        "tmoney": { "title": "T-money transit card", "body": "Buy/charge at any convenience store · subway, bus, some taxis" },
+        "helpline": { "title": "1330 Tourism Hotline", "body": "24/7 · EN/JA/ZH/RU/VI · free interpretation, complaints, directions" },
+        "immigration": { "title": "Foreigner Immigration", "body": "K-ETA pre-registration skips lines · Smart Entry (KISS) for age 9+ residents" },
+        "customs": { "title": "Customs allowance", "body": "USD 800 duty-free per person · 1 L alcohol, 200 cigarettes · declare if over" },
+        "kakaoT": { "title": "KakaoT taxi app", "body": "Foreign card payment · choose Regular/Black/Premium · avoid meter scams" }
+      },
       "money": {
         "atmGlobal": {
           "title": "CU/GS25 Global ATM",
@@ -373,6 +413,18 @@
         "exchangeMyeongdong": {
           "title": "Myeongdong private booths",
           "body": "10–20 KRW/USD better than banks. Bring your passport."
+        },
+        "wowpass": {
+          "title": "WOWPASS (foreigner card)",
+          "body": "Exchange + T-money combo · passport only, no Korean ID · Myeongdong/Hongdae/airport"
+        },
+        "taxRefund": {
+          "title": "Tax refund (VAT)",
+          "body": "10–15% back on purchases over ₩30,000 · get customs stamp then claim at airport"
+        },
+        "tipCulture": {
+          "title": "No tipping culture",
+          "body": "Restaurants, taxis, hotels — no tips expected. Only 5-star concierge is an exception."
         }
       },
       "connect": {
@@ -387,6 +439,18 @@
         "wifiPublic": {
           "title": "Public Wi-Fi",
           "body": "Free on subway, buses and cafes. Look for 'Public WiFi Free' SSID."
+        },
+        "kakaoTalk": {
+          "title": "KakaoTalk (essential)",
+          "body": "99% of Koreans use it · bookings, business chat, IDs instead of numbers"
+        },
+        "naverMap": {
+          "title": "Naver / Kakao Map",
+          "body": "More accurate than Google in Korea · live transit & taxi fares"
+        },
+        "papago": {
+          "title": "Papago translator",
+          "body": "Naver's translation app · camera, voice, chat · tuned for Korean"
         }
       },
       "emergency": {
@@ -399,6 +463,18 @@
         "tourist": {
           "title": "Tourist hotline & translation",
           "body": "1330 · Multilingual, 24/7, free"
+        },
+        "lostItem": {
+          "title": "Lost & Found Center",
+          "body": "182 · search subway, taxi and public-transit lost items"
+        },
+        "sexualViolence": {
+          "title": "Sexual Violence Helpline",
+          "body": "1366 · 24/7, multilingual"
+        },
+        "humanRights": {
+          "title": "Foreigner Info Center",
+          "body": "1345 · Ministry of Justice · 18 languages · rights & status help"
         }
       },
       "phrases": {
@@ -407,7 +483,15 @@
         "howMuch": "How much is it?",
         "tooExpensive": "That's too expensive",
         "help": "Please help me",
-        "english": "Do you speak English?"
+        "english": "Do you speak English?",
+        "restroom": "Where is the restroom?",
+        "water": "Can I have some water?",
+        "notSpicy": "Not spicy, please",
+        "check": "Check, please",
+        "takeOut": "Take out, please",
+        "receipt": "Can I get a receipt?",
+        "wifiPw": "What's the Wi-Fi password?",
+        "oneMore": "One more, please"
       }
     },
     "notFound": {

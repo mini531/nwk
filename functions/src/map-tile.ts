@@ -86,19 +86,24 @@ export const mapTile = onRequest(
       return
     }
 
-    const url = `https://api.vworld.kr/req/wmts/1.0.0/${key}/${layer}/${z}/${y}/${x}.png`
+    const isJpegLayer = layer === 'Satellite' || layer === 'Hybrid'
+    const ext = isJpegLayer ? 'jpeg' : 'png'
+    const contentType = isJpegLayer ? 'image/jpeg' : 'image/png'
+    const url = `https://api.vworld.kr/req/wmts/1.0.0/${key}/${layer}/${z}/${y}/${x}.${ext}`
 
     try {
       const upstream = await fetch(url)
       const buf = Buffer.from(await upstream.arrayBuffer())
 
       // VWorld 는 범위 밖 타일이나 키 오류 시 200 + XML 을 반환함
-      // PNG magic bytes (0x89 0x50 0x4E 0x47) 가 아니면 빈 타일로 대체
+      // PNG (0x89 50 4E 47) 또는 JPEG (0xFF D8 FF) magic bytes 로 이미지 여부 확인
       const isPng =
         buf.length > 4 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47
-      if (!upstream.ok || !isPng) {
-        if (!isPng && buf.length > 0) {
-          logger.warn('vworld non-png response', {
+      const isJpeg = buf.length > 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff
+      const isImage = isJpegLayer ? isJpeg : isPng
+      if (!upstream.ok || !isImage) {
+        if (!isImage && buf.length > 0) {
+          logger.warn('vworld non-image response', {
             z,
             x,
             y,
@@ -113,7 +118,7 @@ export const mapTile = onRequest(
         return
       }
 
-      res.setHeader('Content-Type', 'image/png')
+      res.setHeader('Content-Type', contentType)
       res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=604800')
       res.status(200).send(buf)
     } catch (err) {

@@ -62,6 +62,9 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'sushi_set', category: 'food', fairMin: 15000, fairMax: 25000, unit: '일식 1인분' },
   { id: 'burger_korean', category: 'food', fairMin: 4000, fairMax: 6000, unit: '단품' },
   { id: 'pizza_regular', category: 'food', fairMin: 15000, fairMax: 22000, unit: '레귤러' },
+  { id: 'pho_vietnamese', category: 'food', fairMin: 9500, fairMax: 13000, unit: '쌀국수 1인' },
+  { id: 'bingsu', category: 'food', fairMin: 9000, fairMax: 15000, unit: '팥빙수 1개' },
+  { id: 'bungeoppang', category: 'food', fairMin: 1000, fairMax: 3000, unit: '붕어빵 3개' },
 
   { id: 'americano', category: 'drink', fairMin: 3500, fairMax: 5500, popular: true },
   { id: 'cafe_latte', category: 'drink', fairMin: 4500, fairMax: 6500, popular: true },
@@ -69,6 +72,15 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'soju_bottle', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '식당' },
   { id: 'beer_500ml', category: 'drink', fairMin: 5000, fairMax: 7000, unit: '식당 생맥주' },
   { id: 'tea_latte', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '녹차라떼 1잔' },
+  { id: 'fresh_juice', category: 'drink', fairMin: 5000, fairMax: 8000, unit: '생과일주스 1잔' },
+  { id: 'bubble_tea', category: 'drink', fairMin: 4500, fairMax: 7000, unit: '버블티 1잔' },
+  {
+    id: 'makgeolli_bottle',
+    category: 'drink',
+    fairMin: 4000,
+    fairMax: 7000,
+    unit: '막걸리 1병 식당',
+  },
 
   {
     id: 'taxi_seoul',
@@ -85,6 +97,36 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMax: 90000,
     unit: '인천→서울 콜',
   },
+  { id: 'city_bus', category: 'transit', fairMin: 1500, fairMax: 1800, unit: '시내버스 1회' },
+  { id: 'subway_single', category: 'transit', fairMin: 1400, fairMax: 1900, unit: '지하철 1구간' },
+  {
+    id: 'ktx_seoul_busan',
+    category: 'transit',
+    fairMin: 55000,
+    fairMax: 60000,
+    unit: 'KTX 일반실',
+  },
+  {
+    id: 'airport_express',
+    category: 'transit',
+    fairMin: 9000,
+    fairMax: 11000,
+    unit: '공항철도 직통',
+  },
+  {
+    id: 'rental_car_day',
+    category: 'transit',
+    fairMin: 55000,
+    fairMax: 90000,
+    unit: '소형 1일',
+  },
+  {
+    id: 'kick_scooter_30min',
+    category: 'transit',
+    fairMin: 3000,
+    fairMax: 6000,
+    unit: '전동킥보드 30분',
+  },
 
   { id: 'hostel_dorm', category: 'lodging', fairMin: 18000, fairMax: 32000, unit: '1박' },
   {
@@ -96,6 +138,27 @@ export const PRICE_CATALOG: PriceEntry[] = [
     popular: true,
   },
   { id: 'hanok_stay', category: 'lodging', fairMin: 90000, fairMax: 180000, unit: '1박' },
+  {
+    id: 'hotel_4star',
+    category: 'lodging',
+    fairMin: 130000,
+    fairMax: 220000,
+    unit: '1박',
+  },
+  {
+    id: 'guesthouse_room',
+    category: 'lodging',
+    fairMin: 40000,
+    fairMax: 70000,
+    unit: '1인실 1박',
+  },
+  {
+    id: 'pension_weekend',
+    category: 'lodging',
+    fairMin: 120000,
+    fairMax: 220000,
+    unit: '주말 1박',
+  },
 
   {
     id: 'hanbok_rental_2h',
@@ -114,11 +177,23 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'movie_ticket', category: 'tourism', fairMin: 14000, fairMax: 17000, unit: '1매' },
   { id: 'mens_haircut', category: 'tourism', fairMin: 8000, fairMax: 15000, unit: '남자 중급' },
   { id: 'womens_haircut', category: 'tourism', fairMin: 12000, fairMax: 22000, unit: '여자 중급' },
+  { id: 'museum_entry', category: 'tourism', fairMin: 3000, fairMax: 10000, unit: '성인 1인' },
+  { id: 'theme_park_day', category: 'tourism', fairMin: 50000, fairMax: 75000, unit: '1일권' },
+  { id: 'cable_car_round', category: 'tourism', fairMin: 13000, fairMax: 22000, unit: '왕복' },
+  { id: 'pc_cafe_1h', category: 'tourism', fairMin: 1200, fairMax: 2500, unit: '1시간' },
 
   { id: 'atm_global', category: 'fee', fairMin: 1000, fairMax: 1500, unit: '1회', popular: true },
   { id: 'atm_airport', category: 'fee', fairMin: 3500, fairMax: 5000, unit: '1회' },
   { id: 'exchange_spread', category: 'fee', fairMin: 15, fairMax: 30, unit: '원/USD' },
   { id: 'sim_airport_5day', category: 'fee', fairMin: 25000, fairMax: 35000, unit: '5일 무제한' },
+  {
+    id: 'luggage_storage_day',
+    category: 'fee',
+    fairMin: 5000,
+    fairMax: 10000,
+    unit: '중형 1일',
+  },
+  { id: 'parking_downtown_1h', category: 'fee', fairMin: 3000, fairMax: 6000, unit: '도심 1시간' },
 ]
 
 // Seoul taxi 2025 meter rules

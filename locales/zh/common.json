@@ -72,7 +72,28 @@
     "atm_global": { "name": "Global ATM" },
     "atm_airport": { "name": "机场/酒店 ATM" },
     "exchange_spread": { "name": "换汇点差" },
-    "sim_airport_5day": { "name": "机场 5 天无限流量卡" }
+    "sim_airport_5day": { "name": "机场 5 天无限流量卡" },
+    "pho_vietnamese": { "name": "越南河粉" },
+    "bingsu": { "name": "红豆刨冰" },
+    "bungeoppang": { "name": "鲫鱼饼 3 个" },
+    "fresh_juice": { "name": "鲜榨果汁" },
+    "bubble_tea": { "name": "珍珠奶茶" },
+    "makgeolli_bottle": { "name": "马格利酒 1 瓶 (餐厅)" },
+    "city_bus": { "name": "市内公交" },
+    "subway_single": { "name": "地铁 单程" },
+    "ktx_seoul_busan": { "name": "KTX 首尔~釜山" },
+    "airport_express": { "name": "机场快线直达" },
+    "rental_car_day": { "name": "小型租车 1 日" },
+    "kick_scooter_30min": { "name": "电动滑板车 30 分钟" },
+    "hotel_4star": { "name": "4 星酒店 1 晚" },
+    "guesthouse_room": { "name": "青年旅舍 单人间" },
+    "pension_weekend": { "name": "度假屋 周末 1 晚" },
+    "museum_entry": { "name": "博物馆入场" },
+    "theme_park_day": { "name": "主题乐园 1 日票" },
+    "cable_car_round": { "name": "缆车往返" },
+    "pc_cafe_1h": { "name": "PC 房 1 小时" },
+    "luggage_storage_day": { "name": "行李寄存 1 日" },
+    "parking_downtown_1h": { "name": "市区停车 1 小时" }
   },
   "page": {
     "home": {
@@ -302,9 +323,19 @@
         "cta": "判定出租车费用"
       },
       "photo": {
-        "title": "拍照判定",
-        "comingSoon": "拍下菜单或小票, 自动判定 — 即将推出",
-        "soonBadge": "SOON"
+        "title": "添加照片",
+        "helper": "拍下菜单或小票 — 与判定一同保存",
+        "attached": "已添加照片",
+        "willUpload": "判定后上传到 Firebase",
+        "signInHint": "登录可云端保存, 未登录仅在本次会话显示",
+        "replace": "更换",
+        "remove": "删除",
+        "resultLabel": "附加照片",
+        "uploading": "上传中...",
+        "saved": "已保存到云端",
+        "queued": "已加入上传队列",
+        "localOnly": "仅本地会话 (登录后云端保存)",
+        "uploadError": "上传失败 — 请检查网络或权限"
       },
       "form": {
         "category": "类别",
@@ -357,6 +388,15 @@
         "emergency": "紧急电话",
         "phrases": "基本韩语"
       },
+      "arrival": {
+        "arex": { "title": "AREX 机场快线直达", "body": "仁川→首尔站 43 分钟 · 06:30–22:50 · 指定座位" },
+        "limo": { "title": "机场大巴 6001", "body": "仁川→明洞 70 分钟 · 04:20–23:00 · 每 15 分钟一班" },
+        "tmoney": { "title": "T-money 交通卡", "body": "便利店购买+充值 · 全国地铁、公交、部分出租车" },
+        "helpline": { "title": "1330 旅游咨询热线", "body": "24 小时 · 英日中俄越南语 · 翻译、投诉、指路 免费" },
+        "immigration": { "title": "外国人入境审查", "body": "K-ETA 预登记者走专用通道 · Smart Entry (KISS) 9 岁以上可办" },
+        "customs": { "title": "海关免税额度", "body": "每人 800 美元 · 酒 1L、香烟 200 支 · 超出需主动申报" },
+        "kakaoT": { "title": "KakaoT 打车应用", "body": "支持境外卡支付 · 可选普通/黑卡/优质出租车 · 防止被宰" }
+      },
       "money": {
         "atmGlobal": {
           "title": "CU/GS25 Global ATM",
@@ -373,6 +413,18 @@
         "exchangeMyeongdong": {
           "title": "明洞私营换汇点",
           "body": "比银行每美元多换 10~20 韩元. 需出示护照."
+        },
+        "wowpass": {
+          "title": "WOWPASS 外国人卡",
+          "body": "换汇 + T-money 一体 · 凭护照即可办理 · 明洞、弘大、机场"
+        },
+        "taxRefund": {
+          "title": "TAX REFUND 退税",
+          "body": "消费 3 万韩元以上可退 10~15% · 机场海关盖章后到退税柜台领取"
+        },
+        "tipCulture": {
+          "title": "无小费文化",
+          "body": "餐厅、出租车、酒店都不需小费 · 仅 5 星酒店礼宾属例外"
         }
       },
       "connect": {
@@ -387,13 +439,28 @@
         "wifiPublic": {
           "title": "公共 Wi-Fi",
           "body": "地铁、公交、咖啡馆免费. 连接 Public WiFi Free."
+        },
+        "kakaoTalk": {
+          "title": "KakaoTalk (必备)",
+          "body": "韩国人 99% 都在用 · 预约、咨询、交换 ID · 常替代电话号码"
+        },
+        "naverMap": {
+          "title": "Naver / Kakao 地图",
+          "body": "比谷歌地图更准 · 实时公共交通与出租车价"
+        },
+        "papago": {
+          "title": "Papago 翻译",
+          "body": "Naver 翻译应用 · 相机、语音、对话翻译 · 针对韩语优化"
         }
       },
       "emergency": {
         "police": { "title": "警察报警", "body": "112 · 24 小时英文支持" },
         "fire": { "title": "消防急救", "body": "119 · 火灾与紧急医疗" },
         "medical": { "title": "医疗咨询", "body": "1339 · 夜间与节假日医院指引" },
-        "tourist": { "title": "旅游投诉与翻译", "body": "1330 · 多语种 24 小时免费" }
+        "tourist": { "title": "旅游投诉与翻译", "body": "1330 · 多语种 24 小时免费" },
+        "lostItem": { "title": "失物综合中心", "body": "182 · 可查询地铁、出租车、公共交通失物" },
+        "sexualViolence": { "title": "性暴力受害咨询", "body": "1366 · 24 小时 · 多语种支持" },
+        "humanRights": { "title": "外国人综合服务中心", "body": "1345 · 法务部 · 18 种语言 · 权利与居留咨询" }
       },
       "phrases": {
         "hello": "Hello",
@@ -401,7 +468,15 @@
         "howMuch": "How much is it?",
         "tooExpensive": "That's too expensive",
         "help": "Please help me",
-        "english": "Do you speak English?"
+        "english": "Do you speak English?",
+        "restroom": "Where is the restroom?",
+        "water": "Can I have some water?",
+        "notSpicy": "Not spicy, please",
+        "check": "Check, please",
+        "takeOut": "Take out, please",
+        "receipt": "Can I get a receipt?",
+        "wifiPw": "What's the Wi-Fi password?",
+        "oneMore": "One more, please"
       }
     },
     "notFound": {

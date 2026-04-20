@@ -6,6 +6,9 @@ const ARRIVAL = [
   { id: 'limo', value: '₩17,000' },
   { id: 'tmoney', value: '₩2,500+' },
   { id: 'helpline', value: '1330' },
+  { id: 'immigration', value: 'KISS' },
+  { id: 'customs', value: '$800' },
+  { id: 'kakaoT', value: 'APP' },
 ] as const
 
 const MONEY = [
@@ -13,12 +16,18 @@ const MONEY = [
   { id: 'atmAirport', value: '₩3,500–5,000' },
   { id: 'cardFirst', value: '99%' },
   { id: 'exchangeMyeongdong', value: '−15원' },
+  { id: 'wowpass', value: 'T-money' },
+  { id: 'taxRefund', value: '10–15%' },
+  { id: 'tipCulture', value: '0%' },
 ] as const
 
 const CONNECT = [
   { id: 'esimKt', value: '₩33,000' },
   { id: 'sim5day', value: '₩27,500' },
   { id: 'wifiPublic', value: 'FREE' },
+  { id: 'kakaoTalk', value: 'APP' },
+  { id: 'naverMap', value: 'APP' },
+  { id: 'papago', value: 'APP' },
 ] as const
 
 const EMERGENCY = [
@@ -26,6 +35,9 @@ const EMERGENCY = [
   { id: 'fire', value: '119' },
   { id: 'medical', value: '1339' },
   { id: 'tourist', value: '1330' },
+  { id: 'lostItem', value: '182' },
+  { id: 'sexualViolence', value: '1366' },
+  { id: 'humanRights', value: '1345' },
 ] as const
 
 const PHRASES = [
@@ -35,6 +47,14 @@ const PHRASES = [
   { id: 'tooExpensive', ko: '너무 비싸요' },
   { id: 'help', ko: '도와주세요' },
   { id: 'english', ko: '영어 할 수 있어요?' },
+  { id: 'restroom', ko: '화장실 어디예요?' },
+  { id: 'water', ko: '물 한 잔 주세요' },
+  { id: 'notSpicy', ko: '안 맵게 해주세요' },
+  { id: 'check', ko: '계산서 주세요' },
+  { id: 'takeOut', ko: '포장해 주세요' },
+  { id: 'receipt', ko: '영수증 주세요' },
+  { id: 'wifiPw', ko: '와이파이 비밀번호요?' },
+  { id: 'oneMore', ko: '하나 더 주세요' },
 ] as const
 
 interface Section<T extends readonly { id: string }[]> {
@@ -99,7 +119,7 @@ export const KitPage = () => {
           section={{
             label: t('page.kit.sections.arrival'),
             items: ARRIVAL,
-            scope: 'page.home.arrival',
+            scope: 'page.kit.arrival',
           }}
         />
         <Block
