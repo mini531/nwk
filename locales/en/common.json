@@ -349,9 +349,9 @@
         "fee": "ATM, exchange, SIM"
       },
       "safeTransit": {
-        "title": "Korea's public transit is rip-off-free",
-        "body": "Subway, bus, KTX and intercity bus all charge the listed price via T-money or cash. Only taxis need checking — always confirm the meter.",
-        "cta": "Get a taxi verdict"
+        "title": "Transit fares, sanity-checked",
+        "body": "Subway and bus run on fixed T-money fares. Taxis, airport buses, KTX and car rentals price by distance, meter or route — see the fair range for every mode.",
+        "cta": "Check transit fares"
       },
       "photo": {
         "title": "Attach a photo",

@@ -445,7 +445,7 @@ export const SearchPage = () => {
                       <button
                         type="button"
                         onClick={() => setFocusId(id)}
-                        className={`nwk-card group flex w-full items-center gap-3 p-3 text-left transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+                        className={`nwk-card nwk-card-hover group flex w-full items-center gap-3 p-3 text-left transition active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
                           focusId === id ? 'ring-2 ring-brand' : ''
                         }`}
                       >

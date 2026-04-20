@@ -41,7 +41,7 @@ export const AboutPage = () => {
               <button
                 type="button"
                 onClick={() => promptInstall().catch((e) => console.error(e))}
-                className="mt-4 w-full rounded-xl bg-ink py-3 text-[15px] font-medium tracking-tight text-on-ink active:scale-[0.98]"
+                className="mt-4 w-full rounded-xl bg-ink py-3 text-[15px] font-medium tracking-tight text-on-ink transition hover:bg-ink/90 active:scale-[0.98]"
               >
                 {t('page.about.install.cta')}
               </button>

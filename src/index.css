@@ -45,6 +45,21 @@
 }
 
 @layer base {
+  /* Tailwind v4 ships with default `cursor: default` on <button>; restore
+     the pointer cursor on every interactive element unless disabled. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  label[for],
+  summary,
+  select,
+  [type='checkbox'],
+  [type='radio'],
+  [type='submit'],
+  [type='button'],
+  [type='reset'] {
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

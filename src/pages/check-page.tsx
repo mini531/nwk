@@ -359,7 +359,7 @@ export const CheckPage = () => {
                   key={c}
                   type="button"
                   onClick={() => onPickCategory(c)}
-                  className="nwk-card group flex h-28 flex-col justify-between p-4 text-left transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                  className="nwk-card nwk-card-hover group flex h-28 flex-col justify-between p-4 text-left transition active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 >
                   <span
                     className={`grid h-10 w-10 place-items-center rounded-xl ${meta.bg} ${meta.fg}`}
@@ -667,7 +667,7 @@ export const CheckPage = () => {
           <button
             type="submit"
             disabled={!price || (isTaxi && !km)}
-            className="w-full rounded-2xl bg-ink py-4 text-[15px] font-semibold text-on-ink transition-transform active:scale-[0.99] disabled:opacity-40"
+            className="w-full rounded-2xl bg-ink py-4 text-[15px] font-semibold text-on-ink transition hover:bg-ink/90 active:scale-[0.99] disabled:opacity-40 disabled:hover:bg-ink"
           >
             {t('page.check.form.submit')}
           </button>
@@ -796,7 +796,7 @@ export const CheckPage = () => {
             </button>
             <Link
               to="/kit"
-              className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-on-ink transition-transform active:scale-[0.99]"
+              className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-on-ink transition hover:bg-ink/90 active:scale-[0.99]"
             >
               {t('page.check.openKit')}
               <ArrowRightIcon size={14} />
@@ -931,7 +931,7 @@ export const CheckPage = () => {
                 type="button"
                 onClick={analyzeExtracted}
                 disabled={ocrLoading || !ocrItems || ocrItems.length === 0}
-                className="flex-1 rounded-xl bg-ink py-3 text-[13px] font-semibold text-on-ink transition-transform active:scale-[0.99] disabled:opacity-40"
+                className="flex-1 rounded-xl bg-ink py-3 text-[13px] font-semibold text-on-ink transition hover:bg-ink/90 active:scale-[0.99] disabled:opacity-40 disabled:hover:bg-ink"
               >
                 {t('page.check.photo.analyze')}
               </button>
@@ -958,7 +958,7 @@ const ItemCard = ({
     <button
       type="button"
       onClick={onClick}
-      className="nwk-card flex flex-col items-start gap-1 p-3.5 text-left transition-transform active:scale-[0.98]"
+      className="nwk-card nwk-card-hover flex flex-col items-start gap-1 p-3.5 text-left transition active:scale-[0.98]"
     >
       <div className="flex w-full items-start justify-between gap-1.5">
         <p className="flex-1 text-[14px] font-semibold leading-tight tracking-tight text-ink">

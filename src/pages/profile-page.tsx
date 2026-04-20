@@ -114,7 +114,7 @@ export const ProfilePage = () => {
           <button
             type="button"
             onClick={() => signIn().catch((e) => console.error(e))}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3.5 text-[15px] font-medium tracking-tight text-on-ink transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-ink py-3.5 text-[15px] font-medium tracking-tight text-on-ink transition hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98]"
           >
             {t('page.profile.signin')}
           </button>
