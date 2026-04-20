@@ -16,7 +16,8 @@ const EMPTY_FC: GeoJSON.FeatureCollection<GeoJSON.Point, PoiProperties> = {
 const PAGE_SIZE = 40
 
 export const MapPage = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language
   const { isFavorite, toggle: toggleFavorite } = useFavorites()
   const selectedPlace = useAppStore((s) => s.selectedPlace)
   const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
@@ -47,23 +48,26 @@ export const MapPage = () => {
     }
   }, [])
 
-  const handleSearch = useCallback((q: string) => {
-    setSearchQuery(q)
-    if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
-    if (!q.trim()) {
-      setSearchResults(null)
-      return
-    }
-    searchTimerRef.current = setTimeout(() => {
-      setSearching(true)
-      tourSearch({ keyword: q.trim() })
-        .then((res) => {
-          setSearchResults(res.data.items ?? [])
-        })
-        .catch(() => setSearchResults([]))
-        .finally(() => setSearching(false))
-    }, 500)
-  }, [])
+  const handleSearch = useCallback(
+    (q: string) => {
+      setSearchQuery(q)
+      if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
+      if (!q.trim()) {
+        setSearchResults(null)
+        return
+      }
+      searchTimerRef.current = setTimeout(() => {
+        setSearching(true)
+        tourSearch({ keyword: q.trim(), lang })
+          .then((res) => {
+            setSearchResults(res.data.items ?? [])
+          })
+          .catch(() => setSearchResults([]))
+          .finally(() => setSearching(false))
+      }, 500)
+    },
+    [lang],
+  )
 
   const clearSearch = useCallback(() => {
     setSearchQuery('')
@@ -104,6 +108,12 @@ export const MapPage = () => {
   }, [])
 
   useEffect(() => {
+    if (!searchQuery.trim()) return
+    handleSearch(searchQuery)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang])
+
+  useEffect(() => {
     if (!selectedPlace) return
     setDetailPlace(selectedPlace)
     const map = mapInstanceRef.current
@@ -124,7 +134,14 @@ export const MapPage = () => {
     (lat: number, lng: number, radius: number, page: number, append: boolean) => {
       const setter = append ? setLoadingMore : setLoading
       setter(true)
-      tourNearby({ lat, lng, radius: Math.min(radius, 200000), pageNo: page, numOfRows: PAGE_SIZE })
+      tourNearby({
+        lat,
+        lng,
+        radius: Math.min(radius, 200000),
+        pageNo: page,
+        numOfRows: PAGE_SIZE,
+        lang,
+      })
         .then((result) => {
           const items = result.data.items ?? []
           setPlaces((prev) => (append ? [...prev, ...items] : items))
@@ -134,10 +151,10 @@ export const MapPage = () => {
         .catch(() => {})
         .finally(() => setter(false))
     },
-    [places.length],
+    [lang],
   )
 
-  // 초기 로드 (위치 확보 후)
+  // 초기 로드 (위치 확보 후) + 언어 변경 시 재조회
   useEffect(() => {
     const lat = userLoc?.[1] ?? SEOUL[1]
     const lng = userLoc?.[0] ?? SEOUL[0]
@@ -146,7 +163,7 @@ export const MapPage = () => {
     setMapCenter([lng, lat])
     loadPlaces(lat, lng, 20000, 1, false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLoc])
+  }, [userLoc, lang])
 
   // 뷰포트 변경 시 재조회 (debounce 800ms)
   const handleBoundsChange = useCallback(
