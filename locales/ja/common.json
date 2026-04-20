@@ -344,7 +344,7 @@
         "title": "写真を添付",
         "helper": "メニュー・レシートを撮影 — 判定と一緒に保存",
         "attached": "写真を添付しました",
-        "willUpload": "判定後に Firebase にアップロード",
+        "willUpload": "判定後にマイ履歴に保存",
         "signInHint": "ログインすればクラウド保存、未ログインならこのセッションのみ",
         "replace": "差替え",
         "remove": "削除",
@@ -361,7 +361,12 @@
         "bagajiFound": "ぼったくり検出",
         "unmatched": "メニュー照合なし",
         "noneFound": "価格を検出できませんでした",
-        "noneFoundHelper": "メニュー・レシートが鮮明に撮れているか確認してください。下で手動入力も可能です。"
+        "noneFoundHelper": "メニュー・レシートが鮮明に撮れているか確認してください。下で手動入力も可能です。",
+        "modalTitle": "写真から抽出された項目",
+        "modalHelper": "メニュー名と価格を確認し、分析をタップしてください。不要な行はXで除外できます。",
+        "analyze": "分析する",
+        "close": "閉じる",
+        "removeItem": "項目を除外"
       },
       "form": {
         "category": "カテゴリ",

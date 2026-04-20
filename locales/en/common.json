@@ -344,7 +344,7 @@
         "title": "Attach a photo",
         "helper": "Snap a menu or receipt — kept with your verdict",
         "attached": "Photo attached",
-        "willUpload": "Will be uploaded to Firebase after the verdict",
+        "willUpload": "Saved to your history after the verdict",
         "signInHint": "Sign in to save to the cloud — otherwise, this session only",
         "replace": "Replace",
         "remove": "Remove",
@@ -361,7 +361,12 @@
         "bagajiFound": "Rip-off detected",
         "unmatched": "No match in catalog",
         "noneFound": "No prices detected",
-        "noneFoundHelper": "Make sure the menu/receipt is clear and in focus. You can still enter a price manually below."
+        "noneFoundHelper": "Make sure the menu/receipt is clear and in focus. You can still enter a price manually below.",
+        "modalTitle": "Items extracted from photo",
+        "modalHelper": "Review the menu names and prices, then tap Analyze. Remove any rows you don't want to check.",
+        "analyze": "Analyze",
+        "close": "Close",
+        "removeItem": "Remove item"
       },
       "form": {
         "category": "Category",

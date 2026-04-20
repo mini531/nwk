@@ -344,7 +344,7 @@
         "title": "사진 첨부",
         "helper": "영수증·메뉴판 촬영 — 판정과 함께 기록",
         "attached": "사진 첨부 완료",
-        "willUpload": "판정 후 Firebase에 저장",
+        "willUpload": "판정 후 내 기록함에 저장",
         "signInHint": "로그인 시 클라우드 저장, 미로그인 시 이번 세션만 표시",
         "replace": "교체",
         "remove": "삭제",
@@ -361,7 +361,12 @@
         "bagajiFound": "바가지 발견",
         "unmatched": "메뉴 매칭 실패",
         "noneFound": "가격을 찾지 못했어요",
-        "noneFoundHelper": "메뉴판·영수증이 선명하게 찍혔는지 확인해주세요. 수동으로 카테고리 선택해 판정할 수도 있어요."
+        "noneFoundHelper": "메뉴판·영수증이 선명하게 찍혔는지 확인해주세요. 수동으로 카테고리 선택해 판정할 수도 있어요.",
+        "modalTitle": "사진에서 추출한 항목",
+        "modalHelper": "메뉴명과 가격을 확인한 뒤 분석을 눌러주세요. 불필요한 줄은 X로 제외할 수 있어요.",
+        "analyze": "분석하기",
+        "close": "닫기",
+        "removeItem": "항목 제외"
       },
       "form": {
         "category": "카테고리",

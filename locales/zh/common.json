@@ -344,7 +344,7 @@
         "title": "添加照片",
         "helper": "拍下菜单或小票 — 与判定一同保存",
         "attached": "已添加照片",
-        "willUpload": "判定后上传到 Firebase",
+        "willUpload": "判定后保存到我的历史",
         "signInHint": "登录可云端保存, 未登录仅在本次会话显示",
         "replace": "更换",
         "remove": "删除",
@@ -361,7 +361,12 @@
         "bagajiFound": "检测到宰客价",
         "unmatched": "未匹配菜单",
         "noneFound": "未能识别出价格",
-        "noneFoundHelper": "请确保菜单/小票清晰对焦。也可在下方手动输入价格。"
+        "noneFoundHelper": "请确保菜单/小票清晰对焦。也可在下方手动输入价格。",
+        "modalTitle": "从照片提取的项目",
+        "modalHelper": "确认菜单名与价格后点击分析。可通过 X 排除不需要的行。",
+        "analyze": "开始分析",
+        "close": "关闭",
+        "removeItem": "排除项目"
       },
       "form": {
         "category": "类别",
