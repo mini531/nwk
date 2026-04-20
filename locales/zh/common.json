@@ -255,7 +255,8 @@
       "loading": "地图功能即将上线",
       "placeholder": "开发中",
       "searchHere": "搜索此区域",
-      "clearSelection": "清除选择"
+      "clearSelection": "清除选择",
+      "attribution": "POI: 韩国观光公社 TourAPI · 地图: ⓒ Kakao"
     },
     "about": {
       "title": "NWK — No Worries Korea",
@@ -271,6 +272,23 @@
       "privacy": {
         "title": "隐私",
         "body": "位置信息仅在设备本地使用, 不会发送到服务器。登录时仅收集邮箱与昵称, 不涉及其他敏感信息。"
+      },
+      "dataSources": {
+        "label": "数据来源",
+        "title": "基于韩国政府公共旅游数据",
+        "tour": {
+          "name": "韩国观光公社 TourAPI",
+          "body": "全国景点搜索、周边查询、详情内容均来自公共数据门户 TourAPI (KorService2/EngService2/JpnService2/ChsService2), 支持多语言官方旅游数据。",
+          "meta": "data.go.kr · 观光公共数据利用大赛参赛作品"
+        },
+        "kakao": {
+          "name": "Kakao Maps",
+          "body": "仅用于地图渲染, 提供一般视图与卫星视图, 不提供 POI 数据。"
+        },
+        "prices": {
+          "name": "旅游消费基准价",
+          "body": "基于韩国消费者院、统计厅公开资料及 2024–25 年行业平均整理。公共数据 API 公开后将进行 LIVE 对接。"
+        }
       }
     },
     "place": {

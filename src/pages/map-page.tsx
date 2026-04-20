@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TourMap, type BaseLayer, type PoiProperties } from '../components/tour-map'
-import type { Map as MLMap } from 'maplibre-gl'
+import { KakaoTourMap, type BaseLayer, type PoiProperties } from '../components/kakao-tour-map'
 import { useAppStore } from '../stores/app-store'
 import { tourNearby, tourSearch, type TourSearchItem, type TourNearbyItem } from '../utils/api'
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
@@ -31,22 +30,35 @@ export const MapPage = () => {
   const [detailPlace, setDetailPlace] = useState<TourSearchItem | null>(null)
   const [mobileView, setMobileView] = useState<'map' | 'list'>('map')
   const [baseLayerOpen, setBaseLayerOpen] = useState(false)
-  const [activeLayer, setActiveLayer] = useState<BaseLayer>('Base')
+  const [activeLayer, setActiveLayer] = useState<BaseLayer>('normal')
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<TourSearchItem[] | null>(null)
   const [searching, setSearching] = useState(false)
   const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const mapInstanceRef = useRef<MLMap | null>(null)
+  const mapInstanceRef = useRef<kakao.maps.Map | null>(null)
   const pendingFlyRef = useRef<TourSearchItem | null>(null)
 
-  const handleMapReady = useCallback((map: MLMap) => {
-    mapInstanceRef.current = map
-    const p = pendingFlyRef.current
-    if (p && p.lng && p.lat) {
-      map.flyTo({ center: [p.lng, p.lat], zoom: 14, speed: 1.4, essential: true })
-      pendingFlyRef.current = null
-    }
+  const flyToPlace = useCallback((place: Pick<TourSearchItem, 'lat' | 'lng'>) => {
+    const map = mapInstanceRef.current
+    if (!map || !place.lat || !place.lng) return false
+    const k = window.kakao?.maps
+    if (!k) return false
+    map.panTo(new k.LatLng(place.lat, place.lng))
+    map.setLevel(4, { animate: true })
+    return true
   }, [])
+
+  const handleMapReady = useCallback(
+    (map: kakao.maps.Map) => {
+      mapInstanceRef.current = map
+      const p = pendingFlyRef.current
+      if (p) {
+        flyToPlace(p)
+        pendingFlyRef.current = null
+      }
+    },
+    [flyToPlace],
+  )
 
   const handleSearch = useCallback(
     (q: string) => {
@@ -116,19 +128,11 @@ export const MapPage = () => {
   useEffect(() => {
     if (!selectedPlace) return
     setDetailPlace(selectedPlace)
-    const map = mapInstanceRef.current
-    if (map && selectedPlace.lng && selectedPlace.lat) {
-      map.flyTo({
-        center: [selectedPlace.lng, selectedPlace.lat],
-        zoom: 14,
-        speed: 1.4,
-        essential: true,
-      })
-    } else {
+    if (!flyToPlace(selectedPlace)) {
       pendingFlyRef.current = selectedPlace
     }
     setSelectedPlace(null)
-  }, [selectedPlace, setSelectedPlace])
+  }, [selectedPlace, setSelectedPlace, flyToPlace])
 
   const loadPlaces = useCallback(
     (lat: number, lng: number, radius: number, page: number, append: boolean) => {
@@ -222,31 +226,18 @@ export const MapPage = () => {
       const place = displayPlaces.find((p) => p.id === props.id)
       if (!place) return
       setDetailPlace(place)
-      const map = mapInstanceRef.current
-      if (map && place.lng && place.lat) {
-        map.flyTo({
-          center: [place.lng, place.lat],
-          zoom: Math.max(map.getZoom(), 14),
-          speed: 1.4,
-          essential: true,
-        })
-      }
+      flyToPlace(place)
     },
-    [displayPlaces],
+    [displayPlaces, flyToPlace],
   )
 
-  const openDetail = useCallback((p: TourSearchItem) => {
-    setDetailPlace(p)
-    const map = mapInstanceRef.current
-    if (map && p.lng && p.lat) {
-      map.flyTo({
-        center: [p.lng, p.lat],
-        zoom: Math.max(map.getZoom(), 14),
-        speed: 1.4,
-        essential: true,
-      })
-    }
-  }, [])
+  const openDetail = useCallback(
+    (p: TourSearchItem) => {
+      setDetailPlace(p)
+      flyToPlace(p)
+    },
+    [flyToPlace],
+  )
   const closeDetail = useCallback(() => setDetailPlace(null), [])
 
   const center = userLoc ?? SEOUL
@@ -255,10 +246,10 @@ export const MapPage = () => {
     <>
       {/* ═══ 지도 (데스크톱: 항상, 모바일: mobileView=map 일 때) ═══ */}
       <div
-        className={`-mt-6 ${mobileView === 'list' ? 'hidden sm:block' : ''}`}
+        className={`relative -mt-6 ${mobileView === 'list' ? 'hidden sm:block' : ''}`}
         style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
       >
-        <TourMap
+        <KakaoTourMap
           geojson={geojson}
           center={center}
           zoom={userLoc ? 13 : 11}
@@ -272,6 +263,12 @@ export const MapPage = () => {
             (isSearchMode && displayPlaces.length > 0) || (places.length > 0 && !userLoc)
           }
         />
+        <p
+          aria-label="data-attribution"
+          className="pointer-events-none absolute bottom-1.5 left-2 z-10 rounded-md bg-white/85 px-2 py-0.5 text-[11px] font-medium text-neutral-700 shadow-sm backdrop-blur-sm sm:text-[12px]"
+        >
+          {t('page.map.attribution')}
+        </p>
       </div>
 
       {/* ═══ 모바일 목록 뷰 (sm 미만 + mobileView=list) ═══ */}
@@ -442,12 +439,12 @@ export const MapPage = () => {
         {/* 슬라이드 메뉴 */}
         <div
           className="flex items-center overflow-hidden rounded-l-xl border border-r-0 border-white/60 bg-white/88 shadow-lg backdrop-blur-md transition-[width,opacity] duration-300 ease-out"
-          style={{ width: baseLayerOpen ? 132 : 0, opacity: baseLayerOpen ? 1 : 0 }}
+          style={{ width: baseLayerOpen ? 88 : 0, opacity: baseLayerOpen ? 1 : 0 }}
         >
           {(
             [
               {
-                key: 'Base' as BaseLayer,
+                key: 'normal' as BaseLayer,
                 icon: (
                   <svg
                     width="18"
@@ -462,7 +459,7 @@ export const MapPage = () => {
                 ),
               },
               {
-                key: 'Satellite' as BaseLayer,
+                key: 'satellite' as BaseLayer,
                 icon: (
                   <svg
                     width="18"
@@ -474,22 +471,6 @@ export const MapPage = () => {
                   >
                     <rect x="9" y="9" width="6" height="6" rx="1" />
                     <path d="M12 2v2M12 20v2M20 12h2M2 12h2" />
-                  </svg>
-                ),
-              },
-              {
-                key: 'gray' as BaseLayer,
-                icon: (
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    opacity="0.5"
-                  >
-                    <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z" />
                   </svg>
                 ),
               },

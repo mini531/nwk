@@ -51,6 +51,45 @@ export const AboutPage = () => {
       )}
 
       <section className="nwk-card p-5">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">
+          {t('page.about.dataSources.label')}
+        </p>
+        <p className="mt-1 text-[15px] font-semibold tracking-tight text-ink">
+          {t('page.about.dataSources.title')}
+        </p>
+        <ul className="mt-3 space-y-2.5 text-[13px] leading-snug text-ink-2">
+          <li className="flex gap-2">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+            <span>
+              <strong className="text-ink">{t('page.about.dataSources.tour.name')}</strong>
+              {' — '}
+              {t('page.about.dataSources.tour.body')}
+              <br />
+              <span className="text-[12px] text-ink-3">
+                {t('page.about.dataSources.tour.meta')}
+              </span>
+            </span>
+          </li>
+          <li className="flex gap-2">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-3" />
+            <span>
+              <strong className="text-ink">{t('page.about.dataSources.kakao.name')}</strong>
+              {' — '}
+              {t('page.about.dataSources.kakao.body')}
+            </span>
+          </li>
+          <li className="flex gap-2">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-3" />
+            <span>
+              <strong className="text-ink">{t('page.about.dataSources.prices.name')}</strong>
+              {' — '}
+              {t('page.about.dataSources.prices.body')}
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="nwk-card p-5">
         <div className="flex items-start gap-3">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
             <ShieldIcon size={20} />

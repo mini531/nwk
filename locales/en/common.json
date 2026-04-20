@@ -255,7 +255,8 @@
       "loading": "Map view coming soon",
       "placeholder": "In development",
       "searchHere": "Search this area",
-      "clearSelection": "Clear selection"
+      "clearSelection": "Clear selection",
+      "attribution": "POI: KTO TourAPI (data.go.kr) · Map: ⓒ Kakao"
     },
     "about": {
       "title": "NWK — No Worries Korea",
@@ -271,6 +272,23 @@
       "privacy": {
         "title": "Privacy",
         "body": "Your location stays on your device and is never sent to our servers. Sign-in collects only your email and display name."
+      },
+      "dataSources": {
+        "label": "Data sources",
+        "title": "Built on Korea's public tourism data",
+        "tour": {
+          "name": "KTO TourAPI",
+          "body": "All tourism POI search, nearby lookups and detail pages pull from the Korea Tourism Organization's public TourAPI (KorService2/EngService2/JpnService2/ChsService2) on data.go.kr. Content is delivered in your selected language.",
+          "meta": "data.go.kr · Entry to the Public Tourism Data Contest"
+        },
+        "kakao": {
+          "name": "Kakao Maps",
+          "body": "Map rendering only — normal + satellite views. No POI data; Kakao is a visualization layer."
+        },
+        "prices": {
+          "name": "Fair-price benchmarks",
+          "body": "Based on Korea Consumer Agency and Statistics Korea public data plus 2024–25 retail averages. LIVE public-data API integration is planned."
+        }
       }
     },
     "place": {
