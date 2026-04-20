@@ -353,7 +353,15 @@
         "saved": "Saved to the cloud",
         "queued": "Upload queued",
         "localOnly": "Local session only (sign in to save)",
-        "uploadError": "Upload failed — check network or permissions"
+        "uploadError": "Upload failed — check network or permissions",
+        "analyzing": "Analyzing photo…",
+        "analyzingHelper": "Reading items and prices from your menu or receipt (up to 30 s)",
+        "ocrError": "Analysis failed — try a brighter, sharper photo",
+        "resultCount": "{{count}} items found",
+        "bagajiFound": "Rip-off detected",
+        "unmatched": "No match in catalog",
+        "noneFound": "No prices detected",
+        "noneFoundHelper": "Make sure the menu/receipt is clear and in focus. You can still enter a price manually below."
       },
       "form": {
         "category": "Category",

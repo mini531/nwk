@@ -353,7 +353,15 @@
         "saved": "クラウドに保存済み",
         "queued": "アップロード待機中",
         "localOnly": "ローカルのみ (ログインでクラウド保存)",
-        "uploadError": "アップロード失敗 — 通信/権限を確認"
+        "uploadError": "アップロード失敗 — 通信/権限を確認",
+        "analyzing": "写真を解析中...",
+        "analyzingHelper": "メニュー・レシートから項目と価格を読み取っています (最大30秒)",
+        "ocrError": "解析に失敗しました — より明るく鮮明な写真でお試しください",
+        "resultCount": "検出された項目 {{count}}件",
+        "bagajiFound": "ぼったくり検出",
+        "unmatched": "メニュー照合なし",
+        "noneFound": "価格を検出できませんでした",
+        "noneFoundHelper": "メニュー・レシートが鮮明に撮れているか確認してください。下で手動入力も可能です。"
       },
       "form": {
         "category": "カテゴリ",

@@ -353,7 +353,15 @@
         "saved": "클라우드에 저장됨",
         "queued": "업로드 대기",
         "localOnly": "로컬 세션만 저장 (로그인 시 클라우드)",
-        "uploadError": "업로드 실패 — 네트워크/권한 확인"
+        "uploadError": "업로드 실패 — 네트워크/권한 확인",
+        "analyzing": "사진 분석 중...",
+        "analyzingHelper": "메뉴판·영수증에서 항목과 가격을 읽고 있어요 (최대 30초)",
+        "ocrError": "사진 분석 실패 — 더 밝고 선명한 사진으로 다시 시도",
+        "resultCount": "찾은 항목 {{count}}개",
+        "bagajiFound": "바가지 발견",
+        "unmatched": "메뉴 매칭 실패",
+        "noneFound": "가격을 찾지 못했어요",
+        "noneFoundHelper": "메뉴판·영수증이 선명하게 찍혔는지 확인해주세요. 수동으로 카테고리 선택해 판정할 수도 있어요."
       },
       "form": {
         "category": "카테고리",

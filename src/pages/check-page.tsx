@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useRecentChecks } from '../hooks/use-recent-checks'
 import { useAuth } from '../hooks/use-auth'
 import { uploadReceiptPhoto } from '../services/photo-upload'
+import { ocrImage, extractPrices } from '../utils/menu-ocr'
+import { matchExtractedPrices } from '../utils/menu-match'
 import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
@@ -29,6 +31,14 @@ import {
 import type { ComponentType, SVGProps } from 'react'
 
 type Step = 1 | 2 | 3 | 4
+
+interface PhotoVerdictItem {
+  label: string
+  paid: number
+  entry: PriceEntry | null
+  verdict: CheckResult | null
+  similarity: number
+}
 
 const CATEGORY_META: Record<
   PriceCategory,
@@ -85,6 +95,8 @@ export const CheckPage = () => {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null)
   const [photoUploading, setPhotoUploading] = useState(false)
   const [photoError, setPhotoError] = useState<string | null>(null)
+  const [ocrLoading, setOcrLoading] = useState(false)
+  const [photoVerdicts, setPhotoVerdicts] = useState<PhotoVerdictItem[] | null>(null)
   const photoInputRef = useRef<HTMLInputElement>(null)
   const { push: pushRecent, attachPhoto } = useRecentChecks()
   const { user } = useAuth()
@@ -154,16 +166,38 @@ export const CheckPage = () => {
     setPhotoFile(null)
     setPhotoUrl(null)
     setPhotoError(null)
+    setPhotoVerdicts(null)
+    setOcrLoading(false)
     if (photoInputRef.current) photoInputRef.current.value = ''
   }
 
-  const onPickPhoto = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const onPickPhoto = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     const file = ev.target.files?.[0]
     if (!file) return
     if (!file.type.startsWith('image/')) return
     setPhotoFile(file)
     setPhotoUrl(null)
     setPhotoError(null)
+    setPhotoVerdicts(null)
+    setOcrLoading(true)
+    try {
+      const lines = await ocrImage(file)
+      const prices = extractPrices(lines)
+      const matched = matchExtractedPrices(prices, t)
+      const verdicts: PhotoVerdictItem[] = matched.map((m) => ({
+        label: m.extracted.label,
+        paid: m.extracted.price,
+        entry: m.entry,
+        verdict: m.entry ? checkPrice(m.entry.id, m.extracted.price) : null,
+        similarity: m.similarity,
+      }))
+      setPhotoVerdicts(verdicts)
+    } catch (err) {
+      console.error('OCR failed', err)
+      setPhotoError(t('page.check.photo.ocrError'))
+    } finally {
+      setOcrLoading(false)
+    }
   }
 
   const onBack = () => {
@@ -374,6 +408,99 @@ export const CheckPage = () => {
                 </div>
                 <ArrowRightIcon size={14} className="text-ink-3" />
               </button>
+            )}
+
+            {ocrLoading && (
+              <div className="mt-3 flex items-center gap-3 rounded-2xl border border-line bg-canvas-2 px-4 py-3.5">
+                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-brand border-t-transparent" />
+                <div>
+                  <p className="text-[13px] font-semibold text-ink">
+                    {t('page.check.photo.analyzing')}
+                  </p>
+                  <p className="mt-0.5 text-[12px] text-ink-3">
+                    {t('page.check.photo.analyzingHelper')}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {photoError && !ocrLoading && (
+              <p className="mt-3 rounded-xl border border-danger/30 bg-danger/5 px-4 py-3 text-[12px] leading-snug text-danger">
+                {photoError}
+              </p>
+            )}
+
+            {photoVerdicts && !ocrLoading && (
+              <div className="mt-3 space-y-2.5">
+                <div className="flex items-center justify-between px-1">
+                  <p className="text-[12px] font-semibold text-ink-3">
+                    {t('page.check.photo.resultCount', { count: photoVerdicts.length })}
+                  </p>
+                  {photoVerdicts.filter((v) => v.verdict?.verdict === 'bagaji').length > 0 && (
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-danger">
+                      {t('page.check.photo.bagajiFound')}
+                    </span>
+                  )}
+                </div>
+                {photoVerdicts.length === 0 ? (
+                  <div className="rounded-2xl border border-line bg-canvas-2 px-4 py-4">
+                    <p className="text-[13px] font-semibold text-ink">
+                      {t('page.check.photo.noneFound')}
+                    </p>
+                    <p className="mt-0.5 text-[12px] leading-snug text-ink-3">
+                      {t('page.check.photo.noneFoundHelper')}
+                    </p>
+                  </div>
+                ) : (
+                  <ul className="space-y-2">
+                    {photoVerdicts.map((v, idx) => (
+                      <li
+                        key={`${v.label}-${idx}`}
+                        className={`rounded-2xl border px-4 py-3 ${
+                          v.verdict
+                            ? verdictStyles[v.verdict.verdict].ring
+                            : 'border-line bg-surface'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
+                              {v.entry ? t(`catalog.${v.entry.id}.name`) : v.label}
+                            </p>
+                            <p className="mt-0.5 text-[12px] tabular-nums text-ink-3">
+                              {formatKrw(v.paid, i18n.language)}
+                              {v.entry && v.verdict ? (
+                                <>
+                                  {' · '}
+                                  {t('page.check.fairHint')}:{' '}
+                                  {formatKrw(v.verdict.fairMin, i18n.language)}–
+                                  {formatKrw(v.verdict.fairMax, i18n.language)}
+                                </>
+                              ) : null}
+                            </p>
+                          </div>
+                          {v.verdict ? (
+                            <div
+                              className={`shrink-0 text-right ${verdictStyles[v.verdict.verdict].label}`}
+                            >
+                              <p className="text-[13px] font-bold uppercase tracking-wider">
+                                {t(`page.check.verdict.${v.verdict.verdict}`)}
+                              </p>
+                              <p className="text-[13px] font-bold tabular-nums">
+                                {formatPct(v.verdict.deltaPct)}
+                              </p>
+                            </div>
+                          ) : (
+                            <span className="shrink-0 text-[12px] font-medium text-ink-3">
+                              {t('page.check.photo.unmatched')}
+                            </span>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             )}
           </div>
         </div>

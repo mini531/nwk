@@ -353,7 +353,15 @@
         "saved": "已保存到云端",
         "queued": "已加入上传队列",
         "localOnly": "仅本地会话 (登录后云端保存)",
-        "uploadError": "上传失败 — 请检查网络或权限"
+        "uploadError": "上传失败 — 请检查网络或权限",
+        "analyzing": "正在分析照片...",
+        "analyzingHelper": "正在从菜单/小票中读取项目和价格 (最长 30 秒)",
+        "ocrError": "分析失败 — 请换一张更清晰明亮的照片",
+        "resultCount": "识别出 {{count}} 个项目",
+        "bagajiFound": "检测到宰客价",
+        "unmatched": "未匹配菜单",
+        "noneFound": "未能识别出价格",
+        "noneFoundHelper": "请确保菜单/小票清晰对焦。也可在下方手动输入价格。"
       },
       "form": {
         "category": "类别",
