@@ -407,12 +407,27 @@
       "eyebrow": "실용 정보",
       "title": "한국 필수키트",
       "subhead": "입국 직후부터 현지 생활까지, 외국인에게 실제로 필요한 숫자와 번호",
+      "tabs": {
+        "label": "키트 섹션",
+        "arrival": "입국",
+        "money": "결제",
+        "connect": "통신",
+        "phrases": "표현",
+        "emergency": "긴급"
+      },
       "sections": {
         "arrival": "입국 30분",
-        "money": "돈·ATM",
-        "connect": "통신·인터넷",
+        "money": "돈·ATM·환급",
+        "connect": "통신·필수 앱",
         "emergency": "긴급 연락처",
-        "phrases": "기본 한국어"
+        "phrases": "기본 한국어 + 발음"
+      },
+      "sectionSubs": {
+        "arrival": "비행기에서 내린 후 첫 30분, 꼭 챙겨야 할 체크리스트",
+        "money": "결제·환전·세금환급까지 — 로컬처럼 돈 쓰는 법",
+        "connect": "도착 즉시 연결하고 길 찾는 데 필요한 통신·앱",
+        "phrases": "발음까지 함께 — 식당·쇼핑·길에서 바로 쓰는 20문장",
+        "emergency": "24시간 다국어 핫라인과 외국인 전용 상담 번호"
       },
       "arrival": {
         "arex": { "title": "공항철도 AREX 직통", "body": "인천→서울역 43분 · 06:30–22:50 · 좌석 지정" },
@@ -489,20 +504,26 @@
         "humanRights": { "title": "인권·차별 상담", "body": "1345 · 법무부 외국인종합안내센터 · 18개 언어" }
       },
       "phrases": {
-        "hello": "Hello",
-        "thanks": "Thank you",
-        "howMuch": "How much is it?",
-        "tooExpensive": "That's too expensive",
-        "help": "Please help me",
-        "english": "Do you speak English?",
-        "restroom": "Where is the restroom?",
-        "water": "Can I have some water?",
-        "notSpicy": "Not spicy, please",
-        "check": "Check, please",
-        "takeOut": "Take out, please",
-        "receipt": "Can I get a receipt?",
-        "wifiPw": "What's the Wi-Fi password?",
-        "oneMore": "One more, please"
+        "hello": "안녕하세요 — 처음 만났을 때, 가게 들어갈 때 정중한 인사",
+        "thanks": "감사합니다 — 공식적인 감사 표현 (반말 '고마워'보다 무난)",
+        "sorry": "죄송합니다 — 사과할 때, 실수했을 때, 지나가며 비킬 때",
+        "yes": "네 — 긍정·수긍. '예'보다 부드러움",
+        "no": "아니요 — 정중한 부정",
+        "howMuch": "얼마예요? — 시장·노점에서 가격 물어볼 때 필수",
+        "tooExpensive": "너무 비싸요 — 흥정 신호. 전통시장에서 통함",
+        "cheaper": "깎아주세요 — 직접 할인 요청. 관광지 노점에서 쓸 수 있음",
+        "english": "영어 할 수 있어요? — 영어 되는 직원/행인 찾기",
+        "help": "도와주세요 — 길 잃음·몸 안 좋음 등 도움 요청",
+        "restroom": "화장실 어디예요? — 급할 때",
+        "water": "물 한 잔 주세요 — 식당에서 물 요청 (무료)",
+        "notSpicy": "안 맵게 해주세요 — 매운 음식 조절",
+        "check": "계산서 주세요 — 식당에서 계산 요청",
+        "takeOut": "포장해 주세요 — 남은 음식·음료 포장",
+        "receipt": "영수증 주세요 — 세금 환급용 필수",
+        "wifiPw": "와이파이 비밀번호요? — 카페에서 물어볼 때",
+        "oneMore": "하나 더 주세요 — 리필·추가 주문",
+        "here": "여기요! — 식당에서 직원 부를 때 (크지 않게)",
+        "delicious": "맛있어요 — 음식 칭찬. 주인·요리사에게 좋은 인상"
       }
     },
     "notFound": {

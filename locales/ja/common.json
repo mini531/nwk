@@ -407,12 +407,27 @@
       "eyebrow": "実用情報",
       "title": "韓国必需キット",
       "subhead": "到着直後から現地生活まで、外国人が実際に必要な数字と番号。",
-      "sections": {
-        "arrival": "入国30分",
-        "money": "お金・ATM",
+      "tabs": {
+        "label": "キットセクション",
+        "arrival": "入国",
+        "money": "決済",
         "connect": "通信",
-        "emergency": "緊急連絡先",
-        "phrases": "基本の韓国語"
+        "phrases": "フレーズ",
+        "emergency": "緊急"
+      },
+      "sections": {
+        "arrival": "到着後の30分",
+        "money": "支払い・両替・税金還付",
+        "connect": "ネット接続と必須アプリ",
+        "emergency": "緊急連絡先・外国人ホットライン",
+        "phrases": "韓国語フレーズ + 発音"
+      },
+      "sectionSubs": {
+        "arrival": "着陸から街までの必携チェックリスト — 交通・入国・税関・タクシーアプリ。",
+        "money": "カード・両替・税金還付まで — 現地の人のように支払う方法。",
+        "connect": "着いた瞬間にネットに繋ぎ、韓国人が毎日使う必須アプリを揃える。",
+        "phrases": "発音付き20フレーズ — 食堂・ショッピング・道端ですぐ使える。",
+        "emergency": "24時間多言語ホットラインと外国人専用の相談番号。"
       },
       "arrival": {
         "arex": { "title": "AREX空港鉄道 直通", "body": "仁川→ソウル駅 43分 · 06:30–22:50 · 座席指定" },
@@ -489,20 +504,26 @@
         "humanRights": { "title": "外国人総合案内センター", "body": "1345 · 法務省 · 18言語で権利・滞在相談" }
       },
       "phrases": {
-        "hello": "Hello",
-        "thanks": "Thank you",
-        "howMuch": "How much is it?",
-        "tooExpensive": "That's too expensive",
-        "help": "Please help me",
-        "english": "Do you speak English?",
-        "restroom": "Where is the restroom?",
-        "water": "Can I have some water?",
-        "notSpicy": "Not spicy, please",
-        "check": "Check, please",
-        "takeOut": "Take out, please",
-        "receipt": "Can I get a receipt?",
-        "wifiPw": "What's the Wi-Fi password?",
-        "oneMore": "One more, please"
+        "hello": "こんにちは — 初対面や店に入る時の丁寧な挨拶。",
+        "thanks": "ありがとうございます — 公式・誰にでも使える。",
+        "sorry": "すみません — 謝罪、通り抜ける時にも。",
+        "yes": "はい — 丁寧な「예」より柔らかい。",
+        "no": "いいえ — 丁寧な否定。",
+        "howMuch": "いくらですか? — 市場・屋台で必須。",
+        "tooExpensive": "高すぎます — 値切りのサイン。伝統市場で通じる。",
+        "cheaper": "まけてください — 直接の値引き交渉。チェーン店には使わない。",
+        "english": "英語できますか? — 英語が通じる人を探す時。",
+        "help": "助けてください — 迷子・体調不良などに。",
+        "restroom": "トイレはどこですか? — 急ぎの時。",
+        "water": "お水をください — 食堂で無料。",
+        "notSpicy": "辛くしないでください — 辛さを調整。",
+        "check": "お会計お願いします — 食堂で。",
+        "takeOut": "持ち帰りお願いします — 残り物・ドリンクを持ち帰る。",
+        "receipt": "領収書ください — 税金還付に必須。",
+        "wifiPw": "Wi-Fiパスワードは? — カフェで。",
+        "oneMore": "もう一つください — お代わり・追加注文。",
+        "here": "ここです! — 韓国で店員を呼ぶ丁寧な方法。",
+        "delicious": "美味しいです — 料理への褒め言葉。好印象。"
       }
     },
     "notFound": {

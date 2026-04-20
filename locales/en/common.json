@@ -407,12 +407,27 @@
       "eyebrow": "Practical info",
       "title": "Korea survival kit",
       "subhead": "The numbers, hotlines and habits foreigners actually need from landing onward.",
+      "tabs": {
+        "label": "Kit sections",
+        "arrival": "Arrival",
+        "money": "Money",
+        "connect": "Connect",
+        "phrases": "Phrases",
+        "emergency": "Emergency"
+      },
       "sections": {
         "arrival": "First 30 minutes",
-        "money": "Money & ATM",
-        "connect": "Connectivity",
-        "emergency": "Emergency",
-        "phrases": "Key phrases"
+        "money": "Cash, cards & tax refund",
+        "connect": "Internet & essential apps",
+        "emergency": "Emergency & foreigner hotlines",
+        "phrases": "Korean phrases with pronunciation"
+      },
+      "sectionSubs": {
+        "arrival": "Your landing-to-city checklist — transit, immigration, customs and the taxi app.",
+        "money": "How to pay, exchange, and get VAT back — spend like a local.",
+        "connect": "Get online the moment you land and the apps Koreans actually use daily.",
+        "phrases": "20 phrases with romanized pronunciation — use them at restaurants, shops and on the street.",
+        "emergency": "24/7 multilingual hotlines and the foreigner-only help numbers."
       },
       "arrival": {
         "arex": { "title": "AREX Airport Express", "body": "ICN → Seoul Station, 43 min · 06:30–22:50 · reserved seat" },
@@ -504,20 +519,26 @@
         }
       },
       "phrases": {
-        "hello": "Hello",
-        "thanks": "Thank you",
-        "howMuch": "How much is it?",
-        "tooExpensive": "That's too expensive",
-        "help": "Please help me",
-        "english": "Do you speak English?",
+        "hello": "Hello — polite greeting when meeting someone or entering a shop.",
+        "thanks": "Thank you — formal, works in every situation.",
+        "sorry": "Sorry / excuse me — also used when squeezing past someone.",
+        "yes": "Yes — softer than the formal '예'.",
+        "no": "No — polite refusal.",
+        "howMuch": "How much is it? — essential at markets and street stalls.",
+        "tooExpensive": "That's too expensive — signals you want to haggle.",
+        "cheaper": "Could you give me a discount? — works at markets, not chain stores.",
+        "english": "Do you speak English? — ask staff or passers-by for help.",
+        "help": "Please help me — lost, unwell, or need assistance.",
         "restroom": "Where is the restroom?",
-        "water": "Can I have some water?",
-        "notSpicy": "Not spicy, please",
-        "check": "Check, please",
-        "takeOut": "Take out, please",
-        "receipt": "Can I get a receipt?",
-        "wifiPw": "What's the Wi-Fi password?",
-        "oneMore": "One more, please"
+        "water": "Can I have some water? — always free at restaurants.",
+        "notSpicy": "Not spicy, please — tone down a dish.",
+        "check": "Check, please — ask for the bill at a restaurant.",
+        "takeOut": "To-go, please — pack up leftovers or drinks.",
+        "receipt": "Can I get a receipt? — needed for the VAT refund.",
+        "wifiPw": "What's the Wi-Fi password? — at cafes and lounges.",
+        "oneMore": "One more, please — refills or additional orders.",
+        "here": "Over here! — how you politely flag down a server in Korea.",
+        "delicious": "This is delicious — a compliment that goes a long way."
       }
     },
     "notFound": {

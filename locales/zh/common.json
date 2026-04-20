@@ -407,12 +407,27 @@
       "eyebrow": "实用信息",
       "title": "韩国必备包",
       "subhead": "落地之后到日常生活, 外国人真正用得上的数字与电话.",
+      "tabs": {
+        "label": "必备包分类",
+        "arrival": "入境",
+        "money": "支付",
+        "connect": "通信",
+        "phrases": "口语",
+        "emergency": "紧急"
+      },
       "sections": {
-        "arrival": "入境 30 分钟",
-        "money": "钱与 ATM",
-        "connect": "通信上网",
-        "emergency": "紧急电话",
-        "phrases": "基本韩语"
+        "arrival": "入境后的 30 分钟",
+        "money": "支付·换汇·退税",
+        "connect": "网络与必备 App",
+        "emergency": "紧急与外国人专用热线",
+        "phrases": "韩语口语 + 发音"
+      },
+      "sectionSubs": {
+        "arrival": "落地到市区必做清单 — 交通、入境、海关与打车 App。",
+        "money": "支付、换汇到退税 — 像本地人一样花钱。",
+        "connect": "一落地就联网, 加上韩国人每天都在用的必备应用。",
+        "phrases": "20 个附发音口语 — 餐厅、购物、街头都能直接用。",
+        "emergency": "24 小时多语种热线和外国人专用咨询号。"
       },
       "arrival": {
         "arex": { "title": "AREX 机场快线直达", "body": "仁川→首尔站 43 分钟 · 06:30–22:50 · 指定座位" },
@@ -489,20 +504,26 @@
         "humanRights": { "title": "外国人综合服务中心", "body": "1345 · 法务部 · 18 种语言 · 权利与居留咨询" }
       },
       "phrases": {
-        "hello": "Hello",
-        "thanks": "Thank you",
-        "howMuch": "How much is it?",
-        "tooExpensive": "That's too expensive",
-        "help": "Please help me",
-        "english": "Do you speak English?",
-        "restroom": "Where is the restroom?",
-        "water": "Can I have some water?",
-        "notSpicy": "Not spicy, please",
-        "check": "Check, please",
-        "takeOut": "Take out, please",
-        "receipt": "Can I get a receipt?",
-        "wifiPw": "What's the Wi-Fi password?",
-        "oneMore": "One more, please"
+        "hello": "你好 — 见面和进店时的礼貌问候。",
+        "thanks": "谢谢 — 正式、通用的感谢。",
+        "sorry": "对不起 / 不好意思 — 道歉、借过都能用。",
+        "yes": "是 — 比'예'更柔和的肯定。",
+        "no": "不是 — 礼貌的否定。",
+        "howMuch": "多少钱? — 市场、小摊必备。",
+        "tooExpensive": "太贵了 — 砍价信号, 传统市场有效。",
+        "cheaper": "便宜点吧 — 直接砍价, 连锁店无效。",
+        "english": "你会说英语吗? — 找会英语的人帮忙。",
+        "help": "请帮帮我 — 迷路、不适时求助。",
+        "restroom": "洗手间在哪里? — 急用。",
+        "water": "请给我一杯水 — 餐厅免费。",
+        "notSpicy": "请不要放辣 — 调整辣度。",
+        "check": "请结账 — 餐厅结账。",
+        "takeOut": "请打包 — 打包剩菜或饮品。",
+        "receipt": "请给我收据 — 退税必备。",
+        "wifiPw": "Wi-Fi 密码是多少? — 咖啡厅常用。",
+        "oneMore": "再来一份 — 续杯或加点。",
+        "here": "这边! — 在韩国叫服务员的礼貌方式。",
+        "delicious": "很好吃 — 对料理的赞美, 印象加分。"
       }
     },
     "notFound": {
