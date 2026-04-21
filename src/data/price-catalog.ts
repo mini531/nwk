@@ -88,7 +88,6 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 0,
     fairMax: 0,
     inputMode: 'taxi',
-    popular: true,
   },
   {
     id: 'airport_private_taxi',
@@ -97,8 +96,22 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMax: 90000,
     unit: '인천→서울 콜',
   },
-  { id: 'city_bus', category: 'transit', fairMin: 1500, fairMax: 1800, unit: '시내버스 1회' },
-  { id: 'subway_single', category: 'transit', fairMin: 1400, fairMax: 1900, unit: '지하철 1구간' },
+  {
+    id: 'city_bus',
+    category: 'transit',
+    fairMin: 1500,
+    fairMax: 1800,
+    unit: '시내버스 1회',
+    popular: true,
+  },
+  {
+    id: 'subway_single',
+    category: 'transit',
+    fairMin: 1400,
+    fairMax: 1900,
+    unit: '지하철 1구간',
+    popular: true,
+  },
   {
     id: 'ktx_seoul_busan',
     category: 'transit',

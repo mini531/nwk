@@ -5,6 +5,9 @@ import { useFavorites } from '../hooks/use-favorites'
 import { useRecentChecks } from '../hooks/use-recent-checks'
 import { useTheme, type Theme } from '../hooks/use-theme'
 import { useAppStore } from '../stores/app-store'
+import { useCourses } from '../hooks/use-courses'
+import { useMyLikedCourses } from '../hooks/use-course-likes'
+import { resolveLocalized, type Lang } from '../types/course'
 import {
   ChevronRightIcon,
   HeartIcon,
@@ -51,6 +54,10 @@ export const ProfilePage = () => {
   const { recent, clear: clearRecent } = useRecentChecks()
   const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
   const { theme, setTheme } = useTheme()
+  const courses = useCourses()
+  const { courseIds: likedCourseIds } = useMyLikedCourses()
+  const likedCourses = courses.filter((c) => likedCourseIds.includes(c.id))
+  const lang = (i18n.language.slice(0, 2) as Lang) || 'ko'
 
   const openPlace = (fav: (typeof favorites)[number]) => {
     const place: TourSearchItem = {
@@ -179,6 +186,52 @@ export const ProfilePage = () => {
         </section>
       )}
 
+      {likedCourses.length > 0 && (
+        <section>
+          <div className="mb-2 flex items-center justify-between">
+            <p className="text-[12px] font-semibold text-ink-3">
+              <HeartIcon size={12} className="mr-1 inline-block text-accent" />
+              {t('page.profile.likedCourses.label')} · {likedCourses.length}
+            </p>
+          </div>
+          <ul className="nwk-card divide-y divide-line overflow-hidden">
+            {likedCourses.map((c) => {
+              const ctext = resolveLocalized(c.i18n, lang)
+              return (
+                <li key={c.id}>
+                  <Link
+                    to={`/courses/${c.id}`}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-canvas-2"
+                  >
+                    {c.heroImage ? (
+                      <img
+                        src={c.heroImage}
+                        alt=""
+                        loading="lazy"
+                        className="h-10 w-10 shrink-0 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-canvas-2 text-ink-3">
+                        <HeartIcon size={14} />
+                      </span>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[14px] font-semibold tracking-tight text-ink">
+                        {ctext.title}
+                      </p>
+                      <p className="mt-0.5 truncate text-[12px] text-ink-3">
+                        {t(`page.courses.duration.${c.duration}`)}
+                      </p>
+                    </div>
+                    <ChevronRightIcon size={14} className="shrink-0 text-ink-3" />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
+
       {recent.length > 0 && (
         <section>
           <div className="mb-2 flex items-center justify-between">
@@ -197,24 +250,15 @@ export const ProfilePage = () => {
           <ul className="nwk-card divide-y divide-line overflow-hidden">
             {recent.slice(0, 6).map((r) => (
               <li key={r.id} className="flex items-center gap-3 px-4 py-3">
-                {r.photoUrl ? (
-                  <img
-                    src={r.photoUrl}
-                    alt=""
-                    loading="lazy"
-                    className="h-10 w-10 shrink-0 rounded-lg object-cover"
-                  />
-                ) : (
-                  <span
-                    className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full ${
-                      r.verdict === 'fair'
-                        ? 'bg-brand'
-                        : r.verdict === 'careful'
-                          ? 'bg-warn'
-                          : 'bg-danger'
-                    }`}
-                  />
-                )}
+                <span
+                  className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full ${
+                    r.verdict === 'fair'
+                      ? 'bg-brand'
+                      : r.verdict === 'careful'
+                        ? 'bg-warn'
+                        : 'bg-danger'
+                  }`}
+                />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
                     {t(`catalog.${r.entryId}.name`)}

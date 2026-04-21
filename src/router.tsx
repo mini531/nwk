@@ -14,6 +14,12 @@ const SearchPage = lazy(() =>
 const MapPage = lazy(() => import('./pages/map-page').then((m) => ({ default: m.MapPage })))
 const CheckPage = lazy(() => import('./pages/check-page').then((m) => ({ default: m.CheckPage })))
 const KitPage = lazy(() => import('./pages/kit-page').then((m) => ({ default: m.KitPage })))
+const CoursesPage = lazy(() =>
+  import('./pages/courses-page').then((m) => ({ default: m.CoursesPage })),
+)
+const CourseDetailPage = lazy(() =>
+  import('./pages/course-detail-page').then((m) => ({ default: m.CourseDetailPage })),
+)
 const ProfilePage = lazy(() =>
   import('./pages/profile-page').then((m) => ({ default: m.ProfilePage })),
 )
@@ -38,6 +44,8 @@ export const router = createBrowserRouter([
       { path: 'search', element: wrap(SearchPage) },
       { path: 'map', element: wrap(MapPage) },
       { path: 'check', element: wrap(CheckPage) },
+      { path: 'courses', element: wrap(CoursesPage) },
+      { path: 'courses/:id', element: wrap(CourseDetailPage) },
       { path: 'kit', element: wrap(KitPage) },
       { path: 'profile', element: wrap(ProfilePage) },
       { path: 'about', element: wrap(AboutPage) },

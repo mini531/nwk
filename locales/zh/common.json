@@ -8,8 +8,9 @@
     "search": "搜索",
     "map": "地图",
     "check": "价格判定",
+    "courses": "富川主题游",
     "kit": "必备包",
-    "tour": "景点",
+    "tour": "旅游地图",
     "profile": "我的"
   },
   "catalog": {
@@ -100,7 +101,7 @@
       "eyebrow": "公共数据 · 四语种",
       "headline": "换汇之前, 先看韩国真实物价.",
       "liveLabel": "最新判定",
-      "liveNote": "基于消费者院公开案例",
+      "liveNote": "基于富川市公共数据 LIVE 对接",
       "bagaji": {
         "eyebrow": "宰客警报",
         "flagged": "已收录{{count}}起",
@@ -110,7 +111,12 @@
       },
       "kitLinkLabel": "入境与生活信息",
       "kitLinkTitle": "韩国必备包 — 入境 30 分钟、ATM、通信、紧急电话",
-      "rightNowLabel": "韩国此刻",
+      "coursesLinkLabel": "地区特色指南",
+      "coursesLinkTitle": "富川主题路线 — 按风格与时长",
+      "coursesSectionLabel": "富川 · 这样玩",
+      "coursesSectionTitle": "按风格与时长推荐的路线",
+      "viewAllCourses": "查看全部",
+      "rightNowLabel": "无宰客韩国游 · 真实物价体验",
       "prices": {
         "americano": "咖啡馆美式",
         "bibimbap": "拌饭 1 人",
@@ -191,8 +197,8 @@
       "sourceBody": "韩国观光公社 TourAPI · 国土部 VWorld · 气象厅 · 韩国银行。无广告、无佣金、无赞助。",
       "searchEyebrow": "自行搜索",
       "searchCta": "搜索其他景点",
-      "exploreMapLabel": "打开观光地图",
-      "exploreMapTitle": "在聚类地图上探索 600+ 景点",
+      "exploreMapLabel": "打开富川地图",
+      "exploreMapTitle": "在聚类地图上探索富川及周边 500+ 景点",
       "essentials": "旅行必备",
       "todayLabel": "Today",
       "today": {
@@ -267,7 +273,15 @@
       "loadingNearby": "正在加载周边景点...",
       "tabMap": "地图",
       "tabList": "列表",
-      "backToList": "返回列表"
+      "backToList": "返回列表",
+      "tabPoi": "全国景点",
+      "tabTheme": "富川主题游",
+      "themeCount": "富川主题路线 {{count}} 条",
+      "clearCourse": "清除",
+      "backToThemes": "返回主题列表",
+      "sheetCollapse": "收起详情",
+      "sheetExpand": "展开详情",
+      "stopsLabel": "{{count}} 个停留点"
     },
     "about": {
       "title": "NWK — No Worries Korea",
@@ -298,7 +312,7 @@
         },
         "prices": {
           "name": "旅游消费基准价",
-          "body": "基于韩国消费者院、统计厅公开资料及 2024–25 年行业平均整理。公共数据 API 公开后将进行 LIVE 对接。"
+          "body": "直接接入京畿道富川市在公共数据门户公开的个人服务价格调查数据集,对您输入的每一笔消费进行 LIVE 比对。每项判定都会显示最低·最高价、样本数与调查时点,后续将逐步扩展至全国 15 个广域地方政府。"
         }
       }
     },
@@ -319,6 +333,7 @@
       "back": "返回",
       "again": "再查一次",
       "popular": "旅客常问",
+      "popularLabel": "常查询项目",
       "seeAll": "全部查看",
       "searchPlaceholder": "搜索 (例如: 冷面)",
       "searchResult": "搜索结果",
@@ -353,34 +368,6 @@
         "body": "地铁和公交为 T-money 固定费率。出租车、机场大巴、KTX、租车按距离、计价器或区间计价 — 先查看每种交通工具的合理价格。",
         "cta": "查看交通费"
       },
-      "photo": {
-        "title": "添加照片",
-        "helper": "拍下菜单或小票 — 与判定一同保存",
-        "attached": "已添加照片",
-        "willUpload": "判定后保存到我的历史",
-        "signInHint": "登录可云端保存, 未登录仅在本次会话显示",
-        "replace": "更换",
-        "remove": "删除",
-        "resultLabel": "附加照片",
-        "uploading": "上传中...",
-        "saved": "已保存到云端",
-        "queued": "已加入上传队列",
-        "localOnly": "仅本地会话 (登录后云端保存)",
-        "uploadError": "上传失败 — 请检查网络或权限",
-        "analyzing": "正在分析照片...",
-        "analyzingHelper": "正在从菜单/小票中读取项目和价格 (最长 30 秒)",
-        "ocrError": "分析失败 — 请换一张更清晰明亮的照片",
-        "resultCount": "识别出 {{count}} 个项目",
-        "bagajiFound": "检测到宰客价",
-        "unmatched": "未匹配菜单",
-        "noneFound": "未能识别出价格",
-        "noneFoundHelper": "请确保菜单/小票清晰对焦。也可在下方手动输入价格。",
-        "modalTitle": "从照片提取的项目",
-        "modalHelper": "确认菜单名与价格后点击分析。可通过 X 排除不需要的行。",
-        "analyze": "开始分析",
-        "close": "关闭",
-        "removeItem": "排除项目"
-      },
       "form": {
         "category": "类别",
         "item": "项目",
@@ -414,12 +401,89 @@
         "fair": "合理区间",
         "delta": "对比均价"
       },
-      "sourceNote": "以 2025 年首尔·釜山均价为准 · 数据来自韩国消费者院与公共数据",
+      "sourceNote": "富川市个人服务价格公共数据 · 公共数据门户 LIVE 对接",
       "sourceBadge": "实时数据来源",
       "sourceSamples": " 个行政洞平均",
       "openKit": "查看必备包",
+      "openCourses": "查看富川路线",
       "reportLabel": "投诉与翻译热线",
       "reportTitle": "1330 旅游热线 (24 小时免费)"
+    },
+    "courses": {
+      "eyebrow": "地区特色",
+      "title": "富川 · 这样玩",
+      "subtitle": "以富川为中心的主题路线。从半日到三天两夜,按喜好挑选。",
+      "filterStyle": "风格",
+      "filterDuration": "时长",
+      "filterAll": "全部",
+      "empty": "没有符合条件的路线",
+      "viewCourse": "查看路线",
+      "bucheonShare": "富川 {{pct}}%",
+      "sourceLabel": "数据来源",
+      "sourceBody": "POI · 韩国观光公社 TourAPI   |   物价 · 富川市公共数据",
+      "tag": {
+        "kcomics": "K-漫画",
+        "kfilm": "K-电影",
+        "kdrama": "K-剧集",
+        "kpop": "K-pop",
+        "foodie": "美食",
+        "kculture-day": "K文化",
+        "family": "家庭",
+        "nature": "自然",
+        "wellness": "养生",
+        "history": "历史",
+        "rainy-day": "雨天",
+        "hidden-gem": "隐藏名胜",
+        "transit-easy": "交通便利"
+      },
+      "duration": {
+        "half-day": "半日",
+        "day": "一日",
+        "1n2d": "两天一夜",
+        "2n3d": "三天两夜",
+        "3n4d": "四天三夜"
+      }
+    },
+    "course": {
+      "back": "路线列表",
+      "notFound": "未找到该路线",
+      "budget": "预算",
+      "access": "交通",
+      "regionRule": "地区占比",
+      "itinerary": "行程",
+      "highlightsLabel": "亮点",
+      "checkLink": "价格检测",
+      "bucheonBadge": "富川",
+      "stayMinutes": "{{m}}分钟",
+      "stayHours": "{{h}}小时",
+      "stayHoursMin": "{{h}}小时{{m}}分钟",
+      "overnightHours": "住宿 · {{h}}小时",
+      "minutes": "{{m}}分钟",
+      "fromPoint": {
+        "seoul": "从首尔市中心",
+        "incheon-airport": "从仁川机场",
+        "gimpo-airport": "从金浦机场"
+      },
+      "like": "点赞",
+      "viewOnMap": "在地图上查看",
+      "pdfDownload": "打印为 PDF",
+      "pdfWorking": "正在生成 PDF…",
+      "share": "分享",
+      "shareCopied": "已复制链接",
+      "shareFailed": "分享失败",
+      "notesLabel": "{{count}} 条旅行意见",
+      "notesProposalLabel": "大家的意见让这条路线变得更好",
+      "notesProposalBody": "您在此分享的意见将用于旅游产品研发和路线优化。我们不会保存可识别个人身份的信息。",
+      "notePlaceholder": "把您走这条路线的感受或小贴士作为意见分享给我们吧",
+      "notePost": "分享意见",
+      "notePosting": "发布中…",
+      "noteError": "意见发布失败,请稍后再试。",
+      "noteLoginPrompt": "登录后即可分享意见。",
+      "noteSignIn": "使用 Google 登录",
+      "notesLoading": "正在加载意见…",
+      "notesEmpty": "还没有意见,来分享第一条吧。",
+      "noteAnon": "匿名",
+      "noteDelete": "删除"
     },
     "kit": {
       "eyebrow": "实用信息",
@@ -559,6 +623,7 @@
         "system": "系统"
       },
       "favorites": { "label": "收藏" },
+      "likedCourses": { "label": "点赞的路线" },
       "recent": { "label": "最近判定" },
       "signin": "使用 Google 登录",
       "signout": "退出登录",
@@ -577,6 +642,7 @@
   "a11y": {
     "skipToContent": "跳至正文",
     "primaryNav": "主菜单",
+    "homeLink": "返回首页",
     "favorite": "加入收藏",
     "unfavorite": "取消收藏"
   },

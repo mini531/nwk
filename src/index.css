@@ -209,3 +209,38 @@
   bottom: 12px !important;
   right: 12px !important;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Print / PDF export. Triggered by body.pdf-printing which the
+   `downloadCoursePdf` util toggles around window.print(). We hide
+   everything outside the active PDF target and its ancestors so
+   the printed output is just the clean course detail content.
+   ───────────────────────────────────────────────────────────── */
+@media print {
+  body.pdf-printing [data-print='hide'],
+  body.pdf-printing header[role='banner'],
+  body.pdf-printing nav {
+    display: none !important;
+  }
+  body.pdf-printing main {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+  body.pdf-printing main > div {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  body.pdf-printing {
+    background: #ffffff !important;
+    color: #121110 !important;
+  }
+  body.pdf-printing * {
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    margin: 16mm;
+    size: A4;
+  }
+}

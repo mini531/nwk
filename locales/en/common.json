@@ -8,8 +8,9 @@
     "search": "Search",
     "map": "Map",
     "check": "Price Verdict",
+    "courses": "Bucheon Themed Trips",
     "kit": "Kit",
-    "tour": "Tour",
+    "tour": "Tour Map",
     "profile": "Me"
   },
   "catalog": {
@@ -100,7 +101,7 @@
       "eyebrow": "Public data · 4 languages",
       "headline": "Before you exchange — real Korean prices.",
       "liveLabel": "Fresh verdicts",
-      "liveNote": "Based on Consumer Agency cases",
+      "liveNote": "LIVE from Bucheon public-data",
       "bagaji": {
         "eyebrow": "RIP-OFF ALERT",
         "flagged": "{{count}} sample cases",
@@ -110,7 +111,12 @@
       },
       "kitLinkLabel": "Arrival & life info",
       "kitLinkTitle": "Korea kit — first 30 min, ATM, connectivity, emergency",
-      "rightNowLabel": "Korea right now",
+      "coursesLinkLabel": "Regional guide",
+      "coursesLinkTitle": "Bucheon themed courses — by style and duration",
+      "coursesSectionLabel": "Bucheon — visit like this",
+      "coursesSectionTitle": "Recommended courses by style and duration",
+      "viewAllCourses": "View all",
+      "rightNowLabel": "Real Korean prices · Travel without rip-offs",
       "prices": {
         "americano": "Cafe americano",
         "bibimbap": "Bibimbap",
@@ -191,8 +197,8 @@
       "sourceBody": "KTO TourAPI · MOLIT VWorld · KMA · BOK. No ads, no commissions, no sponsors.",
       "searchEyebrow": "Search",
       "searchCta": "Search any place in Korea",
-      "exploreMapLabel": "Open the tour map",
-      "exploreMapTitle": "Explore 600+ tourist spots on a clustered map",
+      "exploreMapLabel": "Open the Bucheon map",
+      "exploreMapTitle": "Explore 500+ Bucheon-area spots on a clustered map",
       "essentials": "Essentials",
       "todayLabel": "Today",
       "today": {
@@ -267,7 +273,15 @@
       "loadingNearby": "Loading nearby attractions…",
       "tabMap": "Map",
       "tabList": "List",
-      "backToList": "Back to list"
+      "backToList": "Back to list",
+      "tabPoi": "National spots",
+      "tabTheme": "Bucheon themed trips",
+      "themeCount": "{{count}} Bucheon themed courses",
+      "clearCourse": "Clear",
+      "backToThemes": "Back to themes",
+      "sheetCollapse": "Collapse detail",
+      "sheetExpand": "Expand detail",
+      "stopsLabel": "{{count}} stops"
     },
     "about": {
       "title": "NWK — No Worries Korea",
@@ -298,7 +312,7 @@
         },
         "prices": {
           "name": "Fair-price benchmarks",
-          "body": "Based on Korea Consumer Agency and Statistics Korea public data plus 2024–25 retail averages. LIVE public-data API integration is planned."
+          "body": "We pull Bucheon City's personal-service fee survey (published on Korea's public data portal) and compare every price you enter against its LIVE min/max range. Each verdict shows the sample count and survey date, and we're rolling the same pipeline out to 15 provincial datasets next."
         }
       }
     },
@@ -319,6 +333,7 @@
       "back": "Back",
       "again": "Try another",
       "popular": "What travelers ask most",
+      "popularLabel": "Popular items",
       "seeAll": "See all",
       "searchPlaceholder": "Search (e.g. naengmyeon)",
       "searchResult": "Search results",
@@ -353,34 +368,6 @@
         "body": "Subway and bus run on fixed T-money fares. Taxis, airport buses, KTX and car rentals price by distance, meter or route — see the fair range for every mode.",
         "cta": "Check transit fares"
       },
-      "photo": {
-        "title": "Attach a photo",
-        "helper": "Snap a menu or receipt — kept with your verdict",
-        "attached": "Photo attached",
-        "willUpload": "Saved to your history after the verdict",
-        "signInHint": "Sign in to save to the cloud — otherwise, this session only",
-        "replace": "Replace",
-        "remove": "Remove",
-        "resultLabel": "Attached photo",
-        "uploading": "Uploading…",
-        "saved": "Saved to the cloud",
-        "queued": "Upload queued",
-        "localOnly": "Local session only (sign in to save)",
-        "uploadError": "Upload failed — check network or permissions",
-        "analyzing": "Analyzing photo…",
-        "analyzingHelper": "Reading items and prices from your menu or receipt (up to 30 s)",
-        "ocrError": "Analysis failed — try a brighter, sharper photo",
-        "resultCount": "{{count}} items found",
-        "bagajiFound": "Rip-off detected",
-        "unmatched": "No match in catalog",
-        "noneFound": "No prices detected",
-        "noneFoundHelper": "Make sure the menu/receipt is clear and in focus. You can still enter a price manually below.",
-        "modalTitle": "Items extracted from photo",
-        "modalHelper": "Review the menu names and prices, then tap Analyze. Remove any rows you don't want to check.",
-        "analyze": "Analyze",
-        "close": "Close",
-        "removeItem": "Remove item"
-      },
       "form": {
         "category": "Category",
         "item": "Item",
@@ -414,12 +401,89 @@
         "fair": "Fair range",
         "delta": "vs. average"
       },
-      "sourceNote": "Based on 2025 Seoul & Busan averages · Public data from Korea Consumer Agency",
+      "sourceNote": "Bucheon personal-service fee survey · LIVE from Korea's public data portal",
       "sourceBadge": "Live source",
       "sourceSamples": " administrative dong averaged",
       "openKit": "Open the Kit",
+      "openCourses": "View Bucheon courses",
       "reportLabel": "Report hotline",
       "reportTitle": "1330 Tourist Helpline (free, 24/7)"
+    },
+    "courses": {
+      "eyebrow": "Regional Focus",
+      "title": "Bucheon — Visit Like This",
+      "subtitle": "Themed travel courses centered on Bucheon — from half-day strolls to 3-day stays, pick your style.",
+      "filterStyle": "Style",
+      "filterDuration": "Duration",
+      "filterAll": "All",
+      "empty": "No courses match your filters",
+      "viewCourse": "View course",
+      "bucheonShare": "{{pct}}% in Bucheon",
+      "sourceLabel": "Data sources",
+      "sourceBody": "POIs · Korea Tourism Organization   |   Prices · Bucheon city public data",
+      "tag": {
+        "kcomics": "K-Manhwa",
+        "kfilm": "K-Film",
+        "kdrama": "K-Drama",
+        "kpop": "K-Pop",
+        "foodie": "Foodie",
+        "kculture-day": "K-Culture",
+        "family": "Family",
+        "nature": "Nature",
+        "wellness": "Wellness",
+        "history": "History",
+        "rainy-day": "Rainy Day",
+        "hidden-gem": "Hidden Gem",
+        "transit-easy": "Transit-easy"
+      },
+      "duration": {
+        "half-day": "Half day",
+        "day": "Full day",
+        "1n2d": "2 days / 1 night",
+        "2n3d": "3 days / 2 nights",
+        "3n4d": "4 days / 3 nights"
+      }
+    },
+    "course": {
+      "back": "Courses",
+      "notFound": "Course not found",
+      "budget": "Budget",
+      "access": "Access",
+      "regionRule": "Region share",
+      "itinerary": "Itinerary",
+      "highlightsLabel": "Highlights",
+      "checkLink": "Check prices",
+      "bucheonBadge": "Bucheon",
+      "stayMinutes": "{{m}} min",
+      "stayHours": "{{h}} hr",
+      "stayHoursMin": "{{h}} hr {{m}} min",
+      "overnightHours": "Overnight · {{h}} hr",
+      "minutes": "{{m}} min",
+      "fromPoint": {
+        "seoul": "From central Seoul",
+        "incheon-airport": "From Incheon Airport",
+        "gimpo-airport": "From Gimpo Airport"
+      },
+      "like": "Like",
+      "viewOnMap": "View on map",
+      "pdfDownload": "Print to PDF",
+      "pdfWorking": "Preparing PDF…",
+      "share": "Share",
+      "shareCopied": "Link copied",
+      "shareFailed": "Couldn't share",
+      "notesLabel": "{{count}} traveller opinions",
+      "notesProposalLabel": "Your opinions shape this course",
+      "notesProposalBody": "The opinions you share here feed our tourism product research and help us refine the course. We don't store personally identifiable information.",
+      "notePlaceholder": "Share a tip or impression as an opinion on this course",
+      "notePost": "Share opinion",
+      "notePosting": "Posting…",
+      "noteError": "Couldn't post your opinion. Please try again in a moment.",
+      "noteLoginPrompt": "Sign in to share an opinion.",
+      "noteSignIn": "Sign in with Google",
+      "notesLoading": "Loading opinions…",
+      "notesEmpty": "No opinions yet. Be the first to share one.",
+      "noteAnon": "Anonymous",
+      "noteDelete": "Delete"
     },
     "kit": {
       "eyebrow": "Practical info",
@@ -574,6 +638,7 @@
         "system": "System"
       },
       "favorites": { "label": "Favorites" },
+      "likedCourses": { "label": "Liked courses" },
       "recent": { "label": "Recent verdicts" },
       "signin": "Continue with Google",
       "signout": "Sign out",
@@ -592,6 +657,7 @@
   "a11y": {
     "skipToContent": "Skip to content",
     "primaryNav": "Primary",
+    "homeLink": "Go to home",
     "favorite": "Add to favorites",
     "unfavorite": "Remove from favorites"
   },

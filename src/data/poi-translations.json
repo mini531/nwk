@@ -1,0 +1,227 @@
+{
+  "source": "Manual curation (Korean government official English names + standard romanization)",
+  "note": "TourAPI language services do not expose Bucheon POIs. This registry provides en/ja/zh titles for POIs used in courses. Addresses remain the Korean original (authoritative for navigation apps).",
+  "fetchedAt": "2026-04-21T11:30:00.000Z",
+  "translations": {
+    "2470347": {
+      "en": { "title": "Korea Manhwa Museum" },
+      "ja": { "title": "韓国漫画博物館" },
+      "zh": { "title": "韩国漫画博物馆" }
+    },
+    "2741593": {
+      "en": { "title": "Dooly Square (Baby Dinosaur Dooly)" },
+      "ja": { "title": "ドゥーリー広場" },
+      "zh": { "title": "杜利广场" }
+    },
+    "2781667": {
+      "en": { "title": "Bucheon Jayu Market" },
+      "ja": { "title": "富川自由市場" },
+      "zh": { "title": "富川自由市场" }
+    },
+    "3428354": {
+      "en": { "title": "Starfield City Bucheon" },
+      "ja": { "title": "スターフィールドシティ富川" },
+      "zh": { "title": "Starfield City 富川" }
+    },
+    "611883": {
+      "en": { "title": "Kkachiul Food Theme Village" },
+      "ja": { "title": "カチウル飲食テーマ村" },
+      "zh": { "title": "喜鹊屋美食主题村" }
+    },
+    "2742173": {
+      "en": { "title": "Bucheon Jeil Market" },
+      "ja": { "title": "富川第一市場" },
+      "zh": { "title": "富川第一市场" }
+    },
+    "2741607": {
+      "en": { "title": "Hanshin Market" },
+      "ja": { "title": "ハンシン市場" },
+      "zh": { "title": "汉新市场" }
+    },
+    "126704": {
+      "en": { "title": "Bucheon Central Park" },
+      "ja": { "title": "富川中央公園" },
+      "zh": { "title": "富川中央公园" }
+    },
+    "756618": {
+      "en": { "title": "Sangdong Lake Park" },
+      "ja": { "title": "上洞湖水公園" },
+      "zh": { "title": "上洞湖水公园" }
+    },
+    "407030": {
+      "en": { "title": "Bucheon Botanical Garden" },
+      "ja": { "title": "富川植物園" },
+      "zh": { "title": "富川植物园" }
+    },
+    "3081528": {
+      "en": { "title": "Bucheon Children's Observatory" },
+      "ja": { "title": "富川子ども天文台" },
+      "zh": { "title": "富川儿童天文台" }
+    },
+    "558819": {
+      "en": { "title": "Woongjin Playcity" },
+      "ja": { "title": "ウンジンプレイシティ" },
+      "zh": { "title": "熊津Playcity" }
+    },
+    "127943": {
+      "en": { "title": "Bucheon Wonmi Park" },
+      "ja": { "title": "富川元美公園" },
+      "zh": { "title": "富川元美公园" }
+    },
+    "130526": {
+      "en": { "title": "Bucheon Nature Ecological Park" },
+      "ja": { "title": "富川自然生態公園" },
+      "zh": { "title": "富川自然生态公园" }
+    },
+    "3453292": {
+      "en": { "title": "Suju Literary Hall" },
+      "ja": { "title": "樹州文学館" },
+      "zh": { "title": "树州文学馆" }
+    },
+    "2676149": {
+      "en": { "title": "Pearl S. Buck Memorial Hall" },
+      "ja": { "title": "パール・バック記念館" },
+      "zh": { "title": "赛珍珠纪念馆" }
+    },
+    "2994172": {
+      "en": { "title": "Dodeoksan Suspension Bridge (Gwangmyeong)" },
+      "ja": { "title": "道徳山吊り橋（光明）" },
+      "zh": { "title": "道德山吊桥（光明）" }
+    },
+    "2732695": {
+      "en": { "title": "Bucheon Culture Trail · Maul Ieum-gil" },
+      "ja": { "title": "富川文化トゥルレキル・マウルイウムキル" },
+      "zh": { "title": "富川文化环路·村落相连之路" }
+    },
+    "129857": {
+      "en": { "title": "Bucheon Cultural Center" },
+      "ja": { "title": "富川文化院" },
+      "zh": { "title": "富川文化院" }
+    },
+    "2734928": {
+      "en": { "title": "Songnae Eoullim Madang (Community Stage)" },
+      "ja": { "title": "松内オウルリムマダン" },
+      "zh": { "title": "松内文化广场" }
+    },
+    "2869027": {
+      "en": { "title": "Suju Neighborhood Park" },
+      "ja": { "title": "樹州近隣公園" },
+      "zh": { "title": "树州近邻公园" }
+    },
+    "2781609": {
+      "en": { "title": "Mureungdowon Arboretum" },
+      "ja": { "title": "武陵桃源樹木園" },
+      "zh": { "title": "武陵桃源植物园" }
+    },
+    "2733028": {
+      "en": { "title": "Bucheon Culture Trail · Wonmi Masil-gil" },
+      "ja": { "title": "富川文化トゥルレキル・ウォンミマシルキル" },
+      "zh": { "title": "富川文化环路·元美村巷路" }
+    },
+    "2732709": {
+      "en": { "title": "Bucheon Culture Trail · Urban Forest Path" },
+      "ja": { "title": "富川文化トゥルレキル・都市の森道" },
+      "zh": { "title": "富川文化环路·都市森林路" }
+    },
+    "2732682": {
+      "en": { "title": "Bucheon Culture Trail · Sosa Fragrance Path" },
+      "ja": { "title": "富川文化トゥルレキル・素砂内音道" },
+      "zh": { "title": "富川文化环路·素砂芬芳路" }
+    },
+    "2736380": {
+      "en": { "title": "Ojeong Grand Park" },
+      "ja": { "title": "梧亭大公園" },
+      "zh": { "title": "梧亭大公园" }
+    },
+    "2781673": {
+      "en": { "title": "Gangnam Market (Bucheon)" },
+      "ja": { "title": "江南市場(富川)" },
+      "zh": { "title": "江南市场(富川)" }
+    },
+    "2742165": {
+      "en": { "title": "Goriul Cave Market" },
+      "ja": { "title": "コリウル洞窟市場" },
+      "zh": { "title": "高丽乌洞穴市场" }
+    },
+    "1339134": {
+      "en": { "title": "Bucheon Wonjong General Market" },
+      "ja": { "title": "富川元宗総合市場" },
+      "zh": { "title": "富川元宗综合市场" }
+    },
+    "2781668": {
+      "en": { "title": "Sinheung Market" },
+      "ja": { "title": "新興市場" },
+      "zh": { "title": "新兴市场" }
+    },
+    "3586768": {
+      "en": { "title": "Gwangmyeong Furniture Culture Street" },
+      "ja": { "title": "光明家具文化通り" },
+      "zh": { "title": "光明家具文化街" }
+    },
+    "2736048": {
+      "en": { "title": "Dodeoksan Park (Gwangmyeong)" },
+      "ja": { "title": "道徳山公園(光明)" },
+      "zh": { "title": "道德山公园(光明)" }
+    },
+    "2733422": {
+      "en": { "title": "Bamil Village Food Culture Street (Gwangmyeong)" },
+      "ja": { "title": "バムイル村飲食文化通り(光明)" },
+      "zh": { "title": "栗日村美食文化街(光明)" }
+    },
+    "2733412": {
+      "en": { "title": "Anteo Ecological Park (Gwangmyeong)" },
+      "ja": { "title": "アントー生態公園(光明)" },
+      "zh": { "title": "安特生态公园(光明)" }
+    },
+    "2736417": {
+      "en": { "title": "Munsusan (Gimpo)" },
+      "ja": { "title": "文殊山(金浦)" },
+      "zh": { "title": "文殊山(金浦)" }
+    },
+    "125558": {
+      "en": { "title": "Gimpo Hyanggyo (Confucian School)" },
+      "ja": { "title": "金浦郷校" },
+      "zh": { "title": "金浦乡校" }
+    },
+    "128156": {
+      "en": { "title": "Taesan Family Park (Gimpo)" },
+      "ja": { "title": "テサンファミリーパーク(金浦)" },
+      "zh": { "title": "泰山家庭乐园(金浦)" }
+    },
+    "2768190": {
+      "en": { "title": "Bupyeong Station North Plaza (Incheon)" },
+      "ja": { "title": "富平駅北広場(仁川)" },
+      "zh": { "title": "富平站北广场(仁川)" }
+    },
+    "250166": {
+      "en": { "title": "Banghwa Bridge (Seoul Gangseo)" },
+      "ja": { "title": "傍花大橋(江西)" },
+      "zh": { "title": "傍花大桥(江西)" }
+    },
+    "2742173": {
+      "en": { "title": "Bucheon Jeil Market" },
+      "ja": { "title": "富川第一市場" },
+      "zh": { "title": "富川第一市场" }
+    },
+    "3079629": {
+      "en": { "title": "Jindallae (Azalea) Hill" },
+      "ja": { "title": "ツツジ(チンダルレ)の丘" },
+      "zh": { "title": "金达莱山" }
+    },
+    "318207": {
+      "en": { "title": "Seokwangsa Temple (Bucheon)" },
+      "ja": { "title": "釈王寺(富川)" },
+      "zh": { "title": "释王寺(富川)" }
+    },
+    "3425101": {
+      "en": { "title": "Ahn Jung-geun Memorial Park" },
+      "ja": { "title": "安重根公園" },
+      "zh": { "title": "安重根公园" }
+    },
+    "753822": {
+      "en": { "title": "Ujeo Seowon (Gimpo Confucian Academy)" },
+      "ja": { "title": "牛渚書院(金浦)" },
+      "zh": { "title": "牛渚书院(金浦)" }
+    }
+  }
+}

@@ -1,26 +1,16 @@
-import { useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { BagajiHero } from '../components/bagaji-hero'
-import { HOTSPOTS, hotspotName, hotspotAddr } from '../data/hotspots'
-import { ADVISORIES, type AdvisoryCategory } from '../data/advisories'
-import { useAppStore } from '../stores/app-store'
+import { useCourses } from '../hooks/use-courses'
+import { resolveLocalized, type Lang } from '../types/course'
 import { useKstClock } from '../hooks/use-kst-clock'
-import {
-  ArrowRightIcon,
-  CoinIcon,
-  GlobeIcon,
-  SearchIcon,
-  ShieldIcon,
-  TrainIcon,
-} from '../components/icons'
-import type { ComponentType, SVGProps } from 'react'
+import { ArrowRightIcon, CoinIcon, SearchIcon } from '../components/icons'
 
 import bucheonLive from '../data/live-prices-bucheon.json'
 import gangwonCpi from '../data/live-cpi-gangwon.json'
 
 const KRW_PER_USD = 1330
-const ADVISORY_BY_ID = new Map(ADVISORIES.map((a) => [a.id, a]))
 
 interface PriceCard {
   id: string
@@ -123,20 +113,6 @@ const pickRotation = (pool: PriceCard[], size: number): PriceCard[] => {
   return Array.from(idxs).map((i) => pool[i])
 }
 
-const CATEGORY_META: Record<
-  AdvisoryCategory,
-  {
-    Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>
-    bg: string
-    fg: string
-  }
-> = {
-  price: { Icon: CoinIcon, bg: 'bg-accent-soft', fg: 'text-accent' },
-  transit: { Icon: TrainIcon, bg: 'bg-line', fg: 'text-ink' },
-  etiquette: { Icon: GlobeIcon, bg: 'bg-brand-soft', fg: 'text-brand' },
-  safety: { Icon: ShieldIcon, bg: 'bg-warn-soft', fg: 'text-warn' },
-}
-
 const formatKrw = (v: number, lang: string) => {
   try {
     return new Intl.NumberFormat(lang, {
@@ -156,31 +132,16 @@ const formatUsd = (krw: number) => {
 
 export const HomePage = () => {
   const { t, i18n } = useTranslation()
-  const navigate = useNavigate()
   const kst = useKstClock()
-  const setSelectedPlace = useAppStore((s) => s.setSelectedPlace)
-  const [activeId, setActiveId] = useState<string>(HOTSPOTS[0].place.id)
-
-  const active = useMemo(
-    () => HOTSPOTS.find((h) => h.place.id === activeId) ?? HOTSPOTS[0],
-    [activeId],
-  )
-
-  const featured = useMemo(
-    () =>
-      active.featuredAdvisoryIds
-        .map((id) => ADVISORY_BY_ID.get(id))
-        .filter((a): a is NonNullable<typeof a> => Boolean(a)),
-    [active],
-  )
-
-  const openFull = () => {
-    setSelectedPlace(active.place)
-    navigate('/map')
-  }
+  const courses = useCourses()
+  const lang = (i18n.language.slice(0, 2) as Lang) || 'ko'
 
   // Randomized once per page mount so a revisit shows a different set.
   const priceCards = useMemo(() => pickRotation(PRICE_POOL, 4), [])
+
+  // Show every published course on the home page — user wants the full
+  // style coverage visible at a glance.
+  const preview = courses
 
   return (
     <div className="pb-8">
@@ -266,15 +227,15 @@ export const HomePage = () => {
 
           <section>
             <Link
-              to="/kit"
+              to="/courses"
               className="flex items-center justify-between rounded-2xl border border-line bg-surface px-5 py-4 text-ink transition hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               <div className="min-w-0">
                 <p className="text-[12px] font-semibold text-ink-3">
-                  {t('page.home.kitLinkLabel')}
+                  {t('page.home.coursesLinkLabel')}
                 </p>
                 <p className="mt-0.5 truncate text-[16px] font-semibold tracking-tight text-ink">
-                  {t('page.home.kitLinkTitle')}
+                  {t('page.home.coursesLinkTitle')}
                 </p>
               </div>
               <ArrowRightIcon size={18} className="shrink-0 text-ink-3" aria-hidden="true" />
@@ -284,118 +245,80 @@ export const HomePage = () => {
 
         <div className="mt-10 space-y-6 lg:col-span-7 lg:mt-0 xl:col-span-8">
           <section className="space-y-4">
-            <div>
-              <p className="text-[12px] font-semibold text-ink-3">{t('page.home.matchedLabel')}</p>
-              <h2 className="nwk-display mt-1 text-[22px] text-ink sm:text-[26px]">
-                {t('page.home.matchedTitle')}
-              </h2>
-            </div>
-
-            <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0">
-              <div className="flex gap-2 sm:flex-wrap">
-                {HOTSPOTS.map((h) => {
-                  const isActive = h.place.id === activeId
-                  const shortName = hotspotName(h, i18n.language)
-                    .split(/[[(（]/)[0]
-                    .trim()
-                  return (
-                    <button
-                      key={h.place.id}
-                      type="button"
-                      onClick={() => setActiveId(h.place.id)}
-                      className={`shrink-0 rounded-full border px-5 py-2.5 text-[14px] font-medium tracking-tight transition ${
-                        isActive
-                          ? 'border-ink bg-ink text-on-ink shadow-pop'
-                          : 'border-line bg-surface text-ink-2 hover:border-line-strong'
-                      }`}
-                    >
-                      {shortName}
-                    </button>
-                  )
-                })}
+            <div className="flex items-end justify-between gap-3">
+              <div>
+                <p className="text-[12px] font-semibold text-brand">
+                  {t('page.home.coursesSectionLabel')}
+                </p>
+                <h2 className="nwk-display mt-1 text-[22px] text-ink sm:text-[26px]">
+                  {t('page.home.coursesSectionTitle')}
+                </h2>
               </div>
-            </div>
-
-            <div>
-              <button
-                type="button"
-                onClick={openFull}
-                className="nwk-card nwk-card-hover group block w-full overflow-hidden p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              <Link
+                to="/courses"
+                className="shrink-0 text-[13px] font-semibold text-brand hover:underline"
               >
-                {active.thumbnail && (
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas-2 sm:aspect-[21/10]">
-                    <img
-                      src={active.thumbnail}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
-                      <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-                      TourAPI
-                    </div>
-                    <div className="absolute inset-x-5 bottom-4 text-white">
-                      <p className="text-[12px] font-semibold text-white/80">
-                        {t(active.regionKey)}
-                      </p>
-                      <p className="nwk-display mt-0.5 text-[22px] leading-tight text-white">
-                        {hotspotName(active, i18n.language)}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <div className="flex items-start justify-between gap-3 px-6 pb-3 pt-5">
-                  <div className="min-w-0 flex-1">
-                    {!active.thumbnail && (
-                      <>
-                        <p className="text-[12px] font-semibold text-ink-3">
-                          {t(active.regionKey)}
-                        </p>
-                        <p className="nwk-display mt-0.5 truncate text-[22px] text-ink">
-                          {hotspotName(active, i18n.language)}
-                        </p>
-                      </>
-                    )}
-                    <p className="mt-0.5 truncate text-[13px] text-ink-3">
-                      {hotspotAddr(active, i18n.language)}
-                    </p>
-                  </div>
-                  <span className="mt-1 inline-flex items-center gap-1 text-[13px] font-semibold text-brand">
-                    {t('page.home.openFull')}
-                    <ArrowRightIcon size={14} />
-                  </span>
-                </div>
-
-                <ul className="divide-y divide-line border-t border-line">
-                  {featured.map((a) => {
-                    const meta = CATEGORY_META[a.category]
-                    return (
-                      <li key={a.id} className="flex items-start gap-3 px-6 py-4">
-                        <span
-                          className={`mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl ${meta.bg} ${meta.fg}`}
-                        >
-                          <meta.Icon size={17} />
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-[14px] font-semibold tracking-tight text-ink">
-                            {t(`advisory.${a.id}.title`)}
-                          </p>
-                          <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-ink-3">
-                            {t(`advisory.${a.id}.body`)}
-                          </p>
-                        </div>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </button>
+                {t('page.home.viewAllCourses')}
+                <ArrowRightIcon size={12} className="ml-0.5 inline-block" />
+              </Link>
             </div>
+
+            <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {preview.map((c) => {
+                const text = resolveLocalized(c.i18n, lang)
+                return (
+                  <li key={c.id} className="h-full">
+                    <Link
+                      to={`/courses/${c.id}`}
+                      className="nwk-card nwk-card-hover group flex h-full flex-col overflow-hidden p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                    >
+                      {c.heroImage && (
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas-2">
+                          <img
+                            src={c.heroImage}
+                            alt=""
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/60 to-transparent" />
+                          <div className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[12px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                            TourAPI
+                          </div>
+                          <div className="absolute right-3 top-3 rounded-full bg-ink/85 px-2.5 py-1 text-[12px] font-bold text-on-ink backdrop-blur">
+                            {t(`page.courses.duration.${c.duration}`)}
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex flex-1 flex-col gap-2 px-5 py-4">
+                        <p className="nwk-display line-clamp-2 min-h-[2.6em] text-[17px] leading-tight text-ink">
+                          {text.title}
+                        </p>
+                        <p className="line-clamp-2 min-h-[2.4em] text-[12px] leading-snug text-ink-3">
+                          {text.subtitle ?? ''}
+                        </p>
+                        <div className="mt-auto flex items-center justify-between border-t border-line pt-2.5 text-[12px] text-ink-3">
+                          <span className="inline-flex items-center gap-1">
+                            <CoinIcon size={12} />
+                            {formatKrw(c.budgetKrw.min, i18n.language)}
+                          </span>
+                          <span className="font-semibold text-brand">
+                            {t('page.courses.bucheonShare', {
+                              pct: Math.round(c.bucheonShare * 100),
+                            })}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
           </section>
 
           <section>
             <Link
-              to="/search"
+              to="/map"
               className="group flex items-center justify-between rounded-2xl border-2 border-brand-soft bg-brand-soft/40 px-5 py-5 text-ink transition hover:bg-brand-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               <div className="min-w-0 flex-1">

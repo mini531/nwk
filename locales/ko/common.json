@@ -8,8 +8,9 @@
     "search": "검색",
     "map": "지도",
     "check": "여행경비 판정",
+    "courses": "부천 테마 여행",
     "kit": "필수키트",
-    "tour": "관광",
+    "tour": "관광 지도",
     "profile": "내정보"
   },
   "catalog": {
@@ -100,17 +101,22 @@
       "eyebrow": "공공데이터 기반 · 4개 언어",
       "headline": "환전 전에, 한국 진짜 물가",
       "liveLabel": "방금 들어온 판정",
-      "liveNote": "소비자원 공개 사례 기반",
+      "liveNote": "부천시 공공데이터 LIVE 연동 기반",
       "bagaji": {
         "eyebrow": "바가지 주의보",
         "flagged": "{{count}}건 등록",
         "headline": "관광객이 어제 더 낸 돈, 여기 다 있다.",
-        "sub": "본 서비스의 여행경비 판정 도구로 검증한 사례 — 정상가 범위 대비 얼마나 더 냈는지 그대로 보여줍니다.",
+        "sub": "본 서비스의 여행경비 판정 도구로 검증한 사례 — 정상가 범위 대비 얼마나 더 냈는지 그대로 보여드려요.",
         "fair": "정상가"
       },
       "kitLinkLabel": "입국·생활 정보",
       "kitLinkTitle": "한국 필수키트 — 입국 30분, ATM, 통신, 긴급번호",
-      "rightNowLabel": "한국은 지금",
+      "coursesLinkLabel": "지역 특화 가이드",
+      "coursesLinkTitle": "부천 중심 테마 코스 — 스타일·기간별",
+      "coursesSectionLabel": "부천, 이렇게 가보세요",
+      "coursesSectionTitle": "스타일·기간별 추천 코스",
+      "viewAllCourses": "전체 보기",
+      "rightNowLabel": "바가지 없는 한국여행을 위한 · 한국 물가 체험",
       "prices": {
         "americano": "카페 아메리카노",
         "bibimbap": "비빔밥 1인",
@@ -191,8 +197,8 @@
       "sourceBody": "한국관광공사 TourAPI · 국토교통부 VWorld · 기상청 · 한국은행 · 광고·수수료·스폰서 없음",
       "searchEyebrow": "직접 검색",
       "searchCta": "다른 장소 직접 검색하기",
-      "exploreMapLabel": "관광 지도 열기",
-      "exploreMapTitle": "대한민국 핵심 관광지 600+ 지도로 탐색하기",
+      "exploreMapLabel": "부천 지도 열기",
+      "exploreMapTitle": "부천과 인근 500+ 관광지를 지도에서 탐색",
       "essentials": "여행 필수",
       "todayLabel": "Today",
       "today": {
@@ -213,7 +219,7 @@
       "subhead": "한국관광공사 공공 데이터로 한국 전역 관광지를 검색하고, 선택하면 해당 장소의 매칭된 에티켓·물가·안전 정보를 바로 볼 수 있어요.",
       "placeholder": "예: 경복궁, 부산, 한옥",
       "loading": "검색 중...",
-      "mockNotice": "데모 데이터입니다. TourAPI 키 설정 시 실시간 결과로 전환됩니다.",
+      "mockNotice": "데모 데이터예요. TourAPI 키가 설정되면 실시간 결과로 전환돼요.",
       "emptyTitle": "어디로 떠나볼까요?",
       "emptyHint": "도시·명소·키워드로 검색",
       "filters": {
@@ -232,13 +238,13 @@
       "tapHint": "줌인해서 개별 핀이 뜨면 탭해보세요. 이 화면에서 바로 매칭된 정보를 확인할 수 있어요.",
       "openMatch": "매칭 열기",
       "matchedLabel": "한국 여행 기본 정보 · 지역 필터 반영",
-      "noAdvisory": "이 장소에는 아직 매칭된 상세 정보가 없어요. 여행경비 판정 탭에서 직접 가격 확인이 가능합니다.",
+      "noAdvisory": "이 장소에는 아직 매칭된 상세 정보가 없어요. 여행경비 판정 탭에서 직접 가격을 확인할 수 있어요.",
       "noResultsTitle": "일치하는 관광지가 없어요",
       "noResultsHint": "다른 키워드로 시도하거나 필터를 전체로 바꿔보세요",
       "matchCount": "검색 결과 {{count}}개",
       "liveResults": "{{lang}} 검색 · TourAPI 실시간 {{count}}건",
       "visibleCount": "현재 화면의 관광지 {{count}}개",
-      "emptyViewport": "화면을 축소하면 더 많은 관광지가 나타납니다",
+      "emptyViewport": "화면을 축소하면 더 많은 관광지가 보여요",
       "backToList": "목록으로 돌아가기",
       "nearbyCta": "내 주변",
       "nearbyClear": "초기화",
@@ -263,11 +269,19 @@
       "resultCount_search": "검색결과 {{count}}개",
       "resultCount_tour": "관광지 {{count}}개",
       "loadMore": "더 보기",
-      "noSearchResult": "검색 결과가 없습니다",
-      "loadingNearby": "주변 관광지를 불러오는 중입니다...",
+      "noSearchResult": "검색 결과가 없어요",
+      "loadingNearby": "주변 관광지를 불러오고 있어요…",
       "tabMap": "지도",
       "tabList": "목록",
-      "backToList": "목록으로"
+      "backToList": "목록으로",
+      "tabPoi": "전국 관광지",
+      "tabTheme": "부천 테마 여행",
+      "themeCount": "부천 테마 코스 {{count}}개",
+      "clearCourse": "선택 해제",
+      "backToThemes": "테마 목록으로",
+      "sheetCollapse": "상세 접기",
+      "sheetExpand": "상세 펼치기",
+      "stopsLabel": "{{count}}개 스톱"
     },
     "about": {
       "title": "NWK - No Worries Korea",
@@ -282,23 +296,23 @@
       },
       "privacy": {
         "title": "개인정보",
-        "body": "위치 정보는 기기 내에서만 사용되며 서버에 저장되지 않습니다. 로그인 시에도 이메일·이름 외 민감 정보는 수집하지 않습니다."
+        "body": "위치 정보는 기기 내에서만 쓰이고 서버에 저장되지 않아요. 로그인해도 이메일·이름 외 민감 정보는 수집하지 않아요."
       },
       "dataSources": {
         "label": "데이터 출처",
         "title": "공공데이터 기반 관광 정보",
         "tour": {
           "name": "한국관광공사 TourAPI",
-          "body": "전국 관광지 검색·근거리 조회·상세 정보는 모두 공공데이터포털의 TourAPI(KorService2/EngService2/JpnService2/ChsService2)를 통해 받아옵니다. 언어별 공식 관광 데이터셋을 그대로 사용합니다.",
+          "body": "전국 관광지 검색·근거리 조회·상세 정보는 모두 공공데이터포털의 TourAPI(KorService2/EngService2/JpnService2/ChsService2)에서 받아와요. 언어별 공식 관광 데이터셋을 그대로 사용해요.",
           "meta": "공공데이터포털 data.go.kr · 관광공공데이터 활용 공모전 출품작"
         },
         "kakao": {
           "name": "Kakao Maps",
-          "body": "지도 렌더링 · 기본/위성 뷰 제공. POI 데이터는 사용하지 않고 시각화 레이어로만 활용합니다."
+          "body": "지도 렌더링과 기본·위성 뷰를 제공해요. POI 데이터는 사용하지 않고 시각화 레이어로만 활용해요."
         },
         "prices": {
-          "name": "여행경비 기준가",
-          "body": "한국소비자원·통계청 공개 자료와 2024~2025년 현지 업종 평균을 기반으로 정리. 공공데이터 연계 API가 공개되면 LIVE 연동 예정."
+          "name": "여행경비 정상가",
+          "body": "경기도 부천시가 공공데이터포털에 공개한 개인서비스요금 현황 데이터셋을 직접 수집해 LIVE 비교에 사용해요. 항목별로 최소·최대·표본 수와 갱신 시점까지 함께 보여드려요. 향후 광역 15개 시도로 단계 확장 예정이에요."
         }
       }
     },
@@ -319,6 +333,7 @@
       "back": "이전",
       "again": "다시 판정하기",
       "popular": "외국인이 자주 묻는 것",
+      "popularLabel": "자주 찾는 항목",
       "seeAll": "전체 보기",
       "searchPlaceholder": "직접 검색 (예: 냉면)",
       "searchResult": "검색 결과",
@@ -353,34 +368,6 @@
         "body": "지하철·버스는 T-money 고정 요금 · 택시·공항버스·KTX·렌터카는 거리·미터기·구간 기준. 모든 수단의 적정 구간을 먼저 확인해 보세요.",
         "cta": "교통 요금 확인"
       },
-      "photo": {
-        "title": "사진 첨부",
-        "helper": "영수증·메뉴판 촬영 — 판정과 함께 기록",
-        "attached": "사진 첨부 완료",
-        "willUpload": "판정 후 내 기록함에 저장",
-        "signInHint": "로그인 시 클라우드 저장, 미로그인 시 이번 세션만 표시",
-        "replace": "교체",
-        "remove": "삭제",
-        "resultLabel": "첨부 사진",
-        "uploading": "업로드 중...",
-        "saved": "클라우드에 저장됨",
-        "queued": "업로드 대기",
-        "localOnly": "로컬 세션만 저장 (로그인 시 클라우드)",
-        "uploadError": "업로드 실패 — 네트워크/권한 확인",
-        "analyzing": "사진 분석 중...",
-        "analyzingHelper": "메뉴판·영수증에서 항목과 가격을 읽고 있어요 (최대 30초)",
-        "ocrError": "사진 분석 실패 — 더 밝고 선명한 사진으로 다시 시도",
-        "resultCount": "찾은 항목 {{count}}개",
-        "bagajiFound": "바가지 발견",
-        "unmatched": "메뉴 매칭 실패",
-        "noneFound": "가격을 찾지 못했어요",
-        "noneFoundHelper": "메뉴판·영수증이 선명하게 찍혔는지 확인해주세요. 수동으로 카테고리 선택해 판정할 수도 있어요.",
-        "modalTitle": "사진에서 추출한 항목",
-        "modalHelper": "메뉴명과 가격을 확인한 뒤 분석을 눌러주세요. 불필요한 줄은 X로 제외할 수 있어요.",
-        "analyze": "분석하기",
-        "close": "닫기",
-        "removeItem": "항목 제외"
-      },
       "form": {
         "category": "카테고리",
         "item": "항목",
@@ -407,19 +394,96 @@
       },
       "advice": {
         "careful": "평균보다 15~40% 높아요. 다른 가게와 비교해 보세요.",
-        "bagaji": "평균 대비 40% 이상 과다 청구입니다. 1330 관광안내(24시간 다국어)로 신고할 수 있어요."
+        "bagaji": "평균 대비 40% 이상 과다 청구예요. 1330 관광안내(24시간 다국어)로 신고할 수 있어요."
       },
       "labels": {
         "paid": "지불액",
         "fair": "적정 구간",
         "delta": "평균 대비"
       },
-      "sourceNote": "2025년 서울·부산 평균가 기준 · 한국소비자원·공공데이터 출처",
+      "sourceNote": "경기도 부천시 개인서비스요금 공공데이터 LIVE 연동 (공공데이터포털)",
       "sourceBadge": "실데이터 출처",
       "sourceSamples": "개 행정동 평균",
       "openKit": "필수키트 보기",
+      "openCourses": "부천 코스 보기",
       "reportLabel": "민원·통역 핫라인",
       "reportTitle": "1330 관광안내 (24시간 무료)"
+    },
+    "courses": {
+      "eyebrow": "지역 특화",
+      "title": "부천, 이렇게 가보세요",
+      "subtitle": "부천을 중심으로 한 테마별 코스. 반나절부터 2박 3일까지, 원하는 스타일로 골라보세요.",
+      "filterStyle": "스타일",
+      "filterDuration": "기간",
+      "filterAll": "전체",
+      "empty": "조건에 맞는 코스가 없어요",
+      "viewCourse": "코스 보기",
+      "bucheonShare": "부천 {{pct}}%",
+      "sourceLabel": "데이터 출처",
+      "sourceBody": "POI · 한국관광공사 TourAPI   |   물가 · 부천시 공공데이터",
+      "tag": {
+        "kcomics": "K-만화",
+        "kfilm": "K-영화",
+        "kdrama": "K-드라마",
+        "kpop": "K-팝",
+        "foodie": "미식",
+        "kculture-day": "K-컬처",
+        "family": "가족",
+        "nature": "자연",
+        "wellness": "웰니스",
+        "history": "역사",
+        "rainy-day": "우천 대안",
+        "hidden-gem": "숨은 명소",
+        "transit-easy": "대중교통"
+      },
+      "duration": {
+        "half-day": "반나절",
+        "day": "당일",
+        "1n2d": "1박 2일",
+        "2n3d": "2박 3일",
+        "3n4d": "3박 4일"
+      }
+    },
+    "course": {
+      "back": "코스 목록",
+      "notFound": "해당 코스를 찾을 수 없어요",
+      "budget": "예산",
+      "access": "접근",
+      "regionRule": "지역 비중",
+      "itinerary": "일정",
+      "highlightsLabel": "하이라이트",
+      "checkLink": "가격 체크",
+      "bucheonBadge": "부천",
+      "stayMinutes": "{{m}}분",
+      "stayHours": "{{h}}시간",
+      "stayHoursMin": "{{h}}시간 {{m}}분",
+      "overnightHours": "숙박 · {{h}}시간",
+      "minutes": "{{m}}분",
+      "fromPoint": {
+        "seoul": "서울 중심에서",
+        "incheon-airport": "인천공항에서",
+        "gimpo-airport": "김포공항에서"
+      },
+      "like": "좋아요",
+      "viewOnMap": "지도에서 보기",
+      "pdfDownload": "PDF 인쇄",
+      "pdfWorking": "PDF 준비 중…",
+      "share": "공유하기",
+      "shareCopied": "링크를 복사했어요",
+      "shareFailed": "공유에 실패했어요",
+      "notesLabel": "여행 의견 {{count}}개",
+      "notesProposalLabel": "여러분 의견이 쌓일수록 코스가 더 좋아져요",
+      "notesProposalBody": "남겨주신 의견은 관광 상품 개발과 코스 개선에 활용돼요. 개인 식별 정보는 저장하지 않아요.",
+      "notePlaceholder": "이 코스를 다녀본 느낌이나 팁을 의견으로 남겨 주세요",
+      "notePost": "의견 남기기",
+      "notePosting": "등록 중…",
+      "noteError": "의견 등록에 실패했어요. 잠시 후 다시 시도해 주세요.",
+      "noteLoginPrompt": "의견을 남기려면 로그인이 필요해요.",
+      "noteSignIn": "구글로 로그인",
+      "notesLoading": "의견을 불러오고 있어요…",
+      "notesEmpty": "아직 등록된 의견이 없어요. 첫 번째 의견을 남겨 보세요.",
+      "noteAnon": "익명",
+      "noteDelete": "삭제"
     },
     "kit": {
       "eyebrow": "실용 정보",
@@ -559,6 +623,7 @@
         "system": "시스템"
       },
       "favorites": { "label": "즐겨찾기" },
+      "likedCourses": { "label": "좋아요 한 코스" },
       "recent": { "label": "최근 판정" },
       "signin": "Google로 로그인",
       "signout": "로그아웃",
@@ -577,6 +642,7 @@
   "a11y": {
     "skipToContent": "본문 바로가기",
     "primaryNav": "주 메뉴",
+    "homeLink": "홈으로 이동",
     "favorite": "즐겨찾기 추가",
     "unfavorite": "즐겨찾기 해제"
   },

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { loadKakaoMaps } from '../utils/kakao-loader'
 
 export type BaseLayer = 'normal' | 'satellite'
@@ -10,8 +10,11 @@ export interface PoiProperties {
   thumbnail: string | null
   thumbnailSmall: string | null
   contentTypeId: string
-  typeTag: 'attraction' | 'culture'
+  typeTag: 'attraction' | 'culture' | string
   region: string
+  // When present, render as a numbered course-stop pin instead of a dot.
+  // Also bypass clustering so the full itinerary stays visible.
+  order?: number
 }
 
 export interface SelectedMarker {
@@ -62,6 +65,26 @@ const DOT_SVG =
 const SELECTED_IMG_SRC = `data:image/svg+xml;charset=utf-8,${SELECTED_PIN_SVG}`
 const DOT_IMG_SRC = `data:image/svg+xml;charset=utf-8,${DOT_SVG}`
 
+// Numbered course-stop pin (blue-on-white, drop shadow) — generated per `n`.
+// Cached so we don't rebuild the SVG string on every marker update.
+const numberedPinCache = new Map<number, string>()
+const numberedPinSrc = (n: number): string => {
+  const cached = numberedPinCache.get(n)
+  if (cached) return cached
+  const svg =
+    encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="52" viewBox="0 0 40 52">
+  <filter id="ds${n}" x="-20%" y="-10%" width="140%" height="130%">
+    <feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-color="#000" flood-opacity="0.3"/>
+  </filter>
+  <path filter="url(#ds${n})" d="M20 0C9 0 0 9 0 20c0 15 20 32 20 32s20-17 20-32C40 9 31 0 20 0z" fill="#2a78ff"/>
+  <circle cx="20" cy="19" r="12" fill="#fff"/>
+  <text x="20" y="24" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="800" text-anchor="middle" fill="#2a78ff">${n}</text>
+</svg>`)
+  const src = `data:image/svg+xml;charset=utf-8,${svg}`
+  numberedPinCache.set(n, src)
+  return src
+}
+
 export const KakaoTourMap = ({
   geojson,
   center = DEFAULT_CENTER,
@@ -79,6 +102,11 @@ export const KakaoTourMap = ({
   const clustererRef = useRef<kakao.maps.MarkerClusterer | null>(null)
   const markersRef = useRef<Map<string, kakao.maps.Marker>>(new Map())
   const selectedMarkerRef = useRef<kakao.maps.Marker | null>(null)
+  // mapLoaded flips true once the async SDK + map instance is ready.
+  // The marker-sync effect depends on it so it re-runs after init — the
+  // initial run happens before the SDK resolves and would otherwise bail
+  // out on the `!map` guard, leaving the first geojson un-rendered.
+  const [mapLoaded, setMapLoaded] = useState(false)
 
   const onClickRef = useRef(onPoiClick)
   onClickRef.current = onPoiClick
@@ -121,6 +149,7 @@ export const KakaoTourMap = ({
         emitBounds()
 
         if (onMapReadyRef.current) onMapReadyRef.current(map)
+        setMapLoaded(true)
       })
       .catch((err) => {
         console.error('kakao map init failed', err)
@@ -138,6 +167,7 @@ export const KakaoTourMap = ({
       }
       mapRef.current = null
       clustererRef.current = null
+      setMapLoaded(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -162,7 +192,8 @@ export const KakaoTourMap = ({
     if (!kakaoNs) return
 
     const next = new Map<string, kakao.maps.Marker>()
-    const added: kakao.maps.Marker[] = []
+    const addedToCluster: kakao.maps.Marker[] = []
+    const directMarkers: kakao.maps.Marker[] = []
     const dotImage = new kakaoNs.MarkerImage(DOT_IMG_SRC, new kakaoNs.Size(18, 18), {
       offset: new kakaoNs.Point(9, 9),
     })
@@ -171,6 +202,7 @@ export const KakaoTourMap = ({
       const id = feat.properties.id
       const [lng, lat] = feat.geometry.coordinates
       if (!Number.isFinite(lng) || !Number.isFinite(lat)) continue
+      const isStop = typeof feat.properties.order === 'number'
       const existing = markersRef.current.get(id)
       if (existing) {
         existing.setPosition(new kakaoNs.LatLng(lat, lng))
@@ -178,16 +210,25 @@ export const KakaoTourMap = ({
         markersRef.current.delete(id)
         continue
       }
+      const image = isStop
+        ? new kakaoNs.MarkerImage(
+            numberedPinSrc(feat.properties.order as number),
+            new kakaoNs.Size(40, 52),
+            { offset: new kakaoNs.Point(20, 52) },
+          )
+        : dotImage
       const marker = new kakaoNs.Marker({
         position: new kakaoNs.LatLng(lat, lng),
-        image: dotImage,
+        image,
         clickable: true,
+        zIndex: isStop ? 50 : undefined,
       })
       kakaoNs.event.addListener(marker, 'click', () => {
         if (onClickRef.current) onClickRef.current(feat.properties)
       })
       next.set(id, marker)
-      added.push(marker)
+      if (isStop) directMarkers.push(marker)
+      else addedToCluster.push(marker)
     }
 
     // Remove stale markers
@@ -196,7 +237,9 @@ export const KakaoTourMap = ({
       stale.setMap(null)
     }
 
-    if (added.length > 0) clusterer.addMarkers(added)
+    if (addedToCluster.length > 0) clusterer.addMarkers(addedToCluster)
+    // Numbered course stops sit outside the clusterer so they always render.
+    for (const m of directMarkers) m.setMap(map)
     markersRef.current = next
 
     if (fitToFeatures && geojson.features.length > 0) {
@@ -211,7 +254,7 @@ export const KakaoTourMap = ({
         map.setBounds(bounds, 60)
       }
     }
-  }, [geojson, fitToFeatures])
+  }, [geojson, fitToFeatures, mapLoaded])
 
   // Selected marker overlay (orange star pin). Uses lat/lng from the
   // selectedMarker prop directly — works even for places not present in
@@ -240,7 +283,7 @@ export const KakaoTourMap = ({
     })
     marker.setMap(map)
     selectedMarkerRef.current = marker
-  }, [selectedMarker])
+  }, [selectedMarker, mapLoaded])
 
   return <div ref={containerRef} className={className} />
 }

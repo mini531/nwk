@@ -1,0 +1,4101 @@
+{
+  "source": "Curated seed for Bucheon specialization (2026 관광데이터 활용 공모전)",
+  "updatedAt": "2026-04-21T11:30:00.000Z",
+  "courses": [
+    {
+      "id": "bucheon-kcomics-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kcomics", "kculture-day", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "2470347",
+      "budgetKrw": { "min": 50000, "max": 120000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-만화 당일: 부천에서 만나는 한국 만화 세계",
+          "subtitle": "만화박물관부터 둘리광장까지, 서브컬처 성지 투어",
+          "summary": "아시아 최대 한국만화박물관·아기공룡 둘리 상징 광장·부천 로컬 시장 점심·스타필드 시티 부천의 굿즈와 서점으로 마무리, 7호선 상동역 한 정거장으로 전부 도보권",
+          "highlights": [
+            "한국만화박물관 (아시아 최대 만화 전문관)",
+            "둘리광장 포토존",
+            "부천자유시장 현지 가격 미식",
+            "스타필드 K-굿즈·서점"
+          ]
+        },
+        "en": {
+          "title": "K-Manhwa Day: Korean Comics World in Bucheon",
+          "subtitle": "From the Manhwa Museum to Dooly Square — a subculture pilgrimage",
+          "summary": "Asia's largest Korea Manhwa Museum, the iconic Baby Dinosaur Dooly square, lunch at a Bucheon local market, and ending at Starfield City Bucheon for goods and books. All walkable from Sangdong Station on Line 7.",
+          "highlights": [
+            "Korea Manhwa Museum (Asia's largest)",
+            "Dooly Square photo zone",
+            "Bucheon Jayu Market — honest local pricing",
+            "Starfield — K-goods & bookstore"
+          ]
+        },
+        "ja": {
+          "title": "K-漫画日帰り：富川で出会う韓国漫画の世界",
+          "subtitle": "漫画博物館からドゥーリー広場まで、サブカルチャーの聖地巡礼",
+          "summary": "アジア最大の韓国漫画博物館、アグコンリョン・ドゥーリーのシンボル広場、富川のローカル市場で昼食、そしてスターフィールドシティ富川でグッズ・書店巡りで締めくくり。7号線上洞駅から全て徒歩圏。",
+          "highlights": [
+            "韓国漫画博物館（アジア最大）",
+            "ドゥーリー広場フォトスポット",
+            "富川自由市場の現地価格グルメ",
+            "スターフィールドのKグッズ・書店"
+          ]
+        },
+        "zh": {
+          "title": "K-漫画一日游：在富川邂逅韩国漫画世界",
+          "subtitle": "从漫画博物馆到杜利广场——次文化圣地巡礼",
+          "summary": "亚洲最大的韩国漫画博物馆、小恐龙杜利象征广场、在富川本地市场用午餐,以Starfield富川的周边商品和书店收尾。7号线上洞站周边全部步行可达。",
+          "highlights": [
+            "韩国漫画博物馆（亚洲最大）",
+            "杜利广场拍照点",
+            "富川自由市场地道本地价格",
+            "Starfield K潮品与书店"
+          ]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": {
+              "note": "상설 전시실·특별 기획전·만화 체험 구역, 웹툰 원화와 복고 만화 아카이브 필람"
+            },
+            "en": {
+              "note": "Permanent halls, special exhibitions, and an interactive zone. Don't miss the webtoon originals and retro manga archive."
+            },
+            "ja": {
+              "note": "常設展示・特別企画展・漫画体験ゾーン。ウェブトゥーン原画とレトロ漫画アーカイブは必見。"
+            },
+            "zh": { "note": "常设展厅·特别企划展·漫画体验区。网漫原画和复古漫画档案不容错过。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "아기공룡 둘리 동상과 캐릭터 포토존, 만화박물관 바로 옆 도보 3분" },
+            "en": {
+              "note": "Dooly statue and character photo zone. 3-minute walk from the museum."
+            },
+            "ja": {
+              "note": "アグコンリョン・ドゥーリー像とキャラクター撮影スポット。博物館から徒歩3分。"
+            },
+            "zh": { "note": "小恐龙杜利雕像和角色拍照区。距博物馆步行3分钟。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": {
+              "note": "김밥·만두·떡볶이 3종 세트로 전통 시장 점심 체험, 앱 '바가지 체크' 기능과 연동"
+            },
+            "en": {
+              "note": "Traditional market lunch — gimbap, mandu, tteokbokki trio at honest local prices. Paired with the app's Check feature."
+            },
+            "ja": {
+              "note": "伝統市場ランチ — キンパ・マンドゥ・トッポッキ3種セットで現地価格体験。「ぼったくりチェック」機能と連動。"
+            },
+            "zh": {
+              "note": "传统市场午餐 — 紫菜卷·饺子·辣炒年糕三件套,体验本地价格。与app\"宰客检测\"功能联动。"
+            }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "K-팝·만화 굿즈와 영풍문고·스타벅스 리저브, 면세 환급 카운터는 1층" },
+            "en": {
+              "note": "K-pop and manga goods, Youngpoong Books, Starbucks Reserve. Tax refund counter on floor 1."
+            },
+            "ja": {
+              "note": "K-POP・漫画グッズ、ヨンプン書店、スターバックスリザーブ。免税還付は1階。"
+            },
+            "zh": { "note": "K-pop与漫画周边、永丰书店、星巴克臻选。退税柜台在1楼。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-foodie-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["foodie", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "2781667",
+      "budgetKrw": { "min": 20000, "max": 50000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "부천 재래시장 미식 반나절",
+          "subtitle": "서울 가격 걱정 없이, 진짜 로컬 가격으로 먹는 한국",
+          "summary": "자유시장 만두·떡볶이·까치울음식테마마을 로컬 백반·제일시장과 한신시장 간식, 체크 기능으로 지불한 가격이 정상가인지 즉시 판정",
+          "highlights": ["재래시장 3곳 투어", "바가지 없는 현지가", "만원 이하 한 끼 가능"]
+        },
+        "en": {
+          "title": "Bucheon Traditional Market Food Tour (Half Day)",
+          "subtitle": "Real Korea at real local prices — no Seoul markup",
+          "summary": "Mandu and tteokbokki at Jayu Market, home-style lunch at Kkachiul Food Village, snacks at Jeil and Hanshin markets. Every bite cross-checked with the app's price verdict.",
+          "highlights": [
+            "Three traditional markets",
+            "Honest local prices",
+            "Full meals under ₩10,000"
+          ]
+        },
+        "ja": {
+          "title": "富川伝統市場グルメ半日",
+          "subtitle": "ソウル価格の心配なし、本当のローカル価格で食べる韓国",
+          "summary": "自由市場のマンドゥ・トッポッキ、カチウル飲食テーマ村のローカル定食、第一・ハンシン市場のおやつ。チェック機能で支払価格が適正か即判定。",
+          "highlights": ["伝統市場3か所", "ぼったくりなし現地価格", "1万ウォン以下で満腹"]
+        },
+        "zh": {
+          "title": "富川传统市场美食半日",
+          "subtitle": "无需担心首尔物价,按真实本地价格吃遍韩国",
+          "summary": "自由市场的饺子辣炒年糕、喜鹊屋美食主题村的家常饭、第一市场与汉新市场的小吃。\"检测\"功能即时判断支付价是否正常。",
+          "highlights": ["3个传统市场", "无宰客本地价", "一餐 1 万韩元以内"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "만두·떡볶이 간식으로 시작해 만원 이하 한 끼" },
+            "en": { "note": "Start light — mandu and tteokbokki under ₩10,000." },
+            "ja": { "note": "まずはマンドゥとトッポッキで軽く。1万ウォン以下。" },
+            "zh": { "note": "先轻食 — 饺子和辣炒年糕,1万韩元以下。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "한식 백반 정식으로 비빔밥·김치찌개·삼겹살 정상가 체험" },
+            "en": {
+              "note": "Traditional Korean set menu — bibimbap, kimchi jjigae, samgyeopsal at standard prices."
+            },
+            "ja": { "note": "韓定食。ビビンバ・キムチチゲ・サムギョプサルの適正価格。" },
+            "zh": { "note": "韩式定食。拌饭·泡菜锅·烤五花肉标准价。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 45,
+          "category": "shopping",
+          "tourApiContentId": "2742173",
+          "i18n": {
+            "ko": { "note": "떡·전·과일 등 후식과 장보기" },
+            "en": { "note": "Rice cakes, savory pancakes, fruits — dessert and groceries." },
+            "ja": { "note": "餅・チヂミ・果物などデザートと買い物。" },
+            "zh": { "note": "糕饼·煎饼·水果 — 甜品与日常采买。" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "2741607",
+          "i18n": {
+            "ko": { "note": "옛 골목 감성의 작은 시장에서 마무리 산책과 사진" },
+            "en": {
+              "note": "Narrow-alley market with an old-school vibe. Perfect for a closing stroll."
+            },
+            "ja": { "note": "路地裏の小さな市場。最後の散歩と撮影に。" },
+            "zh": { "note": "小巷氛围的小市场。适合收尾散步和拍照。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-kdrama-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kdrama", "nature"],
+      "duration": "day",
+      "heroContentId": "756618",
+      "budgetKrw": { "min": 30000, "max": 80000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-드라마 촬영지 당일 투어",
+          "subtitle": "드라마 속 풍경, 부천+광명에서 하루에",
+          "summary": "부천 중앙공원·상동호수공원의 벚꽃 산책로·부천식물원의 열대 온실·광명의 핫플 도덕산 출렁다리, 드라마 로케 감성과 인스타 스팟의 결합",
+          "highlights": ["벚꽃 산책 명소", "자주 등장하는 로케이션", "도덕산 출렁다리 (광명 1스톱)"]
+        },
+        "en": {
+          "title": "K-Drama Location Day Tour",
+          "subtitle": "Drama scenery across Bucheon + Gwangmyeong in one day",
+          "summary": "Cherry blossom walks at Bucheon Central Park and Sangdong Lake Park, the tropical greenhouse at Bucheon Botanical Garden, and Gwangmyeong's viral Dodeoksan Suspension Bridge. Drama vibes meet Instagram gold.",
+          "highlights": [
+            "Cherry blossom spots",
+            "Frequent drama locations",
+            "Dodeoksan Suspension Bridge (Gwangmyeong)"
+          ]
+        },
+        "ja": {
+          "title": "K-ドラマロケ地日帰りツアー",
+          "subtitle": "ドラマの風景を富川＋光明で一日に",
+          "summary": "富川中央公園・上洞湖水公園の桜並木、富川植物園の熱帯温室、そして光明の話題スポット道徳山吊り橋。ドラマ感とインスタ映えの融合。",
+          "highlights": ["桜散策名所", "ドラマ頻出ロケ地", "道徳山吊り橋（光明1ストップ）"]
+        },
+        "zh": {
+          "title": "K-韩剧取景地一日游",
+          "subtitle": "韩剧风景,一日尽览富川+光明",
+          "summary": "富川中央公园·上洞湖水公园的樱花散步道、富川植物园热带温室,以及光明热门景点道德山吊桥。韩剧氛围与Ins打卡的完美结合。",
+          "highlights": ["樱花名所", "韩剧常见取景地", "道德山吊桥(光明1站)"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "벚꽃 시즌 필수 코스로 다른 계절에도 산책로 풍경 추천" },
+            "en": { "note": "A must during cherry blossom season; scenic trails year-round." },
+            "ja": { "note": "桜の季節は必訪。他の季節も散策路が美しい。" },
+            "zh": { "note": "樱花季必去。其他季节步道景色也很美。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "드라마 속 호숫가 장면 단골, 점심 테이크아웃 후 벤치에서 느긋하게" },
+            "en": {
+              "note": "A frequent drama lakeside scene. Grab takeout lunch and claim a bench."
+            },
+            "ja": { "note": "ドラマの湖畔シーン常連。テイクアウト昼食をベンチで。" },
+            "zh": { "note": "韩剧湖边场景常客。外带午餐坐长椅享用。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실과 분재원, 사진 스팟으로 추천" },
+            "en": { "note": "Tropical greenhouse and bonsai garden — very photogenic." },
+            "ja": { "note": "熱帯温室・盆栽園。撮影に最適。" },
+            "zh": { "note": "热带温室·盆景园。拍照极佳。" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 120,
+          "category": "attraction",
+          "tourApiContentId": "2994172",
+          "i18n": {
+            "ko": { "note": "광명시, 부천 중앙에서 택시·버스로 25분, 전망대와 출렁다리" },
+            "en": {
+              "note": "In Gwangmyeong — 25 minutes by taxi or bus from central Bucheon. Observation deck and suspension bridge."
+            },
+            "ja": { "note": "光明市 — 富川中心部からタクシー・バスで25分。展望台と吊り橋。" },
+            "zh": { "note": "光明市 — 从富川中心打车或坐公交25分钟。观景台与吊桥。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-family-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["family", "kculture-day"],
+      "duration": "day",
+      "heroContentId": "558819",
+      "budgetKrw": { "min": 80000, "max": 200000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 45 },
+      "i18n": {
+        "ko": {
+          "title": "부천 가족 놀이 종일",
+          "subtitle": "아이와 함께 부천만 돌아도 하루가 꽉",
+          "summary": "부천어린이천문대에서 천체 체험·스타필드에서 점심과 쇼핑·한국만화박물관 어린이 프로그램, 마지막은 대형 워터파크와 스파를 갖춘 웅진플레이도시",
+          "highlights": ["어린이천문대 천체 체험", "웅진플레이도시 워터파크", "스타필드 키즈존"]
+        },
+        "en": {
+          "title": "Family Full-Day in Bucheon",
+          "subtitle": "A day packed with kid-friendly stops — all within Bucheon",
+          "summary": "Astronomy at the Bucheon Children's Observatory, lunch and shopping at Starfield, kids programs at the Manhwa Museum, ending at the huge Woongjin Playcity water park and spa.",
+          "highlights": [
+            "Children's Observatory",
+            "Woongjin Playcity water park",
+            "Starfield kids zone"
+          ]
+        },
+        "ja": {
+          "title": "富川・家族で一日プレイ",
+          "subtitle": "子どもと富川だけでも一日十分",
+          "summary": "富川子ども天文台で天体体験、スターフィールドで昼食・買い物、韓国漫画博物館の子ども向けプログラム、最後は大型ウォーターパーク・スパのウンジンプレイシティ。",
+          "highlights": [
+            "子ども天文台の体験",
+            "ウンジンプレイシティ水遊び",
+            "スターフィールドのキッズゾーン"
+          ]
+        },
+        "zh": {
+          "title": "富川家庭欢乐一日",
+          "subtitle": "带孩子只逛富川也能满满一天",
+          "summary": "在富川儿童天文台体验天文,Starfield用餐购物,韩国漫画博物馆的儿童项目,最后到大型水上乐园·温泉熊津Playcity。",
+          "highlights": ["儿童天文台体验", "熊津Playcity水乐园", "Starfield儿童专区"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "3081528",
+          "i18n": {
+            "ko": { "note": "플라네타륨·망원경 체험으로 예약 권장" },
+            "en": { "note": "Planetarium and telescope sessions — reservations recommended." },
+            "ja": { "note": "プラネタリウム・望遠鏡体験。予約推奨。" },
+            "zh": { "note": "天文馆·望远镜体验。建议预约。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 120,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "푸드코트 점심, 아동 놀이존과 서점" },
+            "en": { "note": "Food court lunch; kids zone and bookstore." },
+            "ja": { "note": "フードコートで昼食。キッズゾーンと書店。" },
+            "zh": { "note": "美食广场用餐。儿童区与书店。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "어린이 만화 체험 구역과 단편 애니메이션 상영관" },
+            "en": { "note": "Kids' comic experience zone and short animation theater." },
+            "ja": { "note": "子ども向け漫画体験ゾーンと短編アニメ上映。" },
+            "zh": { "note": "儿童漫画体验区与短片动画放映厅。" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 180,
+          "category": "leisure",
+          "tourApiContentId": "558819",
+          "i18n": {
+            "ko": { "note": "대형 워터파크·스파·키즈풀, 수건·수영복 대여 가능" },
+            "en": {
+              "note": "Big water park, spa, and kids pool. Towels and swimsuits available for rent."
+            },
+            "ja": { "note": "大型ウォーターパーク・スパ・キッズプール。タオル・水着レンタル可。" },
+            "zh": { "note": "大型水乐园·温泉·儿童泳池。可租借毛巾与泳衣。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-nature-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["nature", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "2732695",
+      "budgetKrw": { "min": 5000, "max": 20000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천 자연·둘레길 반나절",
+          "subtitle": "도심 속 숲길, 환승 없이 산책하기",
+          "summary": "원미공원에서 출발해 부천문화둘레길 마을이음길을 따라 걷고, 상동호수공원에서 점심, 부천자연생태공원에서 습지 생태 관찰로 마무리",
+          "highlights": ["도심 숲길 산책", "호수공원 점심", "자연생태 관찰"]
+        },
+        "en": {
+          "title": "Bucheon Nature Trail Half-Day",
+          "subtitle": "A forest walk inside the city — zero transfers",
+          "summary": "Start at Wonmi Park, walk the Maul Ieum-gil culture trail, lunch at Sangdong Lake Park, close at Bucheon Nature Ecological Park observing wetlands.",
+          "highlights": ["Urban forest walk", "Lakeside lunch", "Wetland ecology"]
+        },
+        "ja": {
+          "title": "富川自然トゥルレキル半日",
+          "subtitle": "都心の森道、乗り換えなしの散歩",
+          "summary": "元美公園から出発、富川文化トゥルレキル・マウルイウムキルを歩き、上洞湖水公園で昼食、富川自然生態公園で湿地観察で締めくくり。",
+          "highlights": ["都心の森散策", "湖水公園ランチ", "湿地観察"]
+        },
+        "zh": {
+          "title": "富川自然环路半日",
+          "subtitle": "都市森林小径,无需换乘的散步",
+          "summary": "从元美公园出发,沿富川文化环路·村落相连之路漫步,在上洞湖水公园用午餐,最后在富川自然生态公园观察湿地。",
+          "highlights": ["都市林间散步", "湖畔用餐", "湿地生态观察"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "127943",
+          "i18n": {
+            "ko": { "note": "봄·가을 꽃이 아름다운 도심 공원" },
+            "en": { "note": "Urban park with lovely spring and autumn blooms." },
+            "ja": { "note": "春秋の花が美しい都心公園。" },
+            "zh": { "note": "春秋花景美丽的都市公园。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "leisure",
+          "tourApiContentId": "2732695",
+          "i18n": {
+            "ko": { "note": "마을·숲·하천을 잇는 평지 둘레길 (2.5km)" },
+            "en": { "note": "A flat trail linking villages, forest, and streams. 2.5 km." },
+            "ja": { "note": "村・森・川を結ぶ平地のトゥルレキル。2.5km。" },
+            "zh": { "note": "串联村落·森林·溪流的平地环路。2.5公里。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호수 주변 테이크아웃 점심, 벤치와 그늘 풍부" },
+            "en": { "note": "Lakeside takeout lunch — plenty of benches and shade." },
+            "ja": { "note": "湖周辺でテイクアウト昼食。ベンチと日陰が豊富。" },
+            "zh": { "note": "湖边外带午餐。长椅与阴凉处充足。" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "습지 관찰 데크와 탐방로, 생태학습관" },
+            "en": { "note": "Wetland observation decks, trails, and an ecology learning center." },
+            "ja": { "note": "湿地観察デッキ・遊歩道・生態学習館。" },
+            "zh": { "note": "湿地观察栈道·步道·生态教育馆。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-kculture-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kcomics", "kdrama", "foodie", "kculture-day"],
+      "duration": "1n2d",
+      "heroContentId": "3428354",
+      "budgetKrw": { "min": 180000, "max": 400000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-컬처 1박2일: 부천 깊이 보기",
+          "subtitle": "만화·문학·시장·자연을 하루에 다 못 보겠다면",
+          "summary": "• DAY1 — 만화박물관·둘리광장·자유시장·수주문학관·펄벅기념관으로 문학 서사와 중동 비즈니스 호텔 숙박\n• DAY2 — 중앙공원·상동호수공원·까치울 로컬 런치·광명 도덕산 출렁다리 포토로 마무리",
+          "highlights": ["만화+문학 이틀 코스", "중동 호텔 숙박", "광명 1스톱 포함 (90% 부천)"]
+        },
+        "en": {
+          "title": "K-Culture 2-Day: Deep Bucheon",
+          "subtitle": "When one day isn't enough for manhwa, literature, markets, and nature",
+          "summary": "Day 1 — Manhwa Museum, Dooly Square, Jayu Market, Suju Literary Hall, Pearl S. Buck Memorial; stay overnight in Jungdong hotel district. Day 2 — Central Park, Sangdong Lake Park, lunch at Kkachiul, and close with the Dodeoksan Suspension Bridge in Gwangmyeong.",
+          "highlights": [
+            "Manhwa + literature itinerary",
+            "Jungdong hotel district",
+            "90% Bucheon + 1 Gwangmyeong stop"
+          ]
+        },
+        "ja": {
+          "title": "K-カルチャー1泊2日：富川を深く",
+          "subtitle": "漫画・文学・市場・自然を1日では足りないなら",
+          "summary": "1日目 — 漫画博物館、ドゥーリー広場、自由市場、樹州文学館、パール・バック記念館で文学に触れ、中洞のビジネスホテルに宿泊。2日目 — 中央公園、上洞湖水公園、カチウルでローカルランチ、光明の道徳山吊り橋で締め。",
+          "highlights": ["漫画+文学の2日間", "中洞ホテル街宿泊", "光明1ストップ（90%富川）"]
+        },
+        "zh": {
+          "title": "K文化1夜2日：深度富川",
+          "subtitle": "若一天不够品味漫画·文学·市场·自然",
+          "summary": "DAY1 — 漫画博物馆·杜利广场·自由市场·树州文学馆·赛珍珠纪念馆,中洞商务酒店住宿。DAY2 — 中央公园·上洞湖水公园,喜鹊屋本地午餐,以光明道德山吊桥收尾。",
+          "highlights": ["漫画+文学双日", "中洞酒店住宿", "含光明1站(90%富川)"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "DAY1 첫 코스로 오전 10시 오픈 직후 추천" },
+            "en": { "note": "Day 1 start — arrive right at 10 AM opening." },
+            "ja": { "note": "1日目スタート。10時の開館直後がおすすめ。" },
+            "zh": { "note": "DAY1首站。推荐10点开馆后即刻入场。" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "만화박물관 바로 옆 간단 포토 스팟" },
+            "en": { "note": "Right next to the museum — quick photo stop." },
+            "ja": { "note": "博物館の隣 — さっと撮影。" },
+            "zh": { "note": "紧邻博物馆 — 快速拍照。" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "점심은 전통 시장 식사" },
+            "en": { "note": "Lunch at the traditional market." },
+            "ja": { "note": "昼食 — 伝統市場で。" },
+            "zh": { "note": "午餐 — 传统市场。" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "한국 근현대 시인 변영로(수주) 문학관" },
+            "en": { "note": "Memorial hall for modern Korean poet Byun Yeong-ro (Suju)." },
+            "ja": { "note": "韓国近現代詩人・卞榮魯（樹州）の文学館。" },
+            "zh": { "note": "韩国近现代诗人卞荣鲁(树州)文学馆。" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "노벨상 수상 작가 펄벅 여사가 한국 전쟁 고아를 돌본 공간" },
+            "en": {
+              "note": "Home where Nobel laureate Pearl S. Buck cared for Korean War orphans."
+            },
+            "ja": { "note": "ノーベル賞作家パール・バックが韓国戦争孤児を世話した家。" },
+            "zh": { "note": "诺贝尔奖作家赛珍珠照顾朝鲜战争孤儿的故居。" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동 일대" },
+              "en": {
+                "name": "Jungdong Hotel District",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si, Gyeonggi"
+              },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞一帯" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞一带" }
+            }
+          },
+          "i18n": {
+            "ko": {
+              "note": "신중동역 주변 비즈니스 호텔·레지던스 다수, 체크 기능에서 호텔 정상가 확인 가능"
+            },
+            "en": {
+              "note": "Business hotels and residences around Sinjungdong Station. Use the Check feature for standard prices."
+            },
+            "ja": {
+              "note": "新中洞駅周辺のビジネスホテル・レジデンス多数。チェック機能で適正料金を確認。"
+            },
+            "zh": { "note": "新中洞站周边商务酒店·公寓众多。使用检测功能查看标准价。" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "DAY2 시작으로 아침 산책 추천" },
+            "en": { "note": "Day 2 begins — morning walk." },
+            "ja": { "note": "2日目開始 — 朝の散歩。" },
+            "zh": { "note": "DAY2开始 — 晨间散步。" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호수 한 바퀴 산책" },
+            "en": { "note": "Quick loop around the lake." },
+            "ja": { "note": "湖を一周。" },
+            "zh": { "note": "绕湖一圈。" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "점심은 한식 정식, 체크 기능으로 가격 판정" },
+            "en": { "note": "Lunch — Korean set menu. Verify prices with the Check feature." },
+            "ja": { "note": "昼食 — 韓定食。チェック機能で価格判定。" },
+            "zh": { "note": "午餐 — 韩定食。用检测功能判定价格。" }
+          }
+        },
+        {
+          "order": 10,
+          "stayMinutes": 120,
+          "category": "attraction",
+          "tourApiContentId": "2994172",
+          "i18n": {
+            "ko": { "note": "광명 (인근 30%), 출렁다리와 전망대에서 사진으로 마무리" },
+            "en": {
+              "note": "Gwangmyeong (the nearby 30%). Suspension bridge, viewpoint, closing photos."
+            },
+            "ja": { "note": "光明（近隣30%）。吊り橋・展望台・撮影で締め。" },
+            "zh": { "note": "光明(邻近30%)。吊桥·观景台·收尾拍照。" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T11:30:00.000Z"
+    },
+    {
+      "id": "bucheon-kfilm-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kfilm", "kculture-day", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "2741593",
+      "budgetKrw": { "min": 40000, "max": 120000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-장르 영화의 성지, 부천 하루",
+          "subtitle": "만화 원작부터 BIFAN까지, 한국 장르 영화 한 바퀴",
+          "summary": "부천은 매년 여름 BIFAN(부천국제판타스틱영화제)이 열리는 장르 영화의 도시예요. 아시아 최대 한국만화박물관에서 만화 원작 영화 아카이브를 돌아보고 둘리광장에서 기념 사진, 로컬 시장 점심에 이어 스타필드 시티 부천 CGV에서 최신 한국 장르 영화 관람으로 마무리해요",
+          "highlights": [
+            "만화 원작 영화 아카이브",
+            "BIFAN 상영 거점과 CGV 관람",
+            "둘리광장·자유시장 로컬 감성"
+          ]
+        },
+        "en": {
+          "title": "Bucheon — Home of K-Genre Cinema",
+          "subtitle": "From manhwa originals to BIFAN, a one-day tour of Korean genre film",
+          "summary": "Bucheon hosts BIFAN, Korea's flagship fantastic film festival each summer. Dive into the Korea Manhwa Museum's archive of manhwa-to-film adaptations, snap photos at Dooly Square, lunch in a local market, and close the day watching a Korean genre film at Starfield City Bucheon's CGV.",
+          "highlights": [
+            "Manhwa-to-film archive",
+            "BIFAN hub and on-site CGV screening",
+            "Dooly Square plus Jayu Market local vibe"
+          ]
+        },
+        "ja": {
+          "title": "K-ジャンル映画の聖地、富川の一日",
+          "subtitle": "漫画原作からBIFANまで、韓国ジャンル映画を一日で",
+          "summary": "富川は毎年夏にBIFAN(富川国際ファンタスティック映画祭)が開かれるジャンル映画の街です。韓国漫画博物館で漫画原作映画のアーカイブを巡り、ドゥーリー広場で記念撮影、ローカル市場で昼食をとり、スターフィールドシティ富川のCGVで最新韓国ジャンル映画を観賞して締めくくります。",
+          "highlights": [
+            "漫画原作映画アーカイブ",
+            "BIFAN拠点とCGV鑑賞",
+            "ドゥーリー広場と自由市場のローカル感"
+          ]
+        },
+        "zh": {
+          "title": "K-类型电影圣地,富川一日游",
+          "subtitle": "从漫画原作到 BIFAN,一日畅游韩国类型电影",
+          "summary": "富川是每年夏天举办 BIFAN(富川国际奇幻电影节)的类型电影之城。在韩国漫画博物馆浏览漫画改编电影档案,在杜利广场拍照留念,于本地市场午餐,最后在富川 Starfield Starfield 的 CGV 观看最新韩国类型电影收尾。",
+          "highlights": ["漫画改编电影档案", "BIFAN 据点与 CGV 观影", "杜利广场与自由市场本地氛围"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "만화 원작 영화 아카이브와 애니메이션 상영관을 집중 관람" },
+            "en": { "note": "Focus on the manhwa-to-film archive and animation theatre" },
+            "ja": { "note": "漫画原作映画アーカイブとアニメ上映館を集中観覧" },
+            "zh": { "note": "重点参观漫画改编电影档案与动画放映厅" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "박물관 바로 옆 캐릭터 광장, 간단 포토 스팟" },
+            "en": { "note": "Character square right next door — quick photo stop" },
+            "ja": { "note": "博物館のすぐ隣、キャラクター広場で撮影" },
+            "zh": { "note": "紧邻博物馆的角色广场,简单拍照" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "전통 시장 점심, 만원 이하 한 끼" },
+            "en": { "note": "Traditional market lunch for under ₩10,000" },
+            "ja": { "note": "伝統市場でのランチ、1万ウォン以下" },
+            "zh": { "note": "传统市场午餐,1 万韩元以内" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "129857",
+          "i18n": {
+            "ko": { "note": "부천 지역 영화·공연 문화 허브, 상시 기획전 확인" },
+            "en": {
+              "note": "Local film and performance culture hub — check the rotating exhibits"
+            },
+            "ja": { "note": "富川地域の映画・公演文化ハブ、常設企画展も要確認" },
+            "zh": { "note": "富川地区电影·演出文化枢纽,关注常设企划展" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "CGV에서 최신 한국 장르 영화 1편 관람 후 저녁" },
+            "en": { "note": "Catch a Korean genre film at CGV, then dinner" },
+            "ja": { "note": "CGVで最新韓国ジャンル映画を1本鑑賞後、夕食" },
+            "zh": { "note": "在 CGV 观看一部最新韩国类型片后享用晚餐" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-kdrama-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kdrama", "nature", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "407030",
+      "budgetKrw": { "min": 10000, "max": 30000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "드라마 속 부천, 반나절 산책",
+          "subtitle": "한국 드라마 단골 로케이션만 골라 걷기",
+          "summary": "부천 중앙공원의 벚꽃 산책로·상동호수공원의 벤치·부천식물원의 열대 온실은 한국 드라마가 사랑하는 3대 로케이션이에요. 환승 없이 한 호선으로 반나절 만에 드라마 감성 포토를 완주해요",
+          "highlights": ["드라마 단골 로케 3곳", "벚꽃·호수·온실 포토존", "환승 없는 편한 동선"]
+        },
+        "en": {
+          "title": "Bucheon in K-Drama — Half-Day Stroll",
+          "subtitle": "Only the locations Korean dramas return to",
+          "summary": "Bucheon Central Park's cherry-blossom paths, Sangdong Lake Park's iconic benches, and Bucheon Botanical Garden's tropical greenhouse are three locations Korean dramas keep coming back to. Walk the full drama-style photo route in one subway line, no transfers.",
+          "highlights": [
+            "Three frequent drama locations",
+            "Blossoms, lakeside, greenhouse",
+            "No-transfer transit"
+          ]
+        },
+        "ja": {
+          "title": "ドラマの富川、半日散歩",
+          "subtitle": "韓国ドラマ常連ロケ地だけを厳選",
+          "summary": "富川中央公園の桜並木、上洞湖水公園のベンチ、富川植物園の熱帯温室は韓国ドラマが愛する3大ロケ地です。乗り換えなしで半日、ドラマ感の撮影スポットを巡ります。",
+          "highlights": [
+            "ドラマ頻出ロケ3か所",
+            "桜・湖畔・温室フォトスポット",
+            "乗り換えなしで快適"
+          ]
+        },
+        "zh": {
+          "title": "韩剧里的富川·半日漫步",
+          "subtitle": "只挑韩剧反复取景的地方",
+          "summary": "富川中央公园的樱花步道、上洞湖水公园的长椅、富川植物园的热带温室,是韩剧最爱的三大取景地。无需换乘,半天走完所有韩剧氛围打卡点。",
+          "highlights": ["韩剧常见三大取景地", "樱花·湖畔·温室拍照点", "无换乘舒适动线"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "벚꽃 시즌 필수, 드라마 감성 오프닝" },
+            "en": { "note": "A must in cherry-blossom season — a drama-style opening" },
+            "ja": { "note": "桜の季節は必訪、ドラマ感あふれるオープニング" },
+            "zh": { "note": "樱花季必去,韩剧风开场" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호숫가 벤치에서 드라마 포즈, 테이크아웃 커피 추천" },
+            "en": { "note": "Pose on a lakeside bench — takeaway coffee recommended" },
+            "ja": { "note": "湖畔のベンチでドラマポーズ、テイクアウトコーヒー推奨" },
+            "zh": { "note": "湖边长椅摆拍,推荐外带咖啡" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실과 분재원에서 마무리 포토" },
+            "en": { "note": "Close with photos in the tropical greenhouse and bonsai garden" },
+            "ja": { "note": "熱帯温室と盆栽園でフィナーレ撮影" },
+            "zh": { "note": "在热带温室与盆景园收尾拍照" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-foodie-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["foodie", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "611883",
+      "budgetKrw": { "min": 30000, "max": 70000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "부천 먹거리 풀코스, 시장 5곳 종일 투어",
+          "subtitle": "서울 가격 걱정 없이 먹어 보는 부천 로컬 미식",
+          "summary": "자유시장 아침 만두로 시작해 까치울음식테마마을에서 한식 백반, 제일시장·강남시장 디저트, 한신시장 저녁까지 부천 대표 재래시장 5곳을 도보와 버스로 연결해요. 체크 기능으로 모든 결제가 정상가인지 실시간 판정이 가능해요",
+          "highlights": [
+            "부천 재래시장 5곳 순회",
+            "정상가 LIVE 판정 연동",
+            "하루 5만원 안쪽으로 넉넉한 한 끼들"
+          ]
+        },
+        "en": {
+          "title": "Bucheon Market Feast — Five Markets in a Day",
+          "subtitle": "Local Korean eats, none of the Seoul markup",
+          "summary": "Start with morning mandu at Jayu Market, hit Kkachiul Food Village for a Korean set lunch, graze through Jeil and Gangnam markets for dessert, and close with dinner at Hanshin Market — five iconic traditional markets linked by walk and short bus. The Check feature verifies every purchase against Bucheon's public price data in real time.",
+          "highlights": [
+            "Five traditional Bucheon markets",
+            "LIVE price verdict on every meal",
+            "Five full meals under ₩50,000"
+          ]
+        },
+        "ja": {
+          "title": "富川食い倒れフルコース、市場5ヶ所終日ツアー",
+          "subtitle": "ソウル価格の心配なし、富川ローカルグルメ",
+          "summary": "自由市場の朝マンドゥから始まり、カチウル飲食テーマ村で韓定食、第一市場・江南市場でおやつ、ハンシン市場で夕食まで富川の代表伝統市場5ヶ所を徒歩とバスで巡ります。チェック機能ですべての支払いを富川公共データとリアルタイム比較できます。",
+          "highlights": ["富川伝統市場5ヶ所巡り", "LIVE価格判定連動", "1日5万ウォン以内で満腹5食"]
+        },
+        "zh": {
+          "title": "富川美食全日 · 五大市场巡礼",
+          "subtitle": "无需担心首尔物价,尽享富川本地美食",
+          "summary": "以自由市场的晨间饺子开启,在喜鹊屋美食主题村享用韩式定食,在第一市场与江南市场品尝小吃,最后在汉新市场吃晚餐 — 步行加短途公交串起富川五大传统市场。检测功能可根据富川公共数据对每笔消费进行实时判定。",
+          "highlights": ["富川五大传统市场", "LIVE 价格判定联动", "一日五餐不超过 5 万韩元"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "mandu",
+          "i18n": {
+            "ko": { "note": "아침은 따끈한 만두로 가볍게 시작" },
+            "en": { "note": "Start light with warm mandu" },
+            "ja": { "note": "朝は温かいマンドゥから軽やかに" },
+            "zh": { "note": "以热腾腾的饺子轻松开启早晨" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "한식 백반 점심, 비빔밥과 찌개 기본 세트" },
+            "en": { "note": "Korean set lunch — bibimbap with a stew" },
+            "ja": { "note": "韓定食ランチ、ビビンバとチゲの基本セット" },
+            "zh": { "note": "韩式定食午餐 — 拌饭搭配汤锅" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 45,
+          "category": "shopping",
+          "tourApiContentId": "2742173",
+          "i18n": {
+            "ko": { "note": "떡·전·과일 디저트, 테이크아웃 간식 챙기기" },
+            "en": { "note": "Rice cakes, jeon, fruit desserts — stock up snacks" },
+            "ja": { "note": "餅・チヂミ・果物のデザート、おやつを持ち歩き" },
+            "zh": { "note": "糕饼·煎饼·水果甜点,可外带作零食" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 45,
+          "category": "shopping",
+          "tourApiContentId": "2781673",
+          "i18n": {
+            "ko": { "note": "부천 로컬 강남시장, 반찬·꽈배기 맛보기" },
+            "en": { "note": "Bucheon's Gangnam Market — side dishes and twist donuts" },
+            "ja": { "note": "富川ローカルの江南市場、惣菜とツイストドーナツを試食" },
+            "zh": { "note": "富川本地江南市场,品尝小菜与麻花" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "2741607",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "옛 골목 감성의 한신시장, 김치찌개로 저녁 마무리" },
+            "en": { "note": "Old-alley Hanshin Market — wrap up with kimchi jjigae" },
+            "ja": { "note": "路地裏感のあるハンシン市場、キムチチゲで夕食を締め" },
+            "zh": { "note": "老街氛围的汉新市场,以泡菜锅收尾晚餐" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-family-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["family", "nature", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "3081528",
+      "budgetKrw": { "min": 20000, "max": 60000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "아이와 함께 반나절, 천문대에서 식물원까지",
+          "subtitle": "체험·산책·관찰을 짧은 동선에 담아요",
+          "summary": "부천어린이천문대에서 플라네타륨 체험으로 출발해 상동호수공원에서 테이크아웃 점심을 먹고 부천식물원의 열대 온실에서 마무리하는 가족 친화 반나절 코스예요. 아이 연령 상관없이 실내·야외가 균형 있게 배분돼 있어요",
+          "highlights": [
+            "어린이천문대 플라네타륨 체험",
+            "호수공원 소풍 점심",
+            "실내·야외 균형 코스"
+          ]
+        },
+        "en": {
+          "title": "Family Half-Day — Observatory to Botanical Garden",
+          "subtitle": "Hands-on, stroll, and observation in a short loop",
+          "summary": "Kick off at Bucheon Children's Observatory with a planetarium session, picnic by Sangdong Lake Park, and wind down inside the Bucheon Botanical Garden's tropical greenhouse. A balanced indoor-outdoor plan for kids of any age.",
+          "highlights": [
+            "Children's Observatory planetarium",
+            "Lakeside picnic lunch",
+            "Balanced indoor and outdoor"
+          ]
+        },
+        "ja": {
+          "title": "子どもと半日、天文台から植物園まで",
+          "subtitle": "体験・散歩・観察をコンパクトに",
+          "summary": "富川子ども天文台のプラネタリウム体験から出発、上洞湖水公園でテイクアウト昼食をとり、富川植物園の熱帯温室で締めくくる家族向け半日コースです。屋内と屋外がバランス良く配置されています。",
+          "highlights": [
+            "子ども天文台のプラネタリウム",
+            "湖畔ピクニックランチ",
+            "屋内・屋外のバランス"
+          ]
+        },
+        "zh": {
+          "title": "亲子半日 · 从天文台到植物园",
+          "subtitle": "体验·散步·观察,动线紧凑",
+          "summary": "以富川儿童天文台的天象节目开启,在上洞湖水公园享用外带午餐,最后到富川植物园的热带温室收尾,是适合各年龄段孩子的家庭半日路线。室内与户外安排均衡。",
+          "highlights": ["儿童天文台天象节目", "湖畔野餐午餐", "室内室外均衡"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "3081528",
+          "i18n": {
+            "ko": { "note": "플라네타륨·망원경 체험은 사전 예약 권장" },
+            "en": { "note": "Planetarium and telescope sessions — reservations recommended" },
+            "ja": { "note": "プラネタリウムと望遠鏡体験は事前予約推奨" },
+            "zh": { "note": "天文馆与望远镜体验建议提前预约" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호수 한 바퀴 산책 후 벤치에서 테이크아웃 점심" },
+            "en": { "note": "Loop the lake, then takeout lunch on a bench" },
+            "ja": { "note": "湖を一周後、ベンチでテイクアウトランチ" },
+            "zh": { "note": "绕湖一圈后在长椅上享用外带午餐" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실과 분재원에서 식물 관찰" },
+            "en": { "note": "Plant watching in the tropical greenhouse and bonsai garden" },
+            "ja": { "note": "熱帯温室と盆栽園で植物観察" },
+            "zh": { "note": "在热带温室与盆景园观察植物" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-nature-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["nature", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "2781609",
+      "budgetKrw": { "min": 10000, "max": 40000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "도심 속 숲 하루 — 부천 자연 풀코스",
+          "subtitle": "공원 → 둘레길 → 수목원 → 생태공원을 하루에",
+          "summary": "원미공원에서 시작해 부천문화둘레길 마을이음길을 걷고, 무릉도원수목원과 수주근린공원을 거쳐 부천자연생태공원에서 습지 생태 관찰로 하루를 마무리해요. 전 구간 평지, 유아 동반도 편해요",
+          "highlights": [
+            "도심 속 평지 둘레길 2.5km",
+            "수목원·생태공원 두 곳",
+            "유아 동반 가능한 평탄 코스"
+          ]
+        },
+        "en": {
+          "title": "Urban Forest Day — Bucheon's Natural Route",
+          "subtitle": "Park → trail → arboretum → ecological park, all in a day",
+          "summary": "Start at Wonmi Park, walk the Bucheon Culture Trail's Maul Ieum-gil, stop by Mureungdowon Arboretum and Suju Neighborhood Park, and close the day observing wetlands at Bucheon Nature Ecological Park. Every leg is flat — stroller-friendly.",
+          "highlights": [
+            "Flat 2.5 km urban trail",
+            "Arboretum plus ecological park",
+            "Stroller-friendly throughout"
+          ]
+        },
+        "ja": {
+          "title": "都心の森一日 — 富川自然フルコース",
+          "subtitle": "公園→トゥルレキル→樹木園→生態公園を1日で",
+          "summary": "元美公園から出発し、富川文化トゥルレキル・マウルイウムキルを歩き、武陵桃源樹木園と樹州近隣公園を経て、富川自然生態公園で湿地観察を楽しみます。全区間平地でベビーカーも快適。",
+          "highlights": [
+            "都心の平地トゥルレキル2.5km",
+            "樹木園と生態公園2ヶ所",
+            "ベビーカーでも安心"
+          ]
+        },
+        "zh": {
+          "title": "都市森林一日 · 富川自然全程",
+          "subtitle": "公园→环路→植物园→生态公园,一日走完",
+          "summary": "从元美公园出发,漫步富川文化环路·村落相连之路,途经武陵桃源植物园与树州近邻公园,最后在富川自然生态公园观察湿地。全程平地,婴儿车也无压力。",
+          "highlights": ["都市平地环路 2.5 公里", "植物园与生态公园两处", "全程婴儿车友好"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "127943",
+          "i18n": {
+            "ko": { "note": "봄·가을 꽃이 아름다운 도심 공원, 출발점" },
+            "en": { "note": "Urban park with spring and fall blooms — the starting point" },
+            "ja": { "note": "春秋の花が美しい都心公園、出発点" },
+            "zh": { "note": "春秋花景美丽的都市公园,出发点" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "leisure",
+          "tourApiContentId": "2732695",
+          "i18n": {
+            "ko": { "note": "마을·숲·하천을 잇는 평지 둘레길 2.5km" },
+            "en": { "note": "Flat 2.5 km trail linking village, forest, and stream" },
+            "ja": { "note": "村・森・川を結ぶ平地のトゥルレキル 2.5km" },
+            "zh": { "note": "串联村落·森林·溪流的平地环路 2.5 公里" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2781609",
+          "i18n": {
+            "ko": { "note": "산책길이 잘 정비된 소규모 수목원, 점심 휴식" },
+            "en": { "note": "Well-kept small arboretum — a good lunch break" },
+            "ja": { "note": "散策路が整った小さな樹木園、ランチ休憩に" },
+            "zh": { "note": "步道整洁的小型植物园,适合午休" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "동네 사람들의 아지트, 벤치·그늘 풍부" },
+            "en": { "note": "Local neighbourhood park — plenty of benches and shade" },
+            "ja": { "note": "地元の人のスポット、ベンチと日陰が豊富" },
+            "zh": { "note": "居民常去的公园,长椅与阴凉处充足" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "습지 관찰 데크와 탐방로, 하루 마무리" },
+            "en": { "note": "Wetland observation decks — your closing stop" },
+            "ja": { "note": "湿地観察デッキと遊歩道で一日を締めくくり" },
+            "zh": { "note": "湿地观察栈道与步道,一日收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-subculture-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kcomics", "kfilm", "kdrama", "kculture-day"],
+      "duration": "1n2d",
+      "heroContentId": "2676149",
+      "budgetKrw": { "min": 180000, "max": 350000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "서브컬처 1박 2일 — 만화·영화·문학을 한 호흡에",
+          "subtitle": "부천이 K-콘텐츠의 숨은 허브인 이유를 직접 확인해요",
+          "summary": "• DAY1 — 한국만화박물관에서 시작해 둘리광장·자유시장 점심·수주문학관·펄벅기념관으로 이어가며 부천의 K-콘텐츠 서사를 한 번에 체감\n• DAY2 — 중동 호텔에서 출발해 스타필드 CGV 장르 영화 한 편 관람 후 상동호수공원·까치울음식테마마을 점심으로 마무리",
+          "highlights": [
+            "만화·영화·문학 원스톱",
+            "중동 호텔 지구 숙박",
+            "스타필드 CGV 영화 관람 포함"
+          ]
+        },
+        "en": {
+          "title": "Subculture 2-Day — Comics, Cinema, Literature in One Breath",
+          "subtitle": "See firsthand why Bucheon is K-content's quiet hub",
+          "summary": "• Day 1 — Start at the Korea Manhwa Museum, flow through Dooly Square, a Jayu Market lunch, Suju Literary Hall, and the Pearl S. Buck Memorial — Bucheon's K-content story in one thread.\n• Day 2 — From a Jungdong hotel, catch a Korean genre film at Starfield CGV, then Sangdong Lake Park and Kkachiul Food Village for a closing lunch.",
+          "highlights": [
+            "Comics, cinema, literature in one trip",
+            "Overnight in Jungdong hotel district",
+            "CGV screening included"
+          ]
+        },
+        "ja": {
+          "title": "サブカル1泊2日 — 漫画・映画・文学を一気に",
+          "subtitle": "富川がK-コンテンツの隠れハブである理由を体感",
+          "summary": "• 1日目 — 韓国漫画博物館から始まり、ドゥーリー広場、自由市場のランチ、樹州文学館、パール・バック記念館へとつなぎ、富川のK-コンテンツ物語を一度に体感。\n• 2日目 — 中洞のホテルから出発し、スターフィールドCGVでジャンル映画を1本、その後上洞湖水公園とカチウル飲食テーマ村のランチで締めくくり。",
+          "highlights": ["漫画・映画・文学を一度に", "中洞ホテル街に宿泊", "CGV映画鑑賞込み"]
+        },
+        "zh": {
+          "title": "次文化两天一夜 — 漫画·电影·文学一气呵成",
+          "subtitle": "亲身感受富川为何是 K 内容的隐秘枢纽",
+          "summary": "• DAY1 — 从韩国漫画博物馆开始,经杜利广场·自由市场午餐·树州文学馆·赛珍珠纪念馆,一次感受富川 K 内容故事。\n• DAY2 — 从中洞酒店出发,在 Starfield CGV 看一部韩国类型片,随后在上洞湖水公园与喜鹊屋美食主题村用午餐收尾。",
+          "highlights": ["漫画·电影·文学一次打卡", "中洞酒店街住宿", "含 CGV 观影"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "DAY1 첫 코스로 오전 10시 오픈 직후 추천" },
+            "en": { "note": "Day 1 opener — arrive right at 10 AM" },
+            "ja": { "note": "1日目スタート、10時の開館直後がおすすめ" },
+            "zh": { "note": "DAY1 首站,推荐 10 点开馆即到" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "박물관 바로 옆 간단 포토 스팟" },
+            "en": { "note": "Quick photo stop next to the museum" },
+            "ja": { "note": "博物館のすぐ隣、撮影スポット" },
+            "zh": { "note": "紧邻博物馆的拍照点" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "점심은 전통 시장 식사" },
+            "en": { "note": "Lunch at the traditional market" },
+            "ja": { "note": "昼食は伝統市場で" },
+            "zh": { "note": "午餐在传统市场" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "한국 근현대 시인 변영로(수주) 문학관" },
+            "en": { "note": "Memorial for modern Korean poet Byun Yeong-ro (Suju)" },
+            "ja": { "note": "韓国近現代詩人・卞榮魯(樹州)の文学館" },
+            "zh": { "note": "韩国近现代诗人卞荣鲁(树州)文学馆" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "노벨상 수상 작가 펄벅 여사가 한국 전쟁 고아를 돌본 공간" },
+            "en": { "note": "Nobel laureate Pearl S. Buck's Korean War orphan-care site" },
+            "ja": { "note": "ノーベル賞作家パール・バックが韓国戦争孤児を世話した場所" },
+            "zh": { "note": "诺贝尔奖作家赛珍珠照顾朝鲜战争孤儿的故居" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동 일대" },
+              "en": {
+                "name": "Jungdong Hotel District",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si, Gyeonggi"
+              },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞一帯" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞一带" }
+            }
+          },
+          "i18n": {
+            "ko": {
+              "note": "신중동역 주변 비즈니스 호텔과 레지던스 다수, 체크 기능에서 호텔 정상가 확인 가능"
+            },
+            "en": {
+              "note": "Business hotels around Sinjungdong Station — use Check for standard rates"
+            },
+            "ja": { "note": "新中洞駅周辺のビジネスホテル多数、チェック機能で適正料金確認" },
+            "zh": { "note": "新中洞站周边商务酒店众多,可用检测功能查看标准价" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "DAY2 시작으로 스타필드 CGV에서 최신 한국 장르 영화 1편" },
+            "en": { "note": "Day 2 kicks off with a Korean genre film at Starfield CGV" },
+            "ja": { "note": "2日目はスターフィールドCGVで韓国ジャンル映画を1本" },
+            "zh": { "note": "DAY2 以 Starfield CGV 观看一部韩国类型片开启" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호수 한 바퀴 산책" },
+            "en": { "note": "A loop around the lake" },
+            "ja": { "note": "湖を一周" },
+            "zh": { "note": "绕湖一圈" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "점심은 한식 정식, 체크 기능으로 가격 판정" },
+            "en": { "note": "Korean set lunch — Check the price verdict" },
+            "ja": { "note": "昼食は韓定食、チェック機能で価格判定" },
+            "zh": { "note": "韩式定食午餐,用检测功能判定价格" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-family-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["family", "nature", "kculture-day"],
+      "duration": "1n2d",
+      "heroContentId": "128156",
+      "budgetKrw": { "min": 200000, "max": 450000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 45 },
+      "i18n": {
+        "ko": {
+          "title": "가족 1박 2일 — 부천에서 김포까지 놀이 풀코스",
+          "subtitle": "워터파크·만화·공원·패밀리파크 쉴 틈 없는 이틀",
+          "summary": "• DAY1 — 부천어린이천문대 체험 후 스타필드 점심, 한국만화박물관 어린이 프로그램, 웅진플레이도시 워터파크와 스파, 중동 호텔 숙박\n• DAY2 — 상동호수공원 산책 후 김포 태산패밀리파크에서 놀이기구와 동물 체험, 부천 귀환",
+          "highlights": [
+            "부천 어린이 체험 3곳",
+            "웅진플레이도시 워터파크",
+            "김포 태산패밀리파크 (인근 30%)"
+          ]
+        },
+        "en": {
+          "title": "Family 2-Day — Bucheon to Gimpo Playground",
+          "subtitle": "Water park, manhwa, parks, family park — two packed days",
+          "summary": "• Day 1 — Bucheon Children's Observatory, lunch at Starfield, Manhwa Museum kids programs, Woongjin Playcity water park and spa, overnight in Jungdong.\n• Day 2 — Morning walk at Sangdong Lake Park, then Gimpo's Taesan Family Park for rides and animal encounters before heading back to Bucheon.",
+          "highlights": [
+            "Three Bucheon kids venues",
+            "Woongjin Playcity water park",
+            "Gimpo's Taesan Family Park (nearby 30%)"
+          ]
+        },
+        "ja": {
+          "title": "家族1泊2日 — 富川から金浦までプレイフルコース",
+          "subtitle": "ウォーターパーク・漫画・公園・ファミリーパークを2日で",
+          "summary": "• 1日目 — 富川子ども天文台で体験後、スターフィールドでランチ、韓国漫画博物館の子ども向けプログラム、ウンジンプレイシティのウォーターパーク・スパ、中洞で宿泊。\n• 2日目 — 上洞湖水公園を散歩後、金浦のテサンファミリーパークで乗り物と動物体験、富川へ戻ります。",
+          "highlights": [
+            "富川の子ども向け3スポット",
+            "ウンジンプレイシティ水遊び",
+            "金浦テサンファミリーパーク(近隣30%)"
+          ]
+        },
+        "zh": {
+          "title": "家庭两天一夜 · 富川到金浦的游乐全程",
+          "subtitle": "水乐园·漫画·公园·家庭乐园,两天不停歇",
+          "summary": "• DAY1 — 富川儿童天文台体验后,Starfield 用餐,韩国漫画博物馆儿童项目,熊津 Playcity 水乐园与温泉,中洞酒店住宿。\n• DAY2 — 上洞湖水公园晨间散步,随后前往金浦泰山家庭乐园体验游乐设施与动物互动,返回富川。",
+          "highlights": ["富川儿童景点三处", "熊津 Playcity 水乐园", "金浦泰山家庭乐园(邻近 30%)"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "3081528",
+          "i18n": {
+            "ko": { "note": "플라네타륨·망원경 체험은 사전 예약 권장" },
+            "en": { "note": "Planetarium and telescope — reservations recommended" },
+            "ja": { "note": "プラネタリウム・望遠鏡、予約推奨" },
+            "zh": { "note": "天文馆·望远镜建议提前预约" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "푸드코트 점심 후 아동 놀이존과 서점 둘러보기" },
+            "en": { "note": "Food court lunch, kids zone and bookstore" },
+            "ja": { "note": "フードコートで昼食、キッズゾーンと書店" },
+            "zh": { "note": "美食广场午餐,儿童区与书店" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "어린이 만화 체험 구역과 단편 애니메이션 상영관" },
+            "en": { "note": "Kids' comic zone and short animation theatre" },
+            "ja": { "note": "子ども向け漫画体験ゾーンと短編アニメ上映" },
+            "zh": { "note": "儿童漫画体验区与短片动画放映厅" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 210,
+          "category": "leisure",
+          "tourApiContentId": "558819",
+          "i18n": {
+            "ko": { "note": "대형 워터파크와 스파, 키즈풀도 별도 구비" },
+            "en": { "note": "Big water park and spa with a separate kids pool" },
+            "ja": { "note": "大型ウォーターパークとスパ、キッズプール完備" },
+            "zh": { "note": "大型水乐园与温泉,另设儿童泳池" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동 일대" },
+              "en": {
+                "name": "Jungdong Hotel District",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si, Gyeonggi"
+              },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞一帯" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞一带" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "가족실이 있는 비즈니스 호텔 선호, 아침 조식 포함 옵션 권장" },
+            "en": {
+              "note": "Pick a business hotel with family rooms — breakfast-included is a plus"
+            },
+            "ja": { "note": "ファミリールームのあるビジネスホテルがおすすめ、朝食付きプランを" },
+            "zh": { "note": "推荐有家庭房的商务酒店,含早餐更好" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "DAY2 시작으로 아침 산책 추천" },
+            "en": { "note": "Day 2 opener — a morning walk" },
+            "ja": { "note": "2日目は朝の散歩から" },
+            "zh": { "note": "DAY2 以晨间散步开启" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 240,
+          "category": "attraction",
+          "tourApiContentId": "128156",
+          "i18n": {
+            "ko": { "note": "김포 (인근 30%), 놀이기구와 동물 체험으로 마무리" },
+            "en": { "note": "Gimpo (nearby 30%) — rides and animal encounters to wrap up" },
+            "ja": { "note": "金浦(近隣30%)、乗り物と動物体験で締め" },
+            "zh": { "note": "金浦(邻近 30%),以游乐设施与动物互动收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-immersive-2n3d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kculture-day", "kcomics", "kdrama", "foodie", "nature"],
+      "duration": "2n3d",
+      "heroContentId": "126704",
+      "budgetKrw": { "min": 350000, "max": 650000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천 몰입 2박 3일 — K-콘텐츠와 자연을 제대로",
+          "subtitle": "시장 미식부터 드라마 로케·숲길까지 알찬 사흘",
+          "summary": "• DAY1 — 만화박물관·둘리광장·자유시장 점심·수주문학관·펄벅기념관으로 K-콘텐츠 축을 따라 이동, 중동 호텔 숙박\n• DAY2 — 중앙공원과 상동호수공원 드라마 감성, 부천식물원 열대 온실, 까치울 점심, 원미공원 벚꽃 산책으로 자연 축에 몰입\n• DAY3 — 부천자연생태공원 습지·무릉도원수목원·스타필드 시티 부천에서 K-굿즈 쇼핑으로 마무리",
+          "highlights": ["만화·문학·영화 3대 축", "드라마 로케 4곳", "시장 3곳 미식 투어"]
+        },
+        "en": {
+          "title": "Deep Bucheon 3-Day — K-Content Meets Nature",
+          "subtitle": "Markets, drama sets, forest paths — a proper three days",
+          "summary": "• Day 1 — Manhwa Museum, Dooly Square, Jayu Market lunch, Suju Literary Hall, Pearl S. Buck Memorial — the K-content axis, overnight in Jungdong.\n• Day 2 — Central Park and Sangdong Lake Park drama spots, the tropical greenhouse at Bucheon Botanical Garden, Kkachiul lunch, and cherry-blossom walk at Wonmi Park.\n• Day 3 — Wetlands at Bucheon Nature Ecological Park, Mureungdowon Arboretum, and K-goods shopping at Starfield City Bucheon to close.",
+          "highlights": [
+            "Manhwa, literature, cinema trio",
+            "Four drama locations",
+            "Three traditional markets"
+          ]
+        },
+        "ja": {
+          "title": "富川没入2泊3日 — K-コンテンツと自然を存分に",
+          "subtitle": "市場グルメからドラマロケ・森道まで充実の3日",
+          "summary": "• 1日目 — 漫画博物館、ドゥーリー広場、自由市場のランチ、樹州文学館、パール・バック記念館でK-コンテンツ軸を辿り、中洞で宿泊。\n• 2日目 — 中央公園と上洞湖水公園のドラマ感、富川植物園の熱帯温室、カチウルでランチ、元美公園の桜並木で自然軸に没入。\n• 3日目 — 富川自然生態公園の湿地、武陵桃源樹木園、スターフィールドシティ富川でK-グッズショッピングで締めくくり。",
+          "highlights": ["漫画・文学・映画の3軸", "ドラマロケ4ヶ所", "市場3ヶ所グルメツアー"]
+        },
+        "zh": {
+          "title": "富川沉浸三天两夜 · 畅享 K 内容与自然",
+          "subtitle": "从市场美食到韩剧取景·森林小径的充实三天",
+          "summary": "• DAY1 — 漫画博物馆·杜利广场·自由市场午餐·树州文学馆·赛珍珠纪念馆,沿 K 内容轴移动,中洞酒店住宿。\n• DAY2 — 中央公园与上洞湖水公园的韩剧氛围、富川植物园热带温室、喜鹊屋午餐、元美公园樱花漫步,深入自然轴。\n• DAY3 — 富川自然生态公园湿地、武陵桃源植物园、富川 Starfield 的 K 周边购物收尾。",
+          "highlights": ["漫画·文学·电影三轴", "韩剧取景四处", "三大传统市场美食"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "DAY1 첫 코스로 오전 10시 오픈 직후 추천" },
+            "en": { "note": "Day 1 opener — arrive right at 10 AM" },
+            "ja": { "note": "1日目スタート、10時の開館直後が推奨" },
+            "zh": { "note": "DAY1 首站,推荐 10 点开馆即到" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "만화박물관 바로 옆 간단 포토 스팟" },
+            "en": { "note": "Quick photo stop next door" },
+            "ja": { "note": "博物館のすぐ隣の撮影スポット" },
+            "zh": { "note": "紧邻博物馆的拍照点" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "점심은 전통 시장 식사로 가볍게" },
+            "en": { "note": "Keep lunch light in the traditional market" },
+            "ja": { "note": "昼食は伝統市場で軽めに" },
+            "zh": { "note": "午餐在传统市场轻食" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "한국 근현대 시인 변영로(수주) 문학관" },
+            "en": { "note": "Memorial for Byun Yeong-ro (Suju)" },
+            "ja": { "note": "卞榮魯(樹州)文学館" },
+            "zh": { "note": "卞荣鲁(树州)文学馆" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "펄벅 여사의 한국 전쟁 고아 돌봄 공간" },
+            "en": { "note": "Pearl S. Buck's orphan-care site" },
+            "ja": { "note": "パール・バックの韓国戦争孤児ケアの場" },
+            "zh": { "note": "赛珍珠照顾朝鲜战争孤儿的场所" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (1박)", "addr": "경기도 부천시 원미구 중동 일대" },
+              "en": {
+                "name": "Jungdong Hotel District (night 1)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(1泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第一晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "신중동역 주변 비즈니스 호텔 다수" },
+            "en": { "note": "Plenty of business hotels near Sinjungdong Station" },
+            "ja": { "note": "新中洞駅周辺のビジネスホテル多数" },
+            "zh": { "note": "新中洞站周边商务酒店众多" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "DAY2 시작으로 벚꽃 산책로" },
+            "en": { "note": "Day 2 opener — cherry-blossom walk" },
+            "ja": { "note": "2日目は桜並木から" },
+            "zh": { "note": "DAY2 从樱花步道开启" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호숫가 벤치에서 간단 브런치" },
+            "en": { "note": "Light brunch on a lakeside bench" },
+            "ja": { "note": "湖畔のベンチで軽めのブランチ" },
+            "zh": { "note": "湖边长椅享用轻食早午餐" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실과 분재원 포토" },
+            "en": { "note": "Photos in the tropical greenhouse and bonsai garden" },
+            "ja": { "note": "熱帯温室と盆栽園で撮影" },
+            "zh": { "note": "在热带温室与盆景园拍照" }
+          }
+        },
+        {
+          "order": 10,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "한식 정식 점심, 체크 기능으로 가격 판정" },
+            "en": { "note": "Korean set lunch — run Check for a price verdict" },
+            "ja": { "note": "韓定食ランチ、チェック機能で価格判定" },
+            "zh": { "note": "韩式定食午餐,用检测功能判定价格" }
+          }
+        },
+        {
+          "order": 11,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "127943",
+          "i18n": {
+            "ko": { "note": "봄·가을 꽃이 아름다운 도심 공원" },
+            "en": { "note": "Urban park with spring and fall blooms" },
+            "ja": { "note": "春秋の花が美しい都心公園" },
+            "zh": { "note": "春秋花景美丽的都市公园" }
+          }
+        },
+        {
+          "order": 12,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (2박)", "addr": "경기도 부천시 원미구 중동 일대" },
+              "en": {
+                "name": "Jungdong Hotel District (night 2)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(2泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第二晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "전날과 같은 호텔에 연박하면 짐 이동이 편해요" },
+            "en": { "note": "Staying two nights at the same hotel saves a move" },
+            "ja": { "note": "同じホテルで連泊すると荷物移動が楽" },
+            "zh": { "note": "同一酒店连住两晚,免去搬运行李" }
+          }
+        },
+        {
+          "order": 13,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "DAY3 시작으로 습지 관찰 산책" },
+            "en": { "note": "Day 3 opener — wetland observation walk" },
+            "ja": { "note": "3日目は湿地観察散歩から" },
+            "zh": { "note": "DAY3 从湿地观察散步开启" }
+          }
+        },
+        {
+          "order": 14,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "2781609",
+          "i18n": {
+            "ko": { "note": "소규모 수목원에서 점심 전 쉼" },
+            "en": { "note": "A small arboretum — quiet break before lunch" },
+            "ja": { "note": "小さな樹木園でランチ前の休憩" },
+            "zh": { "note": "小型植物园,午餐前的静谧休息" }
+          }
+        },
+        {
+          "order": 15,
+          "stayMinutes": 150,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "마지막은 K-굿즈와 기념품 쇼핑, 면세 환급 카운터는 1층" },
+            "en": { "note": "Close with K-goods and souvenirs — tax refund counter on floor 1" },
+            "ja": { "note": "最後はKグッズとお土産ショッピング、免税還付は1階" },
+            "zh": { "note": "最后享受 K 周边与纪念品购物,退税柜台在一楼" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-romance-2n3d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kdrama", "nature", "foodie"],
+      "duration": "2n3d",
+      "heroContentId": "2994172",
+      "budgetKrw": { "min": 300000, "max": 600000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천·광명 로맨스 2박 3일",
+          "subtitle": "벚꽃·호수·출렁다리, 드라마 커플 코스",
+          "summary": "• DAY1 — 부천 상동호수공원 벚꽃 산책·부천식물원 온실·자유시장 저녁, 중동 호텔 숙박\n• DAY2 — 원미공원 아침 산책·광명 도덕산 출렁다리에서 낮 시간 전망, 광명 밤일마을 음식문화거리 저녁\n• DAY3 — 수주근린공원과 부천문화둘레길 마을이음길 걷기·중앙공원 마지막 포토로 마무리",
+          "highlights": [
+            "벚꽃·호수·출렁다리 3대 감성",
+            "광명 현지 미식 (인근 30%)",
+            "커플 포토 스팟 6곳"
+          ]
+        },
+        "en": {
+          "title": "Bucheon & Gwangmyeong Romance 3-Day",
+          "subtitle": "Cherry blossoms, lake, suspension bridge — a couple's course",
+          "summary": "• Day 1 — Cherry-blossom walk at Sangdong Lake Park, Bucheon Botanical Garden greenhouse, dinner at Jayu Market, overnight in Jungdong.\n• Day 2 — Morning at Wonmi Park, daytime views at Gwangmyeong's Dodeoksan Suspension Bridge, dinner at Gwangmyeong's Bamil Food Street.\n• Day 3 — Walk Suju Neighborhood Park and the Bucheon Culture Trail's Maul Ieum-gil, close with Central Park photos.",
+          "highlights": [
+            "Blossoms, lake, suspension bridge",
+            "Gwangmyeong local eats (nearby 30%)",
+            "Six couple photo spots"
+          ]
+        },
+        "ja": {
+          "title": "富川・光明ロマンス2泊3日",
+          "subtitle": "桜・湖・吊り橋、カップルコース",
+          "summary": "• 1日目 — 上洞湖水公園の桜散歩、富川植物園の温室、自由市場で夕食、中洞で宿泊。\n• 2日目 — 元美公園を朝散歩後、光明道徳山吊り橋で昼の展望、光明バムイル飲食文化通りで夕食。\n• 3日目 — 樹州近隣公園と富川文化トゥルレキル・マウルイウムキルを歩き、中央公園で最後の撮影。",
+          "highlights": [
+            "桜・湖・吊り橋の3大感性",
+            "光明ローカルグルメ(近隣30%)",
+            "カップル撮影スポット6ヶ所"
+          ]
+        },
+        "zh": {
+          "title": "富川·光明浪漫三天两夜",
+          "subtitle": "樱花·湖泊·吊桥,情侣路线",
+          "summary": "• DAY1 — 上洞湖水公园樱花散步·富川植物园温室·自由市场晚餐,中洞酒店住宿。\n• DAY2 — 元美公园晨间散步,光明道德山吊桥白天赏景,光明栗日美食文化街晚餐。\n• DAY3 — 漫步树州近邻公园与富川文化环路·村落相连之路,以中央公园最后拍照收尾。",
+          "highlights": ["樱花·湖泊·吊桥三大氛围", "光明本地美食(邻近 30%)", "情侣拍照点 6 处"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "드라마 속 호숫가 장면 단골 스팟" },
+            "en": { "note": "A frequent drama lakeside scene" },
+            "ja": { "note": "ドラマ定番の湖畔シーン" },
+            "zh": { "note": "韩剧湖畔场景常客" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실·분재원, 사진 스팟으로 추천" },
+            "en": { "note": "Tropical greenhouse and bonsai garden — photo-worthy" },
+            "ja": { "note": "熱帯温室・盆栽園、撮影に最適" },
+            "zh": { "note": "热带温室·盆景园,拍照点推荐" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "자유시장 저녁, 전통 시장 감성 커플 디너" },
+            "en": { "note": "Dinner at Jayu Market — traditional couple vibe" },
+            "ja": { "note": "自由市場で夕食、伝統市場のカップルディナー" },
+            "zh": { "note": "自由市场晚餐,传统市场的情侣氛围" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (1박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 1)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(1泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第一晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "커플룸 옵션이 있는 부티크 호텔 추천" },
+            "en": { "note": "Look for boutique hotels with couple rooms" },
+            "ja": { "note": "カップルルームのあるブティックホテルがおすすめ" },
+            "zh": { "note": "推荐有情侣房的精品酒店" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "127943",
+          "i18n": {
+            "ko": { "note": "DAY2 아침 산책으로 가볍게" },
+            "en": { "note": "Easy morning walk to open Day 2" },
+            "ja": { "note": "2日目の朝散歩に" },
+            "zh": { "note": "DAY2 以晨间散步轻松开启" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 150,
+          "category": "attraction",
+          "tourApiContentId": "2994172",
+          "i18n": {
+            "ko": { "note": "광명 (인근 30%), 출렁다리와 전망대에서 낮 사진" },
+            "en": { "note": "Gwangmyeong (nearby 30%) — daylight photos on the bridge" },
+            "ja": { "note": "光明(近隣30%)、吊り橋と展望台で昼の撮影" },
+            "zh": { "note": "光明(邻近 30%),吊桥与观景台白天拍照" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 120,
+          "category": "food",
+          "tourApiContentId": "2733422",
+          "i18n": {
+            "ko": { "note": "광명 밤일마을 음식문화거리 저녁, 로컬 한정식 추천" },
+            "en": { "note": "Dinner at Gwangmyeong's Bamil Food Street — try a local Korean set" },
+            "ja": { "note": "光明バムイル飲食文化通りで夕食、ローカル韓定食推奨" },
+            "zh": { "note": "光明栗日美食文化街晚餐,推荐本地韩定食" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (2박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 2)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(2泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第二晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "같은 호텔 연박이면 짐 이동 없이 편해요" },
+            "en": { "note": "Two nights at the same hotel saves a move" },
+            "ja": { "note": "同じホテルで連泊すると楽" },
+            "zh": { "note": "同一酒店连住省去搬运" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "벤치와 그늘이 풍부한 동네 공원, 브런치 쉼터" },
+            "en": { "note": "Shady neighbourhood park — brunch-worthy benches" },
+            "ja": { "note": "ベンチと日陰が豊富な地元公園、ブランチ休憩" },
+            "zh": { "note": "长椅与阴凉充足的街区公园,早午餐歇脚" }
+          }
+        },
+        {
+          "order": 10,
+          "stayMinutes": 90,
+          "category": "leisure",
+          "tourApiContentId": "2732695",
+          "i18n": {
+            "ko": { "note": "평지 둘레길 2.5km, 드라마 감성 걷기" },
+            "en": { "note": "Flat 2.5 km trail — drama-style stroll" },
+            "ja": { "note": "平地のトゥルレキル2.5km、ドラマ感散歩" },
+            "zh": { "note": "平地环路 2.5 公里,韩剧氛围漫步" }
+          }
+        },
+        {
+          "order": 11,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "마지막은 중앙공원 벚꽃길, 커플 포토로 마무리" },
+            "en": { "note": "Close with cherry-blossom couple photos at Central Park" },
+            "ja": { "note": "最後は中央公園の桜道でカップル撮影" },
+            "zh": { "note": "以中央公园的樱花小径情侣合照收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-grand-3n4d",
+      "primaryRegion": "bucheon",
+      "styleTags": [
+        "kcomics",
+        "kfilm",
+        "kdrama",
+        "foodie",
+        "kculture-day",
+        "family",
+        "nature",
+        "transit-easy"
+      ],
+      "duration": "3n4d",
+      "heroContentId": "3453292",
+      "budgetKrw": { "min": 500000, "max": 950000 },
+      "transitHint": { "from": "incheon-airport", "mode": "airport_bus_or_train", "minutes": 60 },
+      "i18n": {
+        "ko": {
+          "title": "부천 3박 4일 — 모든 테마를 한 여행에",
+          "subtitle": "K-만화·영화·드라마·문학·미식·자연까지 총망라",
+          "summary": "• DAY1 K-만화·컬처 — 한국만화박물관·둘리광장·자유시장 점심·스타필드 CGV 영화 관람, 중동 호텔 숙박\n• DAY2 K-드라마·자연 — 중앙공원·상동호수공원·부천식물원·까치울 점심·원미공원 벚꽃, 숙박\n• DAY3 문학·시장 — 수주문학관·펄벅기념관·부천문화원·제일시장·한신시장·송내어울마당 공연, 숙박\n• DAY4 자연·인근 — 부천자연생태공원·광명 도덕산 출렁다리에서 마지막 사진",
+          "highlights": [
+            "8개 스타일 태그 전부 커버",
+            "호텔 3연박으로 짐 이동 최소",
+            "부천 10개 스톱 + 광명 1스톱 (91% 부천)"
+          ]
+        },
+        "en": {
+          "title": "Grand Bucheon 4-Day — Every Theme in One Trip",
+          "subtitle": "Manhwa, cinema, drama, literature, food, and nature covered",
+          "summary": "• Day 1 K-manhwa & culture — Manhwa Museum, Dooly Square, Jayu Market lunch, CGV at Starfield, overnight in Jungdong.\n• Day 2 K-drama & nature — Central Park, Sangdong Lake, Botanical Garden, Kkachiul lunch, Wonmi Park cherry-blossom walk.\n• Day 3 Literature & markets — Suju Literary Hall, Pearl S. Buck Memorial, Bucheon Cultural Center, Jeil and Hanshin Markets, Songnae Eoullim Madang performance.\n• Day 4 Nature & beyond — Bucheon Nature Ecological Park, closing photos at Gwangmyeong's Dodeoksan Suspension Bridge.",
+          "highlights": [
+            "Every one of the 8 style tags",
+            "Three-night single hotel, minimal luggage moves",
+            "10 Bucheon stops + 1 Gwangmyeong (91% Bucheon)"
+          ]
+        },
+        "ja": {
+          "title": "富川3泊4日 — すべてのテーマを一度に",
+          "subtitle": "漫画・映画・ドラマ・文学・グルメ・自然を全網羅",
+          "summary": "• 1日目 K-漫画・カルチャー — 韓国漫画博物館、ドゥーリー広場、自由市場ランチ、スターフィールドCGVで映画、中洞で宿泊。\n• 2日目 K-ドラマ・自然 — 中央公園、上洞湖水公園、富川植物園、カチウルランチ、元美公園の桜。\n• 3日目 文学・市場 — 樹州文学館、パール・バック記念館、富川文化院、第一市場・ハンシン市場、松内オウルリムマダンの公演。\n• 4日目 自然・近隣 — 富川自然生態公園、光明道徳山吊り橋で最後の撮影。",
+          "highlights": [
+            "8つのスタイルタグすべてカバー",
+            "3連泊で荷物移動最小",
+            "富川10ストップ+光明1(91%富川)"
+          ]
+        },
+        "zh": {
+          "title": "富川三夜四日 · 一次囊括所有主题",
+          "subtitle": "K-漫画·电影·剧集·文学·美食·自然全覆盖",
+          "summary": "• DAY1 K 漫画·文化 — 韩国漫画博物馆·杜利广场·自由市场午餐·Starfield CGV 观影,中洞酒店住宿。\n• DAY2 K 剧集·自然 — 中央公园·上洞湖水公园·富川植物园·喜鹊屋午餐·元美公园樱花漫步。\n• DAY3 文学·市场 — 树州文学馆·赛珍珠纪念馆·富川文化院·第一市场·汉新市场·松内文化广场演出。\n• DAY4 自然·邻近 — 富川自然生态公园·光明道德山吊桥最后拍照。",
+          "highlights": [
+            "覆盖 8 个风格标签",
+            "连住三晚,搬运最少",
+            "富川 10 站 + 光明 1 站(91% 富川)"
+          ]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "DAY1 첫 코스로 오전 10시 오픈 직후 추천" },
+            "en": { "note": "Day 1 opener at 10 AM" },
+            "ja": { "note": "1日目10時スタート推奨" },
+            "zh": { "note": "DAY1 推荐 10 点开馆即到" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 30,
+          "category": "attraction",
+          "tourApiContentId": "2741593",
+          "i18n": {
+            "ko": { "note": "만화박물관 바로 옆 포토 스팟" },
+            "en": { "note": "Quick photo next door" },
+            "ja": { "note": "博物館隣の撮影スポット" },
+            "zh": { "note": "紧邻博物馆的拍照点" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "전통 시장 점심" },
+            "en": { "note": "Traditional market lunch" },
+            "ja": { "note": "伝統市場ランチ" },
+            "zh": { "note": "传统市场午餐" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "스타필드 CGV 한국 장르 영화 한 편" },
+            "en": { "note": "A Korean genre film at Starfield CGV" },
+            "ja": { "note": "スターフィールドCGVで韓国ジャンル映画1本" },
+            "zh": { "note": "Starfield CGV 观看一部韩国类型片" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (1박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 1)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(1泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第一晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "3박 연박 권장, 짐 이동 없이 편해요" },
+            "en": { "note": "Book all three nights here — no luggage moves" },
+            "ja": { "note": "3連泊推奨、荷物移動なし" },
+            "zh": { "note": "建议连住三晚,免去搬运" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "126704",
+          "i18n": {
+            "ko": { "note": "DAY2 아침 벚꽃 산책" },
+            "en": { "note": "Day 2 morning cherry-blossom walk" },
+            "ja": { "note": "2日目朝の桜散歩" },
+            "zh": { "note": "DAY2 晨间樱花散步" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호수 한 바퀴" },
+            "en": { "note": "Loop the lake" },
+            "ja": { "note": "湖一周" },
+            "zh": { "note": "绕湖一圈" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실과 분재원" },
+            "en": { "note": "Tropical greenhouse and bonsai" },
+            "ja": { "note": "熱帯温室と盆栽" },
+            "zh": { "note": "热带温室与盆景" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "한식 정식 점심, 체크 기능으로 가격 판정" },
+            "en": { "note": "Korean set lunch — Check the price" },
+            "ja": { "note": "韓定食ランチ、チェック機能で判定" },
+            "zh": { "note": "韩式定食午餐,用检测功能判定" }
+          }
+        },
+        {
+          "order": 10,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "127943",
+          "i18n": {
+            "ko": { "note": "봄·가을 꽃이 아름다운 도심 공원" },
+            "en": { "note": "Urban park with spring and fall blooms" },
+            "ja": { "note": "春秋の花が美しい都心公園" },
+            "zh": { "note": "春秋花景美丽的都市公园" }
+          }
+        },
+        {
+          "order": 11,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "DAY3 시작으로 변영로(수주) 문학관" },
+            "en": { "note": "Day 3 opener — Byun Yeong-ro (Suju) literary hall" },
+            "ja": { "note": "3日目は樹州文学館から" },
+            "zh": { "note": "DAY3 从树州文学馆开启" }
+          }
+        },
+        {
+          "order": 12,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "펄벅 여사의 한국 전쟁 고아 돌봄 공간" },
+            "en": { "note": "Pearl S. Buck orphan-care site" },
+            "ja": { "note": "パール・バックの孤児ケアの場" },
+            "zh": { "note": "赛珍珠孤儿关怀之所" }
+          }
+        },
+        {
+          "order": 13,
+          "stayMinutes": 45,
+          "category": "culture",
+          "tourApiContentId": "129857",
+          "i18n": {
+            "ko": { "note": "부천 지역 문화 허브, 상시 기획전 확인" },
+            "en": { "note": "Bucheon's culture hub — check rotating exhibits" },
+            "ja": { "note": "富川文化ハブ、企画展確認" },
+            "zh": { "note": "富川文化枢纽,关注企划展" }
+          }
+        },
+        {
+          "order": 14,
+          "stayMinutes": 45,
+          "category": "shopping",
+          "tourApiContentId": "2742173",
+          "i18n": {
+            "ko": { "note": "떡·전·과일 간식으로 시장 투어 시작" },
+            "en": { "note": "Kick off market-hopping with rice cakes, jeon, fruit" },
+            "ja": { "note": "餅・チヂミ・果物で市場巡りスタート" },
+            "zh": { "note": "以糕饼·煎饼·水果开启市场巡游" }
+          }
+        },
+        {
+          "order": 15,
+          "stayMinutes": 45,
+          "category": "shopping",
+          "tourApiContentId": "2741607",
+          "i18n": {
+            "ko": { "note": "옛 골목 감성의 한신시장" },
+            "en": { "note": "Old-alley Hanshin Market" },
+            "ja": { "note": "路地感のあるハンシン市場" },
+            "zh": { "note": "老街氛围的汉新市场" }
+          }
+        },
+        {
+          "order": 16,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2734928",
+          "i18n": {
+            "ko": { "note": "저녁 공연·콘서트 일정 사전 확인" },
+            "en": { "note": "Check the evening performance schedule in advance" },
+            "ja": { "note": "夕方の公演・コンサート日程を事前確認" },
+            "zh": { "note": "提前查看晚间演出日程" }
+          }
+        },
+        {
+          "order": 17,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "DAY4 시작으로 습지 관찰 산책" },
+            "en": { "note": "Day 4 opener — wetland observation walk" },
+            "ja": { "note": "4日目は湿地散歩から" },
+            "zh": { "note": "DAY4 从湿地散步开启" }
+          }
+        },
+        {
+          "order": 18,
+          "stayMinutes": 120,
+          "category": "attraction",
+          "tourApiContentId": "2994172",
+          "i18n": {
+            "ko": { "note": "광명 (인근 30%), 출렁다리와 전망대에서 마지막 사진" },
+            "en": { "note": "Gwangmyeong (nearby 30%) — final suspension-bridge photos" },
+            "ja": { "note": "光明(近隣30%)、吊り橋で最後の撮影" },
+            "zh": { "note": "光明(邻近 30%),以吊桥最后拍照" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T15:00:00.000Z"
+    },
+    {
+      "id": "bucheon-kpop-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kpop", "kculture-day", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "2742173",
+      "budgetKrw": { "min": 60000, "max": 200000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-팝 팬을 위한 부천 하루",
+          "subtitle": "굿즈·포토카드·MV 감성 포토까지",
+          "summary": "스타필드 시티 부천의 K-pop 굿즈 코너와 영풍문고 K-pop 섹션에서 포토카드를 모으고, 한국만화박물관의 애니·아이돌 크로스오버 전시를 돌아봐요. 부천제일시장 로컬 점심 뒤 상동호수공원 MV 감성 포토와 까치울음식테마마을 저녁으로 마무리해요",
+          "highlights": [
+            "스타필드 K-pop 굿즈·포토카드",
+            "아이돌·애니 크로스오버 전시",
+            "상동호수공원 MV 감성 포토"
+          ]
+        },
+        "en": {
+          "title": "K-Pop Fan Day in Bucheon",
+          "subtitle": "Goods, photocards, and MV-style photo walks",
+          "summary": "Hunt photocards at Starfield City Bucheon's K-pop goods corner and the Youngpoong Books K-pop shelf, then catch the idol-and-anime crossover exhibits at the Korea Manhwa Museum. Lunch at Bucheon Jeil Market, MV-style photos at Sangdong Lake Park, and a Korean dinner at Kkachiul Food Village close the day.",
+          "highlights": [
+            "Starfield K-pop goods and photocards",
+            "Idol-anime crossover exhibit",
+            "MV-style shots at Sangdong Lake"
+          ]
+        },
+        "ja": {
+          "title": "K-POPファンのための富川1日",
+          "subtitle": "グッズ・フォトカード・MV感フォトまで",
+          "summary": "スターフィールドシティ富川のK-POPグッズコーナーとヨンプン書店K-POPセクションでフォトカードを集め、韓国漫画博物館のアイドル・アニメクロスオーバー展示を巡ります。富川第一市場でローカルランチ、上洞湖水公園でMV感の撮影、カチウル飲食テーマ村で夕食を楽しんで締めくくります。",
+          "highlights": [
+            "スターフィールドK-POPグッズ・フォトカード",
+            "アイドル・アニメクロスオーバー展示",
+            "上洞湖水公園のMV感フォト"
+          ]
+        },
+        "zh": {
+          "title": "K-pop 粉丝富川一日",
+          "subtitle": "周边·小卡·MV 风拍照一次满足",
+          "summary": "在 Starfield 富川的 K-pop 周边角与永丰书店 K-pop 专区搜集小卡,然后到韩国漫画博物馆欣赏偶像与动漫跨界展。富川第一市场本地午餐后,在上洞湖水公园拍 MV 风照片,最后在喜鹊屋美食主题村享用晚餐收尾。",
+          "highlights": ["Starfield K-pop 周边与小卡", "偶像与动漫跨界展", "上洞湖水公园 MV 风拍照"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 150,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "K-pop 굿즈 매장과 영풍문고 K-pop 섹션, 포토카드 샵" },
+            "en": { "note": "K-pop shops, Youngpoong Books K-pop shelf, photocard stalls" },
+            "ja": { "note": "K-POPショップ、ヨンプン書店K-POPセクション、フォトカード店" },
+            "zh": { "note": "K-pop 周边店、永丰书店 K-pop 专区、小卡店" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "아이돌·애니 크로스오버 전시와 K-pop 관련 기획전 확인" },
+            "en": { "note": "Idol-anime crossover exhibits — check the K-pop programme" },
+            "ja": { "note": "アイドル・アニメクロスオーバー展示とK-POP企画展を確認" },
+            "zh": { "note": "偶像与动漫跨界展,留意 K-pop 相关企划" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2742173",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "부천제일시장 로컬 점심, 떡볶이와 순대 추천" },
+            "en": { "note": "Jeil Market lunch — tteokbokki and sundae recommended" },
+            "ja": { "note": "第一市場ランチ、トッポッキとスンデがおすすめ" },
+            "zh": { "note": "第一市场午餐,推荐辣炒年糕与血肠" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "호숫가 벤치에서 MV 감성 포토, 역광 시간대 추천" },
+            "en": { "note": "MV-style photos on a lakeside bench — golden hour is best" },
+            "ja": { "note": "湖畔のベンチでMV感フォト、逆光の時間帯推奨" },
+            "zh": { "note": "湖边长椅拍 MV 风,推荐逆光时段" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "한식 정식 저녁, 팬 미팅 후기 공유하기 좋은 조용한 분위기" },
+            "en": { "note": "Korean set dinner — quiet spot for fan-meet recaps" },
+            "ja": { "note": "韓定食の夕食、ファンミ後の余韻を共有しやすい落ち着いた雰囲気" },
+            "zh": { "note": "韩式定食晚餐,氛围安静适合分享粉丝见面心得" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T16:30:00.000Z"
+    },
+    {
+      "id": "bucheon-wellness-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["wellness", "nature", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "2736380",
+      "budgetKrw": { "min": 50000, "max": 140000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "웰니스 하루 — 찜질·스파·숲길",
+          "subtitle": "공원 산책과 스파로 하루를 천천히 채워요",
+          "summary": "오정대공원 아침 산책으로 몸을 깨우고 부천식물원의 열대 온실에서 호흡을 가다듬어요. 웅진플레이도시의 사우나와 찜질로 땀을 빼고 까치울음식테마마을의 담백한 한정식 점심, 부천자연생태공원 저녁 산책으로 하루를 천천히 마무리해요",
+          "highlights": ["대형 스파 웅진플레이도시", "아침·저녁 공원 산책", "열대 온실 호흡 리셋"]
+        },
+        "en": {
+          "title": "Wellness Day — Sauna, Spa, Forest Paths",
+          "subtitle": "Let the parks and spa pace your whole day",
+          "summary": "Wake the body with a walk at Ojeong Grand Park, reset your breathing in the Bucheon Botanical Garden's tropical greenhouse, sweat it out in Woongjin Playcity's sauna and jjimjilbang, enjoy a light Korean set lunch at Kkachiul Food Village, and close with a sunset walk at Bucheon Nature Ecological Park.",
+          "highlights": [
+            "Full-scale spa at Woongjin Playcity",
+            "Morning and evening park walks",
+            "Tropical-greenhouse breath reset"
+          ]
+        },
+        "ja": {
+          "title": "ウェルネス1日 — チムジルバン・スパ・森道",
+          "subtitle": "公園散歩とスパでゆったりと1日を満たす",
+          "summary": "梧亭大公園の朝散歩で身体を目覚めさせ、富川植物園の熱帯温室で呼吸を整えます。ウンジンプレイシティのサウナとチムジルで汗を流し、カチウル飲食テーマ村の優しい韓定食ランチ、富川自然生態公園の夕方散歩で1日をゆっくり締めくくります。",
+          "highlights": [
+            "大型スパのウンジンプレイシティ",
+            "朝夕の公園散歩",
+            "熱帯温室で呼吸リセット"
+          ]
+        },
+        "zh": {
+          "title": "养生一日 · 汗蒸·温泉·森林小径",
+          "subtitle": "以公园漫步和温泉慢慢铺满一天",
+          "summary": "在梧亭大公园晨间散步唤醒身体,在富川植物园热带温室调整呼吸。熊津 Playcity 的桑拿与汗蒸房排汗,在喜鹊屋美食主题村享用清淡韩定食午餐,以富川自然生态公园傍晚散步缓缓收尾。",
+          "highlights": ["熊津 Playcity 大型温泉", "早晚公园散步", "热带温室呼吸重置"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2736380",
+          "i18n": {
+            "ko": { "note": "아침 산책으로 몸 깨우기, 벤치와 그늘 풍부" },
+            "en": { "note": "Morning wake-up walk — plenty of benches and shade" },
+            "ja": { "note": "朝の目覚め散歩、ベンチと日陰が豊富" },
+            "zh": { "note": "晨间唤醒散步,长椅与阴凉充足" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실에서 호흡 리셋, 분재원까지 천천히" },
+            "en": { "note": "Reset in the tropical greenhouse, drift through the bonsai garden" },
+            "ja": { "note": "熱帯温室で呼吸をリセット、盆栽園までゆっくり" },
+            "zh": { "note": "在热带温室调整呼吸,慢慢逛到盆景园" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 240,
+          "category": "leisure",
+          "tourApiContentId": "558819",
+          "i18n": {
+            "ko": { "note": "사우나·찜질·스파로 땀 빼기, 수건·찜질복 대여 가능" },
+            "en": { "note": "Sauna, jjimjilbang, and spa — towels and outfits available for rent" },
+            "ja": { "note": "サウナ・チムジル・スパで発汗、タオルと汗蒸服のレンタル可" },
+            "zh": { "note": "桑拿·汗蒸·温泉排汗,可租毛巾和汗蒸服" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "담백한 한정식으로 몸에 무리 없는 식사" },
+            "en": { "note": "Light Korean set — easy on the body after a spa" },
+            "ja": { "note": "あっさりした韓定食で身体に優しく" },
+            "zh": { "note": "清淡韩定食,对身体友好" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "저녁 습지 산책으로 하루 천천히 마무리" },
+            "en": { "note": "Evening wetland walk — a slow close to the day" },
+            "ja": { "note": "夕方の湿地散歩で1日をゆっくり締め" },
+            "zh": { "note": "傍晚湿地漫步,缓缓结束一天" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T16:30:00.000Z"
+    },
+    {
+      "id": "bucheon-history-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["history", "kculture-day"],
+      "duration": "day",
+      "heroContentId": "318207",
+      "budgetKrw": { "min": 20000, "max": 50000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천·김포 역사 하루 — 사찰부터 서원까지",
+          "subtitle": "문학·독립운동·조선 유교를 한 동선에 담아요",
+          "summary": "부천 석왕사의 정갈한 사찰 기운으로 시작해 수주문학관에서 근현대 시인 변영로(수주)를 만나고, 펄벅기념관에서 한국전쟁 고아 돌봄의 역사를 배워요. 안중근공원에서 독립운동가를 추모한 뒤 김포향교에서 조선 유교 교육 현장까지 살펴보는 다섯 축 역사 코스예요",
+          "highlights": [
+            "부천 3대 역사 유적",
+            "근현대 문학과 독립운동",
+            "김포향교 조선 유교 (인근 20%)"
+          ]
+        },
+        "en": {
+          "title": "Bucheon-Gimpo History Day — Temple to Seowon",
+          "subtitle": "Literature, independence, and Joseon Confucianism in one loop",
+          "summary": "Begin with the calm of Bucheon's Seokwangsa Temple, meet modern poet Byun Yeong-ro (Suju) at Suju Literary Hall, and learn about Pearl S. Buck's post-war orphan care. Pay respects at Ahn Jung-geun Memorial Park, then see Joseon-era Confucian schooling at Gimpo Hyanggyo — five historical threads in one day.",
+          "highlights": [
+            "Three Bucheon historical sites",
+            "Modern literature and independence",
+            "Gimpo Hyanggyo Confucian school (nearby 20%)"
+          ]
+        },
+        "ja": {
+          "title": "富川・金浦歴史1日 — 寺院から書院まで",
+          "subtitle": "文学・独立運動・朝鮮儒教を1つの動線に",
+          "summary": "富川釈王寺の清らかな寺院の空気で始まり、樹州文学館で近現代詩人・卞榮魯(樹州)と出会い、パール・バック記念館で韓国戦争孤児ケアの歴史を学びます。安重根公園で独立運動家を追悼し、金浦郷校で朝鮮儒教の教育現場まで巡る5軸歴史コースです。",
+          "highlights": [
+            "富川3大歴史スポット",
+            "近現代文学と独立運動",
+            "金浦郷校の朝鮮儒教(近隣20%)"
+          ]
+        },
+        "zh": {
+          "title": "富川·金浦历史一日 · 从寺院到书院",
+          "subtitle": "文学·独立运动·朝鲜儒学一条动线",
+          "summary": "以富川释王寺清幽的寺院氛围开启,到树州文学馆邂逅近现代诗人卞荣鲁(树州),在赛珍珠纪念馆了解朝鲜战争孤儿关怀史。在安重根公园悼念独立运动家,最后到金浦乡校了解朝鲜儒学教育现场 — 一日走完 5 条历史脉络。",
+          "highlights": ["富川三大历史景点", "近现代文学与独立运动", "金浦乡校朝鲜儒学(邻近 20%)"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "318207",
+          "i18n": {
+            "ko": { "note": "부천 도심 속 조용한 사찰, 아침 명상 가능" },
+            "en": { "note": "Quiet urban temple — morning meditation welcome" },
+            "ja": { "note": "富川都心の静かな寺院、朝の瞑想に" },
+            "zh": { "note": "富川都市中的静谧寺院,适合晨间冥想" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "근현대 시인 변영로(수주) 문학관" },
+            "en": { "note": "Memorial for modern poet Byun Yeong-ro (Suju)" },
+            "ja": { "note": "近現代詩人・卞榮魯(樹州)文学館" },
+            "zh": { "note": "近现代诗人卞荣鲁(树州)文学馆" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "노벨상 수상 작가 펄벅 여사의 한국 전쟁 고아 돌봄 공간" },
+            "en": { "note": "Nobel laureate Pearl S. Buck's Korean War orphan-care site" },
+            "ja": { "note": "ノーベル賞作家パール・バックの韓国戦争孤児ケアの場" },
+            "zh": { "note": "诺贝尔奖作家赛珍珠照顾朝鲜战争孤儿的场所" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3425101",
+          "i18n": {
+            "ko": { "note": "독립운동가 안중근 의사 추모 공간, 산책하며 묵념" },
+            "en": {
+              "note": "Memorial park to independence activist Ahn Jung-geun — walk and reflect"
+            },
+            "ja": { "note": "独立運動家・安重根義士を追悼する公園、散歩と黙祷" },
+            "zh": { "note": "独立运动家安重根纪念公园,边散步边默哀" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "125558",
+          "i18n": {
+            "ko": { "note": "김포 (인근 20%), 조선시대 유교 교육기관 탐방" },
+            "en": { "note": "Gimpo (nearby 20%) — Joseon-era Confucian academy" },
+            "ja": { "note": "金浦(近隣20%)、朝鮮時代の儒教教育機関" },
+            "zh": { "note": "金浦(邻近 20%),朝鲜时代儒学教育机构" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T16:30:00.000Z"
+    },
+    {
+      "id": "bucheon-rainy-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["rainy-day", "kculture-day", "transit-easy"],
+      "duration": "day",
+      "heroContentId": "129857",
+      "budgetKrw": { "min": 40000, "max": 130000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "우천 대안 하루 — 실내만 골라 도는 코스",
+          "subtitle": "비 오는 날에도 젖지 않는 부천 실내 풀코스",
+          "summary": "한국만화박물관에서 시작해 부천문화원 기획전, 스타필드 시티 부천에서 점심과 CGV 영화 관람, 부천식물원 열대 온실, 송내어울마당 공연까지 모두 실내로 연결돼요. 지하철·쇼핑몰 동선 중심이라 우산 잠깐만 챙겨도 충분해요",
+          "highlights": ["전 코스 실내", "CGV 영화 1편 포함", "지하철·쇼핑몰 동선"]
+        },
+        "en": {
+          "title": "Rainy-Day Plan — Strictly Indoor Route",
+          "subtitle": "Bucheon without getting wet",
+          "summary": "Start at the Korea Manhwa Museum, catch a rotating exhibit at the Bucheon Cultural Center, have lunch and a CGV film at Starfield City Bucheon, warm up in the Bucheon Botanical Garden's tropical greenhouse, and close with a performance at Songnae Eoullim Madang — all indoor, all connected by subway and mall corridors.",
+          "highlights": [
+            "Every stop is indoor",
+            "CGV film included",
+            "Subway-and-mall corridor route"
+          ]
+        },
+        "ja": {
+          "title": "雨の日プラン — 屋内だけで回るコース",
+          "subtitle": "雨の日でも濡れない富川屋内フルコース",
+          "summary": "韓国漫画博物館から始まり、富川文化院の企画展、スターフィールドシティ富川で昼食とCGV鑑賞、富川植物園の熱帯温室、松内オウルリムマダンの公演まで全て屋内でつながります。地下鉄とモール動線中心で傘はちょっとだけで十分。",
+          "highlights": ["全行程屋内", "CGV映画1本込み", "地下鉄とモール動線"]
+        },
+        "zh": {
+          "title": "雨天方案 · 只逛室内的路线",
+          "subtitle": "雨天也不会淋湿的富川室内全程",
+          "summary": "以韩国漫画博物馆开启,在富川文化院看企划展,在 Starfield 富川用餐并到 CGV 观影,在富川植物园热带温室取暖,最后到松内文化广场看演出 — 全程室内,以地铁与商场动线串联。伞只要带短距离即可。",
+          "highlights": ["全程室内", "含 CGV 观影一场", "地铁+商场动线"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "아시아 최대 만화 전문관, 우천 최적" },
+            "en": { "note": "Asia's largest manhwa museum — ideal rainy-day stop" },
+            "ja": { "note": "アジア最大の漫画専門館、雨の日に最適" },
+            "zh": { "note": "亚洲最大漫画专门馆,雨天首选" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "129857",
+          "i18n": {
+            "ko": { "note": "지역 기획전·공연 일정 사전 확인" },
+            "en": { "note": "Check the rotating exhibits and performance schedule in advance" },
+            "ja": { "note": "企画展と公演日程を事前確認" },
+            "zh": { "note": "提前确认企划展与演出日程" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "푸드코트 점심 후 CGV에서 영화 1편" },
+            "en": { "note": "Food court lunch, then a film at CGV" },
+            "ja": { "note": "フードコートランチ後、CGVで映画1本" },
+            "zh": { "note": "美食广场午餐后在 CGV 看一场电影" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실에서 몸 데우기" },
+            "en": { "note": "Warm up in the tropical greenhouse" },
+            "ja": { "note": "熱帯温室で身体を温める" },
+            "zh": { "note": "在热带温室取暖" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2734928",
+          "i18n": {
+            "ko": { "note": "저녁 공연 일정 확인 후 감상으로 마무리" },
+            "en": { "note": "Confirm the evening performance and catch the show" },
+            "ja": { "note": "夕方の公演日程を確認して鑑賞で締め" },
+            "zh": { "note": "确认晚间演出后观赏收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T16:30:00.000Z"
+    },
+    {
+      "id": "bucheon-hidden-gem-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["hidden-gem", "nature", "foodie"],
+      "duration": "half-day",
+      "heroContentId": "3079629",
+      "budgetKrw": { "min": 10000, "max": 30000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "숨은 부천 반나절 — 로컬만 아는 코스",
+          "subtitle": "가이드북에 없는 공원·시장·수목원만 골라요",
+          "summary": "진달래동산의 소박한 산책길에서 시작해 수주근린공원 벤치에서 커피, 고리울동굴시장에서 현지인 점심, 원종종합시장에서 즉석 간식, 무릉도원수목원에서 반나절을 마무리해요. 관광객 없이 조용한 부천 로컬 감성이에요",
+          "highlights": ["비관광지 5곳 순회", "관광객 거의 없는 현지 감성", "시장 점심 만원 이하"]
+        },
+        "en": {
+          "title": "Hidden Bucheon Half-Day — Locals Only",
+          "subtitle": "Parks, markets, and an arboretum that skip the guidebooks",
+          "summary": "Begin on the quiet paths of Jindallae Hill, pause for coffee on a Suju Neighborhood Park bench, grab a local lunch at Goriul Cave Market, snack again at Wonjong General Market, and wrap the afternoon in the Mureungdowon Arboretum — five stops virtually tourist-free.",
+          "highlights": [
+            "Five off-the-beaten-path stops",
+            "Near-zero tourist crowds",
+            "Market lunch under ₩10,000"
+          ]
+        },
+        "ja": {
+          "title": "隠れた富川半日 — 地元だけの知るコース",
+          "subtitle": "ガイドブックに載らない公園・市場・樹木園",
+          "summary": "ツツジの丘の素朴な散歩道で始まり、樹州近隣公園のベンチでコーヒー、コリウル洞窟市場でローカルランチ、元宗総合市場で即席おやつ、武陵桃源樹木園で半日を締めくくります。観光客のいない静かな富川ローカル感。",
+          "highlights": [
+            "非観光地5ヶ所巡り",
+            "観光客ほぼゼロのローカル感",
+            "市場ランチ1万ウォン以下"
+          ]
+        },
+        "zh": {
+          "title": "隐藏富川半日 · 只有本地人知道的路线",
+          "subtitle": "旅游书里没有的公园·市场·植物园",
+          "summary": "从金达莱山朴实的小径开始,在树州近邻公园长椅上喝咖啡,在高丽乌洞穴市场享用本地午餐,在元宗综合市场临时加餐,最后在武陵桃源植物园收尾半天 — 五处几乎没有游客的富川本地感。",
+          "highlights": ["非旅游地五处巡游", "几乎无游客的本地氛围", "市场午餐 1 万韩元以内"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3079629",
+          "i18n": {
+            "ko": { "note": "봄 진달래, 그 외 계절에도 조용한 언덕 산책" },
+            "en": { "note": "Azaleas in spring, quiet hill walks other seasons" },
+            "ja": { "note": "春はツツジ、他の季節も静かな丘散歩" },
+            "zh": { "note": "春季金达莱花,其他季节也宁静可漫步" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "동네 사람들의 아지트, 벤치와 그늘 풍부" },
+            "en": { "note": "Neighbourhood hangout — benches and shade aplenty" },
+            "ja": { "note": "地元の人のスポット、ベンチと日陰が豊富" },
+            "zh": { "note": "居民常去的公园,长椅与阴凉充足" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2742165",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "동굴 느낌의 작은 시장, 현지인 점심으로 만원 이하 한 끼" },
+            "en": { "note": "A tunnel-like small market — local lunch under ₩10,000" },
+            "ja": { "note": "洞窟感のある小さな市場、地元ランチ1万ウォン以下" },
+            "zh": { "note": "洞穴感的小市场,本地午餐 1 万韩元以内" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "1339134",
+          "i18n": {
+            "ko": { "note": "즉석 간식 맛보기, 과일·떡·전" },
+            "en": { "note": "Grab-and-go snacks — fruit, rice cakes, jeon" },
+            "ja": { "note": "即席おやつ、果物・餅・チヂミ" },
+            "zh": { "note": "现做小吃,水果·糕饼·煎饼" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2781609",
+          "i18n": {
+            "ko": { "note": "소규모 수목원에서 반나절 조용히 마무리" },
+            "en": { "note": "A small arboretum — a quiet half-day close" },
+            "ja": { "note": "小さな樹木園で半日を静かに締め" },
+            "zh": { "note": "小型植物园,静静结束半日" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T16:30:00.000Z"
+    },
+    {
+      "id": "bucheon-kpop-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kpop", "foodie", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "2741607",
+      "budgetKrw": { "min": 25000, "max": 70000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-팝 반나절 — 굿즈·포토카드 퀵코스",
+          "subtitle": "시간은 짧고 포토카드는 많이",
+          "summary": "한신시장의 빈티지 골목 감성으로 시작해 스타필드 시티 부천의 K-pop 굿즈 코너와 포토카드 샵에서 한 번에 득템, 부천제일시장 디저트로 마무리하는 퀵 코스예요",
+          "highlights": [
+            "한신시장 빈티지 골목 포토",
+            "스타필드 K-pop 포토카드 샵",
+            "시장 디저트로 당 충전"
+          ]
+        },
+        "en": {
+          "title": "K-Pop Half-Day — Goods-and-Photocard Quick Loop",
+          "subtitle": "Short on time, big on photocards",
+          "summary": "Start with the vintage-alley mood of Hanshin Market, cash in at the K-pop goods corner and photocard shops inside Starfield City Bucheon, and close with dessert at Bucheon Jeil Market.",
+          "highlights": [
+            "Hanshin Market vintage photo",
+            "Starfield K-pop photocard shops",
+            "Market desserts for a sugar boost"
+          ]
+        },
+        "ja": {
+          "title": "K-POP半日 — グッズ・フォトカードの短縮コース",
+          "subtitle": "時間短く、フォトカード多く",
+          "summary": "ハンシン市場のヴィンテージ路地感から始まり、スターフィールドシティ富川のK-POPグッズコーナーとフォトカード店で一気にゲット、富川第一市場のデザートで締めくくるクイックコースです。",
+          "highlights": [
+            "ハンシン市場のヴィンテージ撮影",
+            "スターフィールドK-POPフォトカード店",
+            "市場デザートで糖分補給"
+          ]
+        },
+        "zh": {
+          "title": "K-pop 半日 · 周边与小卡速成路线",
+          "subtitle": "时间短,小卡多",
+          "summary": "以汉新市场的复古巷弄氛围开启,在 Starfield 富川的 K-pop 周边角与小卡店一次买齐,最后在富川第一市场吃甜点收尾。",
+          "highlights": ["汉新市场复古巷弄拍照", "Starfield K-pop 小卡店", "市场甜点补充能量"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "2741607",
+          "i18n": {
+            "ko": { "note": "빈티지 골목 감성 포토, 간단 간식도 겸하기" },
+            "en": { "note": "Vintage-alley photos and a quick snack" },
+            "ja": { "note": "ヴィンテージ路地で撮影、軽めのおやつも" },
+            "zh": { "note": "复古巷弄拍照,顺便买点小吃" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 150,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "K-pop 굿즈 코너와 포토카드 샵 집중 탐색" },
+            "en": { "note": "Focus on K-pop goods corners and photocard shops" },
+            "ja": { "note": "K-POPグッズコーナーとフォトカード店を集中探索" },
+            "zh": { "note": "重点搜寻 K-pop 周边角与小卡店" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 45,
+          "category": "food",
+          "tourApiContentId": "2742173",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "떡·전·과일 디저트로 당 충전" },
+            "en": { "note": "Rice cakes, jeon, fruit desserts to recharge" },
+            "ja": { "note": "餅・チヂミ・果物のデザートで糖分補給" },
+            "zh": { "note": "糕饼·煎饼·水果甜点补充能量" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-kpop-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["kpop", "kcomics", "kculture-day"],
+      "duration": "1n2d",
+      "heroContentId": "2733422",
+      "budgetKrw": { "min": 220000, "max": 450000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "K-팝 팬 1박 2일 — 굿즈·MV 촬영지·광명 야경",
+          "subtitle": "덕질과 여행을 한 번에",
+          "summary": "• DAY1 — 한국만화박물관 아이돌·애니 크로스오버 전시, 스타필드 K-pop 굿즈 샵, 부천제일시장 점심, 중동 호텔 숙박\n• DAY2 — 상동호수공원 MV 감성 포토, 부천식물원 온실 포토, 광명 밤일마을 음식문화거리에서 K-pop 덕후 카페 마무리",
+          "highlights": [
+            "K-pop 굿즈·포토카드 쇼핑",
+            "MV 감성 포토 스팟 2곳",
+            "광명 덕후 카페 (인근 15%)"
+          ]
+        },
+        "en": {
+          "title": "K-Pop Fan 2-Day — Goods, MV Spots, Gwangmyeong Nights",
+          "subtitle": "Full-on fandom and sightseeing at once",
+          "summary": "• Day 1 — Idol-anime crossover exhibit at the Korea Manhwa Museum, K-pop goods shops at Starfield, lunch at Bucheon Jeil Market, overnight in Jungdong.\n• Day 2 — MV-style photos at Sangdong Lake Park and Bucheon Botanical Garden, close with a K-pop fan cafe on Gwangmyeong's Bamil Food Street.",
+          "highlights": [
+            "K-pop goods and photocard shopping",
+            "Two MV-style photo spots",
+            "Gwangmyeong fan cafe (nearby 15%)"
+          ]
+        },
+        "ja": {
+          "title": "K-POPファン1泊2日 — グッズ・MVロケ地・光明の夜",
+          "subtitle": "推し活と旅行を同時に",
+          "summary": "• 1日目 — 韓国漫画博物館のアイドル・アニメクロスオーバー展示、スターフィールドK-POPグッズショップ、富川第一市場でランチ、中洞で宿泊。\n• 2日目 — 上洞湖水公園でMV感フォト、富川植物園の温室撮影、光明バムイル飲食文化通りのK-POPファンカフェで締め。",
+          "highlights": [
+            "K-POPグッズ・フォトカード買い物",
+            "MV感フォトスポット2ヶ所",
+            "光明ファンカフェ(近隣15%)"
+          ]
+        },
+        "zh": {
+          "title": "K-pop 粉丝两天一夜 · 周边·MV 地·光明夜",
+          "subtitle": "追星与旅行一步到位",
+          "summary": "• DAY1 — 韩国漫画博物馆的偶像与动漫跨界展、Starfield K-pop 周边店、富川第一市场午餐,中洞酒店住宿。\n• DAY2 — 在上洞湖水公园与富川植物园温室拍 MV 风照片,以光明栗日美食文化街的 K-pop 粉丝咖啡馆收尾。",
+          "highlights": ["K-pop 周边与小卡购物", "MV 风拍照点两处", "光明粉丝咖啡馆(邻近 15%)"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "아이돌·애니 크로스오버 전시와 K-pop 기획전 확인" },
+            "en": { "note": "Idol-anime crossover exhibit and K-pop programme" },
+            "ja": { "note": "アイドル・アニメクロスオーバー展示、K-POP企画展" },
+            "zh": { "note": "偶像与动漫跨界展,关注 K-pop 企划" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "K-pop 굿즈 샵과 포토카드 코너 집중 쇼핑" },
+            "en": { "note": "Intensive K-pop goods and photocard shopping" },
+            "ja": { "note": "K-POPグッズ店とフォトカードコーナー集中ショッピング" },
+            "zh": { "note": "专注 K-pop 周边店与小卡区购物" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2742173",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "점심은 로컬 시장 떡볶이와 순대" },
+            "en": { "note": "Local market lunch — tteokbokki and sundae" },
+            "ja": { "note": "ローカル市場でトッポッキとスンデのランチ" },
+            "zh": { "note": "在本地市场吃辣炒年糕与血肠" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (1박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 1)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(1泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第一晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "신중동역 주변 비즈니스 호텔 다수" },
+            "en": { "note": "Plenty of business hotels near Sinjungdong Station" },
+            "ja": { "note": "新中洞駅周辺にビジネスホテル多数" },
+            "zh": { "note": "新中洞站周边商务酒店众多" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "756618",
+          "i18n": {
+            "ko": { "note": "DAY2 아침, 호숫가 MV 감성 포토" },
+            "en": { "note": "Day 2 morning — lakeside MV-style photos" },
+            "ja": { "note": "2日目の朝、湖畔でMV感フォト" },
+            "zh": { "note": "DAY2 晨间,湖畔 MV 风拍照" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실 포토로 MV 한 장면 따라 해보기" },
+            "en": { "note": "Recreate an MV scene in the tropical greenhouse" },
+            "ja": { "note": "熱帯温室でMVシーン再現" },
+            "zh": { "note": "在热带温室模仿 MV 场景" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 90,
+          "category": "food",
+          "tourApiContentId": "2733422",
+          "i18n": {
+            "ko": { "note": "광명 (인근 15%), K-pop 덕후 감성 카페로 마무리" },
+            "en": { "note": "Gwangmyeong (nearby 15%) — close at a K-pop fan cafe" },
+            "ja": { "note": "光明(近隣15%)、K-POPファンカフェで締め" },
+            "zh": { "note": "光明(邻近 15%),以 K-pop 粉丝咖啡馆收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-wellness-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["wellness", "nature", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "2733028",
+      "budgetKrw": { "min": 20000, "max": 50000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "웰니스 반나절 — 둘레길과 온실",
+          "subtitle": "짧지만 깊게 쉬어가요",
+          "summary": "부천문화둘레길 원미마실길에서 시작해 수주근린공원 벤치에서 호흡을 가다듬고 부천식물원 열대 온실에서 마무리하는 짧은 힐링 코스예요. 평지라 무릎에 무리 없이 걸을 수 있어요",
+          "highlights": ["평지 둘레길 호흡", "조용한 동네 공원", "온실 수증기 힐링"]
+        },
+        "en": {
+          "title": "Wellness Half-Day — Trail and Greenhouse",
+          "subtitle": "Short but deep reset",
+          "summary": "Walk the Bucheon Culture Trail's Wonmi Masil-gil, breathe on a bench at Suju Neighborhood Park, and finish in the Bucheon Botanical Garden's tropical greenhouse — a short healing loop on entirely flat ground.",
+          "highlights": [
+            "Flat-ground breathing trail",
+            "Quiet neighbourhood park",
+            "Greenhouse humidity reset"
+          ]
+        },
+        "ja": {
+          "title": "ウェルネス半日 — トゥルレキルと温室",
+          "subtitle": "短くても深く休む",
+          "summary": "富川文化トゥルレキル・ウォンミマシルキルから始まり、樹州近隣公園のベンチで呼吸を整え、富川植物園の熱帯温室で締めくくる短めのヒーリングコースです。平地で膝に優しい。",
+          "highlights": ["平地トゥルレキルで呼吸", "静かな地元公園", "温室の湿度でヒーリング"]
+        },
+        "zh": {
+          "title": "养生半日 · 环路与温室",
+          "subtitle": "短暂却深入的放松",
+          "summary": "从富川文化环路·元美村巷路出发,在树州近邻公园长椅上调整呼吸,最后在富川植物园热带温室收尾,是一条短小却深入的养生路线。平地地形对膝盖友好。",
+          "highlights": ["平地环路调整呼吸", "宁静社区公园", "温室湿度舒缓"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "leisure",
+          "tourApiContentId": "2733028",
+          "i18n": {
+            "ko": { "note": "평지 둘레길, 호흡에 집중하며 천천히" },
+            "en": { "note": "Flat trail — walk slow and focus on breathing" },
+            "ja": { "note": "平地トゥルレキル、呼吸を意識してゆっくり" },
+            "zh": { "note": "平地环路,专注呼吸慢行" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "동네 공원 벤치, 커피 한 잔 쉼" },
+            "en": { "note": "Bench break with a coffee" },
+            "ja": { "note": "地元公園のベンチでコーヒー休憩" },
+            "zh": { "note": "社区公园长椅上喝杯咖啡" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "열대 온실 수증기로 호흡 리셋" },
+            "en": { "note": "Breathe deeply in the humid tropical greenhouse" },
+            "ja": { "note": "熱帯温室の湿度で呼吸リセット" },
+            "zh": { "note": "热带温室湿度让呼吸重置" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-wellness-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["wellness", "nature", "foodie"],
+      "duration": "1n2d",
+      "heroContentId": "2732709",
+      "budgetKrw": { "min": 180000, "max": 400000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "웰니스 리트릿 1박 2일 — 스파와 숲길",
+          "subtitle": "도시를 떠나지 않고도 리셋이 가능해요",
+          "summary": "• DAY1 — 웅진플레이도시 사우나와 찜질, 까치울음식테마마을의 담백한 한정식, 부천식물원 저녁 온실, 중동 호텔 숙박\n• DAY2 — 부천문화둘레길 도시숲길 산책, 수주근린공원 벤치 브런치, 부천자연생태공원 습지 관찰로 차분히 마무리",
+          "highlights": ["웅진플레이도시 2시간 스파", "숲길과 습지 산책", "담백 한정식 2끼"]
+        },
+        "en": {
+          "title": "Wellness Retreat 2-Day — Spa and Forest Paths",
+          "subtitle": "Urban reset without leaving the city",
+          "summary": "• Day 1 — Sauna and jjimjilbang at Woongjin Playcity, gentle Korean set lunch at Kkachiul Food Village, evening greenhouse at Bucheon Botanical Garden, overnight in Jungdong.\n• Day 2 — Urban Forest Path on the Bucheon Culture Trail, brunch on a Suju Neighborhood Park bench, and a closing wetland walk at Bucheon Nature Ecological Park.",
+          "highlights": [
+            "Two-hour spa at Woongjin Playcity",
+            "Forest and wetland walks",
+            "Two clean Korean sets"
+          ]
+        },
+        "ja": {
+          "title": "ウェルネスリトリート1泊2日 — スパと森道",
+          "subtitle": "街を離れずにリセット",
+          "summary": "• 1日目 — ウンジンプレイシティのサウナとチムジル、カチウル飲食テーマ村のあっさり韓定食、富川植物園の夕方温室、中洞で宿泊。\n• 2日目 — 富川文化トゥルレキル・都市の森道散歩、樹州近隣公園のベンチでブランチ、富川自然生態公園の湿地観察で落ち着いて締めくくり。",
+          "highlights": ["ウンジンプレイシティ2時間スパ", "森道と湿地散歩", "あっさり韓定食2食"]
+        },
+        "zh": {
+          "title": "养生静修两天一夜 · 温泉与森林小径",
+          "subtitle": "无需离开城市也能重置",
+          "summary": "• DAY1 — 熊津 Playcity 桑拿与汗蒸·喜鹊屋美食主题村清淡韩定食·富川植物园傍晚温室,中洞酒店住宿。\n• DAY2 — 漫步富川文化环路·都市森林路,在树州近邻公园长椅享用早午餐,以富川自然生态公园湿地观察静静收尾。",
+          "highlights": ["熊津 Playcity 两小时温泉", "森林小径与湿地漫步", "两顿清淡韩定食"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 150,
+          "category": "leisure",
+          "tourApiContentId": "558819",
+          "i18n": {
+            "ko": { "note": "사우나·찜질·스파로 2시간 집중 발한" },
+            "en": { "note": "Two focused hours in sauna, jjimjilbang, and spa" },
+            "ja": { "note": "サウナ・チムジル・スパで2時間じっくり発汗" },
+            "zh": { "note": "桑拿·汗蒸·温泉两小时专注发汗" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "611883",
+          "priceCatalogId": "bibimbap",
+          "i18n": {
+            "ko": { "note": "담백 한정식 점심, 스파 뒤 회복식" },
+            "en": { "note": "Clean Korean set lunch after spa" },
+            "ja": { "note": "スパ後のリカバリー食としてあっさり韓定食" },
+            "zh": { "note": "温泉后的恢复餐,清淡韩定食" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "저녁 온실에서 조용한 호흡" },
+            "en": { "note": "Evening greenhouse — quiet breathing" },
+            "ja": { "note": "夕方の温室で静かな呼吸" },
+            "zh": { "note": "傍晚温室中静静呼吸" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동" },
+              "en": { "name": "Jungdong Hotel District", "addr": "Jungdong, Wonmi-gu, Bucheon-si" },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "조용한 비즈니스 호텔 권장, 아침 스트레칭 공간 확인" },
+            "en": { "note": "Pick a quiet business hotel with a stretch-friendly room" },
+            "ja": { "note": "静かなビジネスホテル推奨、朝ストレッチ可能な部屋を" },
+            "zh": { "note": "推荐安静的商务酒店,晨间可拉伸的房型更佳" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 90,
+          "category": "leisure",
+          "tourApiContentId": "2732709",
+          "i18n": {
+            "ko": { "note": "DAY2 시작으로 도시 숲길 아침 산책" },
+            "en": { "note": "Day 2 opener — morning Urban Forest Path" },
+            "ja": { "note": "2日目は都市の森道で朝散歩" },
+            "zh": { "note": "DAY2 以都市森林路晨间散步开启" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "공원 벤치에서 간단 브런치" },
+            "en": { "note": "Simple brunch on a park bench" },
+            "ja": { "note": "公園のベンチで軽いブランチ" },
+            "zh": { "note": "公园长椅上的简单早午餐" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "130526",
+          "i18n": {
+            "ko": { "note": "습지 관찰 데크에서 차분히 마무리" },
+            "en": { "note": "Calm close on the wetland observation deck" },
+            "ja": { "note": "湿地観察デッキで落ち着いて締め" },
+            "zh": { "note": "在湿地观察栈道静静收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-history-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["history", "nature"],
+      "duration": "half-day",
+      "heroContentId": "3425101",
+      "budgetKrw": { "min": 5000, "max": 20000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천 역사 반나절 — 사찰·독립운동·문학",
+          "subtitle": "김포 대신 부천만 골라 걷는 가벼운 역사 코스",
+          "summary": "석왕사 사찰 기운으로 시작해 안중근공원에서 독립운동가를 추모하고 수주문학관의 근현대 시 한 편으로 반나절을 마무리해요. 김포까지 가지 않아도 충분한 부천 역사 3축이에요",
+          "highlights": ["부천 사찰 아침 명상", "안중근 의사 추모 산책", "근현대 문학 감상"]
+        },
+        "en": {
+          "title": "Bucheon History Half-Day — Temple, Independence, Literature",
+          "subtitle": "Stay inside Bucheon, skip Gimpo",
+          "summary": "Begin with the calm of Seokwangsa Temple, reflect at Ahn Jung-geun Memorial Park, and close with a modern Korean poem at the Suju Literary Hall — three Bucheon history threads in one half day.",
+          "highlights": [
+            "Morning meditation at a Bucheon temple",
+            "Memorial walk for Ahn Jung-geun",
+            "Modern poetry appreciation"
+          ]
+        },
+        "ja": {
+          "title": "富川歴史半日 — 寺院・独立運動・文学",
+          "subtitle": "金浦へ行かず富川だけで完結",
+          "summary": "釈王寺の寺院の空気で始まり、安重根公園で独立運動家を追悼し、樹州文学館の近現代詩で半日を締めくくります。金浦まで行かなくても富川だけで歴史3軸を味わえます。",
+          "highlights": ["富川寺院での朝の瞑想", "安重根義士追悼散歩", "近現代文学鑑賞"]
+        },
+        "zh": {
+          "title": "富川历史半日 · 寺院·独立运动·文学",
+          "subtitle": "留在富川,不必远行金浦",
+          "summary": "以释王寺的寺院氛围开启,在安重根公园缅怀独立运动家,最后在树州文学馆品读一首近现代诗 — 半日走完富川历史三条脉络。",
+          "highlights": ["富川寺院晨间冥想", "安重根义士悼念漫步", "近现代文学赏析"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "318207",
+          "i18n": {
+            "ko": { "note": "도심 속 조용한 사찰, 아침 명상" },
+            "en": { "note": "Quiet urban temple — morning meditation" },
+            "ja": { "note": "都心の静かな寺院、朝の瞑想" },
+            "zh": { "note": "都市中的静谧寺院,适合晨间冥想" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3425101",
+          "i18n": {
+            "ko": { "note": "독립운동가 안중근 의사 추모 공간 산책" },
+            "en": { "note": "Memorial walk for independence activist Ahn Jung-geun" },
+            "ja": { "note": "独立運動家・安重根義士追悼散歩" },
+            "zh": { "note": "独立运动家安重根纪念公园漫步" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "변영로(수주) 문학관에서 근현대 시 한 편 감상" },
+            "en": { "note": "Read a modern poem at Byun Yeong-ro (Suju) Literary Hall" },
+            "ja": { "note": "卞榮魯(樹州)文学館で近現代詩を1編" },
+            "zh": { "note": "在卞荣鲁(树州)文学馆品读一首近现代诗" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-history-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["history", "kculture-day", "foodie"],
+      "duration": "1n2d",
+      "heroContentId": "125558",
+      "budgetKrw": { "min": 180000, "max": 380000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "부천·김포 역사 1박 2일",
+          "subtitle": "사찰·문학·향교·서원까지 천천히",
+          "summary": "• DAY1 — 석왕사 사찰 아침 명상, 수주문학관 근현대 시, 펄벅기념관 전쟁 고아 돌봄 역사, 자유시장 저녁, 중동 호텔 숙박\n• DAY2 — 안중근공원 추모 산책, 김포향교 조선 유교 교육 체험, 우저서원까지 이어 김포 역사를 깊게",
+          "highlights": ["부천 3대 역사 축", "김포 조선 유교 현장", "사찰에서 서원까지 5곳"]
+        },
+        "en": {
+          "title": "Bucheon & Gimpo History 2-Day",
+          "subtitle": "Temple, literature, hyanggyo, seowon — slow pace",
+          "summary": "• Day 1 — Morning meditation at Seokwangsa Temple, modern poetry at Suju Literary Hall, Pearl S. Buck orphan-care history, dinner at Jayu Market, overnight in Jungdong.\n• Day 2 — Memorial walk at Ahn Jung-geun Park, Joseon-era Confucian schooling at Gimpo Hyanggyo, and deeper Gimpo history at Ujeo Seowon.",
+          "highlights": [
+            "Three Bucheon history threads",
+            "Joseon Confucian field trip in Gimpo",
+            "Temple to seowon across five sites"
+          ]
+        },
+        "ja": {
+          "title": "富川・金浦歴史1泊2日",
+          "subtitle": "寺院・文学・郷校・書院までゆっくり",
+          "summary": "• 1日目 — 釈王寺の朝の瞑想、樹州文学館の近現代詩、パール・バック記念館の戦災孤児ケア史、自由市場で夕食、中洞で宿泊。\n• 2日目 — 安重根公園で追悼散歩、金浦郷校の朝鮮儒教教育体験、牛渚書院まで金浦の歴史を深く。",
+          "highlights": ["富川3大歴史軸", "金浦朝鮮儒教の現場", "寺院から書院まで5ヶ所"]
+        },
+        "zh": {
+          "title": "富川·金浦历史两天一夜",
+          "subtitle": "寺院·文学·乡校·书院,慢节奏深入",
+          "summary": "• DAY1 — 释王寺晨间冥想·树州文学馆近现代诗·赛珍珠纪念馆战争孤儿关怀史·自由市场晚餐,中洞酒店住宿。\n• DAY2 — 安重根公园悼念漫步·金浦乡校朝鲜儒学教育体验·牛渚书院,深度感受金浦历史。",
+          "highlights": ["富川三大历史脉络", "金浦朝鲜儒学现场", "从寺院到书院五处"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "318207",
+          "i18n": {
+            "ko": { "note": "사찰 아침 명상" },
+            "en": { "note": "Morning temple meditation" },
+            "ja": { "note": "寺院の朝の瞑想" },
+            "zh": { "note": "寺院晨间冥想" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "3453292",
+          "i18n": {
+            "ko": { "note": "근현대 시인 변영로(수주) 문학관" },
+            "en": { "note": "Modern poet Byun Yeong-ro (Suju)" },
+            "ja": { "note": "近現代詩人・卞榮魯(樹州)" },
+            "zh": { "note": "近现代诗人卞荣鲁(树州)" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "2676149",
+          "i18n": {
+            "ko": { "note": "펄벅 여사의 한국 전쟁 고아 돌봄 역사" },
+            "en": { "note": "Pearl S. Buck's post-war orphan-care history" },
+            "ja": { "note": "パール・バックの戦災孤児ケア史" },
+            "zh": { "note": "赛珍珠战后孤儿关怀史" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "2781667",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "자유시장 저녁, 전통 시장 감성" },
+            "en": { "note": "Dinner at Jayu Market — traditional vibe" },
+            "ja": { "note": "自由市場で夕食、伝統市場の雰囲気" },
+            "zh": { "note": "自由市场晚餐,传统市场氛围" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동" },
+              "en": { "name": "Jungdong Hotel District", "addr": "Jungdong, Wonmi-gu, Bucheon-si" },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "신중동역 주변 비즈니스 호텔 권장" },
+            "en": { "note": "Business hotels near Sinjungdong Station" },
+            "ja": { "note": "新中洞駅周辺のビジネスホテルを" },
+            "zh": { "note": "推荐新中洞站周边的商务酒店" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3425101",
+          "i18n": {
+            "ko": { "note": "DAY2 아침 추모 산책" },
+            "en": { "note": "Day 2 morning memorial walk" },
+            "ja": { "note": "2日目朝の追悼散歩" },
+            "zh": { "note": "DAY2 晨间悼念漫步" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "125558",
+          "i18n": {
+            "ko": { "note": "김포 (인근 25%), 조선시대 교육 현장" },
+            "en": { "note": "Gimpo (nearby 25%) — Joseon-era schooling" },
+            "ja": { "note": "金浦(近隣25%)、朝鮮時代の教育現場" },
+            "zh": { "note": "金浦(邻近 25%),朝鲜时代教育现场" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "753822",
+          "i18n": {
+            "ko": { "note": "김포 서원, 조선 유교 심화" },
+            "en": { "note": "Gimpo's seowon — deeper Joseon Confucian layer" },
+            "ja": { "note": "金浦の書院、朝鮮儒教を深く" },
+            "zh": { "note": "金浦书院,深入朝鲜儒学" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-rainy-halfday",
+      "primaryRegion": "bucheon",
+      "styleTags": ["rainy-day", "kculture-day", "transit-easy"],
+      "duration": "half-day",
+      "heroContentId": "2742165",
+      "budgetKrw": { "min": 15000, "max": 40000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "우천 반나절 — 만화와 시장 지붕 아래",
+          "subtitle": "짧게 비 피하고 싶을 때",
+          "summary": "한국만화박물관에서 만화 속으로 피신해 고리울동굴시장의 지붕 있는 골목에서 점심, 스타필드 시티 부천 실내로 마무리하는 짧은 우천 대안이에요",
+          "highlights": ["지붕 있는 시장 점심", "만화박물관 집중 관람", "쇼핑몰 실내 마무리"]
+        },
+        "en": {
+          "title": "Rainy Half-Day — Under the Manhwa-and-Market Roofs",
+          "subtitle": "Short escape from the downpour",
+          "summary": "Duck into the Korea Manhwa Museum, lunch under the roofed alleys of Goriul Cave Market, and wrap up indoors at Starfield City Bucheon — a short rainy-day alternative.",
+          "highlights": ["Roofed market lunch", "Focused manhwa museum visit", "Indoor mall close"]
+        },
+        "ja": {
+          "title": "雨の日半日 — 漫画と市場の屋根の下",
+          "subtitle": "短く雨を避けたいときに",
+          "summary": "韓国漫画博物館で漫画の世界に避難し、コリウル洞窟市場の屋根付き路地でランチ、スターフィールドシティ富川の屋内で締めくくる短めの雨の日プラン。",
+          "highlights": ["屋根付き市場ランチ", "漫画博物館集中観覧", "ショッピングモール屋内締め"]
+        },
+        "zh": {
+          "title": "雨天半日 · 漫画与市场屋檐下",
+          "subtitle": "短暂避雨首选",
+          "summary": "躲进韩国漫画博物馆沉浸漫画世界,在高丽乌洞穴市场屋檐下的小巷用午餐,最后在 Starfield 富川室内收尾 — 简短的雨天备选方案。",
+          "highlights": ["屋檐下的市场午餐", "漫画博物馆集中观览", "商场室内收尾"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "전천후 실내, 우천 1순위" },
+            "en": { "note": "All-weather indoor — rainy-day top pick" },
+            "ja": { "note": "全天候屋内、雨の日1番" },
+            "zh": { "note": "全天候室内,雨天首选" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2742165",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "지붕 있는 동굴 시장, 비 오는 날 특유의 감성" },
+            "en": { "note": "Roofed tunnel market — rainy-day charm" },
+            "ja": { "note": "屋根付きの洞窟市場、雨の日の情緒" },
+            "zh": { "note": "带屋檐的洞穴市场,雨天别有情致" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 120,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "실내 쇼핑몰에서 디저트 카페로 마무리" },
+            "en": { "note": "Close with a dessert cafe inside the mall" },
+            "ja": { "note": "屋内モールのデザートカフェで締め" },
+            "zh": { "note": "在室内商场的甜品咖啡馆收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-rainy-1n2d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["rainy-day", "kculture-day", "family"],
+      "duration": "1n2d",
+      "heroContentId": "2734928",
+      "budgetKrw": { "min": 180000, "max": 380000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_7", "minutes": 40 },
+      "i18n": {
+        "ko": {
+          "title": "장마 1박 2일 — 실내만으로 완성하는 부천",
+          "subtitle": "비가 계속 와도 지루하지 않아요",
+          "summary": "• DAY1 — 한국만화박물관·부천문화원 기획전·스타필드 CGV 영화·웅진플레이도시 스파, 중동 호텔 숙박\n• DAY2 — 부천식물원 온실·송내어울마당 공연·부천제일시장 지붕 시장 점심으로 마무리",
+          "highlights": ["전 스톱 실내", "CGV 영화 + 공연 관람", "웅진플레이도시 스파"]
+        },
+        "en": {
+          "title": "Monsoon 2-Day — Bucheon Entirely Indoors",
+          "subtitle": "Stay dry, never be bored",
+          "summary": "• Day 1 — Korea Manhwa Museum, Bucheon Cultural Center exhibit, CGV film at Starfield, Woongjin Playcity spa, overnight in Jungdong.\n• Day 2 — Botanical Garden greenhouse, a performance at Songnae Eoullim Madang, and a roofed-market lunch at Bucheon Jeil Market.",
+          "highlights": [
+            "Every stop indoors",
+            "CGV film plus live performance",
+            "Woongjin Playcity spa"
+          ]
+        },
+        "ja": {
+          "title": "梅雨1泊2日 — 屋内だけで完結する富川",
+          "subtitle": "雨が続いても退屈しない",
+          "summary": "• 1日目 — 韓国漫画博物館、富川文化院企画展、スターフィールドCGV映画、ウンジンプレイシティのスパ、中洞で宿泊。\n• 2日目 — 富川植物園の温室、松内オウルリムマダン公演、富川第一市場の屋根付きランチで締めくくり。",
+          "highlights": ["全ストップ屋内", "CGV映画と公演鑑賞", "ウンジンプレイシティスパ"]
+        },
+        "zh": {
+          "title": "梅雨两天一夜 · 富川纯室内",
+          "subtitle": "连日下雨也不无聊",
+          "summary": "• DAY1 — 韩国漫画博物馆·富川文化院企划展·Starfield CGV 观影·熊津 Playcity 温泉,中洞酒店住宿。\n• DAY2 — 富川植物园温室·松内文化广场演出·富川第一市场屋檐市场午餐收尾。",
+          "highlights": ["全程室内", "CGV 观影与现场演出", "熊津 Playcity 温泉"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 120,
+          "category": "culture",
+          "tourApiContentId": "2470347",
+          "i18n": {
+            "ko": { "note": "아시아 최대 만화 전문관" },
+            "en": { "note": "Asia's largest manhwa museum" },
+            "ja": { "note": "アジア最大の漫画専門館" },
+            "zh": { "note": "亚洲最大漫画专门馆" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 60,
+          "category": "culture",
+          "tourApiContentId": "129857",
+          "i18n": {
+            "ko": { "note": "기획전·공연 일정 확인" },
+            "en": { "note": "Check exhibits and performance schedule" },
+            "ja": { "note": "企画展・公演日程確認" },
+            "zh": { "note": "查看企划展与演出日程" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 180,
+          "category": "shopping",
+          "tourApiContentId": "3428354",
+          "i18n": {
+            "ko": { "note": "점심·영화·쇼핑 실내 3종 세트" },
+            "en": { "note": "Lunch, film, shopping — indoor trio" },
+            "ja": { "note": "ランチ・映画・買い物の屋内3点セット" },
+            "zh": { "note": "午餐·电影·购物室内三合一" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 150,
+          "category": "leisure",
+          "tourApiContentId": "558819",
+          "i18n": {
+            "ko": { "note": "실내 스파와 사우나로 비 피하며 피로 풀기" },
+            "en": { "note": "Indoor spa and sauna — dry and restorative" },
+            "ja": { "note": "屋内スパとサウナで雨を避けつつ疲労回復" },
+            "zh": { "note": "室内温泉桑拿,边避雨边放松" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구", "addr": "경기도 부천시 원미구 중동" },
+              "en": { "name": "Jungdong Hotel District", "addr": "Jungdong, Wonmi-gu, Bucheon-si" },
+              "ja": { "name": "中洞ホテル街", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "지하 연결 호텔이면 비 걱정 없어요" },
+            "en": { "note": "Hotels with underground links skip the rain" },
+            "ja": { "note": "地下連結のホテルなら雨の心配なし" },
+            "zh": { "note": "地下连通的酒店无需担心下雨" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "407030",
+          "i18n": {
+            "ko": { "note": "DAY2 아침 열대 온실로 습도 즐기기" },
+            "en": { "note": "Day 2 morning — tropical greenhouse humidity" },
+            "ja": { "note": "2日目朝は熱帯温室の湿度を楽しむ" },
+            "zh": { "note": "DAY2 晨间享受热带温室湿度" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 90,
+          "category": "culture",
+          "tourApiContentId": "2734928",
+          "i18n": {
+            "ko": { "note": "낮 공연 스케줄 확인 후 관람" },
+            "en": { "note": "Catch the daytime performance" },
+            "ja": { "note": "昼の公演スケジュール確認して観覧" },
+            "zh": { "note": "查看日场演出并观赏" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2742173",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "지붕 있는 시장 점심으로 마무리" },
+            "en": { "note": "Close with a roofed-market lunch" },
+            "ja": { "note": "屋根付き市場のランチで締めくくり" },
+            "zh": { "note": "以屋檐下的市场午餐收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-hidden-gem-day",
+      "primaryRegion": "bucheon",
+      "styleTags": ["hidden-gem", "nature", "foodie"],
+      "duration": "day",
+      "heroContentId": "1339134",
+      "budgetKrw": { "min": 15000, "max": 40000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "숨은 부천 하루 — 로컬 시장 4곳·공원 3곳",
+          "subtitle": "가이드북 밖 부천의 진짜 얼굴",
+          "summary": "진달래동산 아침 산책·수주근린공원 커피·강남시장(부천) 점심·고리울동굴시장 간식·원종종합시장 장보기·오정대공원 낙조·신흥시장 저녁까지, 관광객은 거의 없는 로컬 동선 한 바퀴예요",
+          "highlights": ["로컬 시장 4곳", "숨은 공원 3곳", "관광객 거의 없음"]
+        },
+        "en": {
+          "title": "Hidden Bucheon Day — 4 Local Markets, 3 Quiet Parks",
+          "subtitle": "Bucheon's real face, off the guidebooks",
+          "summary": "Morning walk at Jindallae Hill, coffee at Suju Neighborhood Park, lunch at Gangnam Market, snacks at Goriul Cave Market, grocery run at Wonjong General Market, sunset at Ojeong Grand Park, and Sinheung Market for dinner — one loop of locals-only Bucheon.",
+          "highlights": ["Four local markets", "Three hidden parks", "Near-zero tourists"]
+        },
+        "ja": {
+          "title": "隠れた富川1日 — ローカル市場4ヶ所・公園3ヶ所",
+          "subtitle": "ガイドブック外の富川のリアル",
+          "summary": "ツツジの丘の朝散歩、樹州近隣公園でコーヒー、江南市場(富川)でランチ、コリウル洞窟市場でおやつ、元宗総合市場で買い物、梧亭大公園で夕景、新興市場で夕食まで、観光客ほぼゼロのローカル動線を1周します。",
+          "highlights": ["ローカル市場4ヶ所", "隠れ公園3ヶ所", "観光客ほぼゼロ"]
+        },
+        "zh": {
+          "title": "隐藏富川一日 · 4 市场·3 公园",
+          "subtitle": "旅游书之外的富川真面貌",
+          "summary": "金达莱山晨间散步·树州近邻公园咖啡·江南市场(富川)午餐·高丽乌洞穴市场小吃·元宗综合市场采买·梧亭大公园日落·新兴市场晚餐,一圈走完几乎没有游客的本地动线。",
+          "highlights": ["本地市场四处", "隐藏公园三处", "几乎无游客"]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3079629",
+          "i18n": {
+            "ko": { "note": "아침 진달래 산책" },
+            "en": { "note": "Morning azalea walk" },
+            "ja": { "note": "朝のツツジ散歩" },
+            "zh": { "note": "晨间金达莱漫步" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "동네 공원 커피 한 잔" },
+            "en": { "note": "Coffee at the local park" },
+            "ja": { "note": "地元公園でコーヒー" },
+            "zh": { "note": "社区公园咖啡时光" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "2781673",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "강남시장(부천) 점심, 반찬과 꽈배기" },
+            "en": { "note": "Gangnam Market lunch — side dishes and twist donuts" },
+            "ja": { "note": "江南市場ランチ、惣菜とツイストドーナツ" },
+            "zh": { "note": "江南市场午餐,小菜与麻花" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "2742165",
+          "i18n": {
+            "ko": { "note": "동굴 시장 간식 타임" },
+            "en": { "note": "Cave market snack time" },
+            "ja": { "note": "洞窟市場のおやつタイム" },
+            "zh": { "note": "洞穴市场小吃时间" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "1339134",
+          "i18n": {
+            "ko": { "note": "과일·떡 장보기" },
+            "en": { "note": "Fruit and rice cake run" },
+            "ja": { "note": "果物・餅の買い物" },
+            "zh": { "note": "买水果与糕饼" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2736380",
+          "i18n": {
+            "ko": { "note": "오정대공원 낙조 포토" },
+            "en": { "note": "Sunset photos at Ojeong Grand Park" },
+            "ja": { "note": "梧亭大公園で夕景撮影" },
+            "zh": { "note": "在梧亭大公园拍日落" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781668",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "신흥시장 저녁, 현지인 저녁 맛집" },
+            "en": { "note": "Dinner at Sinheung Market — locals' favourite" },
+            "ja": { "note": "新興市場で夕食、地元の人気店" },
+            "zh": { "note": "新兴市场晚餐,本地人气餐馆" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    },
+    {
+      "id": "bucheon-hidden-gem-2n3d",
+      "primaryRegion": "bucheon",
+      "styleTags": ["hidden-gem", "nature", "foodie", "history"],
+      "duration": "2n3d",
+      "heroContentId": "2733412",
+      "budgetKrw": { "min": 280000, "max": 520000 },
+      "transitHint": { "from": "seoul", "mode": "subway_line_1", "minutes": 35 },
+      "i18n": {
+        "ko": {
+          "title": "숨은 부천 2박 3일 — 로컬 깊이 보기",
+          "subtitle": "시장 5곳·공원 4곳·인근 숨은 스팟까지",
+          "summary": "• DAY1 — 진달래동산·수주근린공원·강남시장 점심·고리울동굴시장·신흥시장 저녁, 중동 호텔 숙박\n• DAY2 — 원미마실길·원종종합시장·오정대공원 낙조·소사내음길·중동 숙박\n• DAY3 — 무릉도원수목원·안중근공원·광명 안터생태공원으로 조용히 마무리",
+          "highlights": [
+            "관광객 없는 숨은 명소 10곳",
+            "로컬 시장 5곳 점심·저녁",
+            "광명 안터생태공원 (인근 15%)"
+          ]
+        },
+        "en": {
+          "title": "Hidden Bucheon 3-Day — A Deep Local Dive",
+          "subtitle": "Five markets, four parks, a hidden neighbour or two",
+          "summary": "• Day 1 — Jindallae Hill, Suju Neighborhood Park, Gangnam Market lunch, Goriul Cave Market, Sinheung Market dinner, overnight in Jungdong.\n• Day 2 — Wonmi Masil-gil, Wonjong General Market, sunset at Ojeong Grand Park, Sosa Fragrance Path, Jungdong overnight.\n• Day 3 — Mureungdowon Arboretum, Ahn Jung-geun Park, and a quiet close at Gwangmyeong's Anteo Ecological Park.",
+          "highlights": [
+            "Ten tourist-free stops",
+            "Five markets for lunch and dinner",
+            "Gwangmyeong's Anteo Park (nearby 15%)"
+          ]
+        },
+        "ja": {
+          "title": "隠れた富川2泊3日 — ローカルを深く",
+          "subtitle": "市場5ヶ所・公園4ヶ所・近隣の隠れスポットまで",
+          "summary": "• 1日目 — ツツジの丘・樹州近隣公園・江南市場ランチ・コリウル洞窟市場・新興市場で夕食、中洞で宿泊。\n• 2日目 — ウォンミマシルキル・元宗総合市場・梧亭大公園の夕景・素砂内音道、中洞で宿泊。\n• 3日目 — 武陵桃源樹木園・安重根公園・光明アントー生態公園で静かに締めくくり。",
+          "highlights": [
+            "観光客のいない隠れ名所10ヶ所",
+            "ローカル市場5ヶ所でランチ・ディナー",
+            "光明アントー生態公園(近隣15%)"
+          ]
+        },
+        "zh": {
+          "title": "隐藏富川三天两夜 · 深度本地游",
+          "subtitle": "市场 5 处·公园 4 处,含邻近隐秘角落",
+          "summary": "• DAY1 — 金达莱山·树州近邻公园·江南市场午餐·高丽乌洞穴市场·新兴市场晚餐,中洞酒店住宿。\n• DAY2 — 元美村巷路·元宗综合市场·梧亭大公园日落·素砂芬芳路,中洞酒店住宿。\n• DAY3 — 武陵桃源植物园·安重根公园·光明安特生态公园静静收尾。",
+          "highlights": [
+            "无游客的隐藏景点 10 处",
+            "五大本地市场午晚餐",
+            "光明安特生态公园(邻近 15%)"
+          ]
+        }
+      },
+      "stops": [
+        {
+          "order": 1,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3079629",
+          "i18n": {
+            "ko": { "note": "진달래동산 아침 산책" },
+            "en": { "note": "Morning walk at Jindallae Hill" },
+            "ja": { "note": "ツツジの丘で朝散歩" },
+            "zh": { "note": "金达莱山晨间散步" }
+          }
+        },
+        {
+          "order": 2,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "2869027",
+          "i18n": {
+            "ko": { "note": "동네 공원 커피" },
+            "en": { "note": "Coffee at the local park" },
+            "ja": { "note": "地元公園でコーヒー" },
+            "zh": { "note": "社区公园咖啡时光" }
+          }
+        },
+        {
+          "order": 3,
+          "stayMinutes": 75,
+          "category": "food",
+          "tourApiContentId": "2781673",
+          "priceCatalogId": "gimbap",
+          "i18n": {
+            "ko": { "note": "강남시장(부천) 점심" },
+            "en": { "note": "Gangnam Market lunch" },
+            "ja": { "note": "江南市場ランチ" },
+            "zh": { "note": "江南市场午餐" }
+          }
+        },
+        {
+          "order": 4,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "2742165",
+          "i18n": {
+            "ko": { "note": "동굴 시장 간식" },
+            "en": { "note": "Cave market snack" },
+            "ja": { "note": "洞窟市場のおやつ" },
+            "zh": { "note": "洞穴市场小吃" }
+          }
+        },
+        {
+          "order": 5,
+          "stayMinutes": 60,
+          "category": "food",
+          "tourApiContentId": "2781668",
+          "priceCatalogId": "kimchi_jjigae",
+          "i18n": {
+            "ko": { "note": "신흥시장 저녁" },
+            "en": { "note": "Sinheung Market dinner" },
+            "ja": { "note": "新興市場で夕食" },
+            "zh": { "note": "新兴市场晚餐" }
+          }
+        },
+        {
+          "order": 6,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (1박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 1)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(1泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第一晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "중동역 근처 소규모 비즈니스 호텔" },
+            "en": { "note": "Small business hotel near Jungdong Station" },
+            "ja": { "note": "中洞駅近くの小型ビジネスホテル" },
+            "zh": { "note": "中洞站附近小型商务酒店" }
+          }
+        },
+        {
+          "order": 7,
+          "stayMinutes": 75,
+          "category": "leisure",
+          "tourApiContentId": "2733028",
+          "i18n": {
+            "ko": { "note": "DAY2 아침 둘레길 원미마실길" },
+            "en": { "note": "Day 2 morning — Wonmi Masil-gil trail" },
+            "ja": { "note": "2日目朝はウォンミマシルキル" },
+            "zh": { "note": "DAY2 晨间元美村巷路" }
+          }
+        },
+        {
+          "order": 8,
+          "stayMinutes": 30,
+          "category": "shopping",
+          "tourApiContentId": "1339134",
+          "i18n": {
+            "ko": { "note": "원종종합시장 과일·떡 장보기" },
+            "en": { "note": "Fruit and rice cakes at Wonjong Market" },
+            "ja": { "note": "元宗総合市場で果物と餅" },
+            "zh": { "note": "元宗综合市场买水果与糕饼" }
+          }
+        },
+        {
+          "order": 9,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2736380",
+          "i18n": {
+            "ko": { "note": "오정대공원 낙조 포토" },
+            "en": { "note": "Sunset photos at Ojeong Grand Park" },
+            "ja": { "note": "梧亭大公園で夕景撮影" },
+            "zh": { "note": "梧亭大公园拍日落" }
+          }
+        },
+        {
+          "order": 10,
+          "stayMinutes": 60,
+          "category": "leisure",
+          "tourApiContentId": "2732682",
+          "i18n": {
+            "ko": { "note": "소사내음길 저녁 산책" },
+            "en": { "note": "Sosa Fragrance Path evening walk" },
+            "ja": { "note": "素砂内音道の夕方散歩" },
+            "zh": { "note": "素砂芬芳路傍晚散步" }
+          }
+        },
+        {
+          "order": 11,
+          "stayMinutes": 720,
+          "category": "lodging",
+          "customPlace": {
+            "coords": { "lat": 37.5035, "lng": 126.7657 },
+            "region": "bucheon",
+            "i18n": {
+              "ko": { "name": "중동 호텔 지구 (2박)", "addr": "경기도 부천시 원미구 중동" },
+              "en": {
+                "name": "Jungdong Hotel District (night 2)",
+                "addr": "Jungdong, Wonmi-gu, Bucheon-si"
+              },
+              "ja": { "name": "中洞ホテル街(2泊目)", "addr": "京畿道富川市遠美区中洞" },
+              "zh": { "name": "中洞酒店街(第二晚)", "addr": "京畿道富川市远美区中洞" }
+            }
+          },
+          "i18n": {
+            "ko": { "note": "연박 유지, 짐 이동 없이 편함" },
+            "en": { "note": "Second night at the same hotel — no luggage moves" },
+            "ja": { "note": "連泊で荷物移動なし" },
+            "zh": { "note": "同一酒店连住,免去搬运" }
+          }
+        },
+        {
+          "order": 12,
+          "stayMinutes": 60,
+          "category": "attraction",
+          "tourApiContentId": "2781609",
+          "i18n": {
+            "ko": { "note": "무릉도원수목원에서 DAY3 시작" },
+            "en": { "note": "Day 3 start — Mureungdowon Arboretum" },
+            "ja": { "note": "3日目は武陵桃源樹木園から" },
+            "zh": { "note": "DAY3 从武陵桃源植物园开启" }
+          }
+        },
+        {
+          "order": 13,
+          "stayMinutes": 45,
+          "category": "attraction",
+          "tourApiContentId": "3425101",
+          "i18n": {
+            "ko": { "note": "안중근 의사 추모 산책" },
+            "en": { "note": "Memorial walk for Ahn Jung-geun" },
+            "ja": { "note": "安重根義士追悼散歩" },
+            "zh": { "note": "安重根义士悼念漫步" }
+          }
+        },
+        {
+          "order": 14,
+          "stayMinutes": 75,
+          "category": "attraction",
+          "tourApiContentId": "2733412",
+          "i18n": {
+            "ko": { "note": "광명 (인근 15%), 안터생태공원에서 조용히 마무리" },
+            "en": { "note": "Gwangmyeong (nearby 15%) — quiet close at Anteo Ecological Park" },
+            "ja": { "note": "光明(近隣15%)、アントー生態公園で静かに締め" },
+            "zh": { "note": "光明(邻近 15%),安特生态公园静静收尾" }
+          }
+        }
+      ],
+      "published": true,
+      "updatedAt": "2026-04-21T17:00:00.000Z"
+    }
+  ]
+}

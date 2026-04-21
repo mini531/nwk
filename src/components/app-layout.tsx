@@ -1,13 +1,14 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
-import { CompassIcon, HomeIcon, KitIcon, ScaleIcon, UserIcon } from './icons'
+import { CompassIcon, CourseIcon, HomeIcon, ScaleIcon, UserIcon } from './icons'
 import { useCloudSync } from '../hooks/use-cloud-sync'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
   to: string
-  key: 'home' | 'check' | 'kit' | 'tour' | 'profile'
+  key: 'home' | 'check' | 'courses' | 'tour' | 'profile'
   Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>
   end: boolean
 }
@@ -15,14 +16,51 @@ interface Tab {
 const tabs: Tab[] = [
   { to: '/', key: 'home', Icon: HomeIcon, end: true },
   { to: '/check', key: 'check', Icon: ScaleIcon, end: false },
-  { to: '/kit', key: 'kit', Icon: KitIcon, end: false },
+  { to: '/courses', key: 'courses', Icon: CourseIcon, end: false },
   { to: '/map', key: 'tour', Icon: CompassIcon, end: false },
   { to: '/profile', key: 'profile', Icon: UserIcon, end: false },
 ]
 
 export const AppLayout = () => {
   const { t } = useTranslation()
+  const location = useLocation()
+  const navigate = useNavigate()
   useCloudSync()
+
+  // Page identity for remount + scroll-to-top. Keying purely on
+  // location.key would remount on every setSearchParams call (e.g. when
+  // /map strips the ?course= deep-link param), blowing away the state
+  // we just set. Instead we key on pathname + our explicit _remount
+  // marker (set by onTabClick on same-path re-clicks), so query-string
+  // edits keep the mounted instance alive.
+  const remountMarker = (location.state as { _remount?: number } | null | undefined)?._remount ?? 0
+  const pageKey = `${location.pathname}|${remountMarker}`
+
+  // Reset scroll position on every navigation. React Router v7 keeps the
+  // previous scroll offset on route change, so tapping a deep-list link
+  // (e.g. the last course card after scrolling) would land the user on
+  // the detail page halfway down. Fires on pageKey change — i.e. true
+  // navigation or explicit tab re-click, not query-string edits.
+  useEffect(() => {
+    const main = document.getElementById('main')
+    if (main) main.scrollTop = 0
+    if (typeof window !== 'undefined') window.scrollTo(0, 0)
+  }, [pageKey])
+
+  // NavLink defaults to a no-op when the target matches the current path.
+  // For nav tabs we want a re-click to reset the page to its initial state
+  // (e.g. CheckPage step 4 → step 1). Forcing a same-path navigate with a
+  // fresh state object changes location.key, which re-mounts <Outlet /> via
+  // the key below.
+  const onTabClick = useCallback(
+    (to: string) => (ev: React.MouseEvent<HTMLAnchorElement>) => {
+      if (location.pathname === to) {
+        ev.preventDefault()
+        navigate(to, { replace: true, state: { _remount: Date.now() } })
+      }
+    },
+    [location.pathname, navigate],
+  )
 
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
@@ -39,9 +77,14 @@ export const AppLayout = () => {
       >
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 px-5 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-6">
-            <span className="truncate text-[17px] font-semibold tracking-tight text-ink">
+            <NavLink
+              to="/"
+              end
+              className="truncate text-[17px] font-semibold tracking-tight text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              aria-label={t('a11y.homeLink')}
+            >
               No Worries Korea
-            </span>
+            </NavLink>
             <nav aria-label={t('a11y.primaryNav')} className="hidden lg:block">
               <ul className="flex items-center gap-1">
                 {tabs.map(({ to, key, end }) => (
@@ -49,6 +92,7 @@ export const AppLayout = () => {
                     <NavLink
                       to={to}
                       end={end}
+                      onClick={onTabClick(to)}
                       className={({ isActive }) =>
                         `rounded-full px-3 py-1.5 text-[13px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
                           isActive
@@ -64,13 +108,31 @@ export const AppLayout = () => {
               </ul>
             </nav>
           </div>
-          <LangSwitcher />
+          <div className="flex items-center gap-2">
+            <LangSwitcher />
+            {/* 모바일 전용: 프로필 아이콘을 하단 탭 대신 헤더 우상단으로 이동.
+                하단 탭 라벨이 길어지면서 5칸 간격이 어색해져 4칸으로 축소. */}
+            <NavLink
+              to="/profile"
+              onClick={onTabClick('/profile')}
+              aria-label={t('nav.profile')}
+              className={({ isActive }) =>
+                `grid h-9 w-9 place-items-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas lg:hidden ${
+                  isActive
+                    ? 'border-ink bg-ink text-on-ink'
+                    : 'border-line bg-surface text-ink-2 hover:border-line-strong hover:text-ink'
+                }`
+              }
+            >
+              <UserIcon size={18} />
+            </NavLink>
+          </div>
         </div>
       </header>
 
       <main id="main" className="flex-1 overflow-y-auto pb-24 lg:pb-10" role="main">
         <div className="mx-auto w-full max-w-6xl px-5 pt-6 sm:px-6 lg:px-8">
-          <Outlet />
+          <Outlet key={pageKey} />
         </div>
       </main>
 
@@ -79,31 +141,34 @@ export const AppLayout = () => {
         className="fixed inset-x-0 bottom-0 z-20 border-t border-line/70 bg-canvas/90 backdrop-blur-md lg:hidden"
       >
         <div className="mx-auto flex h-16 max-w-md items-stretch justify-around px-2">
-          {tabs.map(({ to, key, Icon, end }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
-              className={({ isActive }) =>
-                `group relative flex flex-1 flex-col items-center justify-center gap-1 text-[12px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
-                  isActive ? 'text-brand' : 'text-ink-3 hover:text-ink-2'
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <Icon size={22} strokeWidth={isActive ? 1.9 : 1.6} aria-hidden="true" />
-                  <span>{t(`nav.${key}`)}</span>
-                  <span
-                    aria-hidden="true"
-                    className={`absolute -top-px h-[2px] w-8 rounded-full transition-all ${
-                      isActive ? 'bg-brand opacity-100' : 'opacity-0'
-                    }`}
-                  />
-                </>
-              )}
-            </NavLink>
-          ))}
+          {tabs
+            .filter((tab) => tab.key !== 'profile')
+            .map(({ to, key, Icon, end }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={end}
+                onClick={onTabClick(to)}
+                className={({ isActive }) =>
+                  `group relative flex flex-1 flex-col items-center justify-center gap-1 text-[12px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
+                    isActive ? 'text-brand' : 'text-ink-3 hover:text-ink-2'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <Icon size={22} strokeWidth={isActive ? 1.9 : 1.6} aria-hidden="true" />
+                    <span>{t(`nav.${key}`)}</span>
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -top-px h-[2px] w-8 rounded-full transition-all ${
+                        isActive ? 'bg-brand opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
+            ))}
         </div>
       </nav>
     </div>

@@ -23,6 +23,44 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Curated course documents (Bucheon specialization).
+    // Public can read only documents marked published=true.
+    // Writes are restricted to users with the admin custom claim,
+    // so a future admin CMS can edit courses directly from the client.
+    match /courses/{courseId} {
+      allow read: if resource.data.published == true;
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+
+      // Per-course heart (like). Doc id is the liker's uid. Existence
+      // alone represents the like; no fields are trusted from the client.
+      match /likes/{uid} {
+        allow read: if true;
+        allow create: if request.auth != null
+          && request.auth.uid == uid;
+        allow delete: if request.auth != null
+          && request.auth.uid == uid;
+      }
+
+      // Per-course user notes (comments). Read is open — clients hide
+      // moderated rows by checking the `hidden` flag locally, which
+      // keeps the query simple (no composite index needed and no
+      // "insecure query" errors from the Firestore rules engine). Admin
+      // moderation still prevents further edits from surfacing content.
+      match /notes/{noteId} {
+        allow read: if true;
+        allow create: if request.auth != null
+          && request.auth.uid == request.resource.data.uid
+          && request.resource.data.hidden == false
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0;
+        allow update: if request.auth != null && request.auth.token.admin == true;
+        allow delete: if request.auth != null
+          && (request.auth.token.admin == true
+            || request.auth.uid == resource.data.uid);
+      }
+    }
+
     // User-owned data: only the authenticated owner can read/write
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;

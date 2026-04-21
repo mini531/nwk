@@ -127,6 +127,15 @@ export const KitIcon = ({ size = 22, ...p }: IconProps) => (
   </svg>
 )
 
+export const CourseIcon = ({ size = 22, ...p }: IconProps) => (
+  <svg {...base(size)} {...p} aria-hidden="true">
+    <circle cx="6" cy="6" r="2" />
+    <circle cx="18" cy="18" r="2" />
+    <path d="M6 8v4a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3" />
+    <path d="M10 10h4M11 13h2" />
+  </svg>
+)
+
 export const CameraIcon = ({ size = 22, ...p }: IconProps) => (
   <svg {...base(size)} {...p} aria-hidden="true">
     <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2h5.2L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z" />

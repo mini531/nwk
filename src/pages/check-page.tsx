@@ -1,11 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRecentChecks } from '../hooks/use-recent-checks'
-import { useAuth } from '../hooks/use-auth'
-import { uploadReceiptPhoto } from '../services/photo-upload'
-import { ocrImage, extractPrices, type ExtractedPrice } from '../utils/menu-ocr'
-import { matchExtractedPrices } from '../utils/menu-match'
 import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
@@ -19,7 +15,6 @@ import {
   AlertIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CameraIcon,
   CoinIcon,
   GlobeIcon,
   PinIcon,
@@ -31,14 +26,6 @@ import {
 import type { ComponentType, SVGProps } from 'react'
 
 type Step = 1 | 2 | 3 | 4
-
-interface PhotoVerdictItem {
-  label: string
-  paid: number
-  entry: PriceEntry | null
-  verdict: CheckResult | null
-  similarity: number
-}
 
 const CATEGORY_META: Record<
   PriceCategory,
@@ -90,60 +77,30 @@ export const CheckPage = () => {
   const [km, setKm] = useState('')
   const [night, setNight] = useState(false)
   const [result, setResult] = useState<CheckResult | null>(null)
-  const [photoFile, setPhotoFile] = useState<File | null>(null)
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null)
-  const [photoUrl, setPhotoUrl] = useState<string | null>(null)
-  const [photoUploading, setPhotoUploading] = useState(false)
-  const [photoError, setPhotoError] = useState<string | null>(null)
-  const [ocrLoading, setOcrLoading] = useState(false)
-  const [ocrItems, setOcrItems] = useState<ExtractedPrice[] | null>(null)
-  const [showOcrModal, setShowOcrModal] = useState(false)
-  const [photoVerdicts, setPhotoVerdicts] = useState<PhotoVerdictItem[] | null>(null)
-  const photoInputRef = useRef<HTMLInputElement>(null)
-  const { push: pushRecent, attachPhoto } = useRecentChecks()
-  const { user } = useAuth()
+  const { push: pushRecent } = useRecentChecks()
 
-  useEffect(() => {
-    if (!photoFile) {
-      setPhotoPreview(null)
-      return
-    }
-    const url = URL.createObjectURL(photoFile)
-    setPhotoPreview(url)
-    return () => URL.revokeObjectURL(url)
-  }, [photoFile])
-
-  useEffect(() => {
-    if (!result) return
-    const id = pushRecent({
-      entryId: result.entry.id,
-      paid: result.paid,
-      fairMin: result.fairMin,
-      fairMax: result.fairMax,
-      deltaPct: result.deltaPct,
-      verdict: result.verdict,
-      ...(photoUrl ? { photoUrl } : {}),
+  const onSubmitResult = (r: CheckResult) => {
+    pushRecent({
+      entryId: r.entry.id,
+      paid: r.paid,
+      fairMin: r.fairMin,
+      fairMax: r.fairMax,
+      deltaPct: r.deltaPct,
+      verdict: r.verdict,
     })
-    if (!photoFile || !user || photoUrl) return
-    setPhotoUploading(true)
-    setPhotoError(null)
-    uploadReceiptPhoto(user.uid, photoFile)
-      .then((url) => {
-        setPhotoUrl(url)
-        attachPhoto(id, url)
-      })
-      .catch((err) => {
-        console.error('photo upload failed', err)
-        setPhotoError(t('page.check.photo.uploadError'))
-      })
-      .finally(() => setPhotoUploading(false))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result])
+    setResult(r)
+    setStep(4)
+  }
 
   const items = useMemo(
     () => (category ? PRICE_CATALOG.filter((e) => e.category === category) : []),
     [category],
   )
+
+  // Top 12 popular items across all categories — quick-pick shortcut on
+  // step 1 so first-time users can jump straight into the most-checked
+  // items (bibimbap, americano, subway, etc.) without drilling down.
+  const popularItems = useMemo(() => PRICE_CATALOG.filter((e) => e.popular).slice(0, 12), [])
 
   const filteredItems = useMemo(() => {
     if (!query.trim()) return items
@@ -177,62 +134,6 @@ export const CheckPage = () => {
     setKm('')
     setNight(false)
     setResult(null)
-    setPhotoFile(null)
-    setPhotoUrl(null)
-    setPhotoError(null)
-    setPhotoVerdicts(null)
-    setOcrLoading(false)
-    setOcrItems(null)
-    setShowOcrModal(false)
-    if (photoInputRef.current) photoInputRef.current.value = ''
-  }
-
-  const onPickPhoto = async (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const file = ev.target.files?.[0]
-    if (!file) return
-    if (!file.type.startsWith('image/')) return
-    setPhotoFile(file)
-    setPhotoUrl(null)
-    setPhotoError(null)
-    setPhotoVerdicts(null)
-    setOcrItems(null)
-    setOcrLoading(true)
-    setShowOcrModal(true)
-    try {
-      const lines = await ocrImage(file)
-      const prices = extractPrices(lines)
-      setOcrItems(prices)
-    } catch (err) {
-      console.error('OCR failed', err)
-      setPhotoError(t('page.check.photo.ocrError'))
-      setShowOcrModal(false)
-    } finally {
-      setOcrLoading(false)
-    }
-  }
-
-  const removeOcrItem = (idx: number) => {
-    setOcrItems((prev) => (prev ? prev.filter((_, i) => i !== idx) : prev))
-  }
-
-  const analyzeExtracted = () => {
-    if (!ocrItems || ocrItems.length === 0) return
-    const matched = matchExtractedPrices(ocrItems, t)
-    const verdicts: PhotoVerdictItem[] = matched
-      .filter((m) => m.entry !== null)
-      .map((m) => ({
-        label: m.extracted.label,
-        paid: m.extracted.price,
-        entry: m.entry,
-        verdict: m.entry ? checkPrice(m.entry.id, m.extracted.price) : null,
-        similarity: m.similarity,
-      }))
-    setPhotoVerdicts(verdicts)
-    setShowOcrModal(false)
-  }
-
-  const closeOcrModal = () => {
-    setShowOcrModal(false)
   }
 
   const onBack = () => {
@@ -271,17 +172,11 @@ export const CheckPage = () => {
       const kmNum = Number(km.replace(/[^0-9.]/g, ''))
       if (!Number.isFinite(kmNum) || kmNum <= 0) return
       const r = checkPrice(entry.id, paid, { km: kmNum, night })
-      if (r) {
-        setResult(r)
-        setStep(4)
-      }
+      if (r) onSubmitResult(r)
       return
     }
     const r = checkPrice(entry.id, paid)
-    if (r) {
-      setResult(r)
-      setStep(4)
-    }
+    if (r) onSubmitResult(r)
   }
 
   const questionKey = useMemo(() => {
@@ -321,7 +216,7 @@ export const CheckPage = () => {
       </header>
 
       {step === 1 && (
-        <div className="mx-auto max-w-3xl space-y-5">
+        <div className="space-y-6">
           <h1 className="text-[24px] font-semibold leading-[1.2] tracking-tight text-ink">
             {t(questionKey)}
           </h1>
@@ -351,7 +246,7 @@ export const CheckPage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {PRICE_CATEGORIES.map((c) => {
               const meta = CATEGORY_META[c]
               return (
@@ -380,138 +275,22 @@ export const CheckPage = () => {
           </div>
 
           <div>
-            <input
-              ref={photoInputRef}
-              type="file"
-              accept="image/*"
-              onChange={onPickPhoto}
-              className="hidden"
-            />
-            {photoPreview ? (
-              <div className="rounded-2xl border border-line bg-surface p-3">
-                <div className="flex items-start gap-3">
-                  <img
-                    src={photoPreview}
-                    alt=""
-                    className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[13px] font-semibold tracking-tight text-ink">
-                      {t('page.check.photo.attached')}
-                    </p>
-                    <p className="mt-0.5 text-[12px] text-ink-3">
-                      {user ? t('page.check.photo.willUpload') : t('page.check.photo.signInHint')}
-                    </p>
-                    <div className="mt-2 flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => photoInputRef.current?.click()}
-                        className="text-[12px] font-semibold text-brand hover:underline"
-                      >
-                        {t('page.check.photo.replace')}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setPhotoFile(null)
-                          if (photoInputRef.current) photoInputRef.current.value = ''
-                        }}
-                        className="text-[12px] font-medium text-ink-3 hover:text-ink-2"
-                      >
-                        {t('page.check.photo.remove')}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={() => photoInputRef.current?.click()}
-                className="flex w-full items-center justify-between rounded-2xl border border-dashed border-line bg-canvas-2 px-4 py-3.5 text-left transition-colors hover:border-line-strong hover:bg-surface"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-soft text-brand">
-                    <CameraIcon size={18} />
-                  </span>
-                  <div>
-                    <p className="text-[15px] font-semibold tracking-tight text-ink">
-                      {t('page.check.photo.title')}
-                    </p>
-                    <p className="text-[12px] text-ink-3">{t('page.check.photo.helper')}</p>
-                  </div>
-                </div>
-                <ArrowRightIcon size={14} className="text-ink-3" />
-              </button>
-            )}
-
-            {photoError && !showOcrModal && (
-              <p className="mt-3 rounded-xl border border-danger/30 bg-danger/5 px-4 py-3 text-[12px] leading-snug text-danger">
-                {photoError}
-              </p>
-            )}
-
-            {photoVerdicts && photoVerdicts.length > 0 && (
-              <div className="mt-3 space-y-2.5">
-                <div className="flex items-center justify-between px-1">
-                  <p className="text-[12px] font-semibold text-ink-3">
-                    {t('page.check.photo.resultCount', { count: photoVerdicts.length })}
-                  </p>
-                  {photoVerdicts.filter((v) => v.verdict?.verdict === 'bagaji').length > 0 && (
-                    <span className="text-[12px] font-bold uppercase tracking-wider text-danger">
-                      {t('page.check.photo.bagajiFound')}
-                    </span>
-                  )}
-                </div>
-                <ul className="space-y-2">
-                  {photoVerdicts.map((v, idx) => (
-                    <li
-                      key={`${v.label}-${idx}`}
-                      className={`rounded-2xl border px-4 py-3 ${
-                        v.verdict ? verdictStyles[v.verdict.verdict].ring : 'border-line bg-surface'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-[15px] font-semibold tracking-tight text-ink">
-                            {v.entry ? t(`catalog.${v.entry.id}.name`) : v.label}
-                          </p>
-                          <p className="mt-0.5 text-[12px] tabular-nums text-ink-3">
-                            {formatKrw(v.paid, i18n.language)}
-                            {v.entry && v.verdict ? (
-                              <>
-                                {' · '}
-                                {t('page.check.fairHint')}:{' '}
-                                {formatKrw(v.verdict.fairMin, i18n.language)}–
-                                {formatKrw(v.verdict.fairMax, i18n.language)}
-                              </>
-                            ) : null}
-                          </p>
-                        </div>
-                        {v.verdict && (
-                          <div
-                            className={`shrink-0 text-right ${verdictStyles[v.verdict.verdict].label}`}
-                          >
-                            <p className="text-[13px] font-bold uppercase tracking-wider">
-                              {t(`page.check.verdict.${v.verdict.verdict}`)}
-                            </p>
-                            <p className="text-[13px] font-bold tabular-nums">
-                              {formatPct(v.verdict.deltaPct)}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <p className="mb-3 text-[12px] font-semibold text-ink-3">
+              {t('page.check.popularLabel')}
+            </p>
+            <ul className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
+              {popularItems.map((e) => (
+                <li key={e.id}>
+                  <ItemCard entry={e} onClick={() => onPickItem(e)} lang={i18n.language} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
 
       {step === 2 && category && (
-        <div className="mx-auto max-w-3xl space-y-4">
+        <div className="space-y-4">
           <h1 className="text-[22px] font-semibold leading-[1.2] tracking-tight text-ink sm:text-[24px]">
             {t(questionKey)}
           </h1>
@@ -734,34 +513,6 @@ export const CheckPage = () => {
               </div>
             )}
 
-            {photoPreview && (
-              <div className="mt-4 rounded-xl border border-line bg-surface/70 p-3">
-                <div className="flex items-start gap-3">
-                  <img
-                    src={photoUrl ?? photoPreview}
-                    alt=""
-                    className="h-16 w-16 shrink-0 rounded-lg object-cover"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[12px] font-semibold text-ink-2">
-                      {t('page.check.photo.resultLabel')}
-                    </p>
-                    <p className="mt-0.5 text-[12px] leading-snug text-ink-3">
-                      {photoUploading
-                        ? t('page.check.photo.uploading')
-                        : photoUrl
-                          ? t('page.check.photo.saved')
-                          : photoError
-                            ? photoError
-                            : user
-                              ? t('page.check.photo.queued')
-                              : t('page.check.photo.localOnly')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
             {result.source ? (
               <a
                 href={result.source.url}
@@ -795,10 +546,10 @@ export const CheckPage = () => {
               {t('page.check.again')}
             </button>
             <Link
-              to="/kit"
+              to="/courses"
               className="flex items-center justify-center gap-1.5 rounded-2xl bg-ink py-3.5 text-[13px] font-semibold text-on-ink transition hover:bg-ink/90 active:scale-[0.99]"
             >
-              {t('page.check.openKit')}
+              {t('page.check.openCourses')}
               <ArrowRightIcon size={14} />
             </Link>
           </div>
@@ -821,124 +572,6 @@ export const CheckPage = () => {
           )}
         </div>
       )}
-
-      {showOcrModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-ink/50 p-0 sm:items-center sm:p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="ocr-modal-title"
-          onClick={closeOcrModal}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-3xl border border-line bg-surface shadow-pop sm:max-w-lg sm:rounded-3xl"
-          >
-            <div className="flex items-start justify-between gap-3 border-b border-line px-5 py-4">
-              <div className="min-w-0 flex-1">
-                <h2
-                  id="ocr-modal-title"
-                  className="text-[17px] font-semibold tracking-tight text-ink"
-                >
-                  {t('page.check.photo.modalTitle')}
-                </h2>
-                <p className="mt-0.5 text-[12px] text-ink-3">
-                  {ocrLoading
-                    ? t('page.check.photo.analyzingHelper')
-                    : t('page.check.photo.modalHelper')}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={closeOcrModal}
-                aria-label={t('page.check.photo.close')}
-                className="shrink-0 rounded-full p-1.5 text-ink-3 hover:bg-canvas-2 hover:text-ink"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                >
-                  <path d="M6 6l12 12M18 6l-12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto px-5 py-4">
-              {ocrLoading ? (
-                <div className="flex items-center justify-center gap-3 py-8">
-                  <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-brand border-t-transparent" />
-                  <p className="text-[13px] font-medium text-ink-2">
-                    {t('page.check.photo.analyzing')}
-                  </p>
-                </div>
-              ) : !ocrItems || ocrItems.length === 0 ? (
-                <div className="py-6 text-center">
-                  <p className="text-[14px] font-semibold text-ink">
-                    {t('page.check.photo.noneFound')}
-                  </p>
-                  <p className="mt-1 text-[12px] leading-snug text-ink-3">
-                    {t('page.check.photo.noneFoundHelper')}
-                  </p>
-                </div>
-              ) : (
-                <ul className="divide-y divide-line">
-                  {ocrItems.map((item, idx) => (
-                    <li key={`${item.label}-${idx}`} className="flex items-center gap-3 py-3">
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-[14px] font-semibold text-ink">{item.label}</p>
-                        <p className="mt-0.5 text-[12px] font-semibold tabular-nums text-ink-3">
-                          {formatKrw(item.price, i18n.language)}
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => removeOcrItem(idx)}
-                        aria-label={t('page.check.photo.removeItem')}
-                        className="shrink-0 rounded-full p-1.5 text-ink-3 hover:bg-canvas-2 hover:text-ink"
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        >
-                          <path d="M6 6l12 12M18 6l-12 12" />
-                        </svg>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            <div className="flex gap-2 border-t border-line px-5 py-4">
-              <button
-                type="button"
-                onClick={closeOcrModal}
-                className="flex-1 rounded-xl border border-line bg-surface py-3 text-[13px] font-semibold text-ink-2 transition hover:border-line-strong hover:text-ink"
-              >
-                {t('page.check.photo.close')}
-              </button>
-              <button
-                type="button"
-                onClick={analyzeExtracted}
-                disabled={ocrLoading || !ocrItems || ocrItems.length === 0}
-                className="flex-1 rounded-xl bg-ink py-3 text-[13px] font-semibold text-on-ink transition hover:bg-ink/90 active:scale-[0.99] disabled:opacity-40 disabled:hover:bg-ink"
-              >
-                {t('page.check.photo.analyze')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
@@ -958,7 +591,7 @@ const ItemCard = ({
     <button
       type="button"
       onClick={onClick}
-      className="nwk-card nwk-card-hover flex flex-col items-start gap-1 p-3.5 text-left transition active:scale-[0.98]"
+      className="nwk-card nwk-card-hover flex h-full w-full flex-col items-start gap-1 p-3.5 text-left transition active:scale-[0.98]"
     >
       <div className="flex w-full items-start justify-between gap-1.5">
         <p className="flex-1 text-[14px] font-semibold leading-tight tracking-tight text-ink">
@@ -970,8 +603,8 @@ const ItemCard = ({
           </span>
         )}
       </div>
-      {entry.unit && <p className="text-[12px] text-ink-3">{entry.unit}</p>}
-      <p className="mt-1 text-[12px] font-medium tabular-nums text-ink-3">
+      <p className="min-h-[1.2em] text-[12px] leading-tight text-ink-3">{entry.unit ?? '\u00A0'}</p>
+      <p className="mt-auto pt-1 text-[12px] font-medium tabular-nums text-ink-3">
         {entry.inputMode === 'taxi'
           ? t('page.check.byDistance')
           : `${formatKrw(range.min, lang)}–${formatKrw(range.max, lang)}`}

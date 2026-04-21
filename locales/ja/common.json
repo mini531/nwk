@@ -8,8 +8,9 @@
     "search": "検索",
     "map": "地図",
     "check": "価格判定",
+    "courses": "富川テーマ旅行",
     "kit": "必需キット",
-    "tour": "観光",
+    "tour": "観光マップ",
     "profile": "マイ"
   },
   "catalog": {
@@ -100,7 +101,7 @@
       "eyebrow": "公共データ · 4言語",
       "headline": "両替の前に、韓国のリアル物価。",
       "liveLabel": "最新の判定",
-      "liveNote": "消費者院の公開事例をもとに",
+      "liveNote": "富川市公共データLIVE連動ベース",
       "bagaji": {
         "eyebrow": "ぼったくり警報",
         "flagged": "{{count}}件 登録",
@@ -110,7 +111,12 @@
       },
       "kitLinkLabel": "入国・生活情報",
       "kitLinkTitle": "韓国必需キット — 入国30分、ATM、通信、緊急連絡先",
-      "rightNowLabel": "韓国のいま",
+      "coursesLinkLabel": "地域ガイド",
+      "coursesLinkTitle": "富川テーマ別コース — スタイル・期間別",
+      "coursesSectionLabel": "富川、こう回る",
+      "coursesSectionTitle": "スタイル・期間別おすすめコース",
+      "viewAllCourses": "すべて見る",
+      "rightNowLabel": "ぼったくりのない韓国旅行のための · 韓国物価体験",
       "prices": {
         "americano": "カフェのアメリカーノ",
         "bibimbap": "ビビンバ 1人前",
@@ -191,8 +197,8 @@
       "sourceBody": "韓国観光公社TourAPI · 国土交通部VWorld · 気象庁 · 韓国銀行。広告・手数料・スポンサーなし。",
       "searchEyebrow": "自分で検索",
       "searchCta": "他の場所を検索",
-      "exploreMapLabel": "観光マップを開く",
-      "exploreMapTitle": "全国600+観光地をクラスター地図で探索",
+      "exploreMapLabel": "富川マップを開く",
+      "exploreMapTitle": "富川と近隣500+観光地をクラスター地図で探索",
       "essentials": "旅の必需",
       "todayLabel": "Today",
       "today": {
@@ -267,7 +273,15 @@
       "loadingNearby": "周辺の観光地を読み込んでいます...",
       "tabMap": "地図",
       "tabList": "リスト",
-      "backToList": "リストに戻る"
+      "backToList": "リストに戻る",
+      "tabPoi": "全国の観光地",
+      "tabTheme": "富川テーマ旅行",
+      "themeCount": "富川テーマコース{{count}}件",
+      "clearCourse": "選択解除",
+      "backToThemes": "テーマ一覧に戻る",
+      "sheetCollapse": "詳細を閉じる",
+      "sheetExpand": "詳細を開く",
+      "stopsLabel": "{{count}}ストップ"
     },
     "about": {
       "title": "NWK — No Worries Korea",
@@ -298,7 +312,7 @@
         },
         "prices": {
           "name": "旅行費用の基準値",
-          "body": "韓国消費者院・統計庁の公開データと2024〜25年の業種平均価格をもとに整理。公共データ連携APIが公開され次第LIVE対応予定。"
+          "body": "京畿道富川市が公共データポータルで公開している個人サービス料金調査データセットを直接取り込み、入力された価格とLIVEで比較します。項目ごとに最小・最大値、サンプル数、更新時期まで表示し、今後15の広域自治体へ順次拡大予定です。"
         }
       }
     },
@@ -319,6 +333,7 @@
       "back": "戻る",
       "again": "もう一度判定",
       "popular": "旅行者がよく聞くもの",
+      "popularLabel": "よく調べる項目",
       "seeAll": "全部見る",
       "searchPlaceholder": "検索 (例: 冷麺)",
       "searchResult": "検索結果",
@@ -353,34 +368,6 @@
         "body": "地下鉄・バスは T-money の固定料金。タクシー・空港バス・KTX・レンタカーは距離・メーター・区間制 — すべての手段の適正料金を先に確認できます。",
         "cta": "交通料金を確認"
       },
-      "photo": {
-        "title": "写真を添付",
-        "helper": "メニュー・レシートを撮影 — 判定と一緒に保存",
-        "attached": "写真を添付しました",
-        "willUpload": "判定後にマイ履歴に保存",
-        "signInHint": "ログインすればクラウド保存、未ログインならこのセッションのみ",
-        "replace": "差替え",
-        "remove": "削除",
-        "resultLabel": "添付写真",
-        "uploading": "アップロード中...",
-        "saved": "クラウドに保存済み",
-        "queued": "アップロード待機中",
-        "localOnly": "ローカルのみ (ログインでクラウド保存)",
-        "uploadError": "アップロード失敗 — 通信/権限を確認",
-        "analyzing": "写真を解析中...",
-        "analyzingHelper": "メニュー・レシートから項目と価格を読み取っています (最大30秒)",
-        "ocrError": "解析に失敗しました — より明るく鮮明な写真でお試しください",
-        "resultCount": "検出された項目 {{count}}件",
-        "bagajiFound": "ぼったくり検出",
-        "unmatched": "メニュー照合なし",
-        "noneFound": "価格を検出できませんでした",
-        "noneFoundHelper": "メニュー・レシートが鮮明に撮れているか確認してください。下で手動入力も可能です。",
-        "modalTitle": "写真から抽出された項目",
-        "modalHelper": "メニュー名と価格を確認し、分析をタップしてください。不要な行はXで除外できます。",
-        "analyze": "分析する",
-        "close": "閉じる",
-        "removeItem": "項目を除外"
-      },
       "form": {
         "category": "カテゴリ",
         "item": "項目",
@@ -414,12 +401,89 @@
         "fair": "適正帯",
         "delta": "平均比"
       },
-      "sourceNote": "2025年ソウル・釜山平均価格 · 韓国消費者院・公共データ出典",
+      "sourceNote": "富川市個人サービス料金 公共データLIVE連動(公共データポータル)",
       "sourceBadge": "実データ出典",
       "sourceSamples": "行政洞の平均",
       "openKit": "必需キットを開く",
+      "openCourses": "富川コースを見る",
       "reportLabel": "民願・通訳ホットライン",
       "reportTitle": "1330 観光案内 (24時間無料)"
+    },
+    "courses": {
+      "eyebrow": "地域特化",
+      "title": "富川、こう回る",
+      "subtitle": "富川を中心にしたテーマ別コース。半日から2泊3日まで、お好みで選べます。",
+      "filterStyle": "スタイル",
+      "filterDuration": "期間",
+      "filterAll": "すべて",
+      "empty": "条件に合うコースがありません",
+      "viewCourse": "コースを見る",
+      "bucheonShare": "富川 {{pct}}%",
+      "sourceLabel": "データ出典",
+      "sourceBody": "POI · 韓国観光公社 TourAPI   |   物価 · 富川市公共データ",
+      "tag": {
+        "kcomics": "K-漫画",
+        "kfilm": "K-映画",
+        "kdrama": "K-ドラマ",
+        "kpop": "K-POP",
+        "foodie": "グルメ",
+        "kculture-day": "K-カルチャー",
+        "family": "家族",
+        "nature": "自然",
+        "wellness": "ウェルネス",
+        "history": "歴史",
+        "rainy-day": "雨の日",
+        "hidden-gem": "隠れた名所",
+        "transit-easy": "交通便利"
+      },
+      "duration": {
+        "half-day": "半日",
+        "day": "日帰り",
+        "1n2d": "1泊2日",
+        "2n3d": "2泊3日",
+        "3n4d": "3泊4日"
+      }
+    },
+    "course": {
+      "back": "コース一覧",
+      "notFound": "コースが見つかりません",
+      "budget": "予算",
+      "access": "アクセス",
+      "regionRule": "地域割合",
+      "itinerary": "日程",
+      "highlightsLabel": "ハイライト",
+      "checkLink": "価格チェック",
+      "bucheonBadge": "富川",
+      "stayMinutes": "{{m}}分",
+      "stayHours": "{{h}}時間",
+      "stayHoursMin": "{{h}}時間{{m}}分",
+      "overnightHours": "宿泊 · {{h}}時間",
+      "minutes": "{{m}}分",
+      "fromPoint": {
+        "seoul": "ソウル中心から",
+        "incheon-airport": "仁川空港から",
+        "gimpo-airport": "金浦空港から"
+      },
+      "like": "いいね",
+      "viewOnMap": "地図で見る",
+      "pdfDownload": "PDFで印刷",
+      "pdfWorking": "PDFを準備中…",
+      "share": "共有",
+      "shareCopied": "リンクをコピーしました",
+      "shareFailed": "共有に失敗しました",
+      "notesLabel": "旅の意見{{count}}件",
+      "notesProposalLabel": "皆さまの意見が集まるほどコースがより良くなります",
+      "notesProposalBody": "いただいた意見は観光商品の開発とコース改善に活用されます。個人情報は保存しません。",
+      "notePlaceholder": "このコースを巡った感想やヒントを意見として残してください",
+      "notePost": "意見を投稿",
+      "notePosting": "投稿中…",
+      "noteError": "意見の投稿に失敗しました。しばらくしてからお試しください。",
+      "noteLoginPrompt": "意見を残すにはログインが必要です。",
+      "noteSignIn": "Googleでログイン",
+      "notesLoading": "意見を読み込んでいます…",
+      "notesEmpty": "まだ意見がありません。最初の意見を残してみてください。",
+      "noteAnon": "匿名",
+      "noteDelete": "削除"
     },
     "kit": {
       "eyebrow": "実用情報",
@@ -559,6 +623,7 @@
         "system": "システム"
       },
       "favorites": { "label": "お気に入り" },
+      "likedCourses": { "label": "いいねしたコース" },
       "recent": { "label": "最近の判定" },
       "signin": "Googleでログイン",
       "signout": "ログアウト",
@@ -577,6 +642,7 @@
   "a11y": {
     "skipToContent": "本文へスキップ",
     "primaryNav": "メインナビ",
+    "homeLink": "ホームへ",
     "favorite": "お気に入りに追加",
     "unfavorite": "お気に入りから削除"
   },

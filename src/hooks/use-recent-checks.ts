@@ -11,7 +11,6 @@ export interface RecentCheck {
   deltaPct: number
   verdict: Verdict
   addedAt: string
-  photoUrl?: string
 }
 
 const MAX_RECENT = 20
@@ -31,13 +30,6 @@ export const useRecentChecks = () => {
     [setList],
   )
 
-  const attachPhoto = useCallback(
-    (id: string, photoUrl: string) => {
-      setList((prev) => prev.map((r) => (r.id === id ? { ...r, photoUrl } : r)))
-    },
-    [setList],
-  )
-
   const remove = useCallback(
     (id: string) => {
       setList((prev) => prev.filter((r) => r.id !== id))
@@ -47,5 +39,5 @@ export const useRecentChecks = () => {
 
   const clear = useCallback(() => setList([]), [setList])
 
-  return { recent: list, push, attachPhoto, remove, clear, count: list.length }
+  return { recent: list, push, remove, clear, count: list.length }
 }
