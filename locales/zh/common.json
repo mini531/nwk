@@ -287,6 +287,64 @@
       "title": "NWK — No Worries Korea",
       "tagline": "韩国旅行的安全网。",
       "version": "版本",
+      "contest": {
+        "label": "参赛作品",
+        "title": "2026 韩国观光数据利用大赛参赛作品",
+        "body": "基于韩国观光公社 TourAPI 与富川市公共数据, 用 LIVE 价格判定 + 31 条富川主题行程服务外国游客, 支持四种语言。"
+      },
+      "stats": {
+        "label": "内容现状",
+        "title": "用数字看富川旅游网",
+        "courses": "富川主题行程",
+        "styles": "风格标签",
+        "durations": "行程长度",
+        "pois": "TourAPI 富川·周边 POI",
+        "languages": "支持语言"
+      },
+      "pipeline": {
+        "label": "数据链路",
+        "title": "公共数据直接驱动服务",
+        "sources": "数据来源",
+        "service": "应用功能",
+        "feedback": "参与反馈",
+        "tour": {
+          "name": "韩国观光公社 TourAPI",
+          "endpoints": "areaBasedList2 · detailCommon2 · searchKeyword2 · areaCode2 · ldongCode2",
+          "langs": "KorService2 · EngService2 · JpnService2 · ChsService2"
+        },
+        "prices": {
+          "name": "京畿道富川市 个人服务价格",
+          "body": "按品项 LIVE 获取最低/最高价与样本量"
+        },
+        "out": {
+          "search": "景点搜索 · 四语言详情",
+          "courses": "31 条主题行程 · 13 风格",
+          "check": "LIVE 正常价判定"
+        },
+        "community": {
+          "name": "游客参与数据",
+          "body": "点赞与留言汇入行程更新与旅游商品开发反馈"
+        }
+      },
+      "roadmap": {
+        "label": "发展路线",
+        "title": "接下来的规划",
+        "m3": {
+          "term": "3 个月内",
+          "title": "管理后台正式上线",
+          "body": "旅游商品经理可在管理界面直接维护行程与留言审核"
+        },
+        "m6": {
+          "term": "6 个月内",
+          "title": "扩展至 15 个广域市道",
+          "body": "逐步接入各地区个人服务价格公共数据, 并增加地区专属编辑席位"
+        },
+        "m12": {
+          "term": "12 个月内",
+          "title": "AI 行程推荐",
+          "body": "基于累计点赞与留言提供个性化推荐, 并上线多语 Q&A 机器人"
+        }
+      },
       "install": {
         "eyebrow": "安装",
         "title": "添加到主屏幕",
@@ -313,6 +371,63 @@
         "prices": {
           "name": "旅游消费基准价",
           "body": "直接接入京畿道富川市在公共数据门户公开的个人服务价格调查数据集,对您输入的每一笔消费进行 LIVE 比对。每项判定都会显示最低·最高价、样本数与调查时点,后续将逐步扩展至全国 15 个广域地方政府。"
+        }
+      }
+    },
+    "admin": {
+      "label": "管理员控制台",
+      "back": "返回管理员首页",
+      "gate": {
+        "loading": "正在核验权限…",
+        "signInTitle": "请先用管理员账号登录",
+        "signInBody": "登录已授权的管理员账号后即可维护行程与留言。",
+        "signInCta": "登录",
+        "deniedTitle": "暂无管理员权限",
+        "deniedBody": "请将下方 uid 提供给运营同学, 申请管理员权限。",
+        "back": "返回首页"
+      },
+      "home": {
+        "title": "富川旅游网 控制台",
+        "greeting": "{{name}}, 欢迎回来"
+      },
+      "stats": {
+        "published": "已公开",
+        "total": "全部行程",
+        "styles": "风格标签",
+        "durations": "行程长度"
+      },
+      "links": {
+        "courses": "行程管理",
+        "coursesDesc": "切换 {{count}} 条行程的公开状态",
+        "notes": "留言审核",
+        "notesDesc": "一览所有行程的用户留言"
+      },
+      "pipeline": {
+        "title": "TourAPI POI {{pois}} 个 · 富川核心 {{core}} 个",
+        "body": "按参赛要求接入 TourAPI 5 个端点 × 4 种语言服务, 翻译空缺通过自定义词典补齐。"
+      },
+      "courses": {
+        "title": "行程管理",
+        "help": "可切换 {{n}} 条行程的公开状态。切换后将生成对应的 Firestore 文档, 后续修改会覆盖静态 JSON。",
+        "published": "公开中",
+        "draft": "未公开",
+        "firestore": "Firestore",
+        "preview": "预览"
+      },
+      "notes": {
+        "title": "留言审核",
+        "total": "共 {{n}} 条",
+        "loading": "加载中…",
+        "empty": "暂无留言",
+        "hiddenTag": "已隐藏",
+        "show": "显示",
+        "hide": "隐藏",
+        "delete": "删除",
+        "confirmDelete": "确定删除此留言吗?",
+        "filter": {
+          "all": "全部",
+          "visible": "可见",
+          "hidden": "隐藏"
         }
       }
     },
@@ -634,7 +749,8 @@
       "rows": {
         "language": "语言",
         "saved": "已保存",
-        "about": "关于 NWK"
+        "about": "关于 NWK",
+        "admin": "管理员控制台"
       }
     }
   },

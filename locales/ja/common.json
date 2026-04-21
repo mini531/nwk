@@ -287,6 +287,64 @@
       "title": "NWK — No Worries Korea",
       "tagline": "韓国旅行のセーフティネット。",
       "version": "バージョン",
+      "contest": {
+        "label": "コンテスト",
+        "title": "2026 観光データ活用コンテスト出品作",
+        "body": "韓国観光公社TourAPIと富川市の公共データを基盤に、ぼったくり判定と31本の富川テーマ旅行を4言語で提供します。"
+      },
+      "stats": {
+        "label": "コンテンツ状況",
+        "title": "数字で見る富川トラベルネット",
+        "courses": "富川コース",
+        "styles": "スタイルタグ",
+        "durations": "旅行期間",
+        "pois": "TourAPI 富川・近郊POI",
+        "languages": "対応言語"
+      },
+      "pipeline": {
+        "label": "データパイプライン",
+        "title": "公共データをそのままサービスへ",
+        "sources": "データソース",
+        "service": "アプリ機能",
+        "feedback": "参加・フィードバック",
+        "tour": {
+          "name": "韓国観光公社 TourAPI",
+          "endpoints": "areaBasedList2 · detailCommon2 · searchKeyword2 · areaCode2 · ldongCode2",
+          "langs": "KorService2 · EngService2 · JpnService2 · ChsService2"
+        },
+        "prices": {
+          "name": "京畿道富川市 個人サービス料金",
+          "body": "項目ごとに最小・最大・サンプル数をLIVEで取得"
+        },
+        "out": {
+          "search": "観光地検索 · 4言語の詳細",
+          "courses": "31のテーマコース · 13スタイル",
+          "check": "ぼったくり判定 LIVE"
+        },
+        "community": {
+          "name": "旅行者の参加データ",
+          "body": "いいね・コメントはコース更新と観光商品開発のヒントになります"
+        }
+      },
+      "roadmap": {
+        "label": "ロードマップ",
+        "title": "今後の展開",
+        "m3": {
+          "term": "3ヶ月以内",
+          "title": "管理者CMS正式公開",
+          "body": "観光商品マネージャーがコースと意見を直接管理できる管理画面を公開します"
+        },
+        "m6": {
+          "term": "6ヶ月以内",
+          "title": "広域15自治体へ拡張",
+          "body": "各自治体の個人サービス料金データを順次連携し、地域別のマネージャー機能を追加します"
+        },
+        "m12": {
+          "term": "12ヶ月以内",
+          "title": "AIコース推薦",
+          "body": "蓄積されたいいね・意見を学習し、多言語Q&Aボットを追加します"
+        }
+      },
       "install": {
         "eyebrow": "インストール",
         "title": "ホーム画面に追加",
@@ -313,6 +371,63 @@
         "prices": {
           "name": "旅行費用の基準値",
           "body": "京畿道富川市が公共データポータルで公開している個人サービス料金調査データセットを直接取り込み、入力された価格とLIVEで比較します。項目ごとに最小・最大値、サンプル数、更新時期まで表示し、今後15の広域自治体へ順次拡大予定です。"
+        }
+      }
+    },
+    "admin": {
+      "label": "管理者コンソール",
+      "back": "管理者ホーム",
+      "gate": {
+        "loading": "権限を確認しています…",
+        "signInTitle": "管理者ログインが必要です",
+        "signInBody": "登録された管理者アカウントでログインすると、コースと意見を管理できます。",
+        "signInCta": "ログイン",
+        "deniedTitle": "管理者権限がありません",
+        "deniedBody": "下記のuidを運営者に伝え、管理者クレームの付与を依頼してください。",
+        "back": "ホームへ"
+      },
+      "home": {
+        "title": "富川トラベルネット コンソール",
+        "greeting": "{{name}}さん、おはようございます"
+      },
+      "stats": {
+        "published": "公開中",
+        "total": "全コース",
+        "styles": "スタイルタグ",
+        "durations": "期間"
+      },
+      "links": {
+        "courses": "コース管理",
+        "coursesDesc": "{{count}}本のコースの公開状態を切替",
+        "notes": "意見モデレーション",
+        "notesDesc": "全コースのユーザー意見を一覧で確認"
+      },
+      "pipeline": {
+        "title": "TourAPI POI {{pois}}件 · 富川コア {{core}}件",
+        "body": "コンテスト要件に合わせTourAPIの5エンドポイント×4言語サービスを連携しています。翻訳欠落はカスタム辞書で補完します。"
+      },
+      "courses": {
+        "title": "コース管理",
+        "help": "{{n}}本のコースの公開状態を切替できます。切替でFirestoreに該当コース文書が作成され、以降は静的JSONよりFirestoreが優先されます。",
+        "published": "公開中",
+        "draft": "下書き",
+        "firestore": "Firestore",
+        "preview": "プレビュー"
+      },
+      "notes": {
+        "title": "意見モデレーション",
+        "total": "計{{n}}件",
+        "loading": "読み込み中…",
+        "empty": "まだ意見がありません",
+        "hiddenTag": "非表示",
+        "show": "表示",
+        "hide": "非表示",
+        "delete": "削除",
+        "confirmDelete": "この意見を削除しますか?",
+        "filter": {
+          "all": "すべて",
+          "visible": "表示中",
+          "hidden": "非表示"
         }
       }
     },
@@ -634,7 +749,8 @@
       "rows": {
         "language": "言語",
         "saved": "保存した場所",
-        "about": "NWKについて"
+        "about": "NWKについて",
+        "admin": "管理者コンソール"
       }
     }
   },

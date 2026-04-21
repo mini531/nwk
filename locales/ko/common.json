@@ -287,6 +287,64 @@
       "title": "NWK - No Worries Korea",
       "tagline": "외국인 관광객을 위한 한국 여행 안전망",
       "version": "버전",
+      "contest": {
+        "label": "공모전",
+        "title": "2026 관광데이터 활용 공모전 출품작",
+        "body": "한국관광공사 TourAPI와 부천시 공공데이터를 축으로, 바가지 판정과 31개 테마 여행을 네 개 언어로 제공하는 공익 서비스예요."
+      },
+      "stats": {
+        "label": "콘텐츠 현황",
+        "title": "숫자로 보는 부천 여행망",
+        "courses": "부천 코스",
+        "styles": "스타일 태그",
+        "durations": "여행 기간",
+        "pois": "TourAPI 부천·인근 POI",
+        "languages": "지원 언어"
+      },
+      "pipeline": {
+        "label": "데이터 플로우",
+        "title": "공공데이터가 서비스로 이어져요",
+        "sources": "데이터 소스",
+        "service": "앱 기능",
+        "feedback": "참여·피드백",
+        "tour": {
+          "name": "한국관광공사 TourAPI",
+          "endpoints": "areaBasedList2 · detailCommon2 · searchKeyword2 · areaCode2 · ldongCode2",
+          "langs": "KorService2 · EngService2 · JpnService2 · ChsService2"
+        },
+        "prices": {
+          "name": "경기도 부천시 개인서비스요금",
+          "body": "품목별 최소·최대가·표본 수를 LIVE로 가져와요"
+        },
+        "out": {
+          "search": "관광지 검색 · 4언어 상세",
+          "courses": "31개 테마 코스 · 13 스타일",
+          "check": "바가지 판정 LIVE"
+        },
+        "community": {
+          "name": "사용자 참여 데이터",
+          "body": "의견·좋아요는 다음 코스 업데이트와 관광 상품 개발 피드백으로 이어져요"
+        }
+      },
+      "roadmap": {
+        "label": "발전 로드맵",
+        "title": "서비스를 이렇게 키워 갈 예정이에요",
+        "m3": {
+          "term": "3개월 내",
+          "title": "관리자 CMS 정식 오픈",
+          "body": "관광 상품 매니저가 직접 코스와 의견을 관리하는 관리자 화면을 공개해요"
+        },
+        "m6": {
+          "term": "6개월 내",
+          "title": "광역 15개 시도 확장",
+          "body": "지역별 개인서비스요금 공공데이터를 순차 연동하고, 시도별 매니저 인터페이스를 추가해요"
+        },
+        "m12": {
+          "term": "12개월 내",
+          "title": "AI 코스 추천",
+          "body": "누적된 좋아요·의견을 바탕으로 개인화 추천과 다국어 Q&A 챗봇을 붙여요"
+        }
+      },
       "install": {
         "eyebrow": "앱 설치",
         "title": "홈 화면에 추가",
@@ -313,6 +371,63 @@
         "prices": {
           "name": "여행경비 정상가",
           "body": "경기도 부천시가 공공데이터포털에 공개한 개인서비스요금 현황 데이터셋을 직접 수집해 LIVE 비교에 사용해요. 항목별로 최소·최대·표본 수와 갱신 시점까지 함께 보여드려요. 향후 광역 15개 시도로 단계 확장 예정이에요."
+        }
+      }
+    },
+    "admin": {
+      "label": "관리자 콘솔",
+      "back": "관리자 홈",
+      "gate": {
+        "loading": "권한을 확인하고 있어요…",
+        "signInTitle": "관리자 로그인이 필요해요",
+        "signInBody": "등록된 관리자 계정으로 로그인하면 코스와 의견 관리 화면을 볼 수 있어요.",
+        "signInCta": "로그인",
+        "deniedTitle": "관리자 권한이 없어요",
+        "deniedBody": "운영자에게 아래 uid를 전달해 관리자 클레임을 요청해 주세요.",
+        "back": "홈으로"
+      },
+      "home": {
+        "title": "부천 여행망 콘솔",
+        "greeting": "{{name}}님, 오늘도 좋은 하루예요"
+      },
+      "stats": {
+        "published": "공개 코스",
+        "total": "전체 코스",
+        "styles": "스타일 태그",
+        "durations": "기간 옵션"
+      },
+      "links": {
+        "courses": "코스 관리",
+        "coursesDesc": "{{count}}개 코스 공개 상태 토글",
+        "notes": "의견 모더레이션",
+        "notesDesc": "전체 코스의 사용자 의견을 한눈에"
+      },
+      "pipeline": {
+        "title": "TourAPI POI {{pois}}건 · 부천 코어 {{core}}건",
+        "body": "공모전 요강 기준 TourAPI 5종 엔드포인트 × 4개 언어 서비스를 연동해요. POI 번역 커스텀 레지스트리로 누락 언어는 보정해요."
+      },
+      "courses": {
+        "title": "코스 관리",
+        "help": "{{n}}개 코스의 공개 상태를 전환할 수 있어요. 전환하면 Firestore에 해당 코스 문서가 생성되고, 이후 수정 내용이 정적 JSON보다 우선해요.",
+        "published": "공개 중",
+        "draft": "비공개",
+        "firestore": "Firestore",
+        "preview": "미리 보기"
+      },
+      "notes": {
+        "title": "의견 모더레이션",
+        "total": "총 {{n}}건",
+        "loading": "불러오는 중…",
+        "empty": "아직 의견이 없어요",
+        "hiddenTag": "숨김",
+        "show": "공개",
+        "hide": "숨기기",
+        "delete": "삭제",
+        "confirmDelete": "정말 이 의견을 삭제할까요?",
+        "filter": {
+          "all": "전체",
+          "visible": "공개",
+          "hidden": "숨김"
         }
       }
     },
@@ -634,7 +749,8 @@
       "rows": {
         "language": "언어",
         "saved": "저장한 장소",
-        "about": "앱 정보"
+        "about": "앱 정보",
+        "admin": "관리자 콘솔"
       }
     }
   },

@@ -7,9 +7,11 @@ import { useTheme, type Theme } from '../hooks/use-theme'
 import { useAppStore } from '../stores/app-store'
 import { useCourses } from '../hooks/use-courses'
 import { useMyLikedCourses } from '../hooks/use-course-likes'
+import { useAdminClaim } from '../hooks/use-admin-claim'
 import { resolveLocalized, type Lang } from '../types/course'
 import {
   ChevronRightIcon,
+  CourseIcon,
   HeartIcon,
   LogOutIcon,
   MoonIcon,
@@ -57,6 +59,7 @@ export const ProfilePage = () => {
   const courses = useCourses()
   const { courseIds: likedCourseIds } = useMyLikedCourses()
   const likedCourses = courses.filter((c) => likedCourseIds.includes(c.id))
+  const { isAdmin } = useAdminClaim()
   const lang = (i18n.language.slice(0, 2) as Lang) || 'ko'
 
   const openPlace = (fav: (typeof favorites)[number]) => {
@@ -300,6 +303,9 @@ export const ProfilePage = () => {
 
       <section className="nwk-card overflow-hidden">
         <Row icon={<ShieldIcon size={18} />} label={t('page.profile.rows.about')} to="/about" />
+        {isAdmin && (
+          <Row icon={<CourseIcon size={18} />} label={t('page.profile.rows.admin')} to="/admin" />
+        )}
       </section>
 
       {user && (

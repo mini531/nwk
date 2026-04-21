@@ -287,6 +287,64 @@
       "title": "NWK — No Worries Korea",
       "tagline": "A safety net for travelers in Korea.",
       "version": "Version",
+      "contest": {
+        "label": "Contest entry",
+        "title": "2026 Korean Tourism Data Contest submission",
+        "body": "Built on KTO TourAPI and Bucheon City's open data, NWK pairs LIVE fair-price checks with 31 themed Bucheon itineraries in four languages."
+      },
+      "stats": {
+        "label": "By the numbers",
+        "title": "Bucheon travel net, in figures",
+        "courses": "Bucheon courses",
+        "styles": "Style tags",
+        "durations": "Durations",
+        "pois": "TourAPI POIs (Bucheon & nearby)",
+        "languages": "Languages"
+      },
+      "pipeline": {
+        "label": "Data pipeline",
+        "title": "Public data, wired into the app",
+        "sources": "Sources",
+        "service": "App features",
+        "feedback": "Community loop",
+        "tour": {
+          "name": "KTO TourAPI",
+          "endpoints": "areaBasedList2 · detailCommon2 · searchKeyword2 · areaCode2 · ldongCode2",
+          "langs": "KorService2 · EngService2 · JpnService2 · ChsService2"
+        },
+        "prices": {
+          "name": "Bucheon City personal-service fees",
+          "body": "Min / max / sample counts pulled LIVE per item."
+        },
+        "out": {
+          "search": "POI search · details in 4 languages",
+          "courses": "31 themed courses · 13 style tags",
+          "check": "LIVE fair-price check"
+        },
+        "community": {
+          "name": "Traveler participation",
+          "body": "Likes and notes feed back into course updates and tourism-product ideas."
+        }
+      },
+      "roadmap": {
+        "label": "Roadmap",
+        "title": "Where we're taking this",
+        "m3": {
+          "term": "In 3 months",
+          "title": "Admin CMS launch",
+          "body": "Tourism-product managers will edit courses and moderate notes directly from an admin console."
+        },
+        "m6": {
+          "term": "In 6 months",
+          "title": "Scale to 15 regional metros",
+          "body": "Onboard each metro's personal-service-fee dataset with region-specific editor seats."
+        },
+        "m12": {
+          "term": "In 12 months",
+          "title": "AI course recommendations",
+          "body": "Personalized picks and a multilingual Q&A bot powered by accumulated notes and likes."
+        }
+      },
       "install": {
         "eyebrow": "Install",
         "title": "Add to home screen",
@@ -313,6 +371,63 @@
         "prices": {
           "name": "Fair-price benchmarks",
           "body": "We pull Bucheon City's personal-service fee survey (published on Korea's public data portal) and compare every price you enter against its LIVE min/max range. Each verdict shows the sample count and survey date, and we're rolling the same pipeline out to 15 provincial datasets next."
+        }
+      }
+    },
+    "admin": {
+      "label": "Admin console",
+      "back": "Admin home",
+      "gate": {
+        "loading": "Checking permissions…",
+        "signInTitle": "Admin sign-in required",
+        "signInBody": "Sign in with a registered admin account to manage courses and notes.",
+        "signInCta": "Sign in",
+        "deniedTitle": "You don't have admin access",
+        "deniedBody": "Share the uid below with an operator to request the admin claim.",
+        "back": "Home"
+      },
+      "home": {
+        "title": "Bucheon Travel Net Console",
+        "greeting": "Welcome, {{name}}"
+      },
+      "stats": {
+        "published": "Published",
+        "total": "Total courses",
+        "styles": "Style tags",
+        "durations": "Durations"
+      },
+      "links": {
+        "courses": "Courses",
+        "coursesDesc": "Toggle publish state on {{count}} courses",
+        "notes": "Notes moderation",
+        "notesDesc": "Review traveler notes across all courses"
+      },
+      "pipeline": {
+        "title": "{{pois}} TourAPI POIs · {{core}} Bucheon core",
+        "body": "The app consumes TourAPI's 5 endpoints across 4 language services as required by the contest. A custom translation registry fills gaps the TourAPI services don't translate."
+      },
+      "courses": {
+        "title": "Courses",
+        "help": "Toggle publish state on {{n}} courses. A toggle creates a Firestore document for that course; subsequent edits in Firestore override the static JSON.",
+        "published": "Published",
+        "draft": "Draft",
+        "firestore": "Firestore",
+        "preview": "Preview"
+      },
+      "notes": {
+        "title": "Notes moderation",
+        "total": "{{n}} total",
+        "loading": "Loading…",
+        "empty": "No notes yet",
+        "hiddenTag": "Hidden",
+        "show": "Show",
+        "hide": "Hide",
+        "delete": "Delete",
+        "confirmDelete": "Delete this note?",
+        "filter": {
+          "all": "All",
+          "visible": "Visible",
+          "hidden": "Hidden"
         }
       }
     },
@@ -649,7 +764,8 @@
       "rows": {
         "language": "Language",
         "saved": "Saved places",
-        "about": "About NWK"
+        "about": "About NWK",
+        "admin": "Admin console"
       }
     }
   },
