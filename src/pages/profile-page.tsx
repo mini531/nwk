@@ -10,6 +10,7 @@ import { useMyLikedCourses } from '../hooks/use-course-likes'
 import { useAdminClaim } from '../hooks/use-admin-claim'
 import { resolveLocalized, type Lang } from '../types/course'
 import {
+  AlertIcon,
   ChevronRightIcon,
   CourseIcon,
   HeartIcon,
@@ -302,6 +303,7 @@ export const ProfilePage = () => {
       </section>
 
       <section className="nwk-card overflow-hidden">
+        <Row icon={<AlertIcon size={18} />} label={t('page.profile.rows.faq')} to="/faq" />
         <Row icon={<ShieldIcon size={18} />} label={t('page.profile.rows.about')} to="/about" />
         {isAdmin && (
           <Row icon={<CourseIcon size={18} />} label={t('page.profile.rows.admin')} to="/admin" />

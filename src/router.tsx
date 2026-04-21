@@ -24,6 +24,7 @@ const ProfilePage = lazy(() =>
   import('./pages/profile-page').then((m) => ({ default: m.ProfilePage })),
 )
 const AboutPage = lazy(() => import('./pages/about-page').then((m) => ({ default: m.AboutPage })))
+const FaqPage = lazy(() => import('./pages/faq-page').then((m) => ({ default: m.FaqPage })))
 const PlacePage = lazy(() => import('./pages/place-page').then((m) => ({ default: m.PlacePage })))
 const AdminHomePage = lazy(() =>
   import('./pages/admin-home').then((m) => ({ default: m.AdminHomePage })),
@@ -58,6 +59,7 @@ export const router = createBrowserRouter([
       { path: 'kit', element: wrap(KitPage) },
       { path: 'profile', element: wrap(ProfilePage) },
       { path: 'about', element: wrap(AboutPage) },
+      { path: 'faq', element: wrap(FaqPage) },
       { path: 'place', element: wrap(PlacePage) },
       { path: 'admin', element: wrap(AdminHomePage) },
       { path: 'admin/courses', element: wrap(AdminCoursesPage) },

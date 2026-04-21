@@ -374,6 +374,51 @@
         }
       }
     },
+    "faq": {
+      "label": "FAQ",
+      "title": "Everything travelers ask before arriving",
+      "subtitle": "The eight questions we hear most from first-time visitors to Korea.",
+      "items": {
+        "entry": {
+          "q": "What about K-ETA and customs on arrival?",
+          "a": "Most visa-waiver travelers need a K-ETA pre-authorization. Apply at k-eta.go.kr at least 24 hours before departure (about $10). Customs can be filed digitally via the Mobile Pass (K-Customs) app when nothing is declarable."
+        },
+        "payment": {
+          "q": "Are credit cards accepted? How much cash should I bring?",
+          "a": "Chains, cafes, and convenience stores take Visa / Mastercard / Amex widely. Traditional markets, street stalls, and some taxis are cash-only. ₩30,000–50,000 per day covers walk-around cash; private exchange booths in Myeongdong or Seoul Station beat airport rates."
+        },
+        "wifi": {
+          "q": "Where do I get Wi-Fi and a SIM?",
+          "a": "Carrier booths in the airport arrivals hall sell 1-, 5-, and 30-day SIM plans on the spot (~₩20,000 for 3-day 13 GB). eSIMs on airalo or nomad can be bought ahead. Free 'Public Wi-Fi Free' SSID runs across subway stations and public buildings."
+        },
+        "transport": {
+          "q": "Subway, bus, or taxi — what should I use first?",
+          "a": "For parties of fewer than four, a single T-money card covers subway, bus, and the airport express at the best price. Late nights or heavy luggage: call a cab through the Kakao T app for a metered, transparent fare."
+        },
+        "emergency": {
+          "q": "Which number do I dial in an emergency?",
+          "a": "112 for police, 119 for ambulance / fire. Tourist interpretation is 1330 (24/7, four languages). General foreigner support: 1345. Lost & found: 182. Search 'emergency hospital near me' on Google Maps for nearby night clinics."
+        },
+        "tipping": {
+          "q": "Do I tip in Korea?",
+          "a": "Tipping is not expected. Hotel bellhops appreciate ₩1,000–₩2,000 per bag, but restaurants and taxis don't require tips and no one will be offended if you skip."
+        },
+        "bagaji": {
+          "q": "How do I avoid being overcharged?",
+          "a": "Pick venues with English menus and posted prices. Confirm meter usage before a taxi leaves. If something feels off, run the receipt through NWK's fair-price check against the region's actual data."
+        },
+        "language": {
+          "q": "Can I travel without any Korean?",
+          "a": "Tourist sites, subway stations, and airports have English signage. For restaurants, photo menus plus pointing work fine. NWK's essential phrases and Papago / Google Translate close the rest of the gap."
+        }
+      },
+      "more": {
+        "title": "Want to dig deeper?",
+        "body": "The Travel Kit collects entry, payment, transit, emergency numbers, and key phrases in one place. Unsure about a price? Run it through the fair-price check first.",
+        "kit": "Open Travel Kit",
+        "check": "Open fair-price check"
+      }
+    },
     "admin": {
       "label": "Admin console",
       "back": "Admin home",
@@ -764,6 +809,7 @@
       "rows": {
         "language": "Language",
         "saved": "Saved places",
+        "faq": "FAQ",
         "about": "About NWK",
         "admin": "Admin console"
       }
