@@ -8,7 +8,8 @@
     "tagline": "A public-data safety net for travelers in Korea",
     "contactLabel": "Contact",
     "about": "About No Worries Korea",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "kit": "Korea travel essentials"
   },
   "nav": {
     "home": "Home",
@@ -671,7 +672,7 @@
     },
     "kit": {
       "eyebrow": "Practical info",
-      "title": "Korea survival kit",
+      "title": "Korea travel essentials kit",
       "subhead": "The numbers, hotlines and habits foreigners actually need from landing onward.",
       "tabs": {
         "label": "Kit sections",

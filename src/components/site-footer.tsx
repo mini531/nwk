@@ -20,6 +20,9 @@ export const SiteFooter = () => {
           <Link to="/faq" className="hover:text-ink-2">
             {t('footer.faq')}
           </Link>
+          <Link to="/kit" className="hover:text-ink-2">
+            {t('footer.kit')}
+          </Link>
           <span className="font-mono text-[11px]">
             © {year} {t('footer.company')}
           </span>

@@ -8,7 +8,8 @@
     "tagline": "공공데이터로 만드는 외국인 관광객 안전망",
     "contactLabel": "문의",
     "about": "No Worries Korea 소개",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "kit": "한국 여행 필수 키트"
   },
   "nav": {
     "home": "홈",
@@ -671,7 +672,7 @@
     },
     "kit": {
       "eyebrow": "실용 정보",
-      "title": "한국 필수키트",
+      "title": "한국 여행 필수 키트",
       "subhead": "입국 직후부터 현지 생활까지, 외국인에게 실제로 필요한 숫자와 번호",
       "tabs": {
         "label": "키트 섹션",
