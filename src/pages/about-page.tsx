@@ -46,20 +46,6 @@ export const AboutPage = () => {
         </p>
       </section>
 
-      <section className="nwk-card overflow-hidden">
-        <div className="bg-gradient-to-br from-brand/10 via-brand/5 to-transparent p-5">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">
-            {t('page.about.contest.label')}
-          </p>
-          <p className="mt-1 text-[15px] font-semibold tracking-tight text-ink">
-            {t('page.about.contest.title')}
-          </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-ink-2">
-            {t('page.about.contest.body')}
-          </p>
-        </div>
-      </section>
-
       <section className="nwk-card p-5">
         <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">
           {t('page.about.stats.label')}
@@ -213,6 +199,14 @@ export const AboutPage = () => {
               <strong className="text-ink">{t('page.about.dataSources.prices.name')}</strong>
               {' — '}
               {t('page.about.dataSources.prices.body')}
+            </span>
+          </li>
+          <li className="flex gap-2">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span>
+              <strong className="text-ink">{t('page.about.dataSources.approvals.name')}</strong>
+              {' — '}
+              {t('page.about.dataSources.approvals.body')}
             </span>
           </li>
         </ul>

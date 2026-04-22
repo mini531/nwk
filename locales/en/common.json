@@ -287,11 +287,6 @@
       "title": "NWK — No Worries Korea",
       "tagline": "A safety net for travelers in Korea.",
       "version": "Version",
-      "contest": {
-        "label": "Contest entry",
-        "title": "2026 Korean Tourism Data Contest submission",
-        "body": "Built on KTO TourAPI and Bucheon City's open data, NWK pairs LIVE fair-price checks with 31 themed Bucheon itineraries in four languages."
-      },
       "stats": {
         "label": "By the numbers",
         "title": "Bucheon travel net, in figures",
@@ -362,15 +357,19 @@
         "tour": {
           "name": "KTO TourAPI",
           "body": "All tourism POI search, nearby lookups and detail pages pull from the Korea Tourism Organization's public TourAPI (KorService2/EngService2/JpnService2/ChsService2) on data.go.kr. Content is delivered in your selected language.",
-          "meta": "data.go.kr · Entry to the Public Tourism Data Contest"
+          "meta": "data.go.kr"
         },
         "kakao": {
           "name": "Kakao Maps",
           "body": "Map rendering only — normal + satellite views. No POI data; Kakao is a visualization layer."
         },
         "prices": {
-          "name": "Fair-price benchmarks",
-          "body": "We pull Bucheon City's personal-service fee survey (published on Korea's public data portal) and compare every price you enter against its LIVE min/max range. Each verdict shows the sample count and survey date, and we're rolling the same pipeline out to 15 provincial datasets next."
+          "name": "Reference-price benchmarks",
+          "body": "We sync Bucheon City's personal-service fee survey (43 items) and Gangwon Province's price-comparison CPI (12 indices) straight from data.go.kr and match every price you enter against those public numbers. Each result shows min / max, sample count and survey date. Yangju City and Bupyeong-gu datasets are also approved and ship in the next wave."
+        },
+        "approvals": {
+          "name": "10 approved public datasets",
+          "body": "KTO TourAPI (Kor/Eng/Jpn/Chs tourism + tourism photo + tourism big-data) and four regional price datasets (Bucheon, Gangwon, Yangju, Bupyeong) are all approved by data.go.kr. 6 are actively integrated; the remaining 4 roll out per our expansion roadmap."
         }
       }
     },

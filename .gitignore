@@ -17,6 +17,11 @@ dist-ssr
 .env.*
 !.env.example
 
+# Service account keys & local secrets (must never be committed)
+.secrets/
+*-service-account*.json
+serviceAccountKey*.json
+
 # Firebase
 .firebase
 firebase-debug.log
