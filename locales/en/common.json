@@ -139,7 +139,7 @@
         "map": {
           "eyebrow": "Explore the map",
           "title": "Browse Bucheon on the map",
-          "body": "4-language POI names, addresses, and photos. Picking a course turns pins into a numbered route.",
+          "body": "Find Bucheon and its neighboring tourist spots in one view. Names, addresses, and photos appear in four languages (Korean, English, Japanese, Chinese), and picking a course traces your route in visit order.",
           "cta": "Open the map"
         }
       },
