@@ -221,7 +221,7 @@
         "bulguksa": { "name": "불국사", "region": "경주" }
       },
       "sourceLabel": "데이터 출처",
-      "sourceBody": "한국관광공사 TourAPI · 국토교통부 VWorld · 기상청 · 한국은행 · 광고·수수료·스폰서 없음",
+      "sourceBody": "관광 정보 · 한국관광공사 TourAPI (국문·영문·일문·중문) / 여행 경비 · 경기도 부천시 개인서비스요금 + 강원특별자치도 물가정보 / 지도 · Kakao Maps / 광고·수수료·스폰서 없음",
       "searchEyebrow": "직접 검색",
       "searchCta": "다른 장소 직접 검색하기",
       "exploreMapLabel": "부천 지도 열기",

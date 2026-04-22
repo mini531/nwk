@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRecentChecks } from '../hooks/use-recent-checks'
 import {
@@ -68,9 +68,32 @@ const formatPct = (delta: number) => {
 
 export const CheckPage = () => {
   const { t, i18n } = useTranslation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [step, setStep] = useState<Step>(1)
   const [category, setCategory] = useState<PriceCategory | null>(null)
   const [entry, setEntry] = useState<PriceEntry | null>(null)
+  const deepLinkApplied = useRef(false)
+
+  // Deep link: /check?item=<entryId> pre-selects the matching catalog
+  // entry and jumps straight to the price-entry step. Once applied we
+  // drop the query param so refreshes don't lock the user into this
+  // entry after they navigate inside the wizard.
+  useEffect(() => {
+    if (deepLinkApplied.current) return
+    const itemId = searchParams.get('item')
+    if (!itemId) return
+    const match = PRICE_CATALOG.find((e) => e.id === itemId)
+    if (!match) return
+    deepLinkApplied.current = true
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCategory(match.category)
+    setEntry(match)
+    setStep(3)
+    const next = new URLSearchParams(searchParams)
+    next.delete('item')
+    setSearchParams(next, { replace: true })
+  }, [searchParams, setSearchParams])
+
   const [query, setQuery] = useState('')
   const [showAll, setShowAll] = useState(false)
   const [price, setPrice] = useState('')

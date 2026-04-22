@@ -55,13 +55,13 @@ const PRICE_POOL: PriceCard[] = [
     live: Boolean(BUCHEON_ITEMS['비빔밥']),
   },
   {
-    id: 'samgyeopsal',
+    id: 'samgyeopsal_200g',
     labelKey: 'page.home.prices.samgyeopsal',
     krw: livePrice('삼겹살(외식)', 18000),
     live: Boolean(BUCHEON_ITEMS['삼겹살(외식)']),
   },
   {
-    id: 'chicken',
+    id: 'fried_chicken_whole',
     labelKey: 'page.home.prices.chicken',
     krw: livePrice('튀김닭', 20000),
     live: Boolean(BUCHEON_ITEMS['튀김닭']),
@@ -266,9 +266,10 @@ export const HomePage = () => {
 
               <div className="mx-auto mt-4 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4">
                 {priceCards.map((p) => (
-                  <div
+                  <Link
                     key={p.id}
-                    className="nwk-card relative flex flex-col gap-1.5 px-5 py-5 pt-7"
+                    to={`/check?item=${p.id}`}
+                    className="nwk-card nwk-card-hover group relative flex flex-col gap-1.5 px-5 py-5 pt-7 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     {p.live && (
                       <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-brand-soft px-2 py-0.5 text-[12px] font-bold uppercase tracking-wider text-brand">
@@ -281,10 +282,10 @@ export const HomePage = () => {
                     <p className="text-[12px] font-medium tabular-nums text-ink-3">
                       ≈ {formatUsd(p.krw)}
                     </p>
-                    <p className="mt-1 text-[14px] font-medium tracking-tight text-ink-2">
+                    <p className="mt-1 text-[14px] font-medium tracking-tight text-ink-2 group-hover:text-brand">
                       {t(p.labelKey)}
                     </p>
-                  </div>
+                  </Link>
                 ))}
               </div>
               <p className="mx-auto mt-3 max-w-3xl text-center text-[12px] text-ink-3">
