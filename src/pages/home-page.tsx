@@ -254,7 +254,7 @@ export const HomePage = () => {
                 body={t('page.home.sections.prices.body')}
               />
 
-              <div className="mx-auto mt-10 flex max-w-3xl items-center justify-between">
+              <div className="mx-auto mt-10 flex max-w-5xl items-center justify-between">
                 <p className="text-[13px] font-semibold text-brand">
                   {t('page.home.rightNowLabel')}
                 </p>
