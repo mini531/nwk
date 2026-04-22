@@ -19,6 +19,10 @@ export default defineConfig({
         target: 'https://nwk-app-ba6f8.web.app',
         changeOrigin: true,
       },
+      '/thumb': {
+        target: 'https://nwk-app-ba6f8.web.app',
+        changeOrigin: true,
+      },
     },
   },
 })

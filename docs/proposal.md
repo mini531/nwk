@@ -178,7 +178,7 @@ data.go.kr에서 아래 **10건**의 활용 신청이 승인되었으며, 개발
 - **Map** — Kakao Maps JS SDK (해외 접근성 대응, VWorld → Kakao 전환)
 - **Backend** — Firebase Auth · Firestore · Functions · Hosting
 - **Data** — KTO TourAPI · 부천시 개인서비스요금 공공데이터
-- **Live** — https://nwk-app-ba6f8.web.app
+- **Live** — https://nwkorea.com
 
 ### 완성도 수치
 
@@ -225,6 +225,6 @@ data.go.kr에서 아래 **10건**의 활용 신청이 승인되었으며, 개발
 - [ ] 본문 폰트 12pt 이상 (제목 제외)
 - [ ] 5페이지 분량 (한 페이지 당 3/4 이내 채움)
 - [ ] 스크린샷 총 6장, 300dpi 이상
-- [ ] 링크 `https://nwk-app-ba6f8.web.app` 하단에 QR 코드로 노출
+- [ ] 링크 `https://nwkorea.com` 하단에 QR 코드로 노출
 - [ ] 파일명 `NWK_proposal_2026.pdf` · 10MB 미만
 - [ ] 한국어 스타일: 공식 톤(평서체), 앱 내 문구(~어요)와 구분

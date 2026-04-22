@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/use-auth'
 import { useCourseLike } from '../hooks/use-course-likes'
 import { useCourseNotes } from '../hooks/use-course-notes'
 import { shareCourse } from '../utils/course-share'
+import { thumb } from '../utils/image'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -116,7 +117,11 @@ export const CourseDetailPage = () => {
         <header className="space-y-3">
           {course.heroImage && (
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-canvas-2 sm:aspect-[21/9]">
-              <img src={course.heroImage} alt="" className="h-full w-full object-cover" />
+              <img
+                src={thumb(course.heroImage, 960) ?? course.heroImage}
+                alt=""
+                className="h-full w-full object-cover"
+              />
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 to-transparent" />
               <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold tracking-wider text-brand shadow-card backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-brand" />

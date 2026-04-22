@@ -12,6 +12,7 @@ import { useCourses } from '../hooks/use-courses'
 import { useCourseLike } from '../hooks/use-course-likes'
 import { resolveLocalized, type Lang } from '../types/course'
 import { shareCourse } from '../utils/course-share'
+import { thumb } from '../utils/image'
 
 // Bucheon City Hall — the app's regional anchor. Fallback when geolocation
 // is unavailable or the user is overseas (previously this was Seoul, but the
@@ -964,7 +965,11 @@ export const MapPage = () => {
               {/* 상세 본문 */}
               <div className="max-h-[calc(100dvh-200px)] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.12)_transparent] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/12">
                 {detailPlace.thumbnail && (
-                  <img src={detailPlace.thumbnail} alt="" className="h-44 w-full object-cover" />
+                  <img
+                    src={thumb(detailPlace.thumbnail, 640) ?? detailPlace.thumbnail}
+                    alt=""
+                    className="h-44 w-full object-cover"
+                  />
                 )}
                 <div className="p-5">
                   <div className="flex items-start justify-between gap-2">
@@ -1482,7 +1487,11 @@ export const MapPage = () => {
           <div className="pointer-events-auto relative z-10 flex max-h-[70dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl">
             <div className="relative shrink-0">
               {detailPlace.thumbnail ? (
-                <img src={detailPlace.thumbnail} alt="" className="h-44 w-full object-cover" />
+                <img
+                  src={thumb(detailPlace.thumbnail, 640) ?? detailPlace.thumbnail}
+                  alt=""
+                  className="h-44 w-full object-cover"
+                />
               ) : (
                 <div className="grid h-36 w-full place-items-center bg-neutral-100 text-neutral-300">
                   <PinIcon size={36} />

@@ -5,6 +5,8 @@ import cors from 'cors'
 setGlobalOptions({ region: 'asia-northeast3', maxInstances: 10 })
 
 const ALLOWED_ORIGINS = [
+  'https://nwkorea.com',
+  'https://www.nwkorea.com',
   'https://nwk-app-ba6f8.web.app',
   'https://nwk-app-ba6f8.firebaseapp.com',
   'http://localhost:5173',
@@ -35,3 +37,4 @@ export const api = onRequest((req, res) => {
 export { tourSearch } from './tour-api'
 export { tourDetail, tourNearby } from './tour-detail'
 export { mapTile } from './map-tile'
+export { thumb } from './thumb'

@@ -12,6 +12,8 @@ const BLANK_TILE = Buffer.from(
 )
 
 const ALLOWED_ORIGINS = new Set([
+  'https://nwkorea.com',
+  'https://www.nwkorea.com',
   'https://nwk-app-ba6f8.web.app',
   'https://nwk-app-ba6f8.firebaseapp.com',
   'http://localhost:5173',

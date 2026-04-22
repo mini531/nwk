@@ -27,6 +27,8 @@
       content="Korea travel,Korea prices,bagaji,rip-off,TourAPI,visit Korea,Seoul,Busan,Jeju,public data"
     />
 
+    <link rel="canonical" href="https://nwkorea.com/" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="No Worries Korea" />
@@ -35,7 +37,10 @@
       property="og:description"
       content="외국인 관광객을 위한 한국 여행 실용 정보. 공공데이터 기반 물가 체크, TourAPI 600+ 관광지 지도, 4개 언어 지원."
     />
-    <meta property="og:image" content="https://nwk-app-ba6f8.web.app/icon.svg" />
+    <meta property="og:url" content="https://nwkorea.com/" />
+    <meta property="og:image" content="https://nwkorea.com/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:locale:alternate" content="ja_JP" />
@@ -48,14 +53,48 @@
       name="twitter:description"
       content="한국 여행 실용 정보 — 물가 체크, TourAPI 관광지 지도, 4개 언어, 공공데이터 기반."
     />
-    <meta name="twitter:image" content="https://nwk-app-ba6f8.web.app/icon.svg" />
+    <meta name="twitter:image" content="https://nwkorea.com/og-image.svg" />
 
-    <!-- hreflang alternates -->
-    <link rel="alternate" hreflang="ko" href="https://nwk-app-ba6f8.web.app/" />
-    <link rel="alternate" hreflang="en" href="https://nwk-app-ba6f8.web.app/" />
-    <link rel="alternate" hreflang="ja" href="https://nwk-app-ba6f8.web.app/" />
-    <link rel="alternate" hreflang="zh" href="https://nwk-app-ba6f8.web.app/" />
-    <link rel="alternate" hreflang="x-default" href="https://nwk-app-ba6f8.web.app/" />
+    <!-- hreflang alternates (client-side lang, 공통 canonical 사용) -->
+    <link rel="alternate" hreflang="ko" href="https://nwkorea.com/" />
+    <link rel="alternate" hreflang="en" href="https://nwkorea.com/" />
+    <link rel="alternate" hreflang="ja" href="https://nwkorea.com/" />
+    <link rel="alternate" hreflang="zh" href="https://nwkorea.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://nwkorea.com/" />
+
+    <!-- Structured data: WebSite + MobileApplication for search indexing -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://nwkorea.com/#website",
+            "url": "https://nwkorea.com/",
+            "name": "No Worries Korea",
+            "description": "외국인 관광객을 위한 한국 여행 안전망 PWA",
+            "inLanguage": ["ko", "en", "ja", "zh"],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://nwkorea.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "MobileApplication",
+            "name": "No Worries Korea",
+            "operatingSystem": "Any (PWA)",
+            "applicationCategory": "TravelApplication",
+            "url": "https://nwkorea.com/",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+            "inLanguage": ["ko", "en", "ja", "zh"]
+          }
+        ]
+      }
+    </script>
 
     <!-- Early theme to avoid flash — defaults to light. Dark only when
          the user has explicitly chosen dark, or chose 'system' AND the OS

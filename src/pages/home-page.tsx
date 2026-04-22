@@ -7,6 +7,7 @@ import { useCourses } from '../hooks/use-courses'
 import { resolveLocalized, type Lang } from '../types/course'
 import { useKstClock } from '../hooks/use-kst-clock'
 import { ArrowRightIcon, CoinIcon, CompassIcon, ScaleIcon } from '../components/icons'
+import { thumb } from '../utils/image'
 
 import bucheonLive from '../data/live-prices-bucheon.json'
 import gangwonCpi from '../data/live-cpi-gangwon.json'
@@ -189,7 +190,7 @@ export const HomePage = () => {
                         {c.heroImage && (
                           <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas-2">
                             <img
-                              src={c.heroImage}
+                              src={thumb(c.heroImage, 640) ?? c.heroImage}
                               alt=""
                               loading="lazy"
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

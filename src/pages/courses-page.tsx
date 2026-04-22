@@ -5,6 +5,7 @@ import { useCourses } from '../hooks/use-courses'
 import { STYLE_TAGS, DURATIONS, type StyleTag, type Duration, type Lang } from '../types/course'
 import { resolveLocalized } from '../types/course'
 import { ArrowRightIcon, ClockIcon, CoinIcon } from '../components/icons'
+import { thumb } from '../utils/image'
 
 const formatKrwRange = (min: number, max: number, lang: string): string => {
   const fmt = (v: number) => {
@@ -140,7 +141,7 @@ export const CoursesPage = () => {
                     {c.heroImage && (
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas-2">
                         <img
-                          src={c.heroImage}
+                          src={thumb(c.heroImage, 640) ?? c.heroImage}
                           alt=""
                           loading="lazy"
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

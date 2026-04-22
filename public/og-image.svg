@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e4744"/>
+      <stop offset="100%" stop-color="#0a332f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4532a"/>
+      <stop offset="100%" stop-color="#e07a4a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g opacity="0.08" fill="none" stroke="#faf8f3" stroke-width="2">
+    <circle cx="1050" cy="120" r="80"/>
+    <circle cx="1050" cy="120" r="140"/>
+    <circle cx="1050" cy="120" r="200"/>
+    <circle cx="120" cy="520" r="60"/>
+    <circle cx="120" cy="520" r="110"/>
+  </g>
+
+  <g transform="translate(80,80)">
+    <rect x="0" y="0" width="88" height="88" rx="20" fill="#faf8f3"/>
+    <g transform="translate(12,12)" fill="none" stroke="#0e4744" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 58V10l24 34V10"/>
+      <path d="M44 10v48l18-18 2 18"/>
+    </g>
+    <circle cx="74" cy="26" r="6" fill="#c4532a"/>
+  </g>
+
+  <text x="80" y="260" font-family="'Pretendard','Noto Sans KR','Helvetica Neue',sans-serif" font-size="88" font-weight="800" fill="#faf8f3" letter-spacing="-2">
+    No Worries Korea
+  </text>
+
+  <text x="80" y="330" font-family="'Pretendard','Noto Sans KR','Helvetica Neue',sans-serif" font-size="36" font-weight="500" fill="#e6d9b8" letter-spacing="-0.5">
+    외국인 관광객을 위한 한국 여행 안전망
+  </text>
+
+  <g transform="translate(80,400)">
+    <rect x="0" y="0" width="280" height="48" rx="24" fill="url(#accent)"/>
+    <text x="140" y="32" text-anchor="middle" font-family="'Pretendard','Noto Sans KR',sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="-0.3">
+      2026 관광데이터 활용 공모전
+    </text>
+  </g>
+
+  <g transform="translate(80,490)" font-family="'Pretendard','Noto Sans KR',sans-serif" fill="#faf8f3">
+    <g transform="translate(0,0)">
+      <text font-size="44" font-weight="800" fill="#faf8f3">31</text>
+      <text x="0" y="32" font-size="16" font-weight="500" fill="#a8c4c0">코스</text>
+    </g>
+    <g transform="translate(140,0)">
+      <text font-size="44" font-weight="800" fill="#faf8f3">495+</text>
+      <text x="0" y="32" font-size="16" font-weight="500" fill="#a8c4c0">POI</text>
+    </g>
+    <g transform="translate(310,0)">
+      <text font-size="44" font-weight="800" fill="#faf8f3">4</text>
+      <text x="0" y="32" font-size="16" font-weight="500" fill="#a8c4c0">언어</text>
+    </g>
+    <g transform="translate(410,0)">
+      <text font-size="44" font-weight="800" fill="#faf8f3">13</text>
+      <text x="0" y="32" font-size="16" font-weight="500" fill="#a8c4c0">태그</text>
+    </g>
+  </g>
+
+  <text x="1120" y="600" text-anchor="end" font-family="'Pretendard','Noto Sans KR',sans-serif" font-size="20" font-weight="600" fill="#a8c4c0" letter-spacing="1">
+    nwkorea.com
+  </text>
+</svg>

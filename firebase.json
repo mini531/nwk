@@ -6,6 +6,7 @@
       { "source": "/api/**", "function": "api" },
       { "source": "/tiles", "function": "mapTile" },
       { "source": "/tiles/**", "function": "mapTile" },
+      { "source": "/thumb", "function": "thumb" },
       { "source": "**", "destination": "/index.html" }
     ],
     "headers": [
