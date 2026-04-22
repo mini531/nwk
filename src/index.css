@@ -109,6 +109,7 @@
     width: 100%;
     overscroll-behavior-y: none;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
   }
 
   body {
@@ -208,6 +209,24 @@
 .maplibregl-ctrl-bottom-right {
   bottom: 12px !important;
   right: 12px !important;
+}
+
+/* Breaks out of the parent's max-width to span the viewport edge-to-edge.
+   Pair with an inner container for content bounds.
+   Usage:
+     <section class="full-bleed bg-...">
+       <div class="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">...</div>
+     </section> */
+/* Breaks out of the parent's max-width to span the viewport edge-to-edge.
+   100dvw (fallback 100vw) is the CSS viewport width *excluding* the
+   scrollbar in modern browsers, so the section doesn't overshoot and
+   trigger a horizontal scrollbar.
+   Pair with an inner container for content bounds. */
+.full-bleed {
+  width: 100vw;
+  width: 100dvw;
+  margin-inline: calc(50% - 50vw);
+  margin-inline: calc(50% - 50dvw);
 }
 
 /* Scroll-reveal fade-up. Triggered by the <Reveal> component setting

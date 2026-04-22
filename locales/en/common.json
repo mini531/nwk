@@ -4,10 +4,10 @@
     "tagline": "A safety net for travelers in Korea"
   },
   "footer": {
-    "company": "Hilo Company",
+    "company": "HILO COMPANY",
     "tagline": "A public-data safety net for travelers in Korea",
     "contactLabel": "Contact",
-    "about": "About NWK",
+    "about": "About No Worries Korea",
     "faq": "FAQ"
   },
   "nav": {
@@ -139,7 +139,8 @@
         "map": {
           "eyebrow": "Explore the map",
           "title": "Browse Bucheon on the map",
-          "body": "4-language POI names, addresses, and photos. Picking a course turns pins into a numbered route."
+          "body": "4-language POI names, addresses, and photos. Picking a course turns pins into a numbered route.",
+          "cta": "Open the map"
         }
       },
       "rightNowLabel": "Real Korean prices · Travel without rip-offs",

@@ -4,10 +4,10 @@
     "tagline": "韩国旅行安全网"
   },
   "footer": {
-    "company": "Hilo Company",
+    "company": "HILO COMPANY",
     "tagline": "以公共数据构建的外国游客韩国安全网",
     "contactLabel": "联系",
-    "about": "关于 NWK",
+    "about": "关于 No Worries Korea",
     "faq": "常见问题"
   },
   "nav": {
@@ -139,7 +139,8 @@
         "map": {
           "eyebrow": "观光地图",
           "title": "一图探索富川",
-          "body": "四种语言展示 POI 名称、地址与照片。选择行程后, 编号图钉按顺序相连。"
+          "body": "四种语言展示 POI 名称、地址与照片。选择行程后, 编号图钉按顺序相连。",
+          "cta": "打开观光地图"
         }
       },
       "rightNowLabel": "无宰客韩国游 · 真实物价体验",

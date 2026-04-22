@@ -131,9 +131,17 @@ export const AppLayout = () => {
         </div>
       </header>
 
-      <main id="main" className="flex-1 overflow-y-auto pb-24 lg:pb-0" role="main">
-        <div className="mx-auto w-full max-w-6xl px-5 pt-6 sm:px-6 lg:px-8">
-          <Outlet key={pageKey} />
+      <main
+        id="main"
+        className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto pb-24 lg:pb-0"
+        role="main"
+      >
+        {/* flex-1 wrapper pushes the footer to the viewport bottom when
+            the routed page is shorter than the screen. */}
+        <div className="flex-1">
+          <div className="mx-auto w-full max-w-6xl px-5 pt-6 sm:px-6 lg:px-8">
+            <Outlet key={pageKey} />
+          </div>
         </div>
         <SiteFooter />
       </main>
