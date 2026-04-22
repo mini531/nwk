@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  collectionGroup,
+  collection,
   deleteDoc,
   doc,
   limit,
@@ -13,7 +13,13 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase'
 import { RequireAdmin } from '../components/require-admin'
+import coursesData from '../data/courses.json'
 import { ArrowLeftIcon } from '../components/icons'
+
+interface RawCoursesFile {
+  courses: Array<{ id: string }>
+}
+const COURSE_IDS = (coursesData as RawCoursesFile).courses.map((c) => c.id)
 
 interface AdminNote {
   path: string
@@ -28,52 +34,66 @@ interface AdminNote {
 
 const Content = () => {
   const { t, i18n } = useTranslation()
-  const [notes, setNotes] = useState<AdminNote[]>([])
-  const [loaded, setLoaded] = useState(false)
+  const [notesByCourse, setNotesByCourse] = useState<Record<string, AdminNote[]>>({})
+  const [loadedIds, setLoadedIds] = useState<Set<string>>(new Set())
   const [filter, setFilter] = useState<'all' | 'visible' | 'hidden'>('all')
 
+  // One listener per course. Picking this over collectionGroup because
+  // Firestore collection-group reads on implicit subcollections (course
+  // docs aren't materialized in Firestore yet) were returning empty from
+  // the client SDK. Per-course subscriptions hit the regular /notes path
+  // and the rules engine evaluates the specific-path rule cleanly.
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLoaded(false)
-    const q = query(collectionGroup(db, 'notes'), limit(200))
-    const unsub = onSnapshot(
-      q,
-      (snap) => {
-        const list: AdminNote[] = []
-        for (const d of snap.docs) {
-          const data = d.data()
-          // Skip documents coming from unrelated collections that may share
-          // the name 'notes' (none today, but the guard is cheap).
-          const parent = d.ref.parent.parent
-          if (!parent || parent.parent?.id !== 'courses') continue
-          const courseId = parent.id
-          const rawDate = data.createdAt as Timestamp | undefined
-          list.push({
-            path: d.ref.path,
-            courseId,
-            noteId: d.id,
-            uid: String(data.uid ?? ''),
-            displayName: String(data.displayName ?? ''),
-            text: String(data.text ?? ''),
-            hidden: Boolean(data.hidden),
-            createdAt: rawDate ? rawDate.toDate() : null,
-          })
-        }
-        list.sort((a, b) => {
-          const ta = a.createdAt?.getTime() ?? 0
-          const tb = b.createdAt?.getTime() ?? 0
-          return tb - ta
+    const unsubs: Array<() => void> = []
+    for (const courseId of COURSE_IDS) {
+      const q = query(collection(db, 'courses', courseId, 'notes'), limit(200))
+      const markLoaded = () => {
+        setLoadedIds((prev) => {
+          if (prev.has(courseId)) return prev
+          const next = new Set(prev)
+          next.add(courseId)
+          return next
         })
-        setNotes(list)
-        setLoaded(true)
-      },
-      (err) => {
-        console.error('admin notes snapshot failed', err)
-        setLoaded(true)
-      },
-    )
-    return unsub
+      }
+      const unsub = onSnapshot(
+        q,
+        (snap) => {
+          const list: AdminNote[] = snap.docs.map((d) => {
+            const data = d.data()
+            const rawDate = data.createdAt as Timestamp | undefined
+            return {
+              path: d.ref.path,
+              courseId,
+              noteId: d.id,
+              uid: String(data.uid ?? ''),
+              displayName: String(data.displayName ?? ''),
+              text: String(data.text ?? ''),
+              hidden: Boolean(data.hidden),
+              createdAt: rawDate ? rawDate.toDate() : null,
+            }
+          })
+          setNotesByCourse((prev) => ({ ...prev, [courseId]: list }))
+          markLoaded()
+        },
+        (err) => {
+          console.error(`admin notes snapshot failed for ${courseId}`, err)
+          markLoaded()
+        },
+      )
+      unsubs.push(unsub)
+    }
+    return () => {
+      for (const u of unsubs) u()
+    }
   }, [])
+
+  const notes = useMemo(
+    () =>
+      Object.values(notesByCourse)
+        .flat()
+        .sort((a, b) => (b.createdAt?.getTime() ?? 0) - (a.createdAt?.getTime() ?? 0)),
+    [notesByCourse],
+  )
 
   const filtered = useMemo(() => {
     if (filter === 'visible') return notes.filter((n) => !n.hidden)
@@ -110,6 +130,8 @@ const Content = () => {
     }
   }
 
+  const allLoaded = loadedIds.size >= COURSE_IDS.length
+
   return (
     <div className="mx-auto max-w-3xl space-y-5 pb-6">
       <header className="space-y-1">
@@ -141,10 +163,10 @@ const Content = () => {
         ))}
       </div>
 
-      {!loaded && (
+      {!allLoaded && (
         <p className="py-10 text-center text-[13px] text-ink-3">{t('page.admin.notes.loading')}</p>
       )}
-      {loaded && filtered.length === 0 && (
+      {allLoaded && filtered.length === 0 && (
         <p className="py-10 text-center text-[13px] text-ink-3">{t('page.admin.notes.empty')}</p>
       )}
 

@@ -7,7 +7,7 @@ import { resolveLocalized, type Lang } from '../types/course'
 import { useAuth } from '../hooks/use-auth'
 import { useCourseLike } from '../hooks/use-course-likes'
 import { useCourseNotes } from '../hooks/use-course-notes'
-import { downloadCoursePdf, shareCourse } from '../utils/course-share'
+import { shareCourse } from '../utils/course-share'
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -56,25 +56,12 @@ export const CourseDetailPage = () => {
   const like = useCourseLike(id ?? null)
   const notes = useCourseNotes(id ?? null)
   const [noteDraft, setNoteDraft] = useState('')
-  const [pdfWorking, setPdfWorking] = useState(false)
   const [shareHint, setShareHint] = useState<'copied' | 'failed' | null>(null)
 
   const onSubmitNote = async (ev: React.FormEvent) => {
     ev.preventDefault()
     const ok = await notes.submit(noteDraft)
     if (ok) setNoteDraft('')
-  }
-
-  const onPdf = async () => {
-    if (!course) return
-    setPdfWorking(true)
-    try {
-      await downloadCoursePdf(`course-pdf-target-${course.id}`)
-    } catch (err) {
-      console.error('pdf export failed', err)
-    } finally {
-      setPdfWorking(false)
-    }
   }
 
   const onShare = async () => {
@@ -112,7 +99,6 @@ export const CourseDetailPage = () => {
       {/* 데스크톱: 본문 흐름 내 텍스트 링크. 모바일: 좌상단 플로팅 칩. */}
       <Link
         to="/courses"
-        data-print="hide"
         className="hidden items-center gap-1 text-[12px] font-medium text-ink-3 hover:text-ink-2 sm:inline-flex"
       >
         <ArrowLeftIcon size={14} />
@@ -120,14 +106,13 @@ export const CourseDetailPage = () => {
       </Link>
       <Link
         to="/courses"
-        data-print="hide"
         className="fixed left-3 top-[68px] z-30 inline-flex items-center gap-1 rounded-full border border-line bg-surface/95 px-3 py-1.5 text-[12px] font-semibold text-ink-2 shadow-card backdrop-blur-md transition-colors hover:text-ink sm:hidden"
       >
         <ArrowLeftIcon size={14} />
         {t('page.course.back')}
       </Link>
 
-      <div id={`course-pdf-target-${course.id}`} className="space-y-6 bg-canvas">
+      <div className="space-y-6 bg-canvas">
         <header className="space-y-3">
           {course.heroImage && (
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-canvas-2 sm:aspect-[21/9]">
@@ -283,7 +268,7 @@ export const CourseDetailPage = () => {
         </section>
       </div>
 
-      <section data-print="hide" className="flex flex-wrap items-center gap-2">
+      <section className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={() => {
@@ -311,14 +296,6 @@ export const CourseDetailPage = () => {
         </Link>
         <button
           type="button"
-          onClick={onPdf}
-          disabled={pdfWorking}
-          className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-[13px] font-semibold tracking-tight text-ink-2 transition-colors hover:border-ink hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60"
-        >
-          {pdfWorking ? t('page.course.pdfWorking') : t('page.course.pdfDownload')}
-        </button>
-        <button
-          type="button"
           onClick={onShare}
           className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2 text-[13px] font-semibold tracking-tight text-ink-2 transition-colors hover:border-ink hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
@@ -334,7 +311,7 @@ export const CourseDetailPage = () => {
         )}
       </section>
 
-      <section data-print="hide" className="space-y-3">
+      <section className="space-y-3">
         <div className="flex items-baseline justify-between gap-3">
           <h2 className="nwk-display text-[20px] text-ink">
             {t('page.course.notesLabel', { count: notes.notes.length })}
@@ -436,7 +413,7 @@ export const CourseDetailPage = () => {
         )}
       </section>
 
-      <section data-print="hide" className="rounded-2xl border border-line bg-canvas-2 px-5 py-4">
+      <section className="rounded-2xl border border-line bg-canvas-2 px-5 py-4">
         <p className="text-[12px] font-semibold text-ink-3">{t('page.courses.sourceLabel')}</p>
         <p className="mt-1 text-[12px] leading-relaxed text-ink-2">
           {t('page.courses.sourceBody')}

@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from './lang-switcher'
 import { CompassIcon, CourseIcon, HomeIcon, ScaleIcon, UserIcon } from './icons'
+import { SiteFooter } from './site-footer'
 import { useCloudSync } from '../hooks/use-cloud-sync'
 import type { ComponentType, SVGProps } from 'react'
 
@@ -130,10 +131,11 @@ export const AppLayout = () => {
         </div>
       </header>
 
-      <main id="main" className="flex-1 overflow-y-auto pb-24 lg:pb-10" role="main">
+      <main id="main" className="flex-1 overflow-y-auto pb-24 lg:pb-0" role="main">
         <div className="mx-auto w-full max-w-6xl px-5 pt-6 sm:px-6 lg:px-8">
           <Outlet key={pageKey} />
         </div>
+        <SiteFooter />
       </main>
 
       <nav

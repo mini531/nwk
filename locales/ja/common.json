@@ -3,6 +3,13 @@
     "name": "NWK",
     "tagline": "韓国旅行のセーフティネット"
   },
+  "footer": {
+    "company": "ヒロカンパニー",
+    "tagline": "公共データで作る韓国旅行セーフティネット",
+    "contactLabel": "お問い合わせ",
+    "about": "NWKについて",
+    "faq": "よくある質問"
+  },
   "nav": {
     "home": "ホーム",
     "search": "検索",
@@ -116,6 +123,25 @@
       "coursesSectionLabel": "富川、こう回る",
       "coursesSectionTitle": "スタイル・期間別おすすめコース",
       "viewAllCourses": "すべて見る",
+      "sections": {
+        "courses": {
+          "eyebrow": "富川テーマ旅行",
+          "title": "スタイルと期間で選ぶ富川コース",
+          "body": "韓国観光公社TourAPIを軸に31本のテーマコースを作成。今日はランダムに6本をご紹介します。"
+        },
+        "prices": {
+          "eyebrow": "ぼったくりのない韓国旅行のために",
+          "title": "公共データで今すぐチェックできる適正価格",
+          "body": "富川市の個人サービス料金と江原道CPIを基に、今払う金額が妥当かをひと目で確認できます。",
+          "checkCta": "料金を判定",
+          "kitCta": "必須キット"
+        },
+        "map": {
+          "eyebrow": "観光マップ",
+          "title": "地図で富川を探索",
+          "body": "4言語でPOIの名称・住所・写真を表示。コースを選ぶと番号ピンが順に結ばれます。"
+        }
+      },
       "rightNowLabel": "ぼったくりのない韓国旅行のための · 韓国物価体験",
       "prices": {
         "americano": "カフェのアメリカーノ",
@@ -625,8 +651,6 @@
       },
       "like": "いいね",
       "viewOnMap": "地図で見る",
-      "pdfDownload": "PDFで印刷",
-      "pdfWorking": "PDFを準備中…",
       "share": "共有",
       "shareCopied": "リンクをコピーしました",
       "shareFailed": "共有に失敗しました",

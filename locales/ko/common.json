@@ -3,6 +3,13 @@
     "name": "NWK",
     "tagline": "외국인 관광객을 위한 한국 여행 안전망"
   },
+  "footer": {
+    "company": "힐로컴퍼니",
+    "tagline": "공공데이터로 만드는 외국인 관광객 안전망",
+    "contactLabel": "문의",
+    "about": "NWK 소개",
+    "faq": "FAQ"
+  },
   "nav": {
     "home": "홈",
     "search": "검색",
@@ -116,6 +123,25 @@
       "coursesSectionLabel": "부천, 이렇게 가보세요",
       "coursesSectionTitle": "스타일·기간별 추천 코스",
       "viewAllCourses": "전체 보기",
+      "sections": {
+        "courses": {
+          "eyebrow": "부천 테마 여행",
+          "title": "스타일과 기간으로 고르는 부천 코스",
+          "body": "한국관광공사 TourAPI 기반의 부천·인근 POI로 구성된 31개 테마 코스 중, 오늘의 랜덤 6개를 먼저 보여드려요."
+        },
+        "prices": {
+          "eyebrow": "바가지 없는 한국 여행을 위한",
+          "title": "공공데이터로 바로 확인하는 정상가",
+          "body": "부천시 개인서비스요금과 강원 물가정보 CPI를 바탕으로, 지금 내가 쓰는 금액이 적정한지 한눈에 확인할 수 있어요.",
+          "checkCta": "바가지 판정하기",
+          "kitCta": "필수 키트 보기"
+        },
+        "map": {
+          "eyebrow": "관광 지도",
+          "title": "지도에서 바로 탐색",
+          "body": "4개 언어로 POI 이름·주소·사진이 뜨는 관광 지도예요. 코스 선택 시 번호 핀이 순서대로 이어져요."
+        }
+      },
       "rightNowLabel": "바가지 없는 한국여행을 위한 · 한국 물가 체험",
       "prices": {
         "americano": "카페 아메리카노",
@@ -625,8 +651,6 @@
       },
       "like": "좋아요",
       "viewOnMap": "지도에서 보기",
-      "pdfDownload": "PDF 인쇄",
-      "pdfWorking": "PDF 준비 중…",
       "share": "공유하기",
       "shareCopied": "링크를 복사했어요",
       "shareFailed": "공유에 실패했어요",

@@ -1,38 +1,7 @@
-// PDF export + native share for course detail screens.
-//
-// PDF: uses the browser's built-in "Print to PDF". Earlier attempts with
-//      html2canvas+jsPDF choked on Tailwind v4's color-mix()/oklch output,
-//      and bundling Korean fonts large enough for direct jsPDF text was
-//      impractical. window.print() renders with the real page fonts,
-//      handles CJK perfectly, and the browser offers "Save as PDF" in the
-//      native dialog. A body class toggles print-only visibility rules.
-//
-// Share: `navigator.share` with clipboard fallback. On Android the share
-//        sheet includes KakaoTalk by default, which covers the requirement
-//        without needing Kakao's JavaScript SDK or an app registration.
-
-export const downloadCoursePdf = async (targetId: string): Promise<void> => {
-  const target = document.getElementById(targetId)
-  if (!target) return
-
-  // Bring the PDF content to the top of the viewport so the print preview
-  // starts where we expect, not mid-scroll.
-  target.scrollIntoView({ block: 'start' })
-
-  document.body.classList.add('pdf-printing')
-  const cleanup = () => {
-    document.body.classList.remove('pdf-printing')
-    window.removeEventListener('afterprint', cleanup)
-  }
-  window.addEventListener('afterprint', cleanup)
-  // afterprint doesn't always fire (some browsers / user cancels) — fall
-  // back to a timed cleanup so the body never stays in print-mode.
-  window.setTimeout(cleanup, 30000)
-
-  // Small delay so the class-based CSS can apply before the print dialog
-  // snapshots the document.
-  window.setTimeout(() => window.print(), 50)
-}
+// Native share for course detail / map sheet with clipboard fallback.
+// `navigator.share` pops the OS share sheet (KakaoTalk / iMessage / etc.);
+// if the browser doesn't support it, we copy the URL to the clipboard so
+// the user can paste it manually.
 
 export type ShareResult = 'shared' | 'copied' | 'failed'
 

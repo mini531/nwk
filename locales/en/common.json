@@ -3,6 +3,13 @@
     "name": "NWK",
     "tagline": "A safety net for travelers in Korea"
   },
+  "footer": {
+    "company": "Hilo Company",
+    "tagline": "A public-data safety net for travelers in Korea",
+    "contactLabel": "Contact",
+    "about": "About NWK",
+    "faq": "FAQ"
+  },
   "nav": {
     "home": "Home",
     "search": "Search",
@@ -116,6 +123,25 @@
       "coursesSectionLabel": "Bucheon — visit like this",
       "coursesSectionTitle": "Recommended courses by style and duration",
       "viewAllCourses": "View all",
+      "sections": {
+        "courses": {
+          "eyebrow": "Bucheon themed trips",
+          "title": "Pick by style, length, and mood",
+          "body": "31 curated Bucheon itineraries built on KTO TourAPI POIs — here are six picked at random for today."
+        },
+        "prices": {
+          "eyebrow": "Travel without rip-offs",
+          "title": "Public-data benchmarks, on hand",
+          "body": "Bucheon's personal-service-fee dataset and Gangwon's CPI tell you whether what you're paying is fair.",
+          "checkCta": "Check a price",
+          "kitCta": "Travel kit"
+        },
+        "map": {
+          "eyebrow": "Explore the map",
+          "title": "Browse Bucheon on the map",
+          "body": "4-language POI names, addresses, and photos. Picking a course turns pins into a numbered route."
+        }
+      },
       "rightNowLabel": "Real Korean prices · Travel without rip-offs",
       "prices": {
         "americano": "Cafe americano",
@@ -625,8 +651,6 @@
       },
       "like": "Like",
       "viewOnMap": "View on map",
-      "pdfDownload": "Print to PDF",
-      "pdfWorking": "Preparing PDF…",
       "share": "Share",
       "shareCopied": "Link copied",
       "shareFailed": "Couldn't share",

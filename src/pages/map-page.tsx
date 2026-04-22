@@ -7,9 +7,11 @@ import { tourNearby, tourSearch, type TourSearchItem, type TourNearbyItem } from
 import { matchAdvisories, groupByCategory } from '../utils/match-advisories'
 import { PinIcon, HeartIcon } from '../components/icons'
 import { useFavorites } from '../hooks/use-favorites'
+import { useAuth } from '../hooks/use-auth'
 import { useCourses } from '../hooks/use-courses'
+import { useCourseLike } from '../hooks/use-course-likes'
 import { resolveLocalized, type Lang } from '../types/course'
-import { downloadCoursePdf, shareCourse } from '../utils/course-share'
+import { shareCourse } from '../utils/course-share'
 
 // Bucheon City Hall — the app's regional anchor. Fallback when geolocation
 // is unavailable or the user is overseas (previously this was Seoul, but the
@@ -47,8 +49,9 @@ export const MapPage = () => {
   const [leftTab, setLeftTab] = useState<'theme' | 'poi'>('theme')
   const [courseModalOpen, setCourseModalOpen] = useState(false)
   const [courseSheetExpanded, setCourseSheetExpanded] = useState(true)
-  const [sheetPdfWorking, setSheetPdfWorking] = useState(false)
   const [sheetShareHint, setSheetShareHint] = useState<'copied' | 'failed' | null>(null)
+  const { signIn } = useAuth()
+  const sheetLike = useCourseLike(selectedCourseId)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const courses = useCourses()
@@ -1341,10 +1344,7 @@ export const MapPage = () => {
                   </button>
 
                   {/* 스크롤 가능한 본문 (펼쳤을 때만 접근 가능) */}
-                  <div
-                    id={`course-sheet-pdf-${selectedCourse.id}`}
-                    className="flex-1 overflow-y-auto overscroll-contain"
-                  >
+                  <div className="flex-1 overflow-y-auto overscroll-contain">
                     {selectedCourse.heroImage ? (
                       <img
                         src={selectedCourse.heroImage}
@@ -1419,22 +1419,20 @@ export const MapPage = () => {
                       <div className="flex flex-wrap items-center gap-2 border-t border-neutral-200/60 pt-3">
                         <button
                           type="button"
-                          disabled={sheetPdfWorking}
-                          onClick={async () => {
-                            setSheetPdfWorking(true)
-                            try {
-                              await downloadCoursePdf(`course-sheet-pdf-${selectedCourse.id}`)
-                            } catch (err) {
-                              console.error('pdf export failed', err)
-                            } finally {
-                              setSheetPdfWorking(false)
-                            }
+                          onClick={() => {
+                            if (!sheetLike.canLike) return signIn().catch(() => undefined)
+                            sheetLike.toggle()
                           }}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-[12px] font-semibold text-neutral-700 hover:border-neutral-500 disabled:opacity-60"
+                          aria-pressed={sheetLike.liked}
+                          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-semibold transition-colors ${
+                            sheetLike.liked
+                              ? 'border-accent bg-accent text-on-accent hover:bg-accent/90'
+                              : 'border-neutral-300 bg-white text-neutral-700 hover:border-accent hover:text-accent'
+                          }`}
                         >
-                          {sheetPdfWorking
-                            ? t('page.course.pdfWorking')
-                            : t('page.course.pdfDownload')}
+                          <HeartIcon size={14} filled={sheetLike.liked} />
+                          <span>{t('page.course.like')}</span>
+                          <span className="tabular-nums">{sheetLike.count}</span>
                         </button>
                         <button
                           type="button"
