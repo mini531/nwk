@@ -58,7 +58,7 @@ export const BagajiHero = () => {
   const flagged = BAGAJI_CASES.length
 
   return (
-    <section className="relative -mx-5 -mt-6 overflow-hidden bg-[#121110] text-white sm:-mx-6 lg:-mx-8">
+    <section className="full-bleed relative overflow-hidden bg-[#121110] text-white">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.07]"

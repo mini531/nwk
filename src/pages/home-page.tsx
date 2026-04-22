@@ -163,14 +163,8 @@ export const HomePage = () => {
 
   return (
     <div className="-mt-6">
-      {/* 히어로 */}
-      <section className="full-bleed bg-canvas">
-        <Inner>
-          <div className="pt-6">
-            <BagajiHero />
-          </div>
-        </Inner>
-      </section>
+      {/* 히어로 — BagajiHero가 스스로 full-bleed + 내부 max-w-6xl 처리 */}
+      <BagajiHero />
 
       {/* 섹션 1 — 부천 테마 여행 */}
       <Reveal>
