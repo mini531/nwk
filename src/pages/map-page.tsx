@@ -390,6 +390,9 @@ export const MapPage = () => {
             typeTag: 'attraction' as const,
             region: poi.sigunguName ?? '',
             order: s.order,
+            // Real TourAPI contentId (numeric) — drives the in-map popup's
+            // live-language fetch. Undefined for custom inlined places.
+            tourApiContentId: /^\d+$/.test(poi.contentId) ? poi.contentId : undefined,
           },
         }
       })

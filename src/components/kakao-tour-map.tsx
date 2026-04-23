@@ -19,6 +19,11 @@ export interface PoiProperties {
   // When present, render as a numbered course-stop pin instead of a dot.
   // Also bypass clustering so the full itinerary stays visible.
   order?: number
+  // Real TourAPI contentId (numeric). Only set for stops sourced from
+  // TourAPI — custom inlined places leave it undefined. The in-map
+  // popup uses this (not `id`, which is a synthetic local key) to fetch
+  // localized title/addr/phone/overview.
+  tourApiContentId?: string
 }
 
 export interface SelectedMarker {
@@ -391,14 +396,16 @@ const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
   const { t, i18n } = useTranslation()
   const lang = i18n.language.slice(0, 2)
   const [detail, setDetail] = useState<TourDetailData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(Boolean(props.tourApiContentId))
 
   // Parent passes `key={popup.props.id}` so this component is a fresh
   // mount per stop — we can just fetch once on mount without resetting
   // state ourselves.
   useEffect(() => {
+    const contentId = props.tourApiContentId
+    if (!contentId) return // 커스텀 장소는 tourDetail 없음
     let cancelled = false
-    tourDetail({ contentId: props.id, lang })
+    tourDetail({ contentId, lang })
       .then((res) => {
         if (cancelled) return
         setDetail(res.data.detail)
@@ -410,9 +417,14 @@ const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
     return () => {
       cancelled = true
     }
-  }, [props.id, lang])
+  }, [props.tourApiContentId, lang])
 
-  const thumbUrl = props.thumbnail ? (thumb(props.thumbnail, 480) ?? props.thumbnail) : null
+  // TourAPI live response(선택 언어로 제공)가 있으면 그걸 우선, 없으면
+  // 지도 핀에 실린 정적 다국어 텍스트(poi-translations) 폴백.
+  const displayTitle = detail?.title?.trim() || props.title
+  const displayAddr = detail?.addr?.trim() || props.addr
+  const thumbSrc = detail?.firstImage || props.thumbnail
+  const thumbUrl = thumbSrc ? (thumb(thumbSrc, 480) ?? thumbSrc) : null
   const tel = detail?.tel?.trim() || ''
   const overview = detail?.overview?.trim() || ''
 
@@ -446,10 +458,10 @@ const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
 
       <div className="space-y-1.5 p-3">
         <h3 className="pr-6 text-[14px] font-bold leading-snug tracking-tight text-neutral-900">
-          {props.title}
+          {displayTitle}
         </h3>
 
-        {props.addr && <p className="text-[12px] leading-snug text-neutral-600">{props.addr}</p>}
+        {displayAddr && <p className="text-[12px] leading-snug text-neutral-600">{displayAddr}</p>}
 
         {tel && (
           <p className="text-[12px] leading-snug text-neutral-600">

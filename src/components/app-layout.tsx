@@ -143,7 +143,9 @@ export const AppLayout = () => {
             <Outlet key={pageKey} />
           </div>
         </div>
-        <SiteFooter />
+        {/* Hide footer on /map — the page is full-bleed and the footer
+            intrudes on the map view. */}
+        {location.pathname !== '/map' && <SiteFooter />}
       </main>
 
       <nav
