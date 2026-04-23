@@ -332,6 +332,8 @@ export const KakaoTourMap = ({
       yAnchor: 1.15, // lift above the pin tip
       xAnchor: 0.5,
       zIndex: 200,
+      // 없으면 팝업 내부 클릭이 지도에 전달돼 바로 닫힘.
+      clickable: true,
     })
     overlay.setMap(map)
     return () => overlay.setMap(null)
