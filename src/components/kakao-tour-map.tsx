@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 import { loadKakaoMaps } from '../utils/kakao-loader'
+import { tourDetail, type TourDetailData } from '../utils/api'
+import { thumb } from '../utils/image'
 
 export type BaseLayer = 'normal' | 'satellite'
 
@@ -34,6 +38,17 @@ export interface KakaoTourMapProps {
   onBoundsChange?: (bounds: [number, number, number, number]) => void
   fitToFeatures?: boolean
   onMapReady?: (map: kakao.maps.Map) => void
+  // When true, clicking a numbered course-stop marker shows an in-map
+  // speech-bubble popup with thumbnail / address / phone / overview
+  // (fetched via tourDetail) instead of (or in addition to) firing
+  // onPoiClick. Default: true.
+  enableStopPopup?: boolean
+}
+
+interface StopPopupState {
+  props: PoiProperties
+  lat: number
+  lng: number
 }
 
 const DEFAULT_CENTER: [number, number] = [127.7, 36.3]
@@ -96,6 +111,7 @@ export const KakaoTourMap = ({
   onBoundsChange,
   fitToFeatures = false,
   onMapReady,
+  enableStopPopup = true,
 }: KakaoTourMapProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<kakao.maps.Map | null>(null)
@@ -107,6 +123,7 @@ export const KakaoTourMap = ({
   // initial run happens before the SDK resolves and would otherwise bail
   // out on the `!map` guard, leaving the first geojson un-rendered.
   const [mapLoaded, setMapLoaded] = useState(false)
+  const [popup, setPopup] = useState<StopPopupState | null>(null)
 
   const onClickRef = useRef(onPoiClick)
   onClickRef.current = onPoiClick
@@ -114,6 +131,8 @@ export const KakaoTourMap = ({
   onBoundsRef.current = onBoundsChange
   const onMapReadyRef = useRef(onMapReady)
   onMapReadyRef.current = onMapReady
+  const enableStopPopupRef = useRef(enableStopPopup)
+  enableStopPopupRef.current = enableStopPopup
 
   // Init: load SDK once and create map
   useEffect(() => {
@@ -147,6 +166,9 @@ export const KakaoTourMap = ({
         }
         k.event.addListener(map, 'idle', emitBounds)
         emitBounds()
+
+        // Dismiss the in-map popup when the user taps empty space.
+        k.event.addListener(map, 'click', () => setPopup(null))
 
         if (onMapReadyRef.current) onMapReadyRef.current(map)
         setMapLoaded(true)
@@ -224,6 +246,13 @@ export const KakaoTourMap = ({
         zIndex: isStop ? 50 : undefined,
       })
       kakaoNs.event.addListener(marker, 'click', () => {
+        // Numbered course stops get the in-map speech-bubble popup.
+        // Regular POI dots fall through to the parent-controlled
+        // detail sheet via onPoiClick.
+        if (isStop && enableStopPopupRef.current) {
+          setPopup({ props: feat.properties, lat, lng })
+          return
+        }
         if (onClickRef.current) onClickRef.current(feat.properties)
       })
       next.set(id, marker)
@@ -285,5 +314,170 @@ export const KakaoTourMap = ({
     selectedMarkerRef.current = marker
   }, [selectedMarker, mapLoaded])
 
-  return <div ref={containerRef} className={className} />
+  // In-map popup (speech bubble) for numbered course stops.
+  const overlayElRef = useRef<HTMLDivElement | null>(null)
+  if (!overlayElRef.current && typeof document !== 'undefined') {
+    overlayElRef.current = document.createElement('div')
+  }
+
+  useEffect(() => {
+    const map = mapRef.current
+    const el = overlayElRef.current
+    if (!map || !el || !popup || typeof window === 'undefined') return
+    const kakaoNs = window.kakao?.maps
+    if (!kakaoNs) return
+    const overlay = new kakaoNs.CustomOverlay({
+      position: new kakaoNs.LatLng(popup.lat, popup.lng),
+      content: el,
+      yAnchor: 1.15, // lift above the pin tip
+      xAnchor: 0.5,
+      zIndex: 200,
+    })
+    overlay.setMap(map)
+    return () => overlay.setMap(null)
+  }, [popup, mapLoaded])
+
+  // If the current popup's stop disappears from the geojson (e.g. course
+  // switched / cleared), close it so a stale card doesn't linger.
+  useEffect(() => {
+    if (!popup) return
+    const stillPresent = geojson.features.some((f) => f.properties.id === popup.props.id)
+    if (!stillPresent) setPopup(null)
+  }, [geojson, popup])
+
+  return (
+    <>
+      <div ref={containerRef} className={className} />
+      {overlayElRef.current && popup
+        ? createPortal(
+            <StopPopup
+              key={popup.props.id}
+              props={popup.props}
+              onClose={() => setPopup(null)}
+              onMore={
+                onClickRef.current
+                  ? () => {
+                      const cb = onClickRef.current
+                      const current = popup.props
+                      setPopup(null)
+                      cb?.(current)
+                    }
+                  : undefined
+              }
+            />,
+            overlayElRef.current,
+          )
+        : null}
+    </>
+  )
+}
+
+// ────────────────────────────────────────────────────────────────
+// In-map popup for numbered course stops.
+// Thumbnail/addr come from the clicked marker's PoiProperties; phone
+// and overview are pulled async via the tourDetail Cloud Function so
+// the popup opens instantly and fills in richer detail on arrival.
+// ────────────────────────────────────────────────────────────────
+
+interface StopPopupProps {
+  props: PoiProperties
+  onClose: () => void
+  onMore?: () => void
+}
+
+const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
+  const { t, i18n } = useTranslation()
+  const lang = i18n.language.slice(0, 2)
+  const [detail, setDetail] = useState<TourDetailData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Parent passes `key={popup.props.id}` so this component is a fresh
+  // mount per stop — we can just fetch once on mount without resetting
+  // state ourselves.
+  useEffect(() => {
+    let cancelled = false
+    tourDetail({ contentId: props.id, lang })
+      .then((res) => {
+        if (cancelled) return
+        setDetail(res.data.detail)
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [props.id, lang])
+
+  const thumbUrl = props.thumbnail ? (thumb(props.thumbnail, 480) ?? props.thumbnail) : null
+  const tel = detail?.tel?.trim() || ''
+  const overview = detail?.overview?.trim() || ''
+
+  return (
+    <div
+      role="dialog"
+      aria-label={props.title}
+      onClick={(e) => e.stopPropagation()}
+      className="pointer-events-auto w-[280px] max-w-[calc(100vw-32px)] -translate-y-2 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
+    >
+      {/* 말풍선 꼬리 (아래쪽을 가리킴) */}
+      <div
+        aria-hidden
+        className="absolute -bottom-[7px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[2px] bg-white ring-1 ring-black/5"
+      />
+
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label={t('a11y.close', { defaultValue: '닫기' })}
+        className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-black/5 text-[14px] leading-none text-neutral-700 backdrop-blur hover:bg-black/10"
+      >
+        ×
+      </button>
+
+      {thumbUrl && (
+        <div className="aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-neutral-100">
+          <img src={thumbUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
+        </div>
+      )}
+
+      <div className="space-y-1.5 p-3">
+        <h3 className="pr-6 text-[14px] font-bold leading-snug tracking-tight text-neutral-900">
+          {props.title}
+        </h3>
+
+        {props.addr && <p className="text-[12px] leading-snug text-neutral-600">{props.addr}</p>}
+
+        {tel && (
+          <p className="text-[12px] leading-snug text-neutral-600">
+            <a href={`tel:${tel}`} className="text-brand underline-offset-2 hover:underline">
+              {tel}
+            </a>
+          </p>
+        )}
+
+        {overview && (
+          <p className="line-clamp-3 text-[12px] leading-relaxed text-neutral-700">{overview}</p>
+        )}
+
+        {loading && !detail && (
+          <p className="text-[12px] leading-snug text-neutral-400">
+            {t('page.map.loadingDetail', { defaultValue: '상세 정보 불러오는 중…' })}
+          </p>
+        )}
+
+        {onMore && (
+          <button
+            type="button"
+            onClick={onMore}
+            className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold text-brand hover:underline"
+          >
+            {t('page.map.viewMore', { defaultValue: '자세히 보기' })}
+            <span aria-hidden>→</span>
+          </button>
+        )}
+      </div>
+    </div>
+  )
 }

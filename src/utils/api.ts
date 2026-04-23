@@ -36,3 +36,24 @@ export const tourNearby = httpsCallable<
   { lat: number; lng: number; radius?: number; lang?: string; pageNo?: number; numOfRows?: number },
   TourNearbyResponse
 >(functions, 'tourNearby')
+
+export interface TourDetailData {
+  contentId: string
+  title: string
+  addr: string
+  tel: string
+  homepage: string
+  overview: string
+  firstImage: string | null
+  firstImageSmall: string | null
+}
+
+export interface TourDetailResponse {
+  source: 'live' | 'mock'
+  detail: TourDetailData | null
+}
+
+export const tourDetail = httpsCallable<{ contentId: string; lang?: string }, TourDetailResponse>(
+  functions,
+  'tourDetail',
+)

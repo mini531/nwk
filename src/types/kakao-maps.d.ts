@@ -85,6 +85,23 @@ declare global {
       ): void
     }
 
+    interface CustomOverlayOptions {
+      position: LatLng
+      content: HTMLElement | string
+      map?: Map
+      xAnchor?: number
+      yAnchor?: number
+      zIndex?: number
+      clickable?: boolean
+    }
+
+    class CustomOverlay {
+      constructor(options: CustomOverlayOptions)
+      setMap(map: Map | null): void
+      setPosition(latlng: LatLng): void
+      setContent(content: HTMLElement | string): void
+    }
+
     namespace services {
       // not used here yet — placeholder
     }
