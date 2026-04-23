@@ -133,7 +133,7 @@ export const AppLayout = () => {
 
       <main
         id="main"
-        className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto pb-24 lg:pb-0"
+        className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto pb-16 lg:pb-0"
         role="main"
       >
         {/* flex-1 wrapper pushes the footer to the viewport bottom when
