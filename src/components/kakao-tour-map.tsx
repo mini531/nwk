@@ -329,18 +329,18 @@ export const KakaoTourMap = ({
   }, [selectedMarker, mapLoaded])
 
   // In-map popup (speech bubble) for numbered course stops.
+  // Host container 는 1×1 의 position:relative 앵커 역할만 하고, 실제 팝업
+  // 카드는 그 안에서 absolute 로 띄운다. 이렇게 하면 팝업 아래쪽 지도
+  // 영역이 Kakao CustomOverlay 의 레이아웃 박스에 포함되지 않아 모바일
+  // 터치 이벤트가 지도로 그대로 전달되고, z-index 관리도 단순해진다.
   const overlayElRef = useRef<HTMLDivElement | null>(null)
   if (!overlayElRef.current && typeof document !== 'undefined') {
     overlayElRef.current = document.createElement('div')
-    // Kakao CustomOverlay wraps this in its own container; ensure our host
-    // behaves as a proper block so React children inherit a sane width
-    // rather than shrink-wrapping to content (which breaks text wrapping).
-    overlayElRef.current.style.display = 'block'
-    overlayElRef.current.style.width = '280px'
-    overlayElRef.current.style.maxWidth = 'calc(100vw - 32px)'
+    overlayElRef.current.style.position = 'relative'
+    overlayElRef.current.style.width = '1px'
+    overlayElRef.current.style.height = '1px'
+    overlayElRef.current.style.pointerEvents = 'none'
   }
-  const [tailPosition, setTailPosition] = useState<'left' | 'center' | 'right'>('center')
-
   useEffect(() => {
     const map = mapRef.current
     const el = overlayElRef.current
@@ -348,45 +348,15 @@ export const KakaoTourMap = ({
     const kakaoNs = window.kakao?.maps
     if (!kakaoNs) return
 
-    // 핀의 화면상 x 좌표를 기준으로 팝업이 뷰포트 밖으로 잘리지 않도록
-    // xAnchor 와 꼬리 위치를 좌·중·우로 조정한다. 팝업 폭은 하드코딩(280)
-    // 과 max-w-[calc(100vw-32px)] 제약에 맞춘다.
-    const POPUP_WIDTH = 280
-    const EDGE_PADDING = 16
-    const latLng = new kakaoNs.LatLng(popup.lat, popup.lng)
-    let xAnchor = 0.5
-    let tail: 'left' | 'center' | 'right' = 'center'
-    try {
-      const projection = map.getProjection?.()
-      const point = projection?.containerPointFromCoords?.(latLng)
-      const mapNode = map.getNode?.() as HTMLElement | undefined
-      const mapWidth = mapNode?.offsetWidth ?? 0
-      if (point && mapWidth > 0) {
-        const half = POPUP_WIDTH / 2
-        if (point.x - half < EDGE_PADDING) {
-          xAnchor = 0
-          tail = 'left'
-        } else if (point.x + half > mapWidth - EDGE_PADDING) {
-          xAnchor = 1
-          tail = 'right'
-        }
-      }
-    } catch {
-      // projection 사용 불가 → 기본 중앙 정렬
-    }
-    setTailPosition(tail)
-
+    // 호스트는 1×1. Kakao 는 이 박스의 좌상단(yAnchor=0)+중앙(xAnchor=0.5)을
+    // 핀 좌표에 맞춘다. 팝업 카드는 내부에서 absolute bottom:24px 로 위쪽으로
+    // 띄워 핀과 24px 간격을 유지.
     const overlay = new kakaoNs.CustomOverlay({
-      position: latLng,
+      position: new kakaoNs.LatLng(popup.lat, popup.lng),
       content: el,
-      // yAnchor 는 높이에 비례하는 상대 오프셋이라 팝업이 커지면 간격이
-      // 바뀌어 핀을 가릴 수 있다. 위치는 CSS translateY(-100% - 24px) 로
-      // 절대 픽셀 간격을 고정하고, 여기서는 기준점을 팝업 좌상단(yAnchor=0)
-      // 에 맞춰 핀 좌표 그대로 놓는다.
       yAnchor: 0,
-      xAnchor,
+      xAnchor: 0.5,
       zIndex: 200,
-      // 없으면 팝업 내부 클릭이 지도에 전달돼 바로 닫힘.
       clickable: true,
     })
     overlay.setMap(map)
@@ -406,12 +376,7 @@ export const KakaoTourMap = ({
       <div ref={containerRef} className={className} />
       {overlayElRef.current && popup
         ? createPortal(
-            <StopPopup
-              key={popup.props.id}
-              props={popup.props}
-              onClose={() => setPopup(null)}
-              tailPosition={tailPosition}
-            />,
+            <StopPopup key={popup.props.id} props={popup.props} onClose={() => setPopup(null)} />,
             overlayElRef.current,
           )
         : null}
@@ -429,10 +394,9 @@ export const KakaoTourMap = ({
 interface StopPopupProps {
   props: PoiProperties
   onClose: () => void
-  tailPosition?: 'left' | 'center' | 'right'
 }
 
-const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) => {
+const StopPopup = ({ props, onClose }: StopPopupProps) => {
   const { t, i18n } = useTranslation()
   const lang = i18n.language.slice(0, 2)
   const [detail, setDetail] = useState<TourDetailData | null>(null)
@@ -475,23 +439,22 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
       onClick={(e) => e.stopPropagation()}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
-      // Kakao CustomOverlay 는 yAnchor 로 상대 위치(0~1 비율)만 지원하므로
-      // 팝업 세로가 커지면 핀과의 간격도 비례해서 커진다. 반대로 높이가
-      // 작으면 간격이 좁아 핀을 가린다. CSS 로 '내 높이 전체 + 고정 24px'
-      // 만큼 위로 이동해 팝업 바닥이 핀 위에 24px 떨어진 상태를 유지.
-      style={{ transform: 'translateY(calc(-100% - 24px))' }}
-      className="pointer-events-auto relative w-[280px] max-w-[calc(100vw-32px)] rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
+      // 팝업 바닥이 핀(1×1 호스트의 top) 위로 24px 띄워진 상태를 유지.
+      // 높이가 늘어도 bottom 기준이므로 핀과의 간격은 고정.
+      style={{
+        position: 'absolute',
+        bottom: '24px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 1,
+      }}
+      className="pointer-events-auto w-[280px] max-w-[calc(100vw-32px)] rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
     >
-      {/* 말풍선 꼬리 (아래쪽을 가리킴) — 핀 위치에 따라 좌·중·우 */}
+      {/* 말풍선 꼬리 — 아래쪽을 가리키는 CSS 삼각형. 핀은 항상 화면 중앙
+          (setCenter) 이므로 꼬리도 항상 가운데 정렬. */}
       <div
         aria-hidden
-        className={`absolute -bottom-[7px] h-3 w-3 rotate-45 rounded-[2px] bg-white ring-1 ring-black/5 ${
-          tailPosition === 'left'
-            ? 'left-5'
-            : tailPosition === 'right'
-              ? 'right-5'
-              : 'left-1/2 -translate-x-1/2'
-        }`}
+        className="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-x-[8px] border-t-[8px] border-x-transparent border-t-white"
       />
 
       <button
@@ -505,7 +468,17 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
 
       {thumbUrl && (
         <div className="aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-neutral-100">
-          <img src={thumbUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
+          <img
+            src={thumbUrl}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+            onError={(e) => {
+              // /thumb 프록시 실패 시 TourAPI 원본 URL 로 폴백.
+              const el = e.currentTarget
+              if (thumbSrc && el.src !== thumbSrc) el.src = thumbSrc
+            }}
+          />
         </div>
       )}
 
