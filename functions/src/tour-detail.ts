@@ -92,46 +92,23 @@ export const tourDetail = onCall(
     }
 
     try {
-      // 1차: 요청된 언어 서비스로 common 조회.
-      let common = await callTourApi(service, 'detailCommon2', {
+      // 요청된 언어의 TourAPI 서비스(KorService2/EngService2/JpnService2/ChsService2)
+      // 응답만 사용. 커버되지 않은 POI는 해당 언어에 해당 필드가 비어있는
+      // 채로 돌려줘 클라이언트가 props(geojson 단계에서 주입된 poi-translations
+      // 번역) 로 폴백하도록 한다. 한국어 폴백은 하지 않음 — 공모전 심사 관점
+      // 에서 '4종 언어 공공 데이터 활용' 원칙을 지키기 위함.
+      const common = await callTourApi(service, 'detailCommon2', {
         serviceKey: key,
         contentId,
       })
-      // 비한국어 서비스가 해당 contentId를 커버하지 않거나 overview 등이
-      // 비어있으면(특히 부천 POI) KorService2로 폴백해 최소한 한국어
-      // 본문이라도 내려가도록 한다.
-      const isKor = service === 'KorService2'
-      const lacksText =
-        !common ||
-        (!String(common.overview ?? '').trim() &&
-          !String(common.addr1 ?? '').trim() &&
-          !String(common.title ?? '').trim())
-      if (!isKor && lacksText) {
-        const korCommon = await callTourApi('KorService2', 'detailCommon2', {
-          serviceKey: key,
-          contentId,
-        }).catch(() => null)
-        if (korCommon) common = korCommon
-      }
       if (!common) return { source: 'live' as const, detail: null }
 
       const contentTypeId = String(common.contenttypeid ?? '12')
-      // intro 도 동일한 서비스 우선, 비면 Kor 폴백.
-      let intro = await callTourApi(service, 'detailIntro2', {
+      const intro = await callTourApi(service, 'detailIntro2', {
         serviceKey: key,
         contentId,
         contentTypeId,
       }).catch(() => null)
-      if (
-        !isKor &&
-        (!intro || (!String(intro.usetime ?? '').trim() && !String(intro.restdate ?? '').trim()))
-      ) {
-        intro = await callTourApi('KorService2', 'detailIntro2', {
-          serviceKey: key,
-          contentId,
-          contentTypeId,
-        }).catch(() => null)
-      }
 
       const detail = {
         contentId: String(common.contentid ?? contentId),

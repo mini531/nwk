@@ -379,8 +379,11 @@ export const KakaoTourMap = ({
     const overlay = new kakaoNs.CustomOverlay({
       position: latLng,
       content: el,
-      // 팝업 바닥이 핀 위로 충분히 올라와 핀이 가려지지 않도록 1.3 로 lift.
-      yAnchor: 1.3,
+      // yAnchor 는 높이에 비례하는 상대 오프셋이라 팝업이 커지면 간격이
+      // 바뀌어 핀을 가릴 수 있다. 위치는 CSS translateY(-100% - 24px) 로
+      // 절대 픽셀 간격을 고정하고, 여기서는 기준점을 팝업 좌상단(yAnchor=0)
+      // 에 맞춰 핀 좌표 그대로 놓는다.
+      yAnchor: 0,
       xAnchor,
       zIndex: 200,
       // 없으면 팝업 내부 클릭이 지도에 전달돼 바로 닫힘.
@@ -470,7 +473,14 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
       role="dialog"
       aria-label={props.title}
       onClick={(e) => e.stopPropagation()}
-      className="pointer-events-auto relative w-[280px] max-w-[calc(100vw-32px)] -translate-y-2 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      // Kakao CustomOverlay 는 yAnchor 로 상대 위치(0~1 비율)만 지원하므로
+      // 팝업 세로가 커지면 핀과의 간격도 비례해서 커진다. 반대로 높이가
+      // 작으면 간격이 좁아 핀을 가린다. CSS 로 '내 높이 전체 + 고정 24px'
+      // 만큼 위로 이동해 팝업 바닥이 핀 위에 24px 떨어진 상태를 유지.
+      style={{ transform: 'translateY(calc(-100% - 24px))' }}
+      className="pointer-events-auto relative w-[280px] max-w-[calc(100vw-32px)] rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
     >
       {/* 말풍선 꼬리 (아래쪽을 가리킴) — 핀 위치에 따라 좌·중·우 */}
       <div
