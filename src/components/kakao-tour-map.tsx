@@ -255,6 +255,15 @@ export const KakaoTourMap = ({
         // Regular POI dots fall through to the parent-controlled
         // detail sheet via onPoiClick.
         if (isStop && enableStopPopupRef.current) {
+          const m = mapRef.current
+          if (m) {
+            // 핀 주변으로 즉시 줌·센터 이동. 팝업 위치 계산이 이동 직후
+            // useEffect 에서 이뤄지므로 애니메이션 없이 순간 이동해야
+            // containerPointFromCoords 가 새 위치 기준으로 반환된다.
+            const PIN_ZOOM_LEVEL = 3
+            if (m.getLevel() > PIN_ZOOM_LEVEL) m.setLevel(PIN_ZOOM_LEVEL)
+            m.setCenter(new kakaoNs.LatLng(lat, lng))
+          }
           setPopup({ props: feat.properties, lat, lng })
           return
         }
