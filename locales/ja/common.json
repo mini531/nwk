@@ -113,7 +113,7 @@
       "bagaji": {
         "eyebrow": "ぼったくり警報",
         "flagged": "{{count}}件 登録",
-        "headline": "昨日、観光客が払いすぎた金額、ぜんぶ公開。",
+        "headline": "ぼったくり？気にせず旅を楽しんで。",
         "sub": "本サービスの価格判定ツールで検証した事例。正常価格との差をそのまま表示します。",
         "fair": "正常価格"
       },
@@ -596,6 +596,7 @@
       "sourceNote": "富川市個人サービス料金 公共データLIVE連動(公共データポータル)",
       "sourceBadge": "実データ出典",
       "referenceBadge": "公式出典",
+      "sourceInline": "出典",
       "sourceSamples": "行政洞の平均",
       "openKit": "必需キットを開く",
       "openCourses": "富川コースを見る",

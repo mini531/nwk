@@ -113,7 +113,7 @@
       "bagaji": {
         "eyebrow": "바가지 주의보",
         "flagged": "{{count}}건 등록",
-        "headline": "관광객이 어제 더 낸 돈, 여기 다 있다.",
+        "headline": "바가지? 걱정 말고 여행해요",
         "sub": "본 서비스의 여행경비 판정 도구로 검증한 사례 — 정상가 범위 대비 얼마나 더 냈는지 그대로 보여드려요.",
         "fair": "정상가"
       },
@@ -596,6 +596,7 @@
       "sourceNote": "경기도 부천시 개인서비스요금 공공데이터 LIVE 연동 (공공데이터포털)",
       "sourceBadge": "실데이터 출처",
       "referenceBadge": "공식 근거",
+      "sourceInline": "출처",
       "sourceSamples": "개 행정동 평균",
       "openKit": "필수키트 보기",
       "openCourses": "부천 코스 보기",

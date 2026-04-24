@@ -11,7 +11,7 @@ import {
   type PriceCategory,
   type PriceEntry,
 } from '../data/price-catalog'
-import { getDisplayRange } from '../data/live-price-source'
+import { getDisplayRange, getLiveOverride } from '../data/live-price-source'
 import { publishCheck } from '../data/public-checks'
 import { maskEmail } from '../utils/mask'
 import {
@@ -472,16 +472,38 @@ export const CheckPage = () => {
             </div>
             {!isTaxi &&
               (() => {
-                const r = getDisplayRange(entry.id, entry.fairMin, entry.fairMax)
+                const live = getLiveOverride(entry.id)
+                const min = live ? live.min : entry.fairMin
+                const max = live ? live.max : entry.fairMax
+                const srcLabel = live?.source.label ?? entry.reference?.label
+                const srcUrl = live?.source.url ?? entry.reference?.url
                 return (
-                  <p className="mt-2 text-[12px] text-ink-3">
+                  <p className="mt-2 text-[12px] leading-relaxed text-ink-3">
                     {t('page.check.fairHint')}:{' '}
                     <span className="font-semibold tabular-nums text-ink-2">
-                      {formatKrw(r.min, i18n.language)}–{formatKrw(r.max, i18n.language)}
+                      {formatKrw(min, i18n.language)}–{formatKrw(max, i18n.language)}
                     </span>
-                    {r.isLive && (
+                    {live && (
                       <span className="ml-1.5 inline-flex items-center rounded-md bg-brand-soft px-1.5 py-0.5 text-[12px] font-bold uppercase tracking-wider text-brand">
                         LIVE
+                      </span>
+                    )}
+                    {srcLabel && (
+                      <span className="mt-1 block text-ink-3 sm:ml-1 sm:mt-0 sm:inline">
+                        ({t('page.check.sourceInline')}:{' '}
+                        {srcUrl ? (
+                          <a
+                            href={srcUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="underline decoration-ink-3/40 underline-offset-2 hover:text-ink-2"
+                          >
+                            {srcLabel}
+                          </a>
+                        ) : (
+                          srcLabel
+                        )}
+                        )
                       </span>
                     )}
                   </p>

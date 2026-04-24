@@ -113,7 +113,7 @@
       "bagaji": {
         "eyebrow": "RIP-OFF ALERT",
         "flagged": "{{count}} sample cases",
-        "headline": "How much tourists overpaid yesterday — exposed.",
+        "headline": "Rip-offs? No worries — just enjoy Korea.",
         "sub": "Cases verified by our price-check tool. We show exactly how much was paid over the fair range.",
         "fair": "Fair"
       },
@@ -596,6 +596,7 @@
       "sourceNote": "Bucheon personal-service fee survey · LIVE from Korea's public data portal",
       "sourceBadge": "Live source",
       "referenceBadge": "Official source",
+      "sourceInline": "Source",
       "sourceSamples": " administrative dong averaged",
       "openKit": "Open the Kit",
       "openCourses": "View Bucheon courses",
