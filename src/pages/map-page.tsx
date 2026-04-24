@@ -673,7 +673,13 @@ export const MapPage = () => {
         <div className="flex overflow-hidden rounded-full border border-white/60 bg-white/90 shadow-lg backdrop-blur-md">
           <button
             type="button"
-            onClick={() => setMobileView('list')}
+            onClick={() => {
+              setMobileView('list')
+              // 탭 전환 시 열려 있던 상세 모달·시트 초기화.
+              setDetailPlace(null)
+              setCourseSheetExpanded(false)
+              setSheetShareHint(null)
+            }}
             className={`flex items-center gap-1.5 px-5 py-2.5 text-[15px] font-bold transition-colors ${mobileView === 'list' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
           >
             <svg
@@ -697,7 +703,12 @@ export const MapPage = () => {
           </button>
           <button
             type="button"
-            onClick={() => setMobileView('map')}
+            onClick={() => {
+              setMobileView('map')
+              setDetailPlace(null)
+              setCourseSheetExpanded(false)
+              setSheetShareHint(null)
+            }}
             className={`flex items-center gap-1.5 px-5 py-2.5 text-[15px] font-bold transition-colors ${mobileView === 'map' ? 'bg-neutral-800 text-white' : 'text-neutral-600'}`}
           >
             <svg
