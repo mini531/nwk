@@ -463,7 +463,7 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
       role="dialog"
       aria-label={props.title}
       onClick={(e) => e.stopPropagation()}
-      className="pointer-events-auto w-[280px] max-w-[calc(100vw-32px)] -translate-y-2 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
+      className="pointer-events-auto relative w-[280px] max-w-[calc(100vw-32px)] -translate-y-2 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
     >
       {/* 말풍선 꼬리 (아래쪽을 가리킴) — 핀 위치에 따라 좌·중·우 */}
       <div
@@ -497,7 +497,9 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
           {displayTitle}
         </h3>
 
-        {displayAddr && <p className="text-[12px] leading-snug text-neutral-600">{displayAddr}</p>}
+        {displayAddr && (
+          <p className="break-keep text-[12px] leading-snug text-neutral-600">{displayAddr}</p>
+        )}
 
         {tel && (
           <p className="text-[12px] leading-snug text-neutral-600">
@@ -508,7 +510,9 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
         )}
 
         {overview && (
-          <p className="line-clamp-3 text-[12px] leading-relaxed text-neutral-700">{overview}</p>
+          <p className="line-clamp-3 break-keep text-[12px] leading-relaxed text-neutral-700">
+            {overview}
+          </p>
         )}
 
         {loading && !detail && (
