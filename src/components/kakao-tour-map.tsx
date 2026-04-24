@@ -363,12 +363,21 @@ export const KakaoTourMap = ({
     return () => overlay.setMap(null)
   }, [popup, mapLoaded])
 
-  // If the current popup's stop disappears from the geojson (e.g. course
-  // switched / cleared), close it so a stale card doesn't linger.
+  // Keep popup in sync with the latest geojson feature for the same id.
+  // Language switches rebuild geojson with translated title/addr; without
+  // this sync, the popup would render the stale snapshot captured at click
+  // time (e.g. Korean text after switching to English). Also closes the
+  // popup if its stop disappears entirely (course cleared / switched).
   useEffect(() => {
     if (!popup) return
-    const stillPresent = geojson.features.some((f) => f.properties.id === popup.props.id)
-    if (!stillPresent) setPopup(null)
+    const latest = geojson.features.find((f) => f.properties.id === popup.props.id)
+    if (!latest) {
+      setPopup(null)
+      return
+    }
+    if (latest.properties !== popup.props) {
+      setPopup({ ...popup, props: latest.properties })
+    }
   }, [geojson, popup])
 
   return (
