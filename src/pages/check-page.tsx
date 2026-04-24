@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRecentChecks } from '../hooks/use-recent-checks'
+import { useAuth } from '../hooks/use-auth'
 import {
   PRICE_CATALOG,
   PRICE_CATEGORIES,
@@ -11,6 +12,8 @@ import {
   type PriceEntry,
 } from '../data/price-catalog'
 import { getDisplayRange } from '../data/live-price-source'
+import { publishCheck } from '../data/public-checks'
+import { maskEmail } from '../utils/mask'
 import {
   AlertIcon,
   ArrowLeftIcon,
@@ -99,8 +102,10 @@ export const CheckPage = () => {
   const [price, setPrice] = useState('')
   const [km, setKm] = useState('')
   const [night, setNight] = useState(false)
+  const [share, setShare] = useState(true)
   const [result, setResult] = useState<CheckResult | null>(null)
   const { push: pushRecent } = useRecentChecks()
+  const { user } = useAuth()
 
   const onSubmitResult = (r: CheckResult) => {
     pushRecent({
@@ -113,6 +118,24 @@ export const CheckPage = () => {
     })
     setResult(r)
     setStep(4)
+    if (share && user?.email) {
+      const isTaxiEntry = r.entry.inputMode === 'taxi'
+      const kmNum = Number(km.replace(/[^0-9.]/g, ''))
+      let extra: string | undefined
+      if (isTaxiEntry && Number.isFinite(kmNum) && kmNum > 0) {
+        extra = `${kmNum}km${night ? ' · 심야' : ''}`
+      }
+      publishCheck({
+        entryId: r.entry.id,
+        category: r.entry.category,
+        paid: r.paid,
+        fairMin: r.fairMin,
+        fairMax: r.fairMax,
+        verdict: r.verdict,
+        extra,
+        email: user.email,
+      }).catch((err) => console.error('publishCheck failed', err))
+    }
   }
 
   const items = useMemo(
@@ -465,6 +488,29 @@ export const CheckPage = () => {
                 )
               })()}
           </div>
+
+          <label
+            className={`flex items-start gap-3 rounded-2xl border px-4 py-3 transition ${
+              share ? 'border-brand/30 bg-brand-soft/40' : 'border-line bg-surface'
+            }`}
+          >
+            <input
+              type="checkbox"
+              checked={share}
+              onChange={(e) => setShare(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand"
+            />
+            <span className="min-w-0 flex-1">
+              <span className="block text-[13px] font-semibold text-ink">
+                {t('page.check.share.label')}
+              </span>
+              <span className="mt-0.5 block text-[12px] leading-snug text-ink-2">
+                {user?.email
+                  ? t('page.check.share.hint', { masked: maskEmail(user.email) })
+                  : t('page.check.share.signInHint')}
+              </span>
+            </span>
+          </label>
 
           <button
             type="submit"

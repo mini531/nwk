@@ -61,6 +61,32 @@ service cloud.firestore {
       }
     }
 
+    // Public price-check log: anyone can read recent entries for the
+    // home hero feed. Authenticated users may publish a masked result
+    // (no uid, only first-char-of-email + domain). Admins can hide or
+    // delete rows for moderation. Read is open and clients filter out
+    // hidden==true rows locally, matching the existing notes pattern.
+    match /publicChecks/{docId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(
+          ['entryId','category','paid','fairMin','fairMax','verdict','extra','emailMasked','hidden','createdAt']
+        )
+        && request.resource.data.hidden == false
+        && request.resource.data.verdict in ['fair','careful','bagaji']
+        && request.resource.data.category in ['food','drink','transit','lodging','tourism','fee']
+        && request.resource.data.entryId is string
+        && request.resource.data.entryId.size() > 0
+        && request.resource.data.entryId.size() < 64
+        && request.resource.data.paid is number
+        && request.resource.data.paid >= 0
+        && request.resource.data.fairMin is number
+        && request.resource.data.fairMax is number
+        && request.resource.data.emailMasked is string
+        && request.resource.data.emailMasked.size() < 120;
+      allow update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
     // User-owned data: only the authenticated owner can read/write
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;

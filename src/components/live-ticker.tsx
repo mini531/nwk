@@ -2,19 +2,12 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LIVE_CASES } from '../data/live-cases'
 import type { Verdict } from '../data/price-catalog'
+import { maskEmail } from '../utils/mask'
 
 const VERDICT_DOT: Record<Verdict, string> = {
   fair: 'bg-brand',
   careful: 'bg-warn',
   bagaji: 'bg-danger',
-}
-
-const maskName = (name: string): string => {
-  const chars = Array.from(name)
-  if (chars.length <= 2) return chars[0] + '*'
-  if (chars.length === 3) return `${chars[0]}*${chars[2]}`
-  const middle = '*'.repeat(Math.min(chars.length - 2, 3))
-  return `${chars[0]}${middle}${chars[chars.length - 1]}`
 }
 
 const formatKrw = (v: number, lang: string) => {
@@ -49,7 +42,7 @@ export const LiveTicker = () => {
         <span className={`absolute inset-0 animate-ping rounded-full opacity-60 ${dot}`} />
       </span>
       <p className="flex-1 truncate text-[12px] leading-snug text-ink-2">
-        <span className="font-semibold text-ink">{maskName(c.name)}</span>
+        <span className="font-semibold text-ink">{maskEmail(c.email)}</span>
         {' · '}
         <span>{t(c.itemKey)}</span>
         {c.extra && <span className="text-ink-3"> · {c.extra}</span>}

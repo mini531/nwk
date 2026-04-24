@@ -519,6 +519,11 @@
       "subhead": "We'll compare it against Korea's real average prices in a few taps.",
       "back": "Back",
       "again": "Try another",
+      "share": {
+        "label": "Share my result anonymously",
+        "hint": "Only {{masked}} is shown — helps fellow travelers.",
+        "signInHint": "Sign in to share your result anonymously on the home feed."
+      },
       "popular": "What travelers ask most",
       "popularLabel": "Popular items",
       "seeAll": "See all",
