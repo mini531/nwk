@@ -324,6 +324,7 @@ export const KakaoTourMap = ({
   if (!overlayElRef.current && typeof document !== 'undefined') {
     overlayElRef.current = document.createElement('div')
   }
+  const [tailPosition, setTailPosition] = useState<'left' | 'center' | 'right'>('center')
 
   useEffect(() => {
     const map = mapRef.current
@@ -331,11 +332,40 @@ export const KakaoTourMap = ({
     if (!map || !el || !popup || typeof window === 'undefined') return
     const kakaoNs = window.kakao?.maps
     if (!kakaoNs) return
+
+    // 핀의 화면상 x 좌표를 기준으로 팝업이 뷰포트 밖으로 잘리지 않도록
+    // xAnchor 와 꼬리 위치를 좌·중·우로 조정한다. 팝업 폭은 하드코딩(280)
+    // 과 max-w-[calc(100vw-32px)] 제약에 맞춘다.
+    const POPUP_WIDTH = 280
+    const EDGE_PADDING = 16
+    const latLng = new kakaoNs.LatLng(popup.lat, popup.lng)
+    let xAnchor = 0.5
+    let tail: 'left' | 'center' | 'right' = 'center'
+    try {
+      const projection = map.getProjection?.()
+      const point = projection?.containerPointFromCoords?.(latLng)
+      const mapNode = map.getNode?.() as HTMLElement | undefined
+      const mapWidth = mapNode?.offsetWidth ?? 0
+      if (point && mapWidth > 0) {
+        const half = POPUP_WIDTH / 2
+        if (point.x - half < EDGE_PADDING) {
+          xAnchor = 0
+          tail = 'left'
+        } else if (point.x + half > mapWidth - EDGE_PADDING) {
+          xAnchor = 1
+          tail = 'right'
+        }
+      }
+    } catch {
+      // projection 사용 불가 → 기본 중앙 정렬
+    }
+    setTailPosition(tail)
+
     const overlay = new kakaoNs.CustomOverlay({
-      position: new kakaoNs.LatLng(popup.lat, popup.lng),
+      position: latLng,
       content: el,
       yAnchor: 1.15, // lift above the pin tip
-      xAnchor: 0.5,
+      xAnchor,
       zIndex: 200,
       // 없으면 팝업 내부 클릭이 지도에 전달돼 바로 닫힘.
       clickable: true,
@@ -361,16 +391,7 @@ export const KakaoTourMap = ({
               key={popup.props.id}
               props={popup.props}
               onClose={() => setPopup(null)}
-              onMore={
-                onClickRef.current
-                  ? () => {
-                      const cb = onClickRef.current
-                      const current = popup.props
-                      setPopup(null)
-                      cb?.(current)
-                    }
-                  : undefined
-              }
+              tailPosition={tailPosition}
             />,
             overlayElRef.current,
           )
@@ -389,10 +410,10 @@ export const KakaoTourMap = ({
 interface StopPopupProps {
   props: PoiProperties
   onClose: () => void
-  onMore?: () => void
+  tailPosition?: 'left' | 'center' | 'right'
 }
 
-const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
+const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) => {
   const { t, i18n } = useTranslation()
   const lang = i18n.language.slice(0, 2)
   const [detail, setDetail] = useState<TourDetailData | null>(null)
@@ -435,10 +456,16 @@ const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
       onClick={(e) => e.stopPropagation()}
       className="pointer-events-auto w-[280px] max-w-[calc(100vw-32px)] -translate-y-2 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5"
     >
-      {/* 말풍선 꼬리 (아래쪽을 가리킴) */}
+      {/* 말풍선 꼬리 (아래쪽을 가리킴) — 핀 위치에 따라 좌·중·우 */}
       <div
         aria-hidden
-        className="absolute -bottom-[7px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 rounded-[2px] bg-white ring-1 ring-black/5"
+        className={`absolute -bottom-[7px] h-3 w-3 rotate-45 rounded-[2px] bg-white ring-1 ring-black/5 ${
+          tailPosition === 'left'
+            ? 'left-5'
+            : tailPosition === 'right'
+              ? 'right-5'
+              : 'left-1/2 -translate-x-1/2'
+        }`}
       />
 
       <button
@@ -479,17 +506,6 @@ const StopPopup = ({ props, onClose, onMore }: StopPopupProps) => {
           <p className="text-[12px] leading-snug text-neutral-400">
             {t('page.map.loadingDetail', { defaultValue: '상세 정보 불러오는 중…' })}
           </p>
-        )}
-
-        {onMore && (
-          <button
-            type="button"
-            onClick={onMore}
-            className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold text-brand hover:underline"
-          >
-            {t('page.map.viewMore', { defaultValue: '자세히 보기' })}
-            <span aria-hidden>→</span>
-          </button>
         )}
       </div>
     </div>
