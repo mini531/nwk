@@ -518,7 +518,7 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
         )}
 
         {overview && (
-          <p className="line-clamp-3 w-full whitespace-normal break-keep text-[12px] leading-relaxed text-neutral-700">
+          <p className="max-h-28 w-full overflow-y-auto whitespace-normal break-keep pr-1 text-[12px] leading-relaxed text-neutral-700">
             {overview}
           </p>
         )}
