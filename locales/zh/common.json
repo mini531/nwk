@@ -473,7 +473,9 @@
         "courses": "行程管理",
         "coursesDesc": "切换 {{count}} 条行程的公开状态",
         "notes": "留言审核",
-        "notesDesc": "一览所有行程的用户留言"
+        "notesDesc": "一览所有行程的用户留言",
+        "checks": "判定审核",
+        "checksDesc": "审核首页分享的宰客判定, 可隐藏或删除"
       },
       "pipeline": {
         "title": "TourAPI POI {{pois}} 个 · 富川核心 {{core}} 个",
@@ -501,6 +503,23 @@
           "all": "全部",
           "visible": "可见",
           "hidden": "隐藏"
+        }
+      },
+      "checks": {
+        "title": "判定审核",
+        "total": "共 {{n}} 条",
+        "loading": "加载中…",
+        "empty": "暂无已分享的判定",
+        "hiddenTag": "已隐藏",
+        "show": "显示",
+        "hide": "隐藏",
+        "delete": "删除",
+        "confirmDelete": "确定删除此判定吗?",
+        "filter": {
+          "all": "全部",
+          "visible": "可见",
+          "hidden": "隐藏",
+          "bagaji": "宰客"
         }
       }
     },

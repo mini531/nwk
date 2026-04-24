@@ -35,6 +35,9 @@ const AdminCoursesPage = lazy(() =>
 const AdminNotesPage = lazy(() =>
   import('./pages/admin-notes').then((m) => ({ default: m.AdminNotesPage })),
 )
+const AdminChecksPage = lazy(() =>
+  import('./pages/admin-checks').then((m) => ({ default: m.AdminChecksPage })),
+)
 const NotFoundPage = lazy(() =>
   import('./pages/not-found-page').then((m) => ({ default: m.NotFoundPage })),
 )
@@ -64,6 +67,7 @@ export const router = createBrowserRouter([
       { path: 'admin', element: wrap(AdminHomePage) },
       { path: 'admin/courses', element: wrap(AdminCoursesPage) },
       { path: 'admin/notes', element: wrap(AdminNotesPage) },
+      { path: 'admin/checks', element: wrap(AdminChecksPage) },
       { path: '*', element: wrap(NotFoundPage) },
     ],
   },

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/use-auth'
 import coursesData from '../data/courses.json'
 import poiData from '../data/live-bucheon-pois.json'
 import { STYLE_TAGS, DURATIONS } from '../types/course'
-import { ArrowRightIcon, CourseIcon, MapIcon, UserIcon } from '../components/icons'
+import { AlertIcon, ArrowRightIcon, CourseIcon, MapIcon, UserIcon } from '../components/icons'
 
 interface RawCoursesFile {
   courses: Array<{ id: string; published: boolean }>
@@ -77,6 +77,19 @@ const Content = () => {
           <div className="flex-1">
             <p className="text-[14px] font-semibold text-ink">{t('page.admin.links.notes')}</p>
             <p className="mt-0.5 text-[12px] text-ink-3">{t('page.admin.links.notesDesc')}</p>
+          </div>
+          <ArrowRightIcon size={16} className="text-ink-3 group-hover:text-brand" />
+        </Link>
+        <Link
+          to="/admin/checks"
+          className="nwk-card group flex items-center gap-3 p-4 hover:border-brand"
+        >
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-danger/15 text-danger">
+            <AlertIcon size={20} />
+          </span>
+          <div className="flex-1">
+            <p className="text-[14px] font-semibold text-ink">{t('page.admin.links.checks')}</p>
+            <p className="mt-0.5 text-[12px] text-ink-3">{t('page.admin.links.checksDesc')}</p>
           </div>
           <ArrowRightIcon size={16} className="text-ink-3 group-hover:text-brand" />
         </Link>

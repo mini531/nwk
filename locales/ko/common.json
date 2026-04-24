@@ -473,7 +473,9 @@
         "courses": "코스 관리",
         "coursesDesc": "{{count}}개 코스 공개 상태 토글",
         "notes": "의견 모더레이션",
-        "notesDesc": "전체 코스의 사용자 의견을 한눈에"
+        "notesDesc": "전체 코스의 사용자 의견을 한눈에",
+        "checks": "판정 모더레이션",
+        "checksDesc": "홈 히어로에 공유된 바가지 판정 검토·숨김"
       },
       "pipeline": {
         "title": "TourAPI POI {{pois}}건 · 부천 코어 {{core}}건",
@@ -501,6 +503,23 @@
           "all": "전체",
           "visible": "공개",
           "hidden": "숨김"
+        }
+      },
+      "checks": {
+        "title": "판정 모더레이션",
+        "total": "총 {{n}}건",
+        "loading": "불러오는 중…",
+        "empty": "아직 공유된 판정이 없어요",
+        "hiddenTag": "숨김",
+        "show": "공개",
+        "hide": "숨기기",
+        "delete": "삭제",
+        "confirmDelete": "정말 이 판정을 삭제할까요?",
+        "filter": {
+          "all": "전체",
+          "visible": "공개",
+          "hidden": "숨김",
+          "bagaji": "바가지"
         }
       }
     },

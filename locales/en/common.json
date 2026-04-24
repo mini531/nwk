@@ -473,7 +473,9 @@
         "courses": "Courses",
         "coursesDesc": "Toggle publish state on {{count}} courses",
         "notes": "Notes moderation",
-        "notesDesc": "Review traveler notes across all courses"
+        "notesDesc": "Review traveler notes across all courses",
+        "checks": "Verdict moderation",
+        "checksDesc": "Review shared price verdicts on the home feed"
       },
       "pipeline": {
         "title": "{{pois}} TourAPI POIs · {{core}} Bucheon core",
@@ -501,6 +503,23 @@
           "all": "All",
           "visible": "Visible",
           "hidden": "Hidden"
+        }
+      },
+      "checks": {
+        "title": "Verdict moderation",
+        "total": "{{n}} total",
+        "loading": "Loading…",
+        "empty": "No shared verdicts yet",
+        "hiddenTag": "Hidden",
+        "show": "Show",
+        "hide": "Hide",
+        "delete": "Delete",
+        "confirmDelete": "Delete this verdict?",
+        "filter": {
+          "all": "All",
+          "visible": "Visible",
+          "hidden": "Hidden",
+          "bagaji": "Rip-off"
         }
       }
     },
