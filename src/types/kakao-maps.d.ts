@@ -27,6 +27,8 @@ declare global {
 
     class Point {
       constructor(x: number, y: number)
+      x: number
+      y: number
     }
 
     class MarkerImage {
@@ -41,6 +43,11 @@ declare global {
       scrollwheel?: boolean
     }
 
+    interface Projection {
+      containerPointFromCoords(latlng: LatLng): Point
+      coordsFromContainerPoint(point: Point): LatLng
+    }
+
     class Map {
       constructor(container: HTMLElement, options: MapOptions)
       setCenter(latlng: LatLng): void
@@ -52,6 +59,8 @@ declare global {
       setBounds(bounds: LatLngBounds, paddingTop?: number): void
       relayout(): void
       panTo(latlng: LatLng): void
+      getProjection(): Projection
+      getNode(): HTMLElement
     }
 
     enum MapTypeId {
