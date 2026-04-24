@@ -44,3 +44,6 @@ functions/lib
 *.xlsx
 *.pptx
 *.pdf
+
+# Private — 공모전 전략·시연 대본·개인 작업 노트. 깃에 공유하지 않음.
+private/
