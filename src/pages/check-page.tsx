@@ -601,6 +601,20 @@ export const CheckPage = () => {
                   {result.source.spec ? ` · ${result.source.spec}` : ''}
                 </p>
               </a>
+            ) : result.entry.reference ? (
+              <a
+                href={result.entry.reference.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 block rounded-xl border border-line bg-surface/70 px-4 py-3"
+              >
+                <p className="text-[12px] font-semibold text-brand">
+                  {t('page.check.referenceBadge')}
+                </p>
+                <p className="mt-0.5 text-[12px] font-medium leading-snug text-ink-2">
+                  {result.entry.reference.label}
+                </p>
+              </a>
             ) : (
               <p className="mt-4 text-[12px] text-ink-3">{t('page.check.sourceNote')}</p>
             )}

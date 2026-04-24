@@ -1,4 +1,5 @@
 import bucheonLive from './live-prices-bucheon.json'
+import { computeUsdSpreadRange, getCachedExchangeRate } from './exchange-rate'
 
 export interface LiveSource {
   label: string
@@ -75,6 +76,22 @@ export interface LiveOverride {
 }
 
 export const getLiveOverride = (entryId: string): LiveOverride | null => {
+  if (entryId === 'exchange_spread') {
+    const fx = getCachedExchangeRate()
+    if (!fx) return null
+    const { min, max } = computeUsdSpreadRange(fx.rate)
+    return {
+      min,
+      max,
+      source: {
+        label: fx.source,
+        url: fx.sourceUrl,
+        fetchedAt: new Date().toISOString(),
+        samples: 1,
+        spec: `매매기준율 ₩${fx.rate.toLocaleString()}/USD · 시중은행 현찰 살 때 스프레드 1.5~1.95%`,
+      },
+    }
+  }
   const bucheonKey = BUCHEON_MAP[entryId]
   if (!bucheonKey) return null
   const item = BUCHEON.items[bucheonKey]

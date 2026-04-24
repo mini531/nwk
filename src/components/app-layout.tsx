@@ -5,6 +5,7 @@ import { LangSwitcher } from './lang-switcher'
 import { CompassIcon, CourseIcon, HomeIcon, ScaleIcon, UserIcon } from './icons'
 import { SiteFooter } from './site-footer'
 import { useCloudSync } from '../hooks/use-cloud-sync'
+import brandLogo from '../assets/logo_brand.png'
 import type { ComponentType, SVGProps } from 'react'
 
 interface Tab {
@@ -77,39 +78,43 @@ export const AppLayout = () => {
         role="banner"
       >
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 px-5 sm:px-6 lg:px-8">
-          <div className="flex min-w-0 items-center gap-6">
-            <NavLink
-              to="/"
-              end
-              className="truncate text-[17px] font-semibold tracking-tight text-ink transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-              aria-label={t('a11y.homeLink')}
-            >
-              No Worries Korea
-            </NavLink>
-            <nav aria-label={t('a11y.primaryNav')} className="hidden lg:block">
-              <ul className="flex items-center gap-1">
-                {tabs.map(({ to, key, end }) => (
-                  <li key={to}>
-                    <NavLink
-                      to={to}
-                      end={end}
-                      onClick={onTabClick(to)}
-                      className={({ isActive }) =>
-                        `rounded-full px-3 py-1.5 text-[13px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
-                          isActive
-                            ? 'bg-ink text-on-ink'
-                            : 'text-ink-2 hover:bg-canvas-2 hover:text-ink'
-                        }`
-                      }
-                    >
-                      {t(`nav.${key}`)}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-          <div className="flex items-center gap-2">
+          <NavLink
+            to="/"
+            end
+            className="inline-flex shrink-0 items-center transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            aria-label={t('a11y.homeLink')}
+          >
+            <img
+              src={brandLogo}
+              alt="No Worries Korea"
+              width="180"
+              height="32"
+              className="h-5 w-auto dark:brightness-0 dark:invert sm:h-6"
+            />
+          </NavLink>
+          <nav aria-label={t('a11y.primaryNav')} className="hidden flex-1 justify-center lg:flex">
+            <ul className="flex items-center gap-1">
+              {tabs.map(({ to, key, end }) => (
+                <li key={to}>
+                  <NavLink
+                    to={to}
+                    end={end}
+                    onClick={onTabClick(to)}
+                    className={({ isActive }) =>
+                      `rounded-full px-3 py-1.5 text-[13px] font-medium tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
+                        isActive
+                          ? 'bg-ink text-on-ink'
+                          : 'text-ink-2 hover:bg-canvas-2 hover:text-ink'
+                      }`
+                    }
+                  >
+                    {t(`nav.${key}`)}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="flex shrink-0 items-center gap-2">
             <LangSwitcher />
             {/* 모바일 전용: 프로필 아이콘을 하단 탭 대신 헤더 우상단으로 이동.
                 하단 탭 라벨이 길어지면서 5칸 간격이 어색해져 4칸으로 축소. */}

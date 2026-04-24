@@ -23,6 +23,12 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // 공공 API 기반 실시간 가격 캐시 (한국은행 환율 등). Cloud Function만 쓰기.
+    match /livePrices/{doc=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
     // Curated course documents (Bucheon specialization).
     // Public can read only documents marked published=true.
     // Writes are restricted to users with the admin custom claim,

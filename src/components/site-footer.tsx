@@ -9,7 +9,11 @@ export const SiteFooter = () => {
   return (
     <footer className="border-t border-line/60 bg-canvas-2/40">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-5 gap-y-2 px-5 py-3 text-[12px] text-ink-3 sm:px-6 lg:px-8">
-        <img src={hiloLogo} alt={t('footer.company')} className="h-6 w-auto" />
+        <img
+          src={hiloLogo}
+          alt={t('footer.company')}
+          className="h-6 w-auto dark:brightness-0 dark:invert"
+        />
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <a href="mailto:mini5031@nate.com" className="font-medium text-ink-2 hover:text-brand">
             mini5031@nate.com

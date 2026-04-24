@@ -2,6 +2,11 @@ export type PriceCategory = 'food' | 'drink' | 'transit' | 'lodging' | 'tourism'
 
 export type InputMode = 'flat' | 'taxi'
 
+export interface PriceReference {
+  label: string
+  url: string
+}
+
 export interface PriceEntry {
   id: string
   category: PriceCategory
@@ -10,6 +15,64 @@ export interface PriceEntry {
   unit?: string
   inputMode?: InputMode
   popular?: boolean
+  // 공식 고시·공공 통계 출처. LIVE 연동이 없는 항목의 근거 링크로 사용.
+  reference?: PriceReference
+}
+
+// 공식 고시·공공 통계 출처 상수 — 기관 홈페이지 + 통계·고시명 라벨.
+// 상세 페이지 URL이 개편돼도 기관 기준은 검증 가능한 수준으로 보수적으로 지정.
+const REF_SUBWAY: PriceReference = {
+  label: '서울교통공사 수도권 전철 기본운임',
+  url: 'https://www.seoulmetro.co.kr',
+}
+const REF_BUS: PriceReference = {
+  label: '서울시 시내버스 요금 (TOPIS)',
+  url: 'https://topis.seoul.go.kr',
+}
+const REF_KTX: PriceReference = { label: '코레일 KTX 운임표', url: 'https://www.letskorail.com' }
+const REF_AREX: PriceReference = {
+  label: '공항철도 직통열차 요금표',
+  url: 'https://www.arex.or.kr',
+}
+const REF_TAXI_SEOUL: PriceReference = {
+  label: '서울시 택시요금 고시',
+  url: 'https://taxi.seoul.go.kr',
+}
+const REF_INCHEON_TAXI: PriceReference = {
+  label: '인천국제공항공사 공항택시 안내',
+  url: 'https://www.airport.kr',
+}
+const REF_VK_DATALAB: PriceReference = {
+  label: '한국관광공사 관광데이터랩 숙박 통계',
+  url: 'https://datalab.visitkorea.or.kr',
+}
+const REF_PRICE_KCA: PriceReference = {
+  label: '한국소비자원 참가격 외식비 통계',
+  url: 'https://www.price.go.kr',
+}
+const REF_MCST: PriceReference = {
+  label: '문화체육관광부 공립 박물관 관람료 고시',
+  url: 'https://www.mcst.go.kr',
+}
+const REF_CGV: PriceReference = {
+  label: 'CGV 영화 관람료 (평일 성인 기준)',
+  url: 'https://www.cgv.co.kr',
+}
+const REF_THEMEPARK: PriceReference = {
+  label: '롯데월드·에버랜드 공식 1일권',
+  url: 'https://adventure.lotteworld.com',
+}
+const REF_NAMSAN_CABLE: PriceReference = {
+  label: '남산 케이블카 왕복 공식 요금',
+  url: 'https://www.cablecar.co.kr',
+}
+const REF_SEOUL_PARKING: PriceReference = {
+  label: '서울시 공영주차장 요금 고시 (TOPIS)',
+  url: 'https://topis.seoul.go.kr',
+}
+const REF_FSS_FEE: PriceReference = {
+  label: '금융감독원 은행수수료 통합비교공시',
+  url: 'https://fine.fss.or.kr',
 }
 
 export const PRICE_CATALOG: PriceEntry[] = [
@@ -62,24 +125,81 @@ export const PRICE_CATALOG: PriceEntry[] = [
   { id: 'sushi_set', category: 'food', fairMin: 15000, fairMax: 25000, unit: '일식 1인분' },
   { id: 'burger_korean', category: 'food', fairMin: 4000, fairMax: 6000, unit: '단품' },
   { id: 'pizza_regular', category: 'food', fairMin: 15000, fairMax: 22000, unit: '레귤러' },
-  { id: 'pho_vietnamese', category: 'food', fairMin: 9500, fairMax: 13000, unit: '쌀국수 1인' },
-  { id: 'bingsu', category: 'food', fairMin: 9000, fairMax: 15000, unit: '팥빙수 1개' },
-  { id: 'bungeoppang', category: 'food', fairMin: 1000, fairMax: 3000, unit: '붕어빵 3개' },
+  {
+    id: 'pho_vietnamese',
+    category: 'food',
+    fairMin: 9500,
+    fairMax: 13000,
+    unit: '쌀국수 1인',
+    reference: REF_PRICE_KCA,
+  },
+  {
+    id: 'bingsu',
+    category: 'food',
+    fairMin: 9000,
+    fairMax: 15000,
+    unit: '팥빙수 1개',
+    reference: REF_PRICE_KCA,
+  },
+  {
+    id: 'bungeoppang',
+    category: 'food',
+    fairMin: 1000,
+    fairMax: 3000,
+    unit: '붕어빵 3개',
+    reference: REF_PRICE_KCA,
+  },
 
   { id: 'americano', category: 'drink', fairMin: 3500, fairMax: 5500, popular: true },
   { id: 'cafe_latte', category: 'drink', fairMin: 4500, fairMax: 6500, popular: true },
-  { id: 'water_500ml', category: 'drink', fairMin: 1000, fairMax: 2000, unit: '관광지·노점' },
-  { id: 'soju_bottle', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '식당' },
-  { id: 'beer_500ml', category: 'drink', fairMin: 5000, fairMax: 7000, unit: '식당 생맥주' },
+  {
+    id: 'water_500ml',
+    category: 'drink',
+    fairMin: 1000,
+    fairMax: 2000,
+    unit: '관광지·노점',
+    reference: REF_PRICE_KCA,
+  },
+  {
+    id: 'soju_bottle',
+    category: 'drink',
+    fairMin: 4000,
+    fairMax: 6000,
+    unit: '식당',
+    reference: REF_PRICE_KCA,
+  },
+  {
+    id: 'beer_500ml',
+    category: 'drink',
+    fairMin: 5000,
+    fairMax: 7000,
+    unit: '식당 생맥주',
+    reference: REF_PRICE_KCA,
+  },
   { id: 'tea_latte', category: 'drink', fairMin: 4000, fairMax: 6000, unit: '녹차라떼 1잔' },
-  { id: 'fresh_juice', category: 'drink', fairMin: 5000, fairMax: 8000, unit: '생과일주스 1잔' },
-  { id: 'bubble_tea', category: 'drink', fairMin: 4500, fairMax: 7000, unit: '버블티 1잔' },
+  {
+    id: 'fresh_juice',
+    category: 'drink',
+    fairMin: 5000,
+    fairMax: 8000,
+    unit: '생과일주스 1잔',
+    reference: REF_PRICE_KCA,
+  },
+  {
+    id: 'bubble_tea',
+    category: 'drink',
+    fairMin: 4500,
+    fairMax: 7000,
+    unit: '버블티 1잔',
+    reference: REF_PRICE_KCA,
+  },
   {
     id: 'makgeolli_bottle',
     category: 'drink',
     fairMin: 4000,
     fairMax: 7000,
     unit: '막걸리 1병 식당',
+    reference: REF_PRICE_KCA,
   },
 
   {
@@ -88,6 +208,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 0,
     fairMax: 0,
     inputMode: 'taxi',
+    reference: REF_TAXI_SEOUL,
   },
   {
     id: 'airport_private_taxi',
@@ -95,6 +216,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 60000,
     fairMax: 90000,
     unit: '인천→서울 콜',
+    reference: REF_INCHEON_TAXI,
   },
   {
     id: 'city_bus',
@@ -103,6 +225,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMax: 1800,
     unit: '시내버스 1회',
     popular: true,
+    reference: REF_BUS,
   },
   {
     id: 'subway_single',
@@ -111,6 +234,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMax: 1900,
     unit: '지하철 1구간',
     popular: true,
+    reference: REF_SUBWAY,
   },
   {
     id: 'ktx_seoul_busan',
@@ -118,6 +242,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 55000,
     fairMax: 60000,
     unit: 'KTX 일반실',
+    reference: REF_KTX,
   },
   {
     id: 'airport_express',
@@ -125,20 +250,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 9000,
     fairMax: 11000,
     unit: '공항철도 직통',
-  },
-  {
-    id: 'rental_car_day',
-    category: 'transit',
-    fairMin: 55000,
-    fairMax: 90000,
-    unit: '소형 1일',
-  },
-  {
-    id: 'kick_scooter_30min',
-    category: 'transit',
-    fairMin: 3000,
-    fairMax: 6000,
-    unit: '전동킥보드 30분',
+    reference: REF_AREX,
   },
 
   { id: 'hostel_dorm', category: 'lodging', fairMin: 18000, fairMax: 32000, unit: '1박' },
@@ -150,13 +262,21 @@ export const PRICE_CATALOG: PriceEntry[] = [
     unit: '1박',
     popular: true,
   },
-  { id: 'hanok_stay', category: 'lodging', fairMin: 90000, fairMax: 180000, unit: '1박' },
+  {
+    id: 'hanok_stay',
+    category: 'lodging',
+    fairMin: 90000,
+    fairMax: 180000,
+    unit: '1박',
+    reference: REF_VK_DATALAB,
+  },
   {
     id: 'hotel_4star',
     category: 'lodging',
     fairMin: 130000,
     fairMax: 220000,
     unit: '1박',
+    reference: REF_VK_DATALAB,
   },
   {
     id: 'guesthouse_room',
@@ -164,6 +284,7 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 40000,
     fairMax: 70000,
     unit: '1인실 1박',
+    reference: REF_VK_DATALAB,
   },
   {
     id: 'pension_weekend',
@@ -171,42 +292,73 @@ export const PRICE_CATALOG: PriceEntry[] = [
     fairMin: 120000,
     fairMax: 220000,
     unit: '주말 1박',
+    reference: REF_VK_DATALAB,
   },
 
-  {
-    id: 'hanbok_rental_2h',
-    category: 'tourism',
-    fairMin: 12000,
-    fairMax: 20000,
-    unit: '2시간',
-    popular: true,
-  },
   { id: 'jjimjilbang_entry', category: 'tourism', fairMin: 8000, fairMax: 16000, unit: '1회 입장' },
-  { id: 'tourist_massage_1h', category: 'tourism', fairMin: 40000, fairMax: 80000, unit: '60분' },
-  { id: 'tornado_potato', category: 'tourism', fairMin: 3500, fairMax: 5500, unit: '관광지 노점' },
-  { id: 'odeng_cup', category: 'tourism', fairMin: 1000, fairMax: 2500, unit: '노점 1컵' },
   { id: 'noraebang_1h', category: 'tourism', fairMin: 20000, fairMax: 30000, unit: '저녁 1시간' },
   { id: 'public_bath', category: 'tourism', fairMin: 9000, fairMax: 12000, unit: '대중목욕탕' },
-  { id: 'movie_ticket', category: 'tourism', fairMin: 14000, fairMax: 17000, unit: '1매' },
+  {
+    id: 'movie_ticket',
+    category: 'tourism',
+    fairMin: 14000,
+    fairMax: 17000,
+    unit: '1매',
+    reference: REF_CGV,
+  },
   { id: 'mens_haircut', category: 'tourism', fairMin: 8000, fairMax: 15000, unit: '남자 중급' },
   { id: 'womens_haircut', category: 'tourism', fairMin: 12000, fairMax: 22000, unit: '여자 중급' },
-  { id: 'museum_entry', category: 'tourism', fairMin: 3000, fairMax: 10000, unit: '성인 1인' },
-  { id: 'theme_park_day', category: 'tourism', fairMin: 50000, fairMax: 75000, unit: '1일권' },
-  { id: 'cable_car_round', category: 'tourism', fairMin: 13000, fairMax: 22000, unit: '왕복' },
-  { id: 'pc_cafe_1h', category: 'tourism', fairMin: 1200, fairMax: 2500, unit: '1시간' },
-
-  { id: 'atm_global', category: 'fee', fairMin: 1000, fairMax: 1500, unit: '1회', popular: true },
-  { id: 'atm_airport', category: 'fee', fairMin: 3500, fairMax: 5000, unit: '1회' },
-  { id: 'exchange_spread', category: 'fee', fairMin: 15, fairMax: 30, unit: '원/USD' },
-  { id: 'sim_airport_5day', category: 'fee', fairMin: 25000, fairMax: 35000, unit: '5일 무제한' },
   {
-    id: 'luggage_storage_day',
-    category: 'fee',
-    fairMin: 5000,
+    id: 'museum_entry',
+    category: 'tourism',
+    fairMin: 3000,
     fairMax: 10000,
-    unit: '중형 1일',
+    unit: '성인 1인',
+    reference: REF_MCST,
   },
-  { id: 'parking_downtown_1h', category: 'fee', fairMin: 3000, fairMax: 6000, unit: '도심 1시간' },
+  {
+    id: 'theme_park_day',
+    category: 'tourism',
+    fairMin: 50000,
+    fairMax: 75000,
+    unit: '1일권',
+    reference: REF_THEMEPARK,
+  },
+  {
+    id: 'cable_car_round',
+    category: 'tourism',
+    fairMin: 13000,
+    fairMax: 22000,
+    unit: '왕복',
+    reference: REF_NAMSAN_CABLE,
+  },
+
+  {
+    id: 'atm_global',
+    category: 'fee',
+    fairMin: 1000,
+    fairMax: 1500,
+    unit: '1회',
+    popular: true,
+    reference: REF_FSS_FEE,
+  },
+  {
+    id: 'atm_airport',
+    category: 'fee',
+    fairMin: 3500,
+    fairMax: 5000,
+    unit: '1회',
+    reference: REF_FSS_FEE,
+  },
+  { id: 'exchange_spread', category: 'fee', fairMin: 15, fairMax: 30, unit: '원/USD' },
+  {
+    id: 'parking_downtown_1h',
+    category: 'fee',
+    fairMin: 3000,
+    fairMax: 6000,
+    unit: '도심 1시간',
+    reference: REF_SEOUL_PARKING,
+  },
 ]
 
 // Seoul taxi 2025 meter rules

@@ -63,13 +63,13 @@ export const LIVE_CASES: LiveCase[] = [
   {
     id: 'sample-tourism',
     email: 'chen.wei@gmail.com',
-    itemKey: 'catalog.hanbok_rental_2h.name',
+    itemKey: 'catalog.jjimjilbang_entry.name',
     category: 'tourism',
     verdict: 'bagaji',
-    paid: 45000,
-    fairLow: 12000,
-    fairHigh: 20000,
-    extra: '고궁 주변',
+    paid: 35000,
+    fairLow: 8000,
+    fairHigh: 16000,
+    extra: '관광지 찜질방',
   },
   {
     id: 'sample-fee',

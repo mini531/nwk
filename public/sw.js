@@ -1,6 +1,6 @@
 /* NWK service worker — minimal offline shell */
-const VERSION = 'nwk-v1'
-const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/favicon.svg']
+const VERSION = 'nwk-v2'
+const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/favicon.ico']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(SHELL)))

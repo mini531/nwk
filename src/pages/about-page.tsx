@@ -6,12 +6,12 @@ import {
   CompassIcon,
   CourseIcon,
   GlobeIcon,
-  NwkLogo,
   ScaleIcon,
   ShieldIcon,
   SparkIcon,
 } from '../components/icons'
 import { useInstallPrompt } from '../hooks/use-install-prompt'
+import brandLogo from '../assets/logo_brand.png'
 
 const Stat = ({ value, label }: { value: string; label: string }) => (
   <div className="flex flex-col items-center rounded-2xl bg-canvas-2/70 px-3 py-4 text-center">
@@ -36,11 +36,15 @@ export const AboutPage = () => {
       </header>
 
       <section className="nwk-card p-6 text-center">
-        <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-2xl bg-brand text-on-brand">
-          <NwkLogo size={22} />
-        </div>
-        <h1 className="text-lg font-semibold tracking-tight text-ink">{t('page.about.title')}</h1>
-        <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{t('page.about.tagline')}</p>
+        <img
+          src={brandLogo}
+          alt="No Worries Korea"
+          width="260"
+          height="44"
+          className="mx-auto mb-4 h-9 w-auto dark:brightness-0 dark:invert sm:h-11"
+        />
+        <h1 className="sr-only">{t('page.about.title')}</h1>
+        <p className="text-[14px] leading-relaxed text-ink-2">{t('page.about.tagline')}</p>
         <p className="mt-4 text-[12px] uppercase tracking-[0.14em] text-ink-3">
           {t('page.about.version')} 0.1.0
         </p>
