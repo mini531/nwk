@@ -332,6 +332,12 @@ export const KakaoTourMap = ({
   const overlayElRef = useRef<HTMLDivElement | null>(null)
   if (!overlayElRef.current && typeof document !== 'undefined') {
     overlayElRef.current = document.createElement('div')
+    // Kakao CustomOverlay wraps this in its own container; ensure our host
+    // behaves as a proper block so React children inherit a sane width
+    // rather than shrink-wrapping to content (which breaks text wrapping).
+    overlayElRef.current.style.display = 'block'
+    overlayElRef.current.style.width = '280px'
+    overlayElRef.current.style.maxWidth = 'calc(100vw - 32px)'
   }
   const [tailPosition, setTailPosition] = useState<'left' | 'center' | 'right'>('center')
 
@@ -492,17 +498,19 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
         </div>
       )}
 
-      <div className="space-y-1.5 p-3">
-        <h3 className="pr-6 text-[14px] font-bold leading-snug tracking-tight text-neutral-900">
+      <div className="w-full space-y-1.5 p-3">
+        <h3 className="w-full break-keep pr-6 text-[14px] font-bold leading-snug tracking-tight text-neutral-900">
           {displayTitle}
         </h3>
 
         {displayAddr && (
-          <p className="break-keep text-[12px] leading-snug text-neutral-600">{displayAddr}</p>
+          <p className="w-full whitespace-normal break-keep text-[12px] leading-snug text-neutral-600">
+            {displayAddr}
+          </p>
         )}
 
         {tel && (
-          <p className="text-[12px] leading-snug text-neutral-600">
+          <p className="w-full text-[12px] leading-snug text-neutral-600">
             <a href={`tel:${tel}`} className="text-brand underline-offset-2 hover:underline">
               {tel}
             </a>
@@ -510,7 +518,7 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
         )}
 
         {overview && (
-          <p className="line-clamp-3 break-keep text-[12px] leading-relaxed text-neutral-700">
+          <p className="line-clamp-3 w-full whitespace-normal break-keep text-[12px] leading-relaxed text-neutral-700">
             {overview}
           </p>
         )}
