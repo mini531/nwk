@@ -513,7 +513,7 @@ const StopPopup = ({ props, onClose, tailPosition = 'center' }: StopPopupProps) 
 
         {loading && !detail && (
           <p className="text-[12px] leading-snug text-neutral-400">
-            {t('page.map.loadingDetail', { defaultValue: '상세 정보 불러오는 중…' })}
+            {t('page.map.loadingDetail', { defaultValue: '세부 정보 불러오는 중…' })}
           </p>
         )}
       </div>
