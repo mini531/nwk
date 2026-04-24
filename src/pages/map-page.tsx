@@ -384,6 +384,7 @@ export const MapPage = () => {
             id: `course-${selectedCourse.id}-${s.order}`,
             title: poi.titleByLang[langShort] ?? poi.titleByLang.ko,
             addr: poi.addrByLang[langShort] ?? poi.addrByLang.ko,
+            overview: poi.overviewByLang[langShort] ?? '',
             thumbnail: poi.thumbnail,
             thumbnailSmall: null,
             contentTypeId: '',

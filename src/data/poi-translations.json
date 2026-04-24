@@ -1,227 +1,767 @@
 {
-  "source": "Manual curation (Korean government official English names + standard romanization)",
-  "note": "TourAPI language services do not expose Bucheon POIs. This registry provides en/ja/zh titles for POIs used in courses. Addresses remain the Korean original (authoritative for navigation apps).",
-  "fetchedAt": "2026-04-21T11:30:00.000Z",
+  "source": "Manual curation — 4-language title, address (government standard romanization / Hanja), and overview for POIs used in Bucheon theme courses. TourAPI EngService2/JpnService2/ChsService2 do not expose these POIs, so the popup falls back to this registry.",
+  "note": "For POIs registered in TourAPI 4 language services (Seoul/Busan/Jeju etc.), live data wins. Bucheon-region POIs rely on this file. Extend entries here as new courses are added.",
+  "fetchedAt": "2026-04-24T10:00:00.000Z",
   "translations": {
     "2470347": {
-      "en": { "title": "Korea Manhwa Museum" },
-      "ja": { "title": "韓国漫画博物館" },
-      "zh": { "title": "韩国漫画博物馆" }
+      "ko": {
+        "overview": "2001년 개관한 한국 최초의 만화 전용 국립 박물관이에요. 1909년 이후의 만화 역사, 주요 작가 작품, 웹툰 스튜디오 체험을 상설 전시로 만날 수 있어요."
+      },
+      "en": {
+        "title": "Korea Manhwa Museum",
+        "addr": "1 Giljuro-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Sang-dong)",
+        "overview": "Korea's first national museum dedicated to manhwa (comics), opened in 2001. Permanent exhibits trace Korean comics history from 1909, showcase major artists, and include webtoon studio experiences."
+      },
+      "ja": {
+        "title": "韓国漫画博物館",
+        "addr": "京畿道富川市遠美区吉州路1(上洞)",
+        "overview": "2001年に開館した韓国初の国立漫画博物館。1909年以降の漫画史、主要作家の作品、ウェブトゥーンスタジオ体験を常設展示。"
+      },
+      "zh": {
+        "title": "韩国漫画博物馆",
+        "addr": "京畿道富川市远美区吉州路1(上洞)",
+        "overview": "2001年开馆的韩国首座国立漫画博物馆。常设展示涵盖1909年以来的漫画史、主要作家作品以及网络漫画工作室体验。"
+      }
     },
     "2741593": {
-      "en": { "title": "Dooly Square (Baby Dinosaur Dooly)" },
-      "ja": { "title": "ドゥーリー広場" },
-      "zh": { "title": "杜利广场" }
+      "ko": {
+        "overview": "상동 송내대로에 있는 공공 광장이에요. 인기 캐릭터 '아기공룡 둘리' 동상과 포토존, 분수가 있어 가족 단위 방문객에게 인기예요."
+      },
+      "en": {
+        "title": "Dooly Square (Baby Dinosaur Dooly)",
+        "addr": "59-1 Songnae-daero, Wonmi-gu, Bucheon-si, Gyeonggi-do (Sang-dong)",
+        "overview": "Public plaza on Songnae-daero in Sang-dong featuring a statue of the beloved Korean cartoon character Dooly, photo zones and fountains — a family-friendly landmark."
+      },
+      "ja": {
+        "title": "ドゥーリー広場",
+        "addr": "京畿道富川市遠美区松内大路59-1(上洞)",
+        "overview": "上洞の松内大路にある公共広場。人気キャラクター『赤ちゃん恐竜ドゥーリー』の銅像、フォトゾーン、噴水があり家族連れに人気。"
+      },
+      "zh": {
+        "title": "杜利广场",
+        "addr": "京畿道富川市远美区松内大路59-1(上洞)",
+        "overview": "位于上洞松内大路的公共广场。设有人气角色《小恐龙杜利》铜像、拍照区和喷泉，深受家庭游客喜爱。"
+      }
     },
     "2781667": {
-      "en": { "title": "Bucheon Jayu Market" },
-      "ja": { "title": "富川自由市場" },
-      "zh": { "title": "富川自由市场" }
+      "ko": {
+        "overview": "심곡본동에 있는 부천의 대표 전통 재래시장이에요. 생활용품부터 먹거리까지 다양한 점포가 골목을 따라 모여 있어요."
+      },
+      "en": {
+        "title": "Bucheon Jayu Market",
+        "addr": "53-1 Jayu-ro, Sosa-gu, Bucheon-si, Gyeonggi-do (Simgokbon-dong)",
+        "overview": "A traditional market in Simgokbon-dong lined with stalls selling groceries, daily goods, and popular Korean street food — one of Bucheon's long-standing local markets."
+      },
+      "ja": {
+        "title": "富川自由市場",
+        "addr": "京畿道富川市素砂区自由路53-1(深谷本洞)",
+        "overview": "深谷本洞にある富川の代表的な伝統在来市場。生活用品から屋台グルメまで多彩な店舗が路地に並ぶ。"
+      },
+      "zh": {
+        "title": "富川自由市场",
+        "addr": "京畿道富川市素砂区自由路53-1(深谷本洞)",
+        "overview": "位于深谷本洞的富川代表性传统市场。生活用品、小吃美食等各类店铺沿街林立。"
+      }
     },
     "3428354": {
-      "en": { "title": "Starfield City Bucheon" },
-      "ja": { "title": "スターフィールドシティ富川" },
-      "zh": { "title": "Starfield City 富川" }
+      "ko": {
+        "overview": "2019년 개장한 부천 옥길동의 복합 쇼핑몰이에요. 쇼핑, 식당, 영화관, 스포츠 레저 시설이 한곳에 모여 있어요."
+      },
+      "en": {
+        "title": "Starfield City Bucheon",
+        "addr": "1 Okgil-ro, Sosa-gu, Bucheon-si, Gyeonggi-do (Okgil-dong)",
+        "overview": "A large mixed-use shopping complex opened in 2019 in Okgil-dong, combining retail, dining, cinema, and sports & leisure facilities under one roof."
+      },
+      "ja": {
+        "title": "スターフィールドシティ富川",
+        "addr": "京畿道富川市素砂区玉吉路1(玉吉洞)",
+        "overview": "2019年に玉吉洞に開業した複合ショッピングモール。ショッピング、レストラン、映画館、スポーツ・レジャー施設が一体化。"
+      },
+      "zh": {
+        "title": "Starfield City 富川",
+        "addr": "京畿道富川市素砂区玉吉路1(玉吉洞)",
+        "overview": "2019年在玉吉洞开业的综合购物中心。集购物、餐饮、影院、运动休闲设施于一体。"
+      }
     },
     "611883": {
-      "en": { "title": "Kkachiul Food Theme Village" },
-      "ja": { "title": "カチウル飲食テーマ村" },
-      "zh": { "title": "喜鹊屋美食主题村" }
+      "ko": {
+        "overview": "오정구 작동에 위치한 향토음식 테마 마을이에요. 전통 한식·청국장·칼국수 등을 전문으로 하는 식당이 모여 있어요."
+      },
+      "en": {
+        "title": "Kkachiul Food Theme Village",
+        "addr": "Jak-dong, Ojeong-gu, Bucheon-si, Gyeonggi-do",
+        "overview": "A local-food theme village in Jak-dong, Ojeong-gu, clustered with restaurants specializing in traditional Korean dishes such as cheonggukjang and hand-cut noodles."
+      },
+      "ja": {
+        "title": "カチウル飲食テーマ村",
+        "addr": "京畿道富川市梧亭区鵲洞",
+        "overview": "梧亭区鵲洞に位置する郷土料理テーマ村。伝統韓定食、チョングッチャン、カルグクスなど専門店が集まる。"
+      },
+      "zh": {
+        "title": "喜鹊屋美食主题村",
+        "addr": "京畿道富川市梧亭区鹊洞",
+        "overview": "位于梧亭区鹊洞的乡土美食主题村。汇聚传统韩定食、清国酱汤、刀削面等专门店。"
+      }
     },
     "2742173": {
-      "en": { "title": "Bucheon Jeil Market" },
-      "ja": { "title": "富川第一市場" },
-      "zh": { "title": "富川第一市场" }
+      "ko": {
+        "overview": "오정구 원종동의 대표 재래시장이에요. 농수산물과 반찬가게, 분식 골목이 활기차요."
+      },
+      "en": {
+        "title": "Bucheon Jeil Market",
+        "addr": "84 Wonjong-ro 85beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Wonjong-dong)",
+        "overview": "A bustling traditional market in Wonjong-dong, Ojeong-gu, known for fresh produce, side-dish stalls, and a lively street-food alley."
+      },
+      "ja": {
+        "title": "富川第一市場",
+        "addr": "京畿道富川市梧亭区元宗路85番キル84(元宗洞)",
+        "overview": "梧亭区元宗洞の代表的な在来市場。農水産物、おかず店、粉食通りが活気あふれる。"
+      },
+      "zh": {
+        "title": "富川第一市场",
+        "addr": "京畿道富川市梧亭区元宗路85号街84(元宗洞)",
+        "overview": "位于梧亭区元宗洞的代表性传统市场。农水产、小菜店、小吃街热闹非凡。"
+      }
     },
     "2741607": {
-      "en": { "title": "Hanshin Market" },
-      "ja": { "title": "ハンシン市場" },
-      "zh": { "title": "汉新市场" }
+      "ko": {
+        "overview": "소사본동의 오래된 전통시장이에요. 지역 주민들의 일상이 살아있는 골목 시장이에요."
+      },
+      "en": {
+        "title": "Hanshin Market",
+        "addr": "24 Eunseong-ro 76beon-gil, Sosa-gu, Bucheon-si, Gyeonggi-do (Sosabon-dong)",
+        "overview": "A long-standing neighborhood market in Sosabon-dong where daily local life unfolds through alleyway stalls and shops."
+      },
+      "ja": {
+        "title": "ハンシン市場",
+        "addr": "京畿道富川市素砂区銀城路76番キル24(素砂本洞)",
+        "overview": "素砂本洞にある歴史のある伝統市場。地元住民の日常が息づく路地の市場。"
+      },
+      "zh": {
+        "title": "汉新市场",
+        "addr": "京畿道富川市素砂区银城路76号街24(素砂本洞)",
+        "overview": "位于素砂本洞的老牌传统市场。充满当地居民日常气息的街巷市场。"
+      }
     },
     "126704": {
-      "en": { "title": "Bucheon Central Park" },
-      "ja": { "title": "富川中央公園" },
-      "zh": { "title": "富川中央公园" }
+      "ko": {
+        "overview": "부천 중동 신도시의 중심 도시공원이에요. 넓은 잔디밭, 분수, 산책로가 있어 가족·연인·러너 모두에게 인기예요."
+      },
+      "en": {
+        "title": "Bucheon Central Park",
+        "addr": "162 Sohyang-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Jung-dong)",
+        "overview": "The central urban park of Bucheon's Jungdong new town, with wide lawns, fountains, and walking paths popular for families, couples, and runners."
+      },
+      "ja": {
+        "title": "富川中央公園",
+        "addr": "京畿道富川市遠美区素香路162(中洞)",
+        "overview": "富川中洞ニュータウンの中心都市公園。広い芝生、噴水、散策路があり、家族連れやランナーに人気。"
+      },
+      "zh": {
+        "title": "富川中央公园",
+        "addr": "京畿道富川市远美区素香路162(中洞)",
+        "overview": "富川中洞新城的中心城市公园。设有大片草坪、喷泉和步道，深受家庭、情侣和跑者喜爱。"
+      }
     },
     "756618": {
-      "en": { "title": "Sangdong Lake Park" },
-      "ja": { "title": "上洞湖水公園" },
-      "zh": { "title": "上洞湖水公园" }
+      "ko": {
+        "overview": "상동 신도시의 인공 호수공원이에요. 둘레 산책로와 자전거 도로, 야간 조명이 잘 갖춰져 있어요."
+      },
+      "en": {
+        "title": "Sangdong Lake Park",
+        "addr": "16 Giljuro-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Sang-dong)",
+        "overview": "An artificial lake park in the Sangdong new-town district featuring a perimeter walking path, bike lane, and evening illumination."
+      },
+      "ja": {
+        "title": "上洞湖水公園",
+        "addr": "京畿道富川市遠美区吉州路16(上洞)",
+        "overview": "上洞ニュータウンの人工湖公園。外周の散策路、自転車道、夜間照明が整う。"
+      },
+      "zh": {
+        "title": "上洞湖水公园",
+        "addr": "京畿道富川市远美区吉州路16(上洞)",
+        "overview": "上洞新城的人工湖公园。设有环湖步道、自行车道和夜景灯光。"
+      }
     },
     "407030": {
-      "en": { "title": "Bucheon Botanical Garden" },
-      "ja": { "title": "富川植物園" },
-      "zh": { "title": "富川植物园" }
+      "ko": {
+        "overview": "춘의동에 있는 부천시립 식물원이에요. 열대·다육·수생식물 등 다양한 식물을 관람할 수 있어요."
+      },
+      "en": {
+        "title": "Bucheon Botanical Garden",
+        "addr": "660 Giljuro-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Chunui-dong)",
+        "overview": "A municipal botanical garden in Chunui-dong displaying a wide range of tropical, succulent, and aquatic plants across themed greenhouses."
+      },
+      "ja": {
+        "title": "富川植物園",
+        "addr": "京畿道富川市遠美区吉州路660(春衣洞)",
+        "overview": "春衣洞にある富川市立植物園。熱帯、多肉、水生植物など多様な植物を観覧できる。"
+      },
+      "zh": {
+        "title": "富川植物园",
+        "addr": "京畿道富川市远美区吉州路660(春衣洞)",
+        "overview": "位于春衣洞的富川市立植物园。可观赏热带、多肉、水生等多种植物。"
+      }
     },
     "3081528": {
-      "en": { "title": "Bucheon Children's Observatory" },
-      "ja": { "title": "富川子ども天文台" },
-      "zh": { "title": "富川儿童天文台" }
+      "ko": {
+        "overview": "여월동의 어린이 천문 교육시설이에요. 천체 망원경 관측과 프라네타리움 상영 프로그램을 운영해요."
+      },
+      "en": {
+        "title": "Bucheon Children's Observatory",
+        "addr": "24 Giljuro-ro 561beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Yeowol-dong)",
+        "overview": "A children's astronomy education facility in Yeowol-dong offering telescope observations and planetarium shows."
+      },
+      "ja": {
+        "title": "富川子ども天文台",
+        "addr": "京畿道富川市梧亭区吉州路561番キル24(如月洞)",
+        "overview": "如月洞の子ども向け天文教育施設。望遠鏡観測やプラネタリウム上映プログラムを運営。"
+      },
+      "zh": {
+        "title": "富川儿童天文台",
+        "addr": "京畿道富川市梧亭区吉州路561号街24(如月洞)",
+        "overview": "位于如月洞的儿童天文教育设施。提供天文望远镜观测及天象厅节目。"
+      }
     },
     "558819": {
-      "en": { "title": "Woongjin Playcity" },
-      "ja": { "title": "ウンジンプレイシティ" },
-      "zh": { "title": "熊津Playcity" }
+      "ko": {
+        "overview": "상동에 있는 대형 복합 레저 시설이에요. 실내외 워터파크, 스파, 사우나, 스포츠 시설을 한곳에서 즐길 수 있어요."
+      },
+      "en": {
+        "title": "Woongjin Playcity",
+        "addr": "2 Jomaru-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Sang-dong)",
+        "overview": "A large multi-leisure complex in Sang-dong with indoor and outdoor water parks, spas, saunas, and sports facilities all in one place."
+      },
+      "ja": {
+        "title": "ウンジンプレイシティ",
+        "addr": "京畿道富川市遠美区曹廣路2(上洞)",
+        "overview": "上洞にある大型複合レジャー施設。屋内外ウォーターパーク、スパ、サウナ、スポーツ施設を一度に楽しめる。"
+      },
+      "zh": {
+        "title": "熊津Playcity",
+        "addr": "京畿道富川市远美区曹廣路2(上洞)",
+        "overview": "位于上洞的大型综合休闲设施。室内外水上乐园、水疗、桑拿及体育设施一站式享受。"
+      }
     },
     "127943": {
-      "en": { "title": "Bucheon Wonmi Park" },
-      "ja": { "title": "富川元美公園" },
-      "zh": { "title": "富川元美公园" }
+      "ko": {
+        "overview": "원미산 자락의 도시 자연공원이에요. 봄철 진달래 군락지로 유명하고 사계절 산책 코스로 인기예요."
+      },
+      "en": {
+        "title": "Bucheon Wonmi Park",
+        "addr": "456 Sosa-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do",
+        "overview": "An urban nature park on the slopes of Wonmi Mountain, famous for its spring azalea (jindallae) blooms and year-round hiking trails."
+      },
+      "ja": {
+        "title": "富川元美公園",
+        "addr": "京畿道富川市遠美区素砂路456",
+        "overview": "遠美山の麓にある都市自然公園。春にはツツジの群生地として有名で、四季折々の散策コースとして人気。"
+      },
+      "zh": {
+        "title": "富川元美公园",
+        "addr": "京畿道富川市远美区素砂路456",
+        "overview": "位于元美山麓的城市自然公园。春季金达莱花丛闻名，四季皆宜漫步。"
+      }
     },
     "130526": {
-      "en": { "title": "Bucheon Nature Ecological Park" },
-      "ja": { "title": "富川自然生態公園" },
-      "zh": { "title": "富川自然生态公园" }
+      "ko": {
+        "overview": "춘의동의 생태체험 공원이에요. 습지, 수생식물원, 곤충관찰 프로그램으로 자연학습에 적합해요."
+      },
+      "en": {
+        "title": "Bucheon Nature Ecological Park",
+        "addr": "660 Giljuro-ro, Wonmi-gu, Bucheon-si, Gyeonggi-do (Chunui-dong)",
+        "overview": "An ecological park in Chunui-dong featuring wetlands, aquatic plant gardens, and insect observation programs — ideal for nature study."
+      },
+      "ja": {
+        "title": "富川自然生態公園",
+        "addr": "京畿道富川市遠美区吉州路660(春衣洞)",
+        "overview": "春衣洞の生態体験公園。湿地、水生植物園、昆虫観察プログラムで自然学習に最適。"
+      },
+      "zh": {
+        "title": "富川自然生态公园",
+        "addr": "京畿道富川市远美区吉州路660(春衣洞)",
+        "overview": "位于春衣洞的生态体验公园。湿地、水生植物园、昆虫观察项目适合自然教育。"
+      }
     },
     "3453292": {
-      "en": { "title": "Suju Literary Hall" },
-      "ja": { "title": "樹州文学館" },
-      "zh": { "title": "树州文学馆" }
+      "ko": {
+        "overview": "고강동에 있는 부천 출신 시인 수주 변영로를 기리는 문학관이에요. 육필원고, 서적, 생애 자료를 전시해요."
+      },
+      "en": {
+        "title": "Suju Literary Hall",
+        "addr": "77 Goriul-ro 8beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Gogang-dong)",
+        "overview": "A literary memorial hall in Gogang-dong honoring Bucheon-born poet Suju Byeon Yeong-ro, with exhibits of manuscripts, books, and biographical materials."
+      },
+      "ja": {
+        "title": "樹州文学館",
+        "addr": "京畿道富川市梧亭区高里乙路8番キル77(高江洞)",
+        "overview": "高江洞にある富川出身の詩人・樹州卞榮魯を顕彰する文学館。直筆原稿や著書、生涯資料を展示。"
+      },
+      "zh": {
+        "title": "树州文学馆",
+        "addr": "京畿道富川市梧亭区高里乙路8号街77(高江洞)",
+        "overview": "位于高江洞、纪念富川出身诗人树州卞荣鲁的文学馆。展出手稿、著作和生平资料。"
+      }
     },
     "2676149": {
-      "en": { "title": "Pearl S. Buck Memorial Hall" },
-      "ja": { "title": "パール・バック記念館" },
-      "zh": { "title": "赛珍珠纪念馆" }
+      "ko": {
+        "overview": "심곡본동에 있는 노벨문학상 수상 작가 펄 벅의 유적지 기념관이에요. 펄 벅 여사가 운영한 한국 소사희망원 부지를 보존해요."
+      },
+      "en": {
+        "title": "Pearl S. Buck Memorial Hall",
+        "addr": "61 Seongju-ro 214beon-gil, Sosa-gu, Bucheon-si, Gyeonggi-do (Simgokbon-dong)",
+        "overview": "A memorial hall in Simgokbon-dong on the former site of the Sosa Hope Home run by Nobel Laureate Pearl S. Buck, preserving her humanitarian legacy in Korea."
+      },
+      "ja": {
+        "title": "パール・バック記念館",
+        "addr": "京畿道富川市素砂区星州路214番キル61(深谷本洞)",
+        "overview": "深谷本洞にあるノーベル文学賞作家パール・バック女史の記念館。女史が運営した素砂希望院跡地を保存。"
+      },
+      "zh": {
+        "title": "赛珍珠纪念馆",
+        "addr": "京畿道富川市素砂区星州路214号街61(深谷本洞)",
+        "overview": "位于深谷本洞、诺贝尔文学奖得主赛珍珠的纪念馆。保存了她曾主持的素砂希望院旧址。"
+      }
     },
     "2994172": {
-      "en": { "title": "Dodeoksan Suspension Bridge (Gwangmyeong)" },
-      "ja": { "title": "道徳山吊り橋（光明）" },
-      "zh": { "title": "道德山吊桥（光明）" }
+      "ko": {
+        "overview": "광명시 도덕산의 출렁다리예요. 해발 168m 능선을 연결하며 수도권 조망과 스릴을 동시에 즐길 수 있어요."
+      },
+      "en": {
+        "title": "Dodeoksan Suspension Bridge (Gwangmyeong)",
+        "addr": "Gwangmyeong-dong, Gwangmyeong-si, Gyeonggi-do",
+        "overview": "A suspension bridge on Dodeoksan Mountain in Gwangmyeong, spanning a ridge at 168 m elevation with panoramic metro-area views and a thrilling walk."
+      },
+      "ja": {
+        "title": "道徳山吊り橋(光明)",
+        "addr": "京畿道光明市光明洞",
+        "overview": "光明市道徳山の吊り橋。標高168mの稜線を結び、首都圏の眺望とスリルを同時に楽しめる。"
+      },
+      "zh": {
+        "title": "道德山吊桥(光明)",
+        "addr": "京畿道光明市光明洞",
+        "overview": "光明市道德山吊桥。横跨海拔168米的山脊，可一边欣赏首都圈景观，一边体验惊险刺激。"
+      }
     },
     "2732695": {
-      "en": { "title": "Bucheon Culture Trail · Maul Ieum-gil" },
-      "ja": { "title": "富川文化トゥルレキル・マウルイウムキル" },
-      "zh": { "title": "富川文化环路·村落相连之路" }
+      "ko": {
+        "overview": "부천 문화둘레길 중 하나로, 지역 마을들을 연결하는 걷기 코스예요. 수주문학관 주변의 역사·문화 지점을 지나요."
+      },
+      "en": {
+        "title": "Bucheon Culture Trail · Maeul-ieum-gil",
+        "addr": "77 Goriul-ro 8beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Gogang-dong)",
+        "overview": "One of Bucheon's Culture Trails, this route links local villages and historical-cultural landmarks around Suju Literary Hall."
+      },
+      "ja": {
+        "title": "富川文化トゥルレギル・マウルイウムギル",
+        "addr": "京畿道富川市梧亭区高里乙路8番キル77(高江洞)",
+        "overview": "富川文化トゥルレギルの一つで、地域の村々をつなぐウォーキングコース。樹州文学館周辺の歴史・文化拠点を巡る。"
+      },
+      "zh": {
+        "title": "富川文化环路·村落相连之路",
+        "addr": "京畿道富川市梧亭区高里乙路8号街77(高江洞)",
+        "overview": "富川文化环路之一，串连本地村落的步行路线。经过树州文学馆周边的历史文化景点。"
+      }
     },
     "129857": {
-      "en": { "title": "Bucheon Cultural Center" },
-      "ja": { "title": "富川文化院" },
-      "zh": { "title": "富川文化院" }
+      "ko": {
+        "overview": "송내동의 지역 문화 기관이에요. 전시, 공연, 주민 강좌 등 시민 문화 프로그램을 운영해요."
+      },
+      "en": {
+        "title": "Bucheon Cultural Center",
+        "addr": "33 Gyeongin-ro 92beon-gil, Sosa-gu, Bucheon-si, Gyeonggi-do (Songnae-dong)",
+        "overview": "A community cultural institution in Songnae-dong hosting exhibitions, performances, and citizen classes throughout the year."
+      },
+      "ja": {
+        "title": "富川文化院",
+        "addr": "京畿道富川市素砂区京仁路92番キル33(松内洞)",
+        "overview": "松内洞にある地域文化機関。展示、公演、住民講座など市民文化プログラムを運営。"
+      },
+      "zh": {
+        "title": "富川文化院",
+        "addr": "京畿道富川市素砂区京仁路92号街33(松内洞)",
+        "overview": "位于松内洞的地区文化机构。举办展览、演出、市民课程等文化活动。"
+      }
     },
     "2734928": {
-      "en": { "title": "Songnae Eoullim Madang (Community Stage)" },
-      "ja": { "title": "松内オウルリムマダン" },
-      "zh": { "title": "松内文化广场" }
+      "ko": {
+        "overview": "송내동의 공유형 문화 광장이에요. 공연·플리마켓·체험 프로그램이 주말마다 열려요."
+      },
+      "en": {
+        "title": "Songnae Eoullim Madang",
+        "addr": "33 Gyeongin-ro 92beon-gil, Sosa-gu, Bucheon-si, Gyeonggi-do (Songnae-dong)",
+        "overview": "A community culture plaza in Songnae-dong that hosts weekend performances, flea markets, and hands-on programs."
+      },
+      "ja": {
+        "title": "松内オウルリムマダン",
+        "addr": "京畿道富川市素砂区京仁路92番キル33(松内洞)",
+        "overview": "松内洞の共有型文化広場。毎週末に公演、フリーマーケット、体験プログラムが開催される。"
+      },
+      "zh": {
+        "title": "松内文化广场",
+        "addr": "京畿道富川市素砂区京仁路92号街33(松内洞)",
+        "overview": "位于松内洞的共享型文化广场。每周末举办演出、跳蚤市场和体验活动。"
+      }
     },
     "2869027": {
-      "en": { "title": "Suju Neighborhood Park" },
-      "ja": { "title": "樹州近隣公園" },
-      "zh": { "title": "树州近邻公园" }
+      "ko": {
+        "overview": "고강동의 근린공원이에요. 잔디 광장, 운동시설, 산책로가 있어 주민들의 쉼터가 되고 있어요."
+      },
+      "en": {
+        "title": "Suju Neighborhood Park",
+        "addr": "71 Gogang-ro, Ojeong-gu, Bucheon-si, Gyeonggi-do (Gogang-dong)",
+        "overview": "A neighborhood park in Gogang-dong with open lawns, fitness equipment, and walking paths — a local community green space."
+      },
+      "ja": {
+        "title": "樹州近隣公園",
+        "addr": "京畿道富川市梧亭区高江路71(高江洞)",
+        "overview": "高江洞の近隣公園。芝生広場、運動施設、散策路があり、住民の憩いの場となっている。"
+      },
+      "zh": {
+        "title": "树州近邻公园",
+        "addr": "京畿道富川市梧亭区高江路71(高江洞)",
+        "overview": "位于高江洞的近邻公园。设有草坪广场、运动设施和步道，是居民的休闲场所。"
+      }
     },
     "2781609": {
-      "en": { "title": "Mureungdowon Arboretum" },
-      "ja": { "title": "武陵桃源樹木園" },
-      "zh": { "title": "武陵桃源植物园" }
+      "ko": {
+        "overview": "춘의동의 테마 수목원이에요. 무릉도원을 연상시키는 복숭아꽃과 계절별 야생화를 볼 수 있어요."
+      },
+      "en": {
+        "title": "Mureungdowon Arboretum",
+        "addr": "Chunui-dong, Bucheon-si, Gyeonggi-do",
+        "overview": "A themed arboretum in Chunui-dong inspired by the mythical peach blossom paradise (Mureungdowon), featuring peach blossoms and seasonal wildflowers."
+      },
+      "ja": {
+        "title": "武陵桃源樹木園",
+        "addr": "京畿道富川市春衣洞",
+        "overview": "春衣洞のテーマ樹木園。武陵桃源をイメージした桃の花と季節の野草を楽しめる。"
+      },
+      "zh": {
+        "title": "武陵桃源植物园",
+        "addr": "京畿道富川市春衣洞",
+        "overview": "位于春衣洞的主题植物园。以武陵桃源为灵感，可欣赏桃花与四季野花。"
+      }
     },
     "2733028": {
-      "en": { "title": "Bucheon Culture Trail · Wonmi Masil-gil" },
-      "ja": { "title": "富川文化トゥルレキル・ウォンミマシルキル" },
-      "zh": { "title": "富川文化环路·元美村巷路" }
+      "ko": {
+        "overview": "부천 문화둘레길 중 하나로, 심곡동 일대의 원미산 자락을 따라 걷는 코스예요."
+      },
+      "en": {
+        "title": "Bucheon Culture Trail · Wonmi Masil-gil",
+        "addr": "Simgok-dong, Wonmi-gu, Bucheon-si, Gyeonggi-do",
+        "overview": "One of Bucheon's Culture Trails, a walking route through Simgok-dong along the foothills of Wonmi Mountain."
+      },
+      "ja": {
+        "title": "富川文化トゥルレギル・ウォンミマシルギル",
+        "addr": "京畿道富川市遠美区深谷洞",
+        "overview": "富川文化トゥルレギルの一つで、深谷洞一帯の遠美山麓を歩くコース。"
+      },
+      "zh": {
+        "title": "富川文化环路·元美村巷路",
+        "addr": "京畿道富川市远美区深谷洞",
+        "overview": "富川文化环路之一，沿深谷洞一带元美山麓而行的步行路线。"
+      }
     },
     "2732709": {
-      "en": { "title": "Bucheon Culture Trail · Urban Forest Path" },
-      "ja": { "title": "富川文化トゥルレキル・都市の森道" },
-      "zh": { "title": "富川文化环路·都市森林路" }
+      "ko": {
+        "overview": "부천 문화둘레길의 도시 숲 구간이에요. 괴안동 범안로 인근 숲길을 걸으며 도심 속 힐링을 즐겨요."
+      },
+      "en": {
+        "title": "Bucheon Culture Trail · Urban Forest Path",
+        "addr": "11 Beoman-ro 58beon-gil, Sosa-gu, Bucheon-si, Gyeonggi-do (Goean-dong)",
+        "overview": "The urban forest section of Bucheon's Culture Trail, a restorative woodland walk near Beoman-ro in Goean-dong."
+      },
+      "ja": {
+        "title": "富川文化トゥルレギル・都市の森道",
+        "addr": "京畿道富川市素砂区凡岸路58番キル11(槐安洞)",
+        "overview": "富川文化トゥルレギルの都市の森区間。槐安洞凡岸路付近の森を歩き都心で癒される。"
+      },
+      "zh": {
+        "title": "富川文化环路·都市森林路",
+        "addr": "京畿道富川市素砂区凡岸路58号街11(槐安洞)",
+        "overview": "富川文化环路的都市森林段。沿槐安洞凡岸路附近的林间小径散步，在都市中放松身心。"
+      }
     },
     "2732682": {
-      "en": { "title": "Bucheon Culture Trail · Sosa Fragrance Path" },
-      "ja": { "title": "富川文化トゥルレキル・素砂内音道" },
-      "zh": { "title": "富川文化环路·素砂芬芳路" }
+      "ko": {
+        "overview": "부천 문화둘레길의 송내 구간이에요. 소사 동네의 작은 골목과 마을 이야기를 따라 걸어요."
+      },
+      "en": {
+        "title": "Bucheon Culture Trail · Sosa Fragrance Path",
+        "addr": "Songnae-dong, Sosa-gu, Bucheon-si, Gyeonggi-do",
+        "overview": "The Songnae section of Bucheon's Culture Trail, winding through the small alleys and community stories of the Sosa neighborhood."
+      },
+      "ja": {
+        "title": "富川文化トゥルレギル・素砂内音道",
+        "addr": "京畿道富川市素砂区松内洞",
+        "overview": "富川文化トゥルレギルの松内区間。素砂の小さな路地と町の物語を辿って歩く。"
+      },
+      "zh": {
+        "title": "富川文化环路·素砂芬芳路",
+        "addr": "京畿道富川市素砂区松内洞",
+        "overview": "富川文化环路的松内段。沿素砂社区的小巷和村落故事一路漫步。"
+      }
     },
     "2736380": {
-      "en": { "title": "Ojeong Grand Park" },
-      "ja": { "title": "梧亭大公園" },
-      "zh": { "title": "梧亭大公园" }
+      "ko": {
+        "overview": "오정구의 대형 도시공원이에요. 잔디밭, 분수, 운동시설, 어린이 놀이터가 두루 갖춰져 있어요."
+      },
+      "en": {
+        "title": "Ojeong Grand Park",
+        "addr": "183 Sang-ojeong-ro, Bucheon-si, Gyeonggi-do",
+        "overview": "A large urban park in Ojeong-gu with lawns, fountains, fitness equipment, and children's playgrounds."
+      },
+      "ja": {
+        "title": "梧亭大公園",
+        "addr": "京畿道富川市上梧亭路183",
+        "overview": "梧亭区の大型都市公園。芝生、噴水、運動施設、子供用遊び場を完備。"
+      },
+      "zh": {
+        "title": "梧亭大公园",
+        "addr": "京畿道富川市上梧亭路183",
+        "overview": "位于梧亭区的大型城市公园。设有草坪、喷泉、运动设施和儿童游乐场。"
+      }
     },
     "2781673": {
-      "en": { "title": "Gangnam Market (Bucheon)" },
-      "ja": { "title": "江南市場(富川)" },
-      "zh": { "title": "江南市场(富川)" }
+      "ko": {
+        "overview": "원미구 도당동에 있는 부천의 재래시장이에요. 신선식품과 일상용품을 주민 가격으로 살 수 있어요."
+      },
+      "en": {
+        "title": "Gangnam Market (Bucheon)",
+        "addr": "20 Oksan-ro 154beon-gil, Wonmi-gu, Bucheon-si, Gyeonggi-do (Dodang-dong)",
+        "overview": "A traditional Bucheon market in Dodang-dong of Wonmi-gu, offering fresh produce and daily goods at local prices."
+      },
+      "ja": {
+        "title": "江南市場(富川)",
+        "addr": "京畿道富川市遠美区玉山路154番キル20(島堂洞)",
+        "overview": "遠美区島堂洞にある富川の在来市場。新鮮食品と日用品を地元価格で購入できる。"
+      },
+      "zh": {
+        "title": "江南市场(富川)",
+        "addr": "京畿道富川市远美区玉山路154号街20(岛堂洞)",
+        "overview": "位于远美区岛堂洞的富川传统市场。提供新鲜食材和日用品，价格亲民。"
+      }
     },
     "2742165": {
-      "en": { "title": "Goriul Cave Market" },
-      "ja": { "title": "コリウル洞窟市場" },
-      "zh": { "title": "高丽乌洞穴市场" }
+      "ko": {
+        "overview": "오정구 고강동에 위치한 지붕 덮인 시장이에요. 동굴을 지나가는 듯한 분위기로 알려져 있어요."
+      },
+      "en": {
+        "title": "Goriul Cave Market",
+        "addr": "27 Goriul-ro 64beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Gogang-dong)",
+        "overview": "A covered traditional market in Gogang-dong, Ojeong-gu, named for its distinctive cave-like corridor atmosphere."
+      },
+      "ja": {
+        "title": "コリウル洞窟市場",
+        "addr": "京畿道富川市梧亭区高里乙路64番キル27(高江洞)",
+        "overview": "梧亭区高江洞にある屋根付き市場。洞窟を抜けるような雰囲気で知られる。"
+      },
+      "zh": {
+        "title": "高丽乌洞穴市场",
+        "addr": "京畿道富川市梧亭区高里乙路64号街27(高江洞)",
+        "overview": "位于梧亭区高江洞的有顶传统市场。以穿越洞穴般的氛围闻名。"
+      }
     },
     "1339134": {
-      "en": { "title": "Bucheon Wonjong General Market" },
-      "ja": { "title": "富川元宗総合市場" },
-      "zh": { "title": "富川元宗综合市场" }
+      "ko": {
+        "overview": "오정구 원종동의 종합 전통시장이에요. 농산물·수산물·분식이 한자리에 모여 있어요."
+      },
+      "en": {
+        "title": "Bucheon Wonjong General Market",
+        "addr": "16 Samjak-ro 396beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Wonjong-dong)",
+        "overview": "A comprehensive traditional market in Wonjong-dong of Ojeong-gu offering produce, seafood, and street food in one place."
+      },
+      "ja": {
+        "title": "富川元宗総合市場",
+        "addr": "京畿道富川市梧亭区三作路396番キル16(元宗洞)",
+        "overview": "梧亭区元宗洞の総合在来市場。農産物、水産物、粉食が一か所に揃う。"
+      },
+      "zh": {
+        "title": "富川元宗综合市场",
+        "addr": "京畿道富川市梧亭区三作路396号街16(元宗洞)",
+        "overview": "位于梧亭区元宗洞的综合传统市场。农产品、水产及小吃云集一处。"
+      }
     },
     "2781668": {
-      "en": { "title": "Sinheung Market" },
-      "ja": { "title": "新興市場" },
-      "zh": { "title": "新兴市场" }
-    },
-    "3586768": {
-      "en": { "title": "Gwangmyeong Furniture Culture Street" },
-      "ja": { "title": "光明家具文化通り" },
-      "zh": { "title": "光明家具文化街" }
-    },
-    "2736048": {
-      "en": { "title": "Dodeoksan Park (Gwangmyeong)" },
-      "ja": { "title": "道徳山公園(光明)" },
-      "zh": { "title": "道德山公园(光明)" }
+      "ko": {
+        "overview": "오정구 삼정동의 작지만 활기찬 재래시장이에요. 지역 맛집이 모여 있어요."
+      },
+      "en": {
+        "title": "Sinheung Market",
+        "addr": "14-2 Pyeongcheon-ro 721beon-gil, Ojeong-gu, Bucheon-si, Gyeonggi-do (Samjeong-dong)",
+        "overview": "A small but lively traditional market in Samjeong-dong of Ojeong-gu, known for its cluster of local eateries."
+      },
+      "ja": {
+        "title": "新興市場",
+        "addr": "京畿道富川市梧亭区平川路721番キル14-2(三亭洞)",
+        "overview": "梧亭区三亭洞の小規模ながら活気ある在来市場。地元の名店が集まる。"
+      },
+      "zh": {
+        "title": "新兴市场",
+        "addr": "京畿道富川市梧亭区平川路721号街14-2(三亭洞)",
+        "overview": "位于梧亭区三亭洞的规模虽小却热闹的传统市场。汇集当地美食店。"
+      }
     },
     "2733422": {
-      "en": { "title": "Bamil Village Food Culture Street (Gwangmyeong)" },
-      "ja": { "title": "バムイル村飲食文化通り(光明)" },
-      "zh": { "title": "栗日村美食文化街(光明)" }
+      "ko": {
+        "overview": "광명 하안동의 음식문화거리예요. 보리밥·비빔밥·칼국수 등 향토 한식집이 모여 있어요."
+      },
+      "en": {
+        "title": "Bamil Village Food Culture Street (Gwangmyeong)",
+        "addr": "Haan-dong, Gwangmyeong-si, Gyeonggi-do",
+        "overview": "A local food street in Haan-dong of Gwangmyeong, known for traditional Korean dishes such as boribap, bibimbap, and kalguksu."
+      },
+      "ja": {
+        "title": "バムイル村飲食文化通り(光明)",
+        "addr": "京畿道光明市下安洞",
+        "overview": "光明市下安洞の飲食文化通り。麦飯、ビビンバ、カルグクスなど郷土韓食の名店が集まる。"
+      },
+      "zh": {
+        "title": "栗日村美食文化街(光明)",
+        "addr": "京畿道光明市下安洞",
+        "overview": "位于光明市下安洞的美食文化街。汇聚麦饭、拌饭、刀削面等乡土韩食名店。"
+      }
     },
     "2733412": {
-      "en": { "title": "Anteo Ecological Park (Gwangmyeong)" },
-      "ja": { "title": "アントー生態公園(光明)" },
-      "zh": { "title": "安特生态公园(光明)" }
-    },
-    "2736417": {
-      "en": { "title": "Munsusan (Gimpo)" },
-      "ja": { "title": "文殊山(金浦)" },
-      "zh": { "title": "文殊山(金浦)" }
+      "ko": {
+        "overview": "광명 하안동의 자연생태공원이에요. 습지와 생태 연못, 탐방로가 조성돼 있어요."
+      },
+      "en": {
+        "title": "Anteo Ecological Park (Gwangmyeong)",
+        "addr": "27 Anjae-ro 1beon-gil, Gwangmyeong-si, Gyeonggi-do (Haan-dong)",
+        "overview": "An ecological park in Haan-dong of Gwangmyeong featuring wetlands, ecological ponds, and nature trails."
+      },
+      "ja": {
+        "title": "アントー生態公園(光明)",
+        "addr": "京畿道光明市安在路1番キル27(下安洞)",
+        "overview": "光明市下安洞の自然生態公園。湿地、生態池、探訪路が整備されている。"
+      },
+      "zh": {
+        "title": "安特生态公园(光明)",
+        "addr": "京畿道光明市安在路1号街27(下安洞)",
+        "overview": "位于光明市下安洞的自然生态公园。设有湿地、生态池塘及观光步道。"
+      }
     },
     "125558": {
-      "en": { "title": "Gimpo Hyanggyo (Confucian School)" },
-      "ja": { "title": "金浦郷校" },
-      "zh": { "title": "金浦乡校" }
+      "ko": {
+        "overview": "김포 북변동의 조선시대 향교예요. 유교 교육기관의 원형을 간직하고 있어요."
+      },
+      "en": {
+        "title": "Gimpo Hyanggyo",
+        "addr": "38 Bukbyeonjung-ro 25beon-gil, Gimpo-si, Gyeonggi-do (Bukbyeon-dong)",
+        "overview": "A Joseon-dynasty Confucian school (hyanggyo) in Bukbyeon-dong of Gimpo, preserving the traditional form of Confucian education institutions."
+      },
+      "ja": {
+        "title": "金浦郷校",
+        "addr": "京畿道金浦市北邊中路25番キル38(北邊洞)",
+        "overview": "金浦市北邊洞にある朝鮮時代の郷校。儒教教育機関の原型を今に伝える。"
+      },
+      "zh": {
+        "title": "金浦乡校",
+        "addr": "京畿道金浦市北边中路25号街38(北边洞)",
+        "overview": "位于金浦市北边洞的朝鲜王朝乡校。保留了儒教教育机构的原貌。"
+      }
     },
     "128156": {
-      "en": { "title": "Taesan Family Park (Gimpo)" },
-      "ja": { "title": "テサンファミリーパーク(金浦)" },
-      "zh": { "title": "泰山家庭乐园(金浦)" }
-    },
-    "2768190": {
-      "en": { "title": "Bupyeong Station North Plaza (Incheon)" },
-      "ja": { "title": "富平駅北広場(仁川)" },
-      "zh": { "title": "富平站北广场(仁川)" }
-    },
-    "250166": {
-      "en": { "title": "Banghwa Bridge (Seoul Gangseo)" },
-      "ja": { "title": "傍花大橋(江西)" },
-      "zh": { "title": "傍花大桥(江西)" }
-    },
-    "2742173": {
-      "en": { "title": "Bucheon Jeil Market" },
-      "ja": { "title": "富川第一市場" },
-      "zh": { "title": "富川第一市场" }
-    },
-    "3079629": {
-      "en": { "title": "Jindallae (Azalea) Hill" },
-      "ja": { "title": "ツツジ(チンダルレ)の丘" },
-      "zh": { "title": "金达莱山" }
-    },
-    "318207": {
-      "en": { "title": "Seokwangsa Temple (Bucheon)" },
-      "ja": { "title": "釈王寺(富川)" },
-      "zh": { "title": "释王寺(富川)" }
-    },
-    "3425101": {
-      "en": { "title": "Ahn Jung-geun Memorial Park" },
-      "ja": { "title": "安重根公園" },
-      "zh": { "title": "安重根公园" }
+      "ko": {
+        "overview": "김포 하성면의 가족형 테마공원이에요. 반려동물 동반 가능한 넓은 잔디밭과 놀이시설이 있어요."
+      },
+      "en": {
+        "title": "Taesan Family Park (Gimpo)",
+        "addr": "585 Haseong-ro, Haseong-myeon, Gimpo-si, Gyeonggi-do",
+        "overview": "A family-oriented theme park in Haseong-myeon of Gimpo with pet-friendly lawns and play facilities."
+      },
+      "ja": {
+        "title": "テサンファミリーパーク(金浦)",
+        "addr": "京畿道金浦市下城面下城路585",
+        "overview": "金浦市下城面の家族向けテーマパーク。ペット同伴可能な広い芝生と遊戯施設を備える。"
+      },
+      "zh": {
+        "title": "泰山家庭乐园(金浦)",
+        "addr": "京畿道金浦市下城面下城路585",
+        "overview": "位于金浦市下城面的家庭主题乐园。拥有可携带宠物的大片草坪和游乐设施。"
+      }
     },
     "753822": {
-      "en": { "title": "Ujeo Seowon (Gimpo Confucian Academy)" },
-      "ja": { "title": "牛渚書院(金浦)" },
-      "zh": { "title": "牛渚书院(金浦)" }
+      "ko": {
+        "overview": "김포 감정동의 조선시대 서원이에요. 지역 유림들이 강학하던 유서 깊은 공간이에요."
+      },
+      "en": {
+        "title": "Ujeo Seowon (Gimpo Confucian Academy)",
+        "addr": "87 Jungbong-ro 25beon-gil, Gimpo-si, Gyeonggi-do (Gamjeong-dong)",
+        "overview": "A Joseon-dynasty Confucian academy (seowon) in Gamjeong-dong of Gimpo, historically a place of scholarly instruction by local Confucian scholars."
+      },
+      "ja": {
+        "title": "牛渚書院(金浦)",
+        "addr": "京畿道金浦市中峰路25番キル87(甘井洞)",
+        "overview": "金浦市甘井洞にある朝鮮時代の書院。地域の儒林が講学した由緒ある空間。"
+      },
+      "zh": {
+        "title": "牛渚书院(金浦)",
+        "addr": "京畿道金浦市中峰路25号街87(甘井洞)",
+        "overview": "位于金浦市甘井洞的朝鲜王朝书院。是当地儒林讲学的悠久学府。"
+      }
+    },
+    "3079629": {
+      "ko": {
+        "overview": "원미구 춘의동의 진달래 명소예요. 4월 중순이면 산자락이 분홍빛으로 물들어요."
+      },
+      "en": {
+        "title": "Jindallae (Azalea) Hill",
+        "addr": "Chunui-dong, Wonmi-gu, Bucheon-si, Gyeonggi-do",
+        "overview": "A famed azalea (jindallae) hill in Chunui-dong of Wonmi-gu — the slopes turn vivid pink in mid-April each year."
+      },
+      "ja": {
+        "title": "ツツジの丘",
+        "addr": "京畿道富川市遠美区春衣洞",
+        "overview": "遠美区春衣洞のツツジ名所。4月中旬になると山肌がピンクに染まる。"
+      },
+      "zh": {
+        "title": "金达莱山",
+        "addr": "京畿道富川市远美区春衣洞",
+        "overview": "位于远美区春衣洞的金达莱(杜鹃花)胜地。每年四月中旬山坡染成粉色。"
+      }
+    },
+    "318207": {
+      "ko": {
+        "overview": "소사로에 있는 부천의 불교 사찰이에요. 도심 속 고즈넉한 수행 공간을 제공해요."
+      },
+      "en": {
+        "title": "Seokwangsa Temple (Bucheon)",
+        "addr": "367 Sosa-ro, Bucheon-si, Gyeonggi-do",
+        "overview": "A Buddhist temple on Sosa-ro in Bucheon offering a quiet practice space within the city."
+      },
+      "ja": {
+        "title": "釈王寺(富川)",
+        "addr": "京畿道富川市素砂路367",
+        "overview": "素砂路にある富川の仏教寺院。都心の中に静かな修行の場を提供する。"
+      },
+      "zh": {
+        "title": "释王寺(富川)",
+        "addr": "京畿道富川市素砂路367",
+        "overview": "位于素砂路的富川佛教寺院。在都市中提供安静的修行空间。"
+      }
+    },
+    "3425101": {
+      "ko": {
+        "overview": "중동 송내대로에 있는 안중근 의사 기념공원이에요. 동상과 기념비가 역사 교육 장소가 되고 있어요."
+      },
+      "en": {
+        "title": "Ahn Jung-geun Memorial Park",
+        "addr": "236 Songnae-daero, Wonmi-gu, Bucheon-si, Gyeonggi-do (Jung-dong)",
+        "overview": "A memorial park in Jung-dong on Songnae-daero honoring the independence activist Ahn Jung-geun, with a statue and monuments that serve as a site for historical education."
+      },
+      "ja": {
+        "title": "安重根公園",
+        "addr": "京畿道富川市遠美区松内大路236(中洞)",
+        "overview": "中洞松内大路にある安重根義士記念公園。銅像と記念碑が歴史教育の場となっている。"
+      },
+      "zh": {
+        "title": "安重根公园",
+        "addr": "京畿道富川市远美区松内大路236(中洞)",
+        "overview": "位于中洞松内大路的安重根义士纪念公园。铜像和纪念碑成为历史教育场所。"
+      }
     }
   }
 }

@@ -11,6 +11,9 @@ export interface PoiProperties {
   id: string
   title: string
   addr: string
+  // poi-translations.json 수동 번역의 설명문(언어별). TourAPI 가 해당
+  // 언어로 overview 를 주지 않을 때(특히 부천 POI) 팝업 폴백으로 사용.
+  overview?: string
   thumbnail: string | null
   thumbnailSmall: string | null
   contentTypeId: string
@@ -439,7 +442,9 @@ const StopPopup = ({ props, onClose }: StopPopupProps) => {
   const thumbSrc = detail?.firstImage || props.thumbnail
   const thumbUrl = thumbSrc ? (thumb(thumbSrc, 480) ?? thumbSrc) : null
   const tel = detail?.tel?.trim() || ''
-  const overview = detail?.overview?.trim() || ''
+  // TourAPI 해당 언어 서비스가 overview 를 못 주면(부천 POI 등)
+  // poi-translations.json 의 수동 번역 설명문(props.overview)으로 폴백.
+  const overview = detail?.overview?.trim() || props.overview?.trim() || ''
 
   return (
     <div

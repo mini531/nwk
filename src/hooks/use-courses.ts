@@ -53,7 +53,10 @@ interface RawPoiFile {
 }
 
 interface RawTranslations {
-  translations: Record<string, Partial<Record<Lang, { title?: string; addr?: string }>>>
+  translations: Record<
+    string,
+    Partial<Record<Lang, { title?: string; addr?: string; overview?: string }>>
+  >
 }
 
 const COURSES = (coursesData as RawCoursesFile).courses
@@ -70,6 +73,10 @@ export interface ResolvedPoi {
   // Resolved per-language text (falls back across poi-translations → TourAPI → ko).
   titleByLang: Record<Lang, string>
   addrByLang: Record<Lang, string>
+  // 설명문(한국어는 TourAPI KorService2 로만 취득 가능 — 여기서는
+  // poi-translations.json 의 수동 번역만 쓴다. 해당 언어 override 가 없으면
+  // 빈 문자열 → 툴팁은 이 필드를 무시하고 기본 tourDetail 결과에 의존.)
+  overviewByLang: Record<Lang, string>
 }
 
 export interface ResolvedStop {
@@ -101,15 +108,18 @@ const resolvePoi = (contentId: string): ResolvedPoi | null => {
   const raw = POI_INDEX.get(contentId)
   if (!raw) return null
   const overrides = POI_TRANSLATIONS[contentId] ?? {}
-  const pick = (lang: Lang): { title: string; addr: string } => {
+  const pick = (lang: Lang): { title: string; addr: string; overview: string } => {
     const koTitle = raw.ko?.title ?? ''
     const koAddr = raw.ko?.addr ?? ''
-    if (lang === 'ko') return { title: koTitle, addr: koAddr }
     const override = overrides[lang]
+    if (lang === 'ko') {
+      return { title: koTitle, addr: koAddr, overview: override?.overview ?? '' }
+    }
     const tourApiLang = raw[lang]
     const title = override?.title ?? tourApiLang?.title ?? koTitle
     const addr = override?.addr ?? tourApiLang?.addr ?? koAddr
-    return { title, addr }
+    const overview = override?.overview ?? ''
+    return { title, addr, overview }
   }
   const titleByLang: Record<Lang, string> = {
     ko: pick('ko').title,
@@ -123,6 +133,12 @@ const resolvePoi = (contentId: string): ResolvedPoi | null => {
     ja: pick('ja').addr,
     zh: pick('zh').addr,
   }
+  const overviewByLang: Record<Lang, string> = {
+    ko: pick('ko').overview,
+    en: pick('en').overview,
+    ja: pick('ja').overview,
+    zh: pick('zh').overview,
+  }
   return {
     contentId,
     role: raw.role,
@@ -132,6 +148,7 @@ const resolvePoi = (contentId: string): ResolvedPoi | null => {
     thumbnail: raw.thumbnail,
     titleByLang,
     addrByLang,
+    overviewByLang,
   }
 }
 
@@ -163,6 +180,12 @@ const resolveStop = (stop: CourseStop): ResolvedStop => {
         en: cp.i18n.en?.addr ?? cp.i18n.ko.addr,
         ja: cp.i18n.ja?.addr ?? cp.i18n.en?.addr ?? cp.i18n.ko.addr,
         zh: cp.i18n.zh?.addr ?? cp.i18n.en?.addr ?? cp.i18n.ko.addr,
+      },
+      overviewByLang: {
+        ko: '',
+        en: '',
+        ja: '',
+        zh: '',
       },
     }
   }
