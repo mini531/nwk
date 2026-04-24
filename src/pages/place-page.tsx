@@ -14,6 +14,7 @@ import {
   TrainIcon,
 } from '../components/icons'
 import { useFavorites } from '../hooks/use-favorites'
+import { thumb } from '../utils/image'
 import type { ComponentType, SVGProps } from 'react'
 
 type CategoryMeta = {
@@ -77,7 +78,7 @@ export const PlacePage = () => {
         {place.thumbnail && (
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-canvas-2 sm:aspect-[21/9]">
             <img
-              src={place.thumbnail}
+              src={thumb(place.thumbnail, 960) ?? place.thumbnail}
               alt=""
               loading="lazy"
               className="h-full w-full object-cover"

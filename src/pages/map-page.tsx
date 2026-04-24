@@ -616,7 +616,7 @@ export const MapPage = () => {
                 >
                   {p.thumbnail ? (
                     <img
-                      src={p.thumbnail}
+                      src={thumb(p.thumbnail, 320) ?? p.thumbnail}
                       alt=""
                       className="h-14 w-14 shrink-0 rounded-xl object-cover"
                       loading="lazy"
@@ -1225,7 +1225,7 @@ export const MapPage = () => {
                       >
                         {p.thumbnail ? (
                           <img
-                            src={p.thumbnail}
+                            src={thumb(p.thumbnail, 320) ?? p.thumbnail}
                             alt=""
                             className="h-11 w-11 shrink-0 rounded-lg object-cover"
                             loading="lazy"

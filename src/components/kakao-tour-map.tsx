@@ -379,7 +379,8 @@ export const KakaoTourMap = ({
     const overlay = new kakaoNs.CustomOverlay({
       position: latLng,
       content: el,
-      yAnchor: 1.15, // lift above the pin tip
+      // 팝업 바닥이 핀 위로 충분히 올라와 핀이 가려지지 않도록 1.3 로 lift.
+      yAnchor: 1.3,
       xAnchor,
       zIndex: 200,
       // 없으면 팝업 내부 클릭이 지도에 전달돼 바로 닫힘.
