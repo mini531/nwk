@@ -216,38 +216,6 @@ export const AboutPage = () => {
         </ul>
       </section>
 
-      <section className="nwk-card p-5">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">
-          {t('page.about.roadmap.label')}
-        </p>
-        <p className="mt-1 text-[15px] font-semibold tracking-tight text-ink">
-          {t('page.about.roadmap.title')}
-        </p>
-        <ol className="mt-4 space-y-4">
-          {(['m3', 'm6', 'm12'] as const).map((key, idx) => (
-            <li key={key} className="flex gap-3">
-              <div className="flex flex-col items-center">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand text-[12px] font-bold text-on-brand">
-                  {idx + 1}
-                </span>
-                {idx < 2 && <span className="mt-1 w-px flex-1 bg-line" aria-hidden="true" />}
-              </div>
-              <div className="flex-1 pb-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-3">
-                  {t(`page.about.roadmap.${key}.term`)}
-                </p>
-                <p className="mt-0.5 text-[14px] font-semibold text-ink">
-                  {t(`page.about.roadmap.${key}.title`)}
-                </p>
-                <p className="mt-1 text-[13px] leading-relaxed text-ink-2">
-                  {t(`page.about.roadmap.${key}.body`)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       {(canInstall || installed) && (
         <section className="nwk-card p-5">
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-3">

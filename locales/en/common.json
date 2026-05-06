@@ -160,9 +160,11 @@
         "taxi": "Taxi base fare",
         "meal": "Meal for one"
       },
-      "pricesFootnote": "Bucheon-si public data · 37 administrative dong avg · FX ₩1,330/USD",
-      "cpiLabel": "Personal service CPI (YoY)",
-      "cpiBody": "Gangwon monthly index, 2020=100",
+      "pricesFootnote": "Bucheon-si public data · 37 administrative dong avg · FX ₩{{rate}}/USD",
+      "cpiLabel": "Personal Service CPI — 12-Month Trend",
+      "cpiBody": "Gangwon Province · Base 2020=100",
+      "cpiTotalLabel": "12-month change",
+      "cpiSource": "Source: Gangwon Province Price Info (data.go.kr)",
       "facts": {
         "fx": "FX",
         "emergency": "SOS",

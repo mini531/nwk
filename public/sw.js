@@ -1,5 +1,5 @@
 /* NWK service worker — minimal offline shell */
-const VERSION = 'nwk-v2'
+const VERSION = 'nwk-v3'
 const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/favicon.ico']
 
 self.addEventListener('install', (event) => {
@@ -22,12 +22,15 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url)
 
-  // never cache firebase / functions / external API calls
+  // never cache firebase / functions / dynamic API endpoints
   if (
     url.hostname.includes('firebaseio.com') ||
     url.hostname.includes('googleapis.com') ||
     url.hostname.includes('cloudfunctions.net') ||
-    url.pathname.startsWith('/api/')
+    url.pathname.startsWith('/api/') ||
+    url.pathname === '/exchangeRate' ||
+    url.pathname.startsWith('/tiles') ||
+    url.pathname === '/thumb'
   ) {
     return
   }

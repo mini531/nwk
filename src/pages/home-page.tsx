@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { BagajiHero } from '../components/bagaji-hero'
 import { Reveal } from '../components/reveal'
+import { CpiTrendChart } from '../components/cpi-trend-chart'
 import { useCourses } from '../hooks/use-courses'
 import { resolveLocalized, type Lang } from '../types/course'
 import { useKstClock } from '../hooks/use-kst-clock'
@@ -31,12 +32,28 @@ interface BucheonItem {
 
 const BUCHEON_ITEMS = (bucheonLive as { items: Record<string, BucheonItem> }).items
 
+interface CpiPoint {
+  month: string
+  personalService: number
+}
+
 interface CpiSnapshot {
   latest: { month: string; personalService: number } | null
   yoyPct: number | null
   momPct: number | null
+  series: CpiPoint[]
 }
 const CPI = gangwonCpi as CpiSnapshot
+
+const cpiTotalChangePct =
+  CPI.series && CPI.series.length >= 2
+    ? parseFloat(
+        (
+          (CPI.series[CPI.series.length - 1].personalService / CPI.series[0].personalService - 1) *
+          100
+        ).toFixed(1),
+      )
+    : null
 
 const livePrice = (key: string, fallback: number): number => {
   const row = BUCHEON_ITEMS[key]
@@ -301,27 +318,44 @@ export const HomePage = () => {
                 ))}
               </div>
               <p className="mx-auto mt-3 max-w-3xl text-center text-[12px] text-ink-3">
-                {t('page.home.pricesFootnote')}
+                {t('page.home.pricesFootnote', { rate: fxRate.toLocaleString() })}
               </p>
 
-              {CPI.latest && CPI.yoyPct !== null && (
-                <div className="mx-auto mt-6 flex max-w-3xl items-center justify-between rounded-2xl border border-line bg-surface px-5 py-4">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[12px] font-semibold text-ink-3">
-                      {t('page.home.cpiLabel')}
-                    </p>
-                    <p className="mt-0.5 text-[13px] leading-snug text-ink-2">
-                      {CPI.latest.month.slice(0, 7)} · {t('page.home.cpiBody')}
-                    </p>
+              {CPI.latest && CPI.series && CPI.series.length >= 2 && (
+                <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-line bg-surface px-5 py-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-[12px] font-semibold text-ink-3">
+                        {t('page.home.cpiLabel')}
+                      </p>
+                      <p className="mt-0.5 text-[13px] leading-snug text-ink-2">
+                        {`${CPI.series[0].month.slice(0, 4)}년 ${CPI.series[0].month.slice(5, 7)}월`}{' '}
+                        - {`${CPI.latest.month.slice(0, 4)}년 ${CPI.latest.month.slice(5, 7)}월`} ·{' '}
+                        {t('page.home.cpiBody')}
+                      </p>
+                    </div>
+                    {cpiTotalChangePct !== null && (
+                      <div className="shrink-0 text-right">
+                        <p className="text-[11px] font-semibold text-ink-3">
+                          {t('page.home.cpiTotalLabel')}
+                        </p>
+                        <p
+                          className={`text-[22px] font-bold tabular-nums leading-tight ${
+                            cpiTotalChangePct >= 3 ? 'text-warn' : 'text-brand'
+                          }`}
+                        >
+                          {cpiTotalChangePct >= 0 ? '+' : ''}
+                          {cpiTotalChangePct.toFixed(1)}%
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  <div
-                    className={`ml-3 shrink-0 text-[24px] font-bold tabular-nums ${
-                      CPI.yoyPct >= 3 ? 'text-warn' : 'text-brand'
-                    }`}
-                  >
-                    {CPI.yoyPct >= 0 ? '+' : ''}
-                    {CPI.yoyPct.toFixed(1)}%
+                  <div className="mt-3">
+                    <CpiTrendChart series={CPI.series} locale={i18n.language} />
                   </div>
+                  <p className="mt-1 text-right text-[11px] text-ink-3">
+                    {t('page.home.cpiSource')}
+                  </p>
                 </div>
               )}
 
