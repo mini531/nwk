@@ -1,4 +1,5 @@
 import { onRequest, type Request } from 'firebase-functions/v2/https'
+import { onSchedule } from 'firebase-functions/v2/scheduler'
 import { defineSecret } from 'firebase-functions/params'
 import { logger } from 'firebase-functions/v2'
 import { initializeApp, getApps } from 'firebase-admin/app'
@@ -22,9 +23,9 @@ const ALLOWED_ORIGINS = new Set([
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000 // 6시간
 
 // ECOS statistic code: 731Y001 = 일일 원/달러 매매기준율
-// 주기 DD, 통계항목 0000001
+// 주기 D(일별), 통계항목 0000001
 const ECOS_STAT_CODE = '731Y001'
-const ECOS_CYCLE = 'DD'
+const ECOS_CYCLE = 'D'
 const ECOS_ITEM_CODE = '0000001'
 
 interface CachedRate {
@@ -176,3 +177,49 @@ const sanitize = (c: CachedRate) => ({
   sourceUrl: c.sourceUrl,
   statCode: c.statCode,
 })
+
+// 매일 오전 9시 KST(00:00 UTC)에 BOK ECOS에서 환율을 가져와 Firestore를 갱신.
+// 사용자 요청 없이도 최신 매매기준율이 유지되도록 한다.
+export const updateExchangeRateDaily = onSchedule(
+  {
+    schedule: '0 0 * * *',
+    timeZone: 'Asia/Seoul',
+    region: 'asia-northeast3',
+    secrets: [BOK_ECOS_KEY],
+  },
+  async () => {
+    let key: string | undefined
+    try {
+      key = BOK_ECOS_KEY.value()
+    } catch {
+      key = process.env.BOK_ECOS_KEY || undefined
+    }
+    if (!key || key === 'placeholder') {
+      logger.warn('updateExchangeRateDaily: BOK_ECOS_KEY not configured, skipping')
+      return
+    }
+
+    ensureAdmin()
+    const db = getFirestore()
+    const ref = db.collection('livePrices').doc('exchangeRate')
+
+    try {
+      const live = await fetchFromEcos(key)
+      if (!live) {
+        logger.warn('updateExchangeRateDaily: ECOS returned no rows')
+        return
+      }
+      await ref.set({
+        rate: live.rate,
+        date: live.date,
+        source: '한국은행 ECOS · 원/달러 매매기준율 (일별)',
+        sourceUrl: 'https://ecos.bok.or.kr/api/',
+        statCode: ECOS_STAT_CODE,
+        fetchedAt: FieldValue.serverTimestamp(),
+      })
+      logger.info('updateExchangeRateDaily: ok', { rate: live.rate, date: live.date })
+    } catch (err) {
+      logger.error('updateExchangeRateDaily: ECOS fetch failed', err)
+    }
+  },
+)

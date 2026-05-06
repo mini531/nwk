@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { BagajiHero } from '../components/bagaji-hero'
@@ -11,8 +11,9 @@ import { thumb } from '../utils/image'
 
 import bucheonLive from '../data/live-prices-bucheon.json'
 import gangwonCpi from '../data/live-cpi-gangwon.json'
+import { getCachedExchangeRate, loadExchangeRate } from '../data/exchange-rate'
 
-const KRW_PER_USD = 1330
+const KRW_PER_USD_FALLBACK = 1330
 
 interface PriceCard {
   id: string
@@ -125,8 +126,8 @@ const formatKrw = (v: number, lang: string) => {
   }
 }
 
-const formatUsd = (krw: number) => {
-  const usd = krw / KRW_PER_USD
+const formatUsd = (krw: number, rate: number) => {
+  const usd = krw / rate
   return `$${usd.toFixed(usd < 10 ? 2 : 1)}`
 }
 
@@ -158,6 +159,16 @@ export const HomePage = () => {
   const kst = useKstClock()
   const courses = useCourses()
   const lang = (i18n.language.slice(0, 2) as Lang) || 'ko'
+
+  const [fxRate, setFxRate] = useState<number>(
+    getCachedExchangeRate()?.rate ?? KRW_PER_USD_FALLBACK,
+  )
+  useEffect(() => {
+    if (getCachedExchangeRate()) return
+    loadExchangeRate().then((r) => {
+      if (r) setFxRate(r.rate)
+    })
+  }, [])
 
   const priceCards = useMemo(() => pickRotation(PRICE_POOL, 4), [])
   const coursePreview = useMemo(() => pickRotation(courses, 6), [courses])
@@ -281,7 +292,7 @@ export const HomePage = () => {
                       {formatKrw(p.krw, i18n.language)}
                     </p>
                     <p className="text-[12px] font-medium tabular-nums text-ink-3">
-                      ≈ {formatUsd(p.krw)}
+                      ≈ {formatUsd(p.krw, fxRate)}
                     </p>
                     <p className="mt-1 text-[14px] font-medium tracking-tight text-ink-2 group-hover:text-brand">
                       {t(p.labelKey)}
@@ -317,7 +328,7 @@ export const HomePage = () => {
               <div className="mx-auto mt-6 flex max-w-4xl flex-wrap justify-center gap-2">
                 {(
                   [
-                    { k: 'fx', v: '₩1,330 / $1' },
+                    { k: 'fx', v: `₩${fxRate.toLocaleString()} / $1` },
                     { k: 'emergency', v: '112 · 119' },
                     { k: 'plug', v: '220V · C/F' },
                     { k: 'water', v: 'OK' },

@@ -1,6 +1,6 @@
 import { initializeApp, type FirebaseApp } from 'firebase/app'
 import { getAuth, connectAuthEmulator, type Auth } from 'firebase/auth'
-import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore'
+import { initializeFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore'
 import { getFunctions, connectFunctionsEmulator, type Functions } from 'firebase/functions'
 import { getStorage, connectStorageEmulator, type FirebaseStorage } from 'firebase/storage'
 
@@ -21,7 +21,10 @@ const config = {
 
 const app: FirebaseApp = initializeApp(config)
 const auth: Auth = getAuth(app)
-const db: Firestore = getFirestore(app)
+// 광고차단기·기업망·CDN이 long-poll 스트림을 닫아 WebChannel이 net::ERR_CONNECTION_CLOSED를 찍는 문제 회피.
+const db: Firestore = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling: true,
+})
 const functions: Functions = getFunctions(app, 'asia-northeast3')
 const storage: FirebaseStorage = getStorage(app)
 
